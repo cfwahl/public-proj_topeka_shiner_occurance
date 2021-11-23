@@ -1,0 +1,1455 @@
+Site_Num,County,Year,Township,Range,Sections,Stream,Habitat,Pool_Riffle,Substrate,Lat,Long,Topeka_Shiner
+1_1,Pipestone,2004,107,44,20_29,Tributary_Rock_River,off_channel,off_channel_pool,"silt, sand",44.052,-96.157,0
+1_2,Pipestone,2004,107,44,20_29,Tributary_Rock_River,off_channel,off_channel_pool,"silt, sand",44.052,-96.155,0
+1_3,Pipestone,2004,107,44,20_29,Tributary_Rock_River,off_channel,off_channel_pool,"silt, sand",44.052,-96.153,1
+2_1,Pipestone,2004,105,45,31_32,Tributary_Poplar_Creek,in_channel,off_channel_pool,muck,43.859,-96.265,1
+3_1,Rock,2004,103,45,30,Beaver_Creek,in_channel,pool,sand,43.695,-96.286,1
+4_1,Rock,2004,103,44,20_21,Champepadan_Creek,in_channel,pool,"silt, mud",43.709,-96.133,1
+5_1,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.728,-96.054,0
+5_2,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.729,-96.056,0
+5_3,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.729,-96.057,0
+5_4,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.729,-96.057,0
+5_5,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.728,-96.058,0
+5_6,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.729,-96.059,0
+5_7,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.728,-96.060,0
+5_8,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.728,-96.060,0
+5_9,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.728,-96.061,0
+5_10,Rock,2004,103,44,13,Champepadan_Creek,in_channel,run,topsoil,43.728,-96.063,1
+6_1,Nobles,2004,103,43,21_28,Elk_Creek,off_channel,pool,"muck, algae",43.703,-95.995,0
+6_2,Nobles,2004,103,43,21_28,Elk_Creek,off_channel,pool,"muck, algae",43.703,-96.001,1
+7_1,Nobles,2004,102,42,6_7,Kanaranzi_Creek,off_channel,oxbow,"sand, mud",43.659,-95.918,1
+8_1,Nobles,2004,102,42,8,East_Branch_Creek,in_channel,pool,"silt, sand",43.659,-95.905,1
+9_1,Rock,2004,102,22,29,Elk_Creek,off_channel,pool,"silt, sand",43.607,-96.143,1
+10_1,Nobles,2004,101,43,30,Norwegian_Creek,in_channel,pool,"gravel, sand",43.529,-96.034,1
+11_1,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.309,-96.382,0
+11_2,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.309,-96.381,0
+11_3,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.309,-96.381,0
+11_4,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.309,-96.380,0
+11_5,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.307,-96.380,0
+11_6,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.307,-96.380,0
+11_7,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.306,-96.381,0
+11_8,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.305,-96.379,0
+11_9,Lincoln,2004,110,46,27,Tributary_Medary_creek,off_channel,pool,silt,44.304,-96.379,0
+11_10,Lincoln,2004,110,46,27,Tributary_Medary_creek,in_channel,flow,"clay, silt",44.303,-96.381,0
+12_1,Lincoln,2004,109,46,17,Medary_Creek,in_channel,flow,"boulder, sand, silt",44.253,-96.414,0
+12_2,Lincoln,2004,109,46,17,Medary_Creek,in_channel,flow,"boulder, sand, silt",44.253,-96.413,0
+12_3,Lincoln,2004,109,46,17,Medary_Creek,in_channel,flow,"boulder, sand, silt",44.253,-96.409,0
+12_4,Lincoln,2004,109,46,17,Medary_Creek,in_channel,flow,"boulder, sand, silt",44.252,-96.409,1
+13_1,Pipestone,2004,108,46,11,Flandreau_Creek,off_channel,pool,"silt, clay",44.179,-96.335,0
+13_2,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.180,-96.336,0
+13_3,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.179,-96.337,0
+13_4,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.180,-96.339,0
+13_5,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.177,-96.341,0
+13_6,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.176,-96.341,0
+13_7,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.176,-96.340,0
+13_8,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.176,-96.340,0
+13_9,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.175,-96.340,0
+13_10,Pipestone,2004,108,46,11,Flandreau_Creek,in_channel,flow,"silt, clay",44.175,-96.339,1
+14_1,Pipestone,2004,108,46,30,Willow_creek,in_channel,pool,"boulder, sand, silt",44.133,-96.424,1
+15_1,Pipestone,2004,107,45,9,Pipestone_Creek,in_channel,pool,"sand, silt",44.095,-96.257,1
+16_1,Pipestone,2004,107,46,33,Pipestone_Creek,in_channel,pool,"sand, silt",44.024,-96.368,1
+17_1,Pipestone,2004,105,44,32,Poplar_Creek,in_channel,pool,"silt, sand",43.849,-96.145,1
+18_1,Rock,2004,104,44,8_9,Rock_River,in_channel,pool,"silt, mud",43.827,-96.134,0
+18_2,Rock,2004,104,44,8_9,Rock_River,in_channel,pool,"silt, mud",43.827,-96.135,0
+18_3,Rock,2004,104,44,8_9,Rock_River,in_channel,pool,"silt, mud",43.827,-96.135,1
+19_1,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.620,-96.432,0
+19_2,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.620,-96.431,0
+19_3,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.620,-96.431,0
+19_4,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.620,-96.430,0
+19_5,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.622,-96.427,0
+19_6,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.622,-96.427,0
+19_7,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.623,-96.426,0
+19_8,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.624,-96.426,0
+19_9,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.624,-96.427,0
+19_10,Rock,2004,102,47,24,Springwater_Creek,in_channel,flow,"clay, muck",43.624,-96.427,0
+20_1,Nobles,2004,102,41,27,Little_Rock_River,in_channel,flow,"clay, silt",43.613,-95.747,0
+20_2,Nobles,2004,102,41,27,Little_Rock_River,in_channel,flow,"clay, silt",43.613,-95.747,0
+20_3,Nobles,2004,102,41,27,Little_Rock_River,in_channel,flow,"clay, silt",43.612,-95.748,0
+20_4,Nobles,2004,102,41,27,Little_Rock_River,in_channel,flow,"clay, silt",43.611,-95.748,0
+20_5,Nobles,2004,102,41,27,Little_Rock_River,in_channel,flow,"clay, silt",43.610,-95.745,0
+20_6,Nobles,2004,102,41,27,Little_Rock_River,in_channel,flow,"clay, silt",43.610,-95.744,0
+20_7,Nobles,2004,102,41,27,Little_Rock_River,in_channel,flow,"clay, silt",43.608,-95.740,0
+20_8,Nobles,2004,102,41,27,Little_Rock_River,in_channel,pool,"clay, silt",43.609,-95.739,1
+21_1,Pipestone,2005,108,46,17,Willow_creek,in_channel,flow,muck,44.160,-96.396,0
+21_2,Pipestone,2005,108,46,17,Willow_creek,off_channel,pool,muck,44.159,-96.396,0
+21_3,Pipestone,2005,108,46,17,Willow_creek,in_channel,flow,muck,44.158,-96.398,0
+21_4,Pipestone,2005,108,46,17,Willow_creek,in_channel,flow,muck,44.158,-96.398,0
+21_5,Pipestone,2005,108,46,17,Willow_creek,in_channel,flow,muck,44.159,-96.402,0
+21_6,Pipestone,2005,108,46,17,Willow_creek,off_channel,pool,muck,44.159,-96.404,0
+21_7,Pipestone,2005,108,46,17,Willow_creek,in_channel,flow,muck,44.159,-96.404,0
+21_8,Pipestone,2005,108,46,17,Willow_creek,in_channel,flow,muck,44.159,-96.405,0
+21_9,Pipestone,2005,108,46,17,Willow_creek,in_channel,flow,muck,44.159,-96.405,0
+21_10,Pipestone,2005,108,46,17,Willow_creek,in_channel,flow,muck,44.159,-96.406,0
+22_1,Pipestone,2005,107,46,21_22,North_Branch_Pipestone_Creek,in_channel,pool,"gravel, sand",44.061,-96.368,1
+23_1,Pipestone,2005,107,46,20_21_28_29,North_Branch_Pipestone_Creek,in_channel,pool,"gravel, sand",44.050,-96.388,0
+23_2,Pipestone,2005,107,46,20_21_28_29,North_Branch_Pipestone_Creek,in_channel,pool,"gravel, sand",44.053,-96.388,1
+24_1,Pipestone,2005,106,46,2,Pipestone_Creek,in_channel,pool,"sand, gravel, cobble",44.023,-96.329,1
+25_1,Pipestone,2005,107,44,19,Rock_River,off_channel,flow,"silt, sand",44.060,-96.172,0
+25_2,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.062,-96.172,0
+25_3,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.061,-96.173,0
+25_4,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.061,-96.172,0
+25_5,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.061,-96.172,0
+25_6,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.059,-96.173,0
+25_7,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.059,-96.172,0
+25_8,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.057,-96.171,0
+25_9,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.057,-96.172,0
+25_10,Pipestone,2005,107,44,19,Rock_River,in_channel,flow,"silt, sand",44.057,-96.171,0
+26_1,Pipestone,2005,107,44,27_34,East_Branch_Rock_River,in_channel,pool,muck,44.037,-96.116,1
+27_1,Pipestone,2005,106,44,5,East_Branch_Rock_River,in_channel,pool,"sand, gravel",44.015,-96.150,1
+28_1,Pipestone,2005,106,44,8_17_18,East_Branch_Rock_River,in_channel,backwater,"sand, gravel",43.991,-96.163,0
+28_2,Pipestone,2005,106,44,8_17_18,East_Branch_Rock_River,in_channel,backwater,"sand, gravel",43.991,-96.163,0
+28_3,Pipestone,2005,106,44,8_17_18,East_Branch_Rock_River,in_channel,backwater,"sand, gravel",43.992,-96.163,1
+29_1,Rock,2005,104,47,1,Split_Rock_Creek,in_channel,pool,"Sand, silt, gravel",43.835,-96.416,1
+30_1,Pipestone,2005,105,44,32,Poplar_Creek,in_channel,pool,"gravel, sand",43.851,-96.158,1
+31_1,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.973,0
+31_2,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.973,0
+31_3,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.972,0
+31_4,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.971,0
+31_5,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.970,0
+31_6,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.970,0
+31_7,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.967,0
+31_8,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.967,0
+31_9,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.807,-95.966,0
+31_10,Nobles,2005,104,43,14,Champepadan_Creek,in_channel,flow,"sand, silt",43.808,-95.965,0
+32_1,Nobles,2005,104,43,29,Champepadan_Creek,in_channel,backwater,"sand, silt",43.787,-96.030,1
+33_1,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.703,-96.159,0
+33_2,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.703,-96.159,0
+33_3,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.703,-96.159,0
+33_4,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.704,-96.160,0
+33_5,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.704,-96.160,0
+33_6,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.704,-96.160,0
+33_7,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.704,-96.160,0
+33_8,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.704,-96.160,0
+33_9,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.703,-96.168,0
+33_10,Rock,2005,103,44,19_30,Mound_Creek,in_channel,flow,"sand, gravel",43.703,-96.168,0
+34_1,Nobles,2005,103,43,29_32,Elk_Creek,in_channel,pool,"sand, silt",43.688,-96.020,1
+35_1,Nobles,2005,102,42,6_7,Kanaranzi_Creek,off_channel,oxbow,"sand, mud",43.659,-95.918,1
+36_1,Nobles,2005,102,43,38_39,Kanaranzi_Creek,in_channel,pool,"sand, silt",43.611,-96.014,0
+36_2,Nobles,2005,102,43,38_39,Kanaranzi_Creek,in_channel,pool,"sand, silt",43.611,-96.014,0
+36_3,Nobles,2005,102,43,38_39,Kanaranzi_Creek,in_channel,backwater,"sand, silt",43.610,-96.019,1
+37_1,Rock,2005,101,44,1_12,Kanaranzi_Creek,in_channel,backwater,"silt, sand",43.573,-96.064,1
+38_1,Rock,2005,102,44,21_22,Elk_Creek,in_channel,flow,"sand, silt",43.621,-96.113,0
+38_2,Rock,2005,102,44,21_22,Elk_Creek,in_channel,flow,"sand, silt",43.621,-96.114,0
+38_3,Rock,2005,102,44,21_22,Elk_Creek,in_channel,flow,"sand, silt",43.622,-96.115,0
+38_4,Rock,2005,102,44,21_22,Elk_Creek,in_channel,flow,"sand, silt",43.623,-96.115,0
+38_5,Rock,2005,102,44,21_22,Elk_Creek,in_channel,flow,"sand, silt",43.623,-96.117,1
+39_1,Rock,2005,102,45,25_36,Elk_Creek,in_channel,backwater,"mud, sand",43.601,-96.182,0
+39_2,Rock,2005,102,45,25_36,Elk_Creek,in_channel,backwater,"mud, sand",43.601,-96.183,1
+40_1,Rock,2005,102,46,11_12,Beaver_Creek,in_channel,flow,"sand, silt",43.649,-96.315,0
+40_2,Rock,2005,102,46,11_13,Beaver_Creek,in_channel,flow,"sand, silt",43.649,-96.314,0
+40_3,Rock,2005,102,46,11_14,Beaver_Creek,in_channel,flow,"sand, silt",43.648,-96.315,0
+40_4,Rock,2005,102,46,11_15,Beaver_Creek,in_channel,flow,"sand, silt",43.647,-96.314,0
+40_5,Rock,2005,102,46,11_16,Beaver_Creek,in_channel,flow,"sand, silt",43.647,-96.313,0
+40_6,Rock,2005,102,46,11_17,Beaver_Creek,in_channel,flow,"sand, silt",43.647,-96.312,0
+40_7,Rock,2005,102,46,11_18,Beaver_Creek,in_channel,flow,"sand, silt",43.647,-96.311,0
+40_8,Rock,2005,102,46,11_19,Beaver_Creek,in_channel,flow,"sand, silt",43.646,-96.311,0
+40_9,Rock,2005,102,46,11_20,Beaver_Creek,in_channel,flow,"sand, silt",43.646,-96.312,1
+41_1,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.269,-96.388,0
+41_2,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.269,-96.389,0
+41_3,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.268,-96.390,0
+41_4,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.268,-96.391,0
+41_5,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.268,-96.392,0
+41_6,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.268,-96.393,0
+41_7,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.267,-96.394,0
+41_8,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.266,-96.393,0
+41_9,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.266,-96.392,0
+41_10,Lincoln,2006,109,46,4_9,Medary_Creek,in_channel,flow,"sand, gravel",44.265,-96.390,0
+42_1,Pipestone,2006,108,46,19_30,Willow_creek,in_channel,pool,"sand, silt",44.140,-96.421,0
+42_2,Pipestone,2006,108,46,19_30,Willow_creek,in_channel,pool,"sand, silt",44.140,-96.421,1
+43_1,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.082,-96.441,0
+43_2,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.082,-96.441,0
+43_3,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.081,-96.441,0
+43_4,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.081,-96.442,0
+43_5,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.080,-96.441,0
+43_6,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.081,-96.441,0
+43_7,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.081,-96.439,0
+43_8,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.079,-96.441,0
+43_9,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.078,-96.441,0
+43_10,Pipestone,2006,107,47,12,Flandreau_Creek,in_channel,pool,"sand, gravel",44.078,-96.443,0
+44_1,Pipestone,2006,108,45,18_19,East_Branch_Flandreau_Creek,in_channel,pool,silt,44.154,-96.292,0
+44_2,Pipestone,2006,108,45,18_19,East_Branch_Flandreau_Creek,in_channel,pool,silt,44.155,-96.293,0
+44_3,Pipestone,2006,108,45,18_19,East_Branch_Flandreau_Creek,in_channel,pool,silt,44.155,-96.294,0
+44_4,Pipestone,2006,108,45,18_19,East_Branch_Flandreau_Creek,in_channel,pool,silt,44.155,-96.294,0
+44_5,Pipestone,2006,108,45,18_19,East_Branch_Flandreau_Creek,in_channel,pool,silt,44.153,-96.291,0
+44_6,Pipestone,2006,108,45,18_19,East_Branch_Flandreau_Creek,in_channel,pool,silt,44.153,-96.291,1
+45_1,Pipestone,2006,108,45,22,Triburary_North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel",44.148,-96.233,1
+46_1,Pipestone,2006,106,47,14,Pipestone_Creek_and_Unnamed_Tributary,in_channel,backwater,sand,43.971,-96.444,1
+47_1,Pipestone,2006,106,44,20_29,Rock_River,in_channel,pool,"sand, gravel, silt",43.965,-96.159,1
+48_1,Pipestone,2006,105,44,28_29,Rock_River,in_channel,backwater,"sand, gravel",43.873,-96.142,1
+49_1,Rock,2006,104,46,30,Unnamed_Tributary_Split_Rock_Creek,in_channel,pool,"sand, gravel",43.790,-96.403,1
+49_2,Rock,2006,104,46,31,Unnamed_Tributary_Split_Rock_Creek,in_channel,pool,"sand, gravel",43.790,-96.402,1
+50_1,Rock,2006,104,46,36,Beaver_Creek,in_channel,pool,"cobble, gravel, sand",43.761,-96.297,1
+51_1,Rock,2006,103,46,1,Beaver_Creek,in_channel,pool,"sand, gravel, silt",43.749,-96.292,0
+51_2,Rock,2006,103,46,1,Beaver_Creek,in_channel,pool,"sand, gravel, silt",43.749,-96.293,0
+51_3,Rock,2006,103,46,1,Beaver_Creek,in_channel,pool,"sand, gravel, silt",43.749,-96.294,0
+51_4,Rock,2006,103,46,1,Beaver_Creek,in_channel,pool,"sand, gravel, silt",43.749,-96.295,1
+52_1,Rock,2006,103,44,20_29,Champepadan_Creek,in_channel,backwater,"sand, gravel",43.718,-96.077,0
+52_2,Rock,2006,103,44,20_29,Champepadan_Creek,in_channel,backwater,"sand, gravel",43.717,-96.078,1
+53_1,Rock,2006,103,44,13_14,Champepadan_Creek,in_channel,backwater,"sand, gravel",43.718,-96.077,0
+53_2,Rock,2006,103,44,13_14,Champepadan_Creek,off_channel,backwater,"sand, gravel",43.717,-96.078,1
+54_1,Rock,2006,102,46,29,Beaver_Creek,in_channel,pool,sand,43.616,-96.372,1
+55_1,Rock,2006,101,45,13,Rock_River,in_channel,backwater,"sand, gravel, silt",43.558,-96.185,1
+56_1,Rock,2006,101,45,24,Ash_Creek,in_channel,pool,sand,43.544,-96.188,0
+56_2,Rock,2006,101,45,24,Ash_Creek,in_channel,pool,sand,43.544,-96.188,0
+56_3,Rock,2006,101,45,24,Ash_Creek,in_channel,pool,sand,43.543,-96.188,1
+57_1,Rock,2006,101,44,24_25,Kanaranzi_Creek,in_channel,backwater,"sand, silt",43.526,-96.060,1
+58_1,Rock,2006,101,44,25_26,Norwegian_Creek,in_channel,pool,"sand, muck",43.516,-96.071,0
+58_2,Rock,2006,101,44,25_26,Norwegian_Creek,in_channel,pool,"sand, muck",43.515,-96.069,1
+59_1,Rock,2006,102,41,5,East_Branch_Kanaranzi_Creek_&_unnmaed_Tributary,in_channel,flow,"sand, gravel",43.663,-95.774,0
+59_2,Rock,2006,102,41,5,East_Branch_Kanaranzi_Creek_&_unnmaed_Tributary,in_channel,flow,"sand, gravel",43.663,-95.775,0
+59_3,Rock,2006,102,41,5,East_Branch_Kanaranzi_Creek_&_unnmaed_Tributary,in_channel,flow,"sand, gravel",43.665,-95.778,0
+59_4,Rock,2006,102,41,5,East_Branch_Kanaranzi_Creek_&_unnmaed_Tributary,in_channel,flow,"sand, gravel",43.663,-95.780,0
+59_5,Rock,2006,102,41,5,East_Branch_Kanaranzi_Creek_&_unnmaed_Tributary,in_channel,flow,"sand, gravel",43.661,-95.782,0
+59_6,Rock,2006,102,41,5,East_Branch_Kanaranzi_Creek_&_unnmaed_Tributary,in_channel,flow,"sand, gravel",43.661,-95.785,0
+59_7,Rock,2006,102,41,5,East_Branch_Kanaranzi_Creek_&_unnmaed_Tributary,in_channel,pool,"sand, gravel",43.661,-95.786,1
+60_1,Rock,2006,101,42,26_35,Little_Rock_River,in_channel,backwater,"sand, silt",43.513,-95.851,1
+61_1,Lincoln,2007,109,45,30,Flandreau_Creek,in_channel,flow,silt,44.212,-96.319,0
+61_2,Lincoln,2007,109,45,30,Flandreau_Creek,in_channel,flow,silt,44.212,-96.318,0
+61_3,Lincoln,2007,109,45,31,Flandreau_Creek,in_channel,flow,silt,44.212,-96.318,0
+61_4,Lincoln,2007,109,45,31,Flandreau_Creek,in_channel,flow,silt,44.211,-96.318,0
+61_5,Lincoln,2007,109,45,31,Flandreau_Creek,in_channel,flow,silt,44.211,-96.319,0
+61_6,Lincoln,2007,109,45,31,Flandreau_Creek,in_channel,flow,silt,44.207,-96.320,0
+61_7,Lincoln,2007,109,45,31,Flandreau_Creek,in_channel,flow,silt,44.207,-96.321,0
+61_8,Lincoln,2007,109,45,36,Flandreau_Creek,in_channel,flow,silt,44.206,-96.322,0
+61_9,Lincoln,2007,109,45,36,Flandreau_Creek,in_channel,flow,silt,44.206,-96.322,0
+61_10,Lincoln,2007,109,45,36,Flandreau_Creek,in_channel,flow,silt,44.206,-96.323,0
+62_1,Lincoln,2007,109,46,36,Flandreau_Creek,in_channel,flow,muck,44.200,-96.324,0
+62_2,Lincoln,2007,109,46,36,Flandreau_Creek,in_channel,flow,muck,44.199,-96.326,0
+62_3,Lincoln,2007,109,46,36,Flandreau_Creek,in_channel,flow,muck,44.198,-96.326,0
+62_4,Pipestone,2007,109,46,1,Flandreau_Creek,in_channel,flow,muck,44.197,-96.326,0
+62_5,Pipestone,2007,109,46,1,Flandreau_Creek,in_channel,flow,muck,44.197,-96.326,0
+62_6,Pipestone,2007,109,46,1,Flandreau_Creek,in_channel,flow,muck,44.196,-96.327,0
+62_7,Pipestone,2007,109,46,1,Flandreau_Creek,in_channel,flow,muck,44.194,-96.328,0
+62_8,Pipestone,2007,109,46,1,Flandreau_Creek,in_channel,flow,muck,44.194,-96.328,0
+62_9,Pipestone,2007,109,46,1,Flandreau_Creek,in_channel,flow,muck,44.193,-96.327,0
+62_10,Pipestone,2007,109,46,1,Flandreau_Creek,in_channel,flow,muck,44.192,-96.327,0
+63_1,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.140,-96.383,0
+63_2,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.140,-96.383,0
+63_3,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.141,-96.382,0
+63_4,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.142,-96.382,0
+63_5,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.141,-96.381,0
+63_6,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.142,-96.380,0
+63_7,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.142,-96.380,0
+63_8,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.143,-96.379,0
+63_9,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.143,-96.379,0
+63_10,Pipestone,2007,108,46,21,Flandreau_Creek,in_channel,flow,silt,44.144,-96.378,0
+64_1,Pipestone,2007,108,46,29,Flandreau_Creek,off_channel,flow,silt,44.140,-96.389,0
+64_2,Pipestone,2007,108,46,28,Flandreau_Creek,in_channel,flow,silt,44.137,-96.388,0
+64_3,Pipestone,2007,108,46,29,Flandreau_Creek,in_channel,flow,silt,44.137,-96.388,0
+64_4,Pipestone,2007,108,46,29,Flandreau_Creek,off_channel,flow,silt,44.137,-96.391,0
+64_5,Pipestone,2007,108,46,29,Flandreau_Creek,in_channel,flow,silt,44.136,-96.389,0
+64_6,Pipestone,2007,108,46,29,Flandreau_Creek,in_channel,flow,silt,44.136,-96.390,0
+64_7,Pipestone,2007,108,46,29,Flandreau_Creek,in_channel,flow,silt,44.136,-96.390,0
+64_8,Pipestone,2007,108,46,29,Flandreau_Creek,in_channel,flow,silt,44.135,-96.390,0
+64_9,Pipestone,2007,108,46,29,Flandreau_Creek,in_channel,flow,silt,44.135,-96.391,0
+64_10,Pipestone,2007,108,46,29,Flandreau_Creek,in_channel,flow,silt,44.135,-96.391,0
+65_1,Pipestone,2007,107,45,4,North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel",44.097,-96.259,1
+66_1,Pipestone,2007,106,46,2,North_Branch_Pipestone_Creek,in_channel,pool,"sand, silt",44.022,-96.337,0
+66_2,Pipestone,2007,106,46,2,North_Branch_Pipestone_Creek,in_channel,pool,"sand, silt",44.023,-96.337,0
+66_3,Pipestone,2007,106,46,2,North_Branch_Pipestone_Creek,in_channel,pool,"sand, silt",44.023,-96.336,1
+67_1,Pipestone,2007,107,46,33,Pipstone_Creek,in_channel,backwater,silt,44.024,-96.368,1
+68_1,Pipestone,2007,106,47,13,Pipstone_Creek,in_channel,backwater,"sand, silt",43.987,-96.429,1
+69_1,Pipestone,2007,106,44,32,Rock_River,in_channel,flow,"sand, gravel, silt",43.943,-96.151,1
+70_1,Pipestone,2007,105,44,23,Chanarambie_Creek,in_channel,pool,"gravel, sand, silt",43.886,-96.095,1
+71_1,Pipestone,2007,105,45,10,Tributary_Poplar_Creek,in_channel,pool,grass,43.909,-96.245,0
+71_2,Pipestone,2007,105,45,10,Tributary_Poplar_Creek,in_channel,pool,grass,43.910,-96.246,0
+71_3,Pipestone,2007,105,45,10,Tributary_Poplar_Creek,in_channel,pool,grass,43.910,-96.246,0
+71_4,Pipestone,2007,105,45,10,Tributary_Poplar_Creek,in_channel,pool,grass,43.909,-96.248,0
+72_1,Pipestone,2007,105,45,33,Poplar_Creek,in_channel,pool,"sand, gravel",43.859,-96.257,1
+73_1,Rock,2007,104,46,5,Tributary_Split_Rock_Creek,in_channel,pool,"sand, gravel",43.834,-96.416,1
+74_1,Rock,2007,104,47,12,Split_Rock_Creek,in_channel,backwater,sand,43.834,-96.416,1
+75_1,Rock,2007,103,46,25,Beaver_Creek,in_channel,pool,"sand, gravel, silt",43.703,-96.296,1
+76_1,Rock,2007,102,45,11,Rock_River,in_channel,pool,"sand, gravel",43.650,-96.197,0
+76_2,Rock,2007,102,45,11,Rock_River,in_channel,pool,"sand, gravel",43.649,-96.197,0
+76_3,Rock,2007,102,45,11,Rock_River,in_channel,pool,"sand, gravel",43.649,-96.198,1
+77_1,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.738,-95.918,0
+77_2,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.738,-95.918,0
+77_3,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.738,-95.917,0
+77_4,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.738,-95.917,0
+77_5,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.736,-95.918,0
+77_6,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.736,-95.918,0
+77_7,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.736,-95.919,0
+77_8,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.736,-95.919,0
+77_9,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.735,-95.918,0
+77_10,Nobles,2007,103,42,7,Kanaranzi_Creek,in_channel,flow,"silt, sand",43.739,-95.914,0
+78_1,Nobles,2007,102,43,22,Kanaranzi_Creek,in_channel,backwater,"sand, gravel",43.625,-95.986,0
+78_2,Nobles,2007,102,43,22,Kanaranzi_Creek,in_channel,backwater,"sand, gravel",43.625,-95.986,1
+79_1,Nobles,2007,102,43,21,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.616,-95.998,0
+79_2,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.616,-95.998,0
+79_3,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.615,-95.998,0
+79_4,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.614,-95.998,0
+79_5,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.614,-95.999,0
+79_6,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.614,-96.000,0
+79_7,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.614,-96.000,0
+79_8,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.614,-96.001,0
+79_9,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.613,-96.001,0
+79_10,Nobles,2007,102,43,28,Kanaranzi_Creek,in_channel,flow,"sand, gravel",43.614,-96.002,0
+80_1,Rock,2007,101,44,24,Kanaranzi_Creek,in_channel,pool,"sand, silt ",43.543,-96.062,0
+80_2,Rock,2007,101,44,13,Kanaranzi_Creek,in_channel,pool,"sand, silt ",43.544,-96.062,1
+81_1,Pipestone,2008,108n,46w,15,Flandreau_Creek,in_channel,flow,"sand, mud",44.155,-96.368,0
+81_2,Pipestone,2008,108n,46w,15,Flandreau_Creek,in_channel,flow,"sand, mud",44.157,-96.364,0
+81_3,Pipestone,2008,108n,46w,15,Flandreau_Creek,in_channel,flow,"sand, mud",44.157,-96.364,0
+81_4,Pipestone,2008,108n,46w,15,Flandreau_Creek,in_channel,flow,"sand, mud",44.158,-96.362,0
+81_5,Pipestone,2008,108n,46w,15,Flandreau_Creek,in_channel,flow,"sand, mud",44.159,-96.362,0
+81_6,Pipestone,2008,108n,46w,15,Flandreau_Creek,in_channel,flow,"sand, mud",44.159,-96.361,0
+81_7,Pipestone,2008,108n,46w,15,Flandreau_Creek,in_channel,flow,"sand, mud",44.159,-96.360,0
+81_8,Pipestone,2008,108n,46w,15,Flandreau_Creek,off_channel,flow,"sand, mud",44.160,-96.360,1
+82_1,Pipestone,2008,107n,47w,1_12,Flandreau_Creek,in_channel,flow,muck,44.099,-96.429,0
+82_2,Pipestone,2008,108n,46w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.099,-96.428,0
+82_3,Pipestone,2008,108n,46w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.099,-96.428,0
+82_4,Pipestone,2008,108n,46w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.098,-96.427,0
+82_5,Pipestone,2008,108n,46w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.098,-96.427,0
+82_6,Pipestone,2008,108n,46w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.098,-96.427,0
+82_7,Pipestone,2008,108n,46w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.097,-96.428,0
+82_8,Pipestone,2008,108n,46w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.096,-96.428,0
+82_9,Pipestone,2008,108n,46w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.094,-96.430,0
+82_10,Pipestone,2008,107n,47w,"6,7 ",Flandreau_Creek,in_channel,flow,muck,44.094,-96.430,0
+83_1,Pipestone,2008,107n,46w,33,South_Branch_Pipestone_Creek,in_channel,backwater,silt,44.023,-96.368,1
+84_1,Pipestone,2008,107n,46w,13,North_Branch_Pipestone_Creek,in_channel,backwater,"sand, silt",44.081,-96.308,1
+85_1,Pipestone,2008,107n,45w,9,North_Branch_Pipestone_Creek,in_channel,pool,"sand, silt",44.095,-96.257,1
+86_1,Pipestone,2008,105n,46w,21,Split_Rock_Creek,in_channel,pool,"sand, silt",43.892,-96.368,1
+87_1,Pipestone,2008,105n,45w,26,Poplar_Creek,in_channel,pool,"sand, gravel, silt",43.866,-96.205,1
+88_1,Pipestone,2008,105n,45w,20,Pipstone_Creek,in_channel,backwater,"sand, silt",43.878,-96.150,1
+89_1,Rock,2008,102n,47w,35,Springwater_Creek,in_channel,flow,"mud, sand",43.602,-96.444,0
+89_2,Rock,2008,102n,47w,35,Springwater_Creek,in_channel,flow,"mud, sand",43.602,-96.445,0
+89_3,Rock,2008,102n,47w,35,Springwater_Creek,in_channel,flow,"mud, sand",43.600,-96.446,0
+90_1,Rock,2008,102n,46w,7,Springwater_Creek,in_channel,flow,"silt, sand, gravel",43.648,-96.402,0
+91_1,Rock,2008,103n,45w,31,Beaver_Creek,in_channel,backwater,"sand, gravel",43.689,-96.289,1
+92_1,Rock,2008,103n,44w,31,Rock_River,in_channel,flow,"sand, silt",43.672,-96.171,0
+92_2,Rock,2008,103n,44w,31,Rock_River,in_channel,flow,"sand, silt",43.672,-96.169,0
+92_3,Rock,2008,103n,44w,31,Rock_River,in_channel,flow,"sand, silt",43.675,-96.166,0
+92_4,Rock,2008,103n,44w,31,Rock_River,in_channel,flow,"sand, silt",43.675,-96.167,0
+92_5,Rock,2008,103n,44w,31,Rock_River,in_channel,flow,"sand, silt",43.676,-96.167,0
+93_1,Rock,2008,102n,45w,23,Rock_River,in_channel,backwater,"sand, gravel",43.628,-96.195,1
+94_1,Rock,2008,102n,44w,10_11,Elk_Creek,in_channel,backwater,"sand, gravel",43.660,-96.093,1
+95_1,Rock,2008,103n,44w,23,Champepadan_Creek,off_channel,pool,"sand, silt, gravel",43.718,-96.086,1
+96_1,Rock,2008,101n,44w,34_35,Rock_River,in_channel,backwater,"sand, gravel, silt",43.512,-96.092,0
+96_2,Rock,2008,101n,44w,34_35,Rock_River,in_channel,backwater,"sand, gravel, silt",43.512,-96.092,0
+96_3,Rock,2008,101n,44w,34_35,Rock_River,in_channel,backwater,"sand, gravel, silt",43.512,-96.093,0
+96_4,Rock,2008,101n,44w,34_35,Rock_River,in_channel,backwater,"sand, gravel, silt",43.512,-96.093,1
+97_1,Nobles,2008,103n,42w,30,Kanaranzi_Creek,in_channel,backwater,"sand, silt, gravel",43.703,-95.914,1
+98_1,Nobles,2008,102n,42w,8,East_Branch_Kanaranzi_Creek,in_channel,backwater,"sand, gravel",43.657,-95.904,0
+98_2,Nobles,2008,102n,42w,8,East_Branch_Kanaranzi_Creek,in_channel,backwater,"sand, gravel",43.659,-95.904,1
+99_1,Nobles,2008,101n,42w,15,West_Branch_Little_Rock_River,in_channel,flow,"sand, gravel, mud",43.558,-95.863,1
+100_1,Nobles,2008,101n,42w,23,West_Branch_Little_Rock_River,in_channel,backwater,"sand, mud",43.543,-95.847,1
+101_1,Lincoln,2009,109,46,18,Medary_Creek,in_channel,pool,"silt, sand",44.248,-96.442,1
+102_1,Lincoln,2009,109,46,17,Medary_Creek,in_channel,pool,"silt, sand",44.252,-96.409,0
+102_2,Lincoln,2009,109,46,17,Medary_Creek,in_channel,pool,"silt, sand",44.253,-96.408,1
+103_1,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.152,-96.415,0
+103_2,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.152,-96.415,0
+103_3,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.150,-96.416,0
+103_4,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.150,-96.415,0
+103_5,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.150,-96.413,0
+103_6,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.149,-96.413,0
+103_7,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.149,-96.412,0
+103_8,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.148,-96.412,0
+103_9,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.147,-96.412,0
+103_10,Pipestone,2009,108,46,19,Willow_creek,in_channel,flow,muck,44.147,-96.414,0
+104_1,Pipestone,2009,107,46,14,North_Branch_Pipestone_Creek,in_channel,pool,"sand, silt",44.071,-96.348,1
+105_1,Pipestone,2009,106,46,5,North_Branch_Pipestone_Creek,in_channel,pool,"sand, silt",44.071,-96.348,1
+106_1,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.952,-96.128,0
+106_2,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.951,-96.129,0
+106_3,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.951,-96.129,0
+106_4,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.950,-96.131,0
+106_5,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.950,-96.131,0
+106_6,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.951,-96.132,0
+106_7,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.952,-96.128,0
+106_8,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.954,-96.127,0
+106_9,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.955,-96.127,0
+106_10,Pipestone,2009,106,44,28,Unnamed_Tributary_Rock_River,in_channel,flow,"sand, silt",43.957,-96.126,0
+107_1,Pipestone,2009,105,46,21,Split_Rock_Creek,in_channel,pool,"boulders, slab, gravel, sand, silt ",43.892,-96.371,0
+107_2,Pipestone,2009,105,46,21,Split_Rock_Creek,in_channel,pool,"boulders, slab, gravel, sand, silt ",43.892,-96.371,0
+107_3,Pipestone,2009,105,46,21,Split_Rock_Creek,in_channel,pool,"boulders, slab, gravel, sand, silt ",43.891,-96.373,0
+107_4,Pipestone,2009,105,46,21,Split_Rock_Creek,in_channel,pool,"boulders, slab, gravel, sand, silt ",43.892,-96.373,1
+108_1,Pipestone,2009,105,46,28,Split_Rock_Creek,in_channel,pool,"sand, silt, boulders",43.878,-96.380,0
+108_2,Pipestone,2009,105,46,28,Split_Rock_Creek,in_channel,pool,"sand, silt, boulders",43.878,-96.380,1
+109_1,Rock,2009,104,47,12,Split_Rock_Creek,in_channel,pool,"sand, silt",43.834,-96.412,1
+110_1,Rock,2009,102,46,7,Springwater_Creek,in_channel,flow,"silt, sand",43.660,-96.396,0
+111_1,Rock,2009,45,19,19,Beaver_Creek,in_channel,pool,"sand, silt, bedrock",43.707,-96.289,0
+111_2,Rock,2009,45,19,19,Beaver_Creek,in_channel,pool,"sand, silt, bedrock",43.707,-96.288,1
+112_1,Rock,2009,103,46,24,Beaver_Creek,in_channel,pool,"sand, silt, bedrock",43.707,-96.288,1
+113_1,Rock,2009,103,44,8,Unnamed_Tributary_Rock_River,in_channel,pool,"sand, silt, mud",43.740,-96.152,1
+114_1,Nobles,2009,104,43,31,Champepadan_Creek,in_channel,flow,"sand, gravel",43.762,-96.050,0
+115_1,Rock,2009,102,45,25,Elk_Creek,off_channel,oxbow,"sand, gravel, silt",43.603,-96.173,1
+116_1,Rock,2009,101,44,24,Kanaranzi_Creek,in_channel,flow,"sand, silt",43.543,-96.061,0
+116_2,Rock,2009,101,44,24,Kanaranzi_Creek,in_channel,flow,"sand, silt",43.543,-96.061,0
+116_3,Rock,2009,101,44,24,Kanaranzi_Creek,in_channel,flow,"sand, silt",43.544,-96.062,0
+116_4,Rock,2009,101,44,24,Kanaranzi_Creek,in_channel,flow,"sand, silt",43.544,-96.061,1
+117_1,Nobles,2009,102,42,7,Kanaranzi_Creek,in_channel,backwater,"sand, silt",43.654,-95.929,1
+118_1,Nobles,2009,102,42,15_16,Unnamed_Tributary_East_Branch_Kanaranzi_Creek,in_channel,pool,"sand, gravel",43.631,-95.867,0
+119_1,Nobles,2009,101,42,10,West_Branch_Little_Rock_River,in_channel,backwater,"sand, gravel, muck",43.572,-95.861,1
+120_1,Nobles,2009,101,42,23,West_Branch_Little_Rock_River,in_channel,pool,"sand, muck",43.543,-95.848,1
+121_1,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.125,-96.396,0
+121_2,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.126,-96.396,0
+121_3,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.126,-96.396,0
+121_4,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.126,-96.396,0
+121_5,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.128,-96.396,0
+121_6,Pipestone,2010,108,46,29,Flandreau_Creek,off_channel,flow,"sand, silt",44.128,-96.395,0
+121_7,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.131,-96.395,0
+121_8,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.131,-96.394,0
+121_9,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.131,-96.394,0
+121_10,Pipestone,2010,108,46,29,Flandreau_Creek,in_channel,flow,"sand, silt",44.131,-96.394,0
+122_1,Pipestone,2010,107,46,14,Flandreau_Creek,in_channel,flow,"sand, silt",44.179,-96.254,0
+122_2,Pipestone,2010,107,46,14,Flandreau_Creek,in_channel,flow,"sand, silt",44.179,-96.253,0
+122_3,Pipestone,2010,107,46,14,Flandreau_Creek,off_channel,flow,"sand, silt",44.176,-96.256,0
+122_4,Pipestone,2010,107,46,14,Flandreau_Creek,in_channel,flow,"sand, silt",44.177,-96.255,0
+122_5,Pipestone,2010,107,46,14,Flandreau_Creek,in_channel,flow,"sand, silt",44.176,-96.255,0
+122_6,Pipestone,2010,107,46,14,Flandreau_Creek,off_channel,flow,"sand, silt",44.175,-96.256,0
+122_7,Pipestone,2010,107,46,14,Flandreau_Creek,off_channel,flow,"sand, silt",44.176,-96.256,0
+122_8,Pipestone,2010,107,46,14,Flandreau_Creek,in_channel,flow,"sand, silt",44.175,-96.257,0
+122_9,Pipestone,2010,107,46,14,Flandreau_Creek,in_channel,flow,"sand, silt",44.175,-96.257,0
+122_10,Pipestone,2010,107,46,14,Flandreau_Creek,in_channel,flow,"sand, silt",44.174,-96.256,0
+123_1,Pipestone,2010,105,44,4,Rock_River,in_channel,backwater,"sand, silt",43.936,-96.136,1
+124_1,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.900,-96.064,0
+124_2,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.898,-96.066,0
+124_3,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.898,-96.067,0
+124_4,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.898,-96.067,0
+124_5,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.898,43.898,0
+124_6,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.897,-96.068,0
+124_7,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.896,-96.069,0
+124_8,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.896,-96.069,0
+124_9,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.894,-96.072,0
+124_10,Pipestone,2010,105,44,13,Chanarambie_Creek,in_channel,flow,"sand, silt",43.894,-96.074,0
+125_1,Murray,2010,105,43,8_18,Chanarambie_Creek,in_channel,flow,"sand, silt",43.911,-96.034,0
+125_2,Murray,2010,105,43,8_18,Chanarambie_Creek,in_channel,flow,"sand, silt",43.911,-96.033,0
+125_3,Murray,2010,105,43,8_18,Chanarambie_Creek,in_channel,flow,"sand, silt",43.911,-96.033,0
+125_4,Murray,2010,105,43,8_18,Chanarambie_Creek,in_channel,flow,"sand, silt",43.911,-96.033,0
+125_5,Murray,2010,105,43,8_18,Chanarambie_Creek,in_channel,flow,"sand, silt",43.911,-96.034,0
+125_6,Murray,2010,105,43,8_18,Chanarambie_Creek,in_channel,backwater,"sand, silt",43.911,-96.035,1
+126_1,Rock,2010,104,47,13,Split_Rock_Creek,in_channel,pool,muck,43.808,-96.426,0
+126_2,Rock,2010,104,47,13,Split_Rock_Creek,in_channel,pool,muck,43.808,-96.426,1
+127_1,Pipestone,2010,102,46,5,Willow_creek,in_channel,flow,"sand, silt",44.158,-96.396,0
+127_2,Pipestone,2010,102,46,5,Willow_creek,in_channel,flow,"sand, silt",44.158,-96.396,0
+127_3,Pipestone,2010,102,46,5,Willow_creek,off_channel,backwater,"sand, silt",44.159,-96.396,1
+128_1,Rock,2010,102,46,2_11_12,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.657,-96.312,0
+128_2,Rock,2010,102,46,2_11_13,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.657,-96.312,0
+128_3,Rock,2010,102,46,2_11_14,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.658,-96.313,0
+128_4,Rock,2010,102,46,2_11_15,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.658,-96.313,0
+128_5,Rock,2010,102,46,2_11_16,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.655,-96.313,0
+128_6,Rock,2010,102,46,2_11_17,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.655,-96.312,0
+128_7,Rock,2010,102,46,2_11_18,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.655,-96.311,0
+128_8,Rock,2010,102,46,2_11_19,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.654,-96.311,0
+128_9,Rock,2010,102,46,2_11_20,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.653,-96.311,0
+128_10,Rock,2010,102,46,2_11_21,Beaver_Creek,in_channel,flow,"sand, gravel, muck",43.660,-96.315,0
+129_1,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.719,-96.190,0
+129_2,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.722,-96.189,0
+129_3,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.723,-96.190,0
+129_4,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.723,-96.189,0
+129_5,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.722,-96.189,0
+129_6,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.718,-96.190,0
+129_7,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.718,-96.190,0
+129_8,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.718,-96.190,0
+129_9,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.718,-96.190,0
+129_10,Rock,2010,103,45,13_24,Mound_Creek,in_channel,flow,"silt, boluders",43.718,-96.191,0
+130_1,Rock,2010,103,44,7_8,Rock_River,in_channel,backwater,"silt, sand",43.739,-96.148,0
+130_2,Rock,2010,103,44,7_8,Rock_River,in_channel,backwater,"silt, sand",43.739,-96.147,0
+130_3,Rock,2010,103,44,7_8,Rock_River,in_channel,backwater,"silt, sand",43.738,-96.147,0
+130_4,Rock,2010,103,44,7_8,Rock_River,in_channel,backwater,"silt, sand",43.740,-96.147,1
+131_1,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.714,-96.172,0
+131_2,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.714,-96.171,0
+131_3,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.714,-96.171,0
+131_4,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.714,-96.170,0
+131_5,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.713,-96.170,0
+131_6,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.710,-96.170,0
+131_7,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.710,-96.169,0
+131_8,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.710,-96.170,0
+131_9,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.710,-96.170,0
+131_10,Rock,2010,103,44,12_19,Mound_Creek,in_channel,flow,"sand, silt, gravel",43.710,-96.170,0
+132_1,Rock,2010,103,44,12,Unnamed_Tributary_Champepdan_Creek,in_channel,pool,"sand, silt",43.707,-96.288,0
+132_2,Rock,2010,103,44,12,Unnamed_Tributary_Champepdan_Creek,in_channel,pool,"sand, silt",43.732,-96.071,0
+133_1,Rock,2010,102,45,11,Rock_River,in_channel,pool,"sand, silt",43.655,-96.191,0
+133_2,Rock,2010,102,45,11,Rock_River,in_channel,pool,"sand, silt",43.657,-96.190,0
+133_3,Rock,2010,102,45,11,Rock_River,in_channel,pool,"sand, silt",43.657,-96.190,1
+134_1,Rock,2010,102,45,26,Rock_River,in_channel,pool,"sand, gravel",43.616,-96.197,1
+135_1,Rock,2010,102,44,2,Elk_Creek,off_channel,pool,"sand, gravel, silt",43.603,-96.173,1
+136_1,Rock,2010,103,44,36,Elk_Creek,in_channel,pool,"silt, muck",43.543,-96.061,1
+137_1,Rock,2010,101,44,1,Kanaranzi_Creek,in_channel,pool,"muck, sand",43.574,-96.064,0
+137_2,Rock,2010,101,44,1,Kanaranzi_Creek,in_channel,pool,"muck, sand",43.573,-96.064,1
+138_1,Nobles,2010,102,42,7,Kanaranzi_Creek,in_channel,backwater,"sand, gravel",43.654,-95.929,1
+139_1,Nobles,2010,102,42,8_12,East_Branch_Kanaranzi_Creek,in_channel,backwater,muck,43.659,-95.905,1
+140_1,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.688,-95.906,0
+140_2,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.688,-95.906,0
+140_3,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.688,-95.907,0
+140_4,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.687,-95.908,0
+140_5,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.684,-95.907,0
+140_6,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.684,-95.906,0
+140_7,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.683,-95.907,0
+140_8,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.683,-95.906,0
+140_9,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.682,-95.906,0
+140_10,Nobles,2010,103,42,32,Kanaranzi_Creek,in_channel,flow,"sand, muck, gravel",43.683,-95.904,0
+141_1,Lincoln,2012,109,46,8,Medary_Creek,in_channel,backwater,"sand, silt",44.258,-96.422,0
+141_2,Lincoln,2012,109,46,8,Medary_Creek,in_channel,backwater,"sand, silt",44.258,-96.422,1
+142_1,Pipestone,2012,108,46,31,Willow_creek,in_channel,pool,"silt, sand, gravel",44.111,-96.423,0
+142_2,Pipestone,2012,107,46,6,Willow_creek,in_channel,pool,"silt, sand, gravel",44.111,-96.422,0
+142_3,Pipestone,2012,107,46,7,Willow_creek,in_channel,backwater,"silt, sand, gravel",44.111,-96.422,0
+142_4,Pipestone,2012,107,46,8,Willow_creek,in_channel,backwater,"silt, sand, gravel",44.110,-96.422,0
+142_5,Pipestone,2012,107,46,9,Willow_creek,in_channel,backwater,"silt, sand, gravel",44.110,-96.422,0
+142_6,Pipestone,2012,107,46,10,Willow_creek,in_channel,backwater,"silt, sand, gravel",44.110,-96.422,0
+142_7,Pipestone,2012,107,46,11,Willow_creek,in_channel,backwater,"silt, sand, gravel",44.110,-96.422,0
+142_8,Pipestone,2012,107,46,12,Willow_creek,in_channel,backwater,"silt, sand, gravel",44.110,-96.422,0
+142_9,Pipestone,2012,107,46,13,Willow_creek,in_channel,backwater,"silt, sand, gravel",44.111,-96.423,0
+142_10,Pipestone,2012,107,46,14,Willow_creek,in_channel,backwater,"silt, sand, gravel",44.111,-96.423,0
+143_1,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.154,-96.292,0
+143_2,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.154,-96.292,0
+143_3,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.154,-96.292,0
+143_4,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.154,-96.292,0
+143_5,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.154,-96.292,0
+143_6,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.153,-96.285,0
+143_7,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.153,-96.285,0
+143_8,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.153,-96.286,0
+143_9,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.153,-96.286,0
+143_10,Pipestone,2012,108,45,18-20,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.153,-96.286,0
+144_1,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,in_channel,backwater,"silt, gravel, sand",44.041,-96.400,0
+144_2,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,in_channel,backwater,"silt, gravel, sand",44.041,-96.399,0
+144_3,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,in_channel,backwater,"silt, gravel, sand",44.041,-96.400,0
+144_4,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,in_channel,backwater,"silt, gravel, sand",44.041,-96.401,0
+144_5,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,off_channel,pool,"silt, gravel, sand",44.041,-96.401,0
+144_6,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,in_channel,backwater,"silt, gravel, sand",44.040,-96.401,0
+144_7,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,in_channel,backwater,"silt, gravel, sand",44.039,-96.401,0
+144_8,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,off_channel,pool,"silt, gravel, sand",44.037,-96.404,0
+144_9,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,off_channel,pool,"silt, gravel, sand",44.033,-96.402,0
+144_10,Pipestone,2012,107,46,29_32,North_Branch_Pipestone_Creek,off_channel,pool,"silt, gravel, sand",44.033,-96.402,0
+145_1,Pipestone,2012,106,47,35_36,Pipstone_Creek,in_channel,pool,"silt, clay boulder, sand",43.937,-96.444,0
+145_2,Pipestone,2012,105,47,2,Pipstone_Creek,in_channel,pool,"silt, clay boulder, sand",43.937,-96.445,0
+145_3,Pipestone,2012,105,47,2,Pipstone_Creek,in_channel,pool,"silt, clay boulder, sand",43.937,-96.445,0
+145_4,Pipestone,2012,105,47,2,Pipstone_Creek,in_channel,pool,"silt, clay boulder, sand",43.937,-96.445,0
+145_5,Pipestone,2012,105,47,2,Pipstone_Creek,in_channel,pool,"silt, clay boulder, sand",43.937,-96.446,0
+145_6,Pipestone,2012,105,47,2,Pipstone_Creek,in_channel,pool,"silt, clay boulder, sand",43.937,-96.446,1
+146_1,Pipestone,2012,105,46,28_29,Split_Rock_Creek,in_channel,pool,"boulder, gravel, sand",43.873,-96.387,0
+146_2,Pipestone,2012,105,46,28_29,Split_Rock_Creek,in_channel,pool,"boulder, gravel, sand",43.873,-96.387,0
+146_3,Pipestone,2012,105,46,28_29,Split_Rock_Creek,in_channel,pool,"boulder, gravel, sand",43.873,-96.387,0
+146_4,Pipestone,2012,105,46,28_29,Split_Rock_Creek,in_channel,pool,"boulder, gravel, sand",43.873,-96.386,0
+146_5,Pipestone,2012,105,46,28_29,Split_Rock_Creek,in_channel,backwater,"boulder, gravel, sand",43.873,-96.385,0
+146_6,Pipestone,2012,105,46,28_29,Split_Rock_Creek,off_channel,pool,"boulder, gravel, sand",43.873,-96.384,0
+146_7,Pipestone,2012,105,46,28_29,Split_Rock_Creek,off_channel,pool,"boulder, gravel, sand",43.873,-96.384,0
+146_8,Pipestone,2012,105,46,28_29,Split_Rock_Creek,in_channel,pool,"boulder, gravel, sand",43.873,-96.382,0
+146_9,Pipestone,2012,105,46,28_29,Split_Rock_Creek,in_channel,pool,"boulder, gravel, sand",43.873,-96.382,0
+146_10,Pipestone,2012,105,46,28_29,Split_Rock_Creek,in_channel,pool,"boulder, gravel, sand",43.875,-96.381,0
+147_1,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.731,-95.918,0
+147_2,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.732,-95.917,0
+147_3,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.732,-95.917,0
+147_4,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.732,-95.917,0
+147_5,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.732,-95.917,0
+147_6,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.731,-95.916,0
+147_7,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.731,-95.915,0
+147_8,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.730,-95.915,0
+147_9,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.730,-95.915,0
+147_10,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.730,-95.915,0
+147_11,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.729,-95.915,0
+147_12,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.729,-95.915,0
+147_13,Nobles,2012,103,42,17_18,Kanaranzi_Creek,in_channel,backwater,"gravel, silt, muck",43.728,-95.913,0
+148_1,Pipestone,2012,106,44,33,Rock_River,in_channel,backwater,"sand, gravel, muck",43.943,-96.140,0
+148_2,Pipestone,2012,106,44,34,Rock_River,in_channel,backwater,"sand, gravel, muck",43.943,-96.140,0
+148_3,Pipestone,2012,106,44,35,Rock_River,in_channel,backwater,"sand, gravel, muck",43.943,-96.140,0
+148_4,Pipestone,2012,106,44,36,Rock_River,in_channel,pool,"sand, gravel, muck",43.943,-96.140,1
+149_1,Pipestone,2012,105,44,33,Rock_River,in_channel,pool,"gravel, sand, cobble",43.858,-96.135,0
+149_2,Pipestone,2012,105,44,33,Rock_River,in_channel,pool,"gravel, sand, cobble",43.858,-96.135,0
+149_3,Pipestone,2012,105,44,33,Rock_River,in_channel,pool,"gravel, sand, cobble",43.858,-96.135,0
+149_4,Pipestone,2012,105,44,33,Rock_River,in_channel,pool,"gravel, sand, cobble",43.858,-96.136,1
+150_1,Rock,2012,104,47,35,Split_Rock_Creek,in_channel,backwater,"gravel, sand, silt",43.771,-96.439,0
+150_2,Rock,2012,104,47,35,Split_Rock_Creek,in_channel,backwater,"gravel, sand, silt",43.771,-96.439,0
+150_3,Rock,2012,104,47,35,Split_Rock_Creek,in_channel,backwater,"gravel, sand, silt",43.771,-96.439,0
+150_4,Rock,2012,104,47,35,Split_Rock_Creek,in_channel,backwater,"gravel, sand, silt",43.771,-96.438,1
+151_1,Rock,2012,103,45,18_19,Beaver_Creek,in_channel,pool,"silt, clay",43.718,-96.282,1
+152_1,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.594,-96.433,0
+152_2,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.594,-96.433,0
+152_3,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.594,-96.433,0
+152_4,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.594,-96.434,0
+152_5,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.594,-96.434,0
+152_6,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.594,-96.435,0
+152_7,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.594,-96.431,0
+152_8,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.594,-96.430,0
+152_9,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.593,-96.430,0
+152_10,Rock,2012,102,47,35_36,Beaver_Creek,in_channel,flow,"silt, sand, gravel",43.593,-96.430,0
+153_1,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.631,-96.330,0
+153_2,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.630,-96.330,0
+153_3,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.630,-96.329,0
+153_4,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.629,-96.331,0
+153_5,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.629,-96.331,0
+153_6,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.628,-96.332,0
+153_7,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.633,-96.327,0
+153_8,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.632,-96.327,0
+153_9,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.632,-96.328,0
+153_10,Rock,2012,102,46,14_23,Beaver_Creek,in_channel,flow,"sand, silt",43.632,-96.328,0
+154_1,Rock,2012,101,45,13,Rock_River,in_channel,pool,"gravel, sand, silt",43.554,-96.181,0
+154_2,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.554,-96.182,0
+154_3,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.554,-96.182,0
+154_4,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.553,-96.181,0
+154_5,Rock,2012,101,45,13,Rock_River,in_channel,pool,"gravel, sand, silt",43.553,-96.180,0
+154_6,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.552,-96.180,0
+154_7,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.552,-96.181,0
+154_8,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.552,-96.181,0
+154_9,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.552,-96.182,0
+154_10,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.551,-96.183,0
+154_11,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.551,-96.184,0
+154_12,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.550,-96.183,0
+154_13,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.550,-96.182,0
+154_14,Rock,2012,101,45,13,Rock_River,in_channel,riffle,"gravel, sand, silt",43.548,-96.182,0
+154_15,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.548,-96.182,0
+154_16,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.548,-96.181,0
+154_17,Rock,2012,101,45,13,Rock_River,in_channel,backwater,"gravel, sand, silt",43.547,-96.180,0
+155_1,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,pool,"silt, muck, gravel",43.688,-96.025,0
+155_2,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,pool,"silt, muck, gravel",43.688,-96.025,0
+155_3,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,pool,"silt, muck, gravel",43.688,-96.020,0
+155_4,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,backwater,"silt, muck, gravel",43.689,-96.020,0
+155_5,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,backwater,"silt, muck, gravel",43.689,-96.020,0
+155_6,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,backwater,"silt, muck, gravel",43.689,-96.020,0
+155_7,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,backwater,"silt, muck, gravel",43.689,-96.020,0
+155_8,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,backwater,"silt, muck, gravel",43.689,-96.019,0
+155_9,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,backwater,"silt, muck, gravel",43.689,-96.019,0
+155_10,Nobles,2012,103,43,29_32,Elk_Creek,in_channel,backwater,"silt, muck, gravel",43.689,-96.019,0
+156_1,Nobles,2012,103,43,21_28,Elk_Creek,in_channel,pool,"silt, gravel, sand",43.703,-96.001,1
+157_1,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,pool,"silt, muck, sand",43.718,-95.911,0
+157_2,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,pool,"silt, muck, sand",43.718,-95.911,0
+157_3,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,pool,"silt, muck, sand",43.718,-95.911,0
+157_4,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,pool,"silt, muck, sand",43.718,-95.911,0
+157_5,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,pool,"silt, muck, sand",43.718,-95.911,0
+157_6,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,pool,"silt, muck, sand",43.718,-95.911,0
+157_7,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,pool,"silt, muck, sand",43.718,-95.911,0
+157_8,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, muck, sand",43.718,-95.911,0
+157_9,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, muck, sand",43.718,-95.911,0
+157_10,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, muck, sand",43.718,-95.911,0
+157_11,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, muck, sand",43.718,-95.911,0
+157_12,Nobles,2012,103,42,17_19_20,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, muck, sand",43.718,-95.911,0
+158_1,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,pool,"sand, gravel silt",43.597,-96.034,0
+158_2,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,pool,"sand, gravel silt",43.597,-96.034,0
+158_3,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.597,-96.035,0
+158_4,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.597,-96.035,0
+158_5,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.596,-96.035,0
+158_6,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,pool,"sand, gravel silt",43.596,-96.036,0
+158_7,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.596,-96.036,0
+158_8,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.596,-96.036,0
+158_9,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.596,-96.037,0
+158_10,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.595,-96.037,0
+158_11,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.595,-96.037,0
+158_12,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.595,-96.037,0
+158_13,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.594,-96.037,0
+158_14,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.594,-96.037,0
+158_15,Nobles,2012,102,43,21_32,Kanaranzi_Creek,in_channel,backwater,"sand, gravel silt",43.594,-96.037,0
+159_1,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,pool,"gravel, sand, silt",43.645,-95.952,0
+159_2,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,pool,"gravel, sand, silt",43.645,-95.952,0
+159_3,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,pool,"gravel, sand, silt",43.645,-95.952,0
+159_4,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,pool,"gravel, sand, silt",43.645,-95.952,0
+159_5,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.644,-95.952,0
+159_6,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.644,-95.952,0
+159_7,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.644,-95.953,0
+159_8,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.644,-95.953,0
+159_9,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.644,-95.954,0
+59_10,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,pool,"gravel, sand, silt",43.644,-95.953,0
+159_11,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.645,-95.951,0
+159_12,Nobles,2012,102,43,13,Kanaranzi_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.645,-95.950,1
+160_1,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.774,0
+160_2,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.774,0
+160_3,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.773,0
+160_4,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.772,0
+160_5,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.772,0
+160_6,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.772,0
+160_7,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.772,0
+160_8,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.771,0
+160_9,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.771,0
+160_10,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.771,0
+160_11,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.770,0
+160_12,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.770,0
+160_13,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.770,0
+160_14,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.557,-95.770,0
+160_15,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.774,0
+160_16,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.775,0
+160_17,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.775,0
+160_18,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.775,0
+160_19,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.557,-95.776,0
+160_20,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.557,-95.776,0
+160_21,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.558,-95.776,0
+160_22,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.557,-95.777,0
+160_23,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.557,-95.777,0
+160_24,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.556,-95.778,0
+160_25,Nobles,2012,101,41,16_17,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, muck",43.556,-95.779,0
+161_1,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.258,-96.427,0
+161_2,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.258,-96.427,0
+161_3,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.258,-96.427,0
+161_4,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.259,-96.427,0
+161_5,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.259,-96.427,0
+161_6,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.259,-96.427,0
+161_7,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.259,-96.427,0
+161_8,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.259,-96.427,0
+161_9,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.259,-96.427,0
+161_10,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.259,-96.427,0
+161_11,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.259,-96.426,0
+161_12,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.260,-96.426,0
+161_13,Lincoln,2013,109,46,7,Medary_Creek,in_channel,pool,"cobble, gravel, silt",44.260,-96.425,0
+161_14,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.261,-96.427,0
+161_15,Lincoln,2013,109,46,7,Medary_Creek,in_channel,in-channel/MCB,"cobble, gravel, silt",44.260,-96.428,0
+162_1,Pipestone,2013,108,46,4_29,Willow_creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.188,-96.370,0
+162_2,Pipestone,2013,108,46,4_30,Willow_creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.188,-96.370,0
+162_3,Pipestone,2013,108,46,4_31,Willow_creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.186,-96.372,0
+162_4,Pipestone,2013,108,46,4_32,Willow_creek,in_channel,pool,"sand, gravel, silt",44.186,-96.373,0
+162_5,Pipestone,2013,108,46,4_33,Willow_creek,in_channel,pool,"sand, gravel, silt",44.186,-96.374,0
+162_6,Pipestone,2013,108,46,4_34,Willow_creek,in_channel,pool,"sand, gravel, silt",44.186,-96.374,0
+162_7,Pipestone,2013,108,46,4_35,Willow_creek,in_channel,pool,"sand, gravel, silt",44.186,-96.373,0
+162_8,Pipestone,2013,108,46,4_36,Willow_creek,in_channel,pool,"sand, gravel, silt",44.186,-96.374,0
+162_9,Pipestone,2013,108,46,4_37,Willow_creek,in_channel,pool,"sand, gravel, silt",44.187,-96.375,0
+162_10,Pipestone,2013,108,46,4_38,Willow_creek,in_channel,pool,"sand, gravel, silt",44.186,-96.375,0
+163_1,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.126,-96.396,0
+163_2,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.126,-96.396,0
+163_3,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.126,-96.396,0
+163_4,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.126,-96.397,0
+163_5,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.126,-96.396,0
+163_6,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.127,-96.395,0
+163_7,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.127,-96.395,0
+163_8,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.128,-96.396,0
+163_9,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.128,-96.396,0
+163_10,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.128,-96.396,0
+163_11,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.128,-96.395,0
+163_12,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.128,-96.396,0
+163_13,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.130,-96.396,0
+163_14,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.131,-96.394,0
+163_15,Pipestone,2013,108,46,29,Flandreau_Creek,in_channel,pool,"sand, gravel, silt",44.126,-96.396,0
+164_1,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,pool,"gravel, sand, cobble, silt",44.080,-96.447,0
+164_2,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,pool,"gravel, sand, cobble, silt",44.080,-96.447,0
+164_3,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,pool,"gravel, sand, cobble, silt",44.080,-96.447,0
+164_4,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,pool,"gravel, sand, cobble, silt",44.080,-96.449,0
+164_5,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,in-channel/MCB,"gravel, sand, cobble, silt",44.079,-96.449,0
+164_6,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,in-channel/MCB,"gravel, sand, cobble, silt",44.078,-96.448,0
+164_7,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,in-channel/MCB,"gravel, sand, cobble, silt",44.078,-96.449,0
+164_8,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,in-channel/MCB,"gravel, sand, cobble, silt",44.078,-96.450,0
+164_9,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,in-channel/MCB,"gravel, sand, cobble, silt",44.078,-96.450,0
+164_10,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,in-channel/MCB,"gravel, sand, cobble, silt",44.078,-96.450,0
+164_11,Pipestone,2013,107,47,13_14,Flandreau_Creek,in_channel,pool,"gravel, sand, cobble, silt",44.080,-96.451,0
+165_1,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel, silt",44.045,-96.393,0
+165_2,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel, silt",44.045,-96.393,0
+165_3,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel, silt",44.045,-96.393,0
+165_4,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.045,-96.393,0
+165_5,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.044,-96.393,0
+165_6,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.044,-96.394,0
+165_7,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.043,-96.394,0
+165_8,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel, silt",44.043,-96.394,0
+165_9,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel, silt",44.043,-96.394,0
+165_10,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel, silt",44.043,-96.394,0
+165_11,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,pool,"sand, gravel, silt",44.043,-96.394,0
+165_12,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.042,-96.394,0
+165_13,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.042,-96.395,0
+165_14,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.042,-96.396,0
+165_15,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.042,-96.398,0
+165_16,Pipestone,2013,107,46,29,North_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",44.042,-96.398,0
+166_1,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.013,-96.387,0
+166_2,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.013,-96.387,0
+166_3,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.013,-96.387,0
+166_4,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.014,-96.387,0
+166_5,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.015,-96.386,0
+166_6,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.016,-96.387,0
+166_7,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.016,-96.387,0
+166_8,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.016,-96.386,0
+166_9,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.016,-96.386,0
+166_10,Pipestone,2013,106,46,4_5,Pipstone_Creek,in_channel,in-channel/MCB,"cobble, gravel, sand, silt",44.017,-96.385,0
+167_1,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,pool,"sand, gravel, silt",43.926,-96.350,0
+167_2,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",43.926,-96.350,0
+167_3,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,pool,"sand, gravel, silt",43.926,-96.351,0
+167_4,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,pool,"sand, gravel, silt",43.926,-96.351,0
+167_5,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,pool,"sand, gravel, silt",43.926,-96.351,0
+167_6,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,pool,"sand, gravel, silt",43.926,-96.351,0
+167_7,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,pool,"sand, gravel, silt",43.926,-96.351,0
+167_8,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,pool,"sand, gravel, silt",43.926,-96.351,0
+167_9,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,pool,"sand, gravel, silt",43.926,-96.352,0
+167_10,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",43.925,-96.353,0
+167_11,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",43.925,-96.352,0
+167_12,Pipestone,2013,105,46,3,Split_Rock_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",43.924,-96.352,0
+168_1,Pipestone,2013,105,46,28_29,Split_Rock_Creek,in_channel,in-channel/MCB,"boulder, cobble, sand",43.878,-96.380,1
+169_1,Pipestone,2013,105,44,17_18,Rock_River,in_channel,pool,"silt, gravel",43.894,-96.166,0
+169_2,Pipestone,2013,105,44,17_18,Rock_River,in_channel,in-channel/MCB,"silt, gravel",43.894,-96.165,1
+170_1,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.921,-95.932,0
+170_2,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.919,-95.931,0
+170_3,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.918,-95.932,0
+170_4,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.918,-95.931,0
+170_5,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.918,-95.931,0
+170_6,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.918,-95.931,0
+170_7,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.918,-95.930,0
+170_8,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.918,-95.930,0
+170_9,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.921,-95.931,0
+170_10,Murray,2013,104,47,35,Chanarambie_Creek,in_channel,in-channel/MCB,"silt, sand",43.921,-95.932,0
+171_1,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,,43.820,-96.130,0
+171_2,Rock,2013,104,44,8_9,Rock_River,in_channel,pool,"sand, gravel, silt",43.821,-96.135,0
+171_3,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.820,-96.130,0
+171_4,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.820,-96.130,0
+171_5,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.821,-96.133,0
+171_6,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.824,-96.135,0
+171_7,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.824,-96.135,0
+171_8,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.824,-96.135,0
+171_9,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.824,-96.135,0
+171_10,Rock,2013,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.823,-96.136,0
+172_1,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,pool,"sand, silt, muck",43.775,-96.171,0
+172_2,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,pool,"sand, silt, muck",43.775,-96.171,0
+172_3,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,pool,"sand, silt, muck",43.775,-96.171,0
+172_4,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,in-channel/MCB,"sand, silt, muck",43.774,-96.171,0
+172_5,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,in-channel/MCB,"sand, silt, muck",43.772,-96.172,0
+172_6,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,in-channel/MCB,"sand, silt, muck",43.772,-96.172,0
+172_7,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,in-channel/MCB,"sand, silt, muck",43.772,-96.172,0
+172_8,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,in-channel/MCB,"sand, silt, muck",43.770,-96.169,0
+172_9,Rock,2013,104,44,30_31,Tributary_Rock_River,off_channel,"pool,","sand, silt, muck",43.770,-96.169,0
+172_10,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,in-channel/MCB,"sand, silt, muck",43.771,-96.169,0
+172_11,Rock,2013,104,44,30_31,Tributary_Rock_River,in_channel,in-channel/MCB,"sand, silt, muck",43.770,-96.168,0
+173_1,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.747,-96.201,0
+173_2,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.748,-96.201,0
+173_3,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.748,-96.201,0
+173_4,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.748,-96.198,0
+173_5,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.748,-96.198,0
+173_6,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.749,-96.198,0
+173_7,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.748,-96.199,0
+173_8,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.748,-96.199,0
+173_9,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.748,-96.200,0
+173_10,Rock,2013,103,45,2_11,Mound_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",43.748,-96.200,0
+174_1,Rock,2013,103,44,8_9,Tributary_Rock_River,in_channel,pool,"gravel, sand, silt",43.733,-96.133,0
+174_2,Rock,2013,103,44,8_9,Tributary_Rock_River,in_channel,pool,"gravel, sand, silt",43.733,-96.133,1
+175_1,Rock,2013,103,44,21_22,Champepadan_Creek,in_channel,pool,"sand, silt, gravel",43.710,-96.112,0
+175_2,Rock,2013,103,44,21_22,Champepadan_Creek,in_channel,pool,"sand, silt, gravel",43.710,-96.112,0
+175_3,Rock,2013,103,44,21_22,Champepadan_Creek,in_channel,pool,"sand, silt, gravel",43.710,-96.112,0
+175_4,Rock,2013,103,44,21_22,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.710,-96.111,0
+175_5,Rock,2013,103,44,21_22,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.710,-96.108,0
+175_6,Rock,2013,103,44,21_22,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.710,-96.107,0
+175_7,Rock,2013,103,44,21_22,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.710,-96.107,0
+175_8,Rock,2013,103,44,21_22,Champepadan_Creek,off_channel,pool/off-channel,"sand, silt, gravel",43.710,-96.107,1
+176_1,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,pool,"silt, gravel",43.573,-96.064,0
+176_2,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,pool,"silt, gravel",43.573,-96.064,0
+176_3,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,pool,"silt, gravel",43.572,-96.064,0
+176_4,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.572,-96.064,0
+176_5,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.572,-96.064,0
+176_6,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.572,-96.064,0
+176_7,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.571,-96.064,0
+176_8,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.571,-96.062,0
+176_9,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.568,-96.063,0
+176_10,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.568,-96.063,0
+176_11,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.566,-96.064,0
+176_12,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.566,-96.064,0
+176_13,Rock,2013,101,44,12,Kanaranzi_Creek,in_channel,in-channel/MCB,"silt, gravel",43.566,-96.064,0
+177_1,Rock,2013,101,45,25,Rock_River,in_channel,pool,"sand, gravel, silt",43.526,-96.187,0
+177_2,Rock,2013,101,45,25,Rock_River,in_channel,pool,"sand, gravel, silt",43.526,-96.187,0
+177_3,Rock,2013,101,45,25,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.525,-96.186,0
+177_4,Rock,2013,101,45,25,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.523,-96.186,0
+177_5,Rock,2013,101,45,25,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.521,-96.185,0
+177_6,Rock,2013,101,45,25,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.521,-96.185,0
+177_7,Rock,2013,101,45,25,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.521,-96.185,0
+177_8,Rock,2013,101,45,25,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.521,-96.184,0
+177_9,Rock,2013,101,45,25,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.521,-96.184,0
+177_10,Rock,2013,101,45,25,Rock_River,in_channel,in-channel/MCB,"sand, gravel, silt",43.527,-96.187,0
+177_11,Rock,2013,101,45,25,Rock_River,in_channel,pool,"sand, gravel, silt",43.528,-96.188,0
+177_12,Rock,2013,101,45,25,Rock_River,off_channel,pool/off-channel,"sand, gravel, silt",43.527,-96.190,0
+178_1,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.514,-96.059,0
+178_2,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.514,-96.058,0
+178_3,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.514,-96.058,0
+178_4,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.513,-96.058,0
+178_5,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.514,-96.058,0
+178_6,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.514,-96.058,0
+178_7,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.514,-96.059,0
+178_8,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.515,-96.058,0
+178_9,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.519,-96.059,0
+178_10,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.519,-96.059,0
+178_11,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.521,-96.061,0
+178_12,Rock,2013,101,44,25_36,Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.520,-96.061,0
+179_1,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.659,-95.905,0
+179_2,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.659,-95.904,0
+179_3,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.659,-95.905,0
+179_4,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.659,-95.904,0
+179_5,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.657,-95.904,0
+179_6,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.657,-95.904,0
+179_7,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.656,-95.904,0
+179_8,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.655,-95.904,0
+179_9,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.655,-95.903,0
+179_10,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,pool,"sand, silt, gravel",43.654,-95.900,0
+179_11,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.655,-95.902,0
+179_12,Nobles,2013,102,42,8,East_Branch_Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.656,-95.899,0
+180_1,Nobles,2013,101,42,26,Little_Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.528,-95.846,1
+181_1,Lincoln,2014,110,46,21_28,Medary_Creek,in_channel,pool,"sand, gravel",44.313,-96.386,0
+181_2,Lincoln,2014,110,46,21_28,Medary_Creek,in_channel,in-channel/MCB,"sand, gravel",44.313,-96.386,0
+181_3,Lincoln,2014,110,46,21_28,Medary_Creek,in_channel,pool,"sand, gravel",44.313,-96.385,1
+182_1,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,pool,"silt, gravel, sand",44.183,-96.382,0
+182_2,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,pool,"silt, gravel, sand",44.183,-96.382,0
+182_3,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,in-channel/MCB,"silt, gravel, sand",44.183,-96.382,0
+182_4,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,in-channel/MCB,"silt, gravel, sand",44.183,-96.382,0
+182_5,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,in-channel/MCB,"silt, gravel, sand",44.183,-96.382,0
+182_6,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,in-channel/MCB,"silt, gravel, sand",44.182,-96.382,0
+182_7,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,in-channel/MCB,"silt, gravel, sand",44.182,-96.381,0
+182_8,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,in-channel/MCB,"silt, gravel, sand",44.185,-96.383,0
+182_9,Pipestone,2014,108,46,4_9,Willow_creek,off_channel,pool/off-channel,"silt, gravel, sand",44.186,-96.383,0
+182_10,Pipestone,2014,108,46,4_9,Willow_creek,in_channel,in-channel/MCB,"silt, gravel, sand",44.186,-96.383,0
+183_1,Pipestone,2014,108,44,7,Rock_River,in_channel,in-channel/MCB,"muck, silt",44.094,-96.175,0
+183_2,Pipestone,2014,108,44,7,Rock_River,in_channel,in-channel/MCB,"muck, silt",44.094,-96.176,0
+183_3,Pipestone,2014,108,44,7,Rock_River,in_channel,in-channel/MCB,"muck, silt",44.091,-96.177,0
+183_4,Pipestone,2014,108,44,7,Rock_River,in_channel,in-channel/MCB,"muck, silt",44.090,-96.180,0
+183_5,Pipestone,2014,108,44,7,Rock_River,in_channel,in-channel/MCB,"muck, silt",44.090,-96.180,0
+183_6,Pipestone,2014,108,44,7,Rock_River,in_channel,in-channel/MCB,"muck, silt",44.089,-96.180,0
+184_1,Pipestone,2014,106,46,7_8_18,Pipstone_Creek,in_channel,off,"silt, gravel, muck",43.994,-96.412,0
+184_2,Pipestone,2014,106,46,7_8_18,Pipstone_Creek,in_channel,pool/off-channel,"silt, gravel, muck",43.994,-96.412,0
+184_3,Pipestone,2014,106,46,7_8_18,Pipstone_Creek,in_channel,pool/off-channel,"silt, gravel, muck",43.993,-96.413,0
+184_4,Pipestone,2014,106,46,7_8_18,Pipstone_Creek,in_channel,pool/off-channel,"silt, gravel, muck",43.993,-96.414,0
+184_5,Pipestone,2014,106,46,7_8_18,Pipstone_Creek,in_channel,in-channel/MCB,"silt, gravel, muck",43.993,-96.413,0
+184_6,Pipestone,2014,106,46,7_8_18,Pipstone_Creek,in_channel,in-channel/MCB,"silt, gravel, muck",43.992,-96.414,0
+184_7,Pipestone,2014,106,46,7_8_18,Pipstone_Creek,in_channel,pool,"silt, gravel, muck",43.991,-96.414,1
+185_1,Pipestone,2014,105,46,2,Tributary_Split_Rock_Creek,off_channel,pool,muck,43.925,-96.347,0
+185_2,Pipestone,2014,105,46,2,Tributary_Split_Rock_Creek,off_channel,pool,muck,43.925,-96.347,0
+185_3,Pipestone,2014,105,46,2,Tributary_Split_Rock_Creek,off_channel,pool,muck,43.925,-96.347,0
+185_4,Pipestone,2014,105,46,2,Tributary_Split_Rock_Creek,off_channel,wetland,muck,43.927,-96.336,0
+186_1,Pipestone,2014,105,45,9_10_16,Tributary_Poplar_Creek,in_channel,in-channel/MCB,"muck, silt",43.909,-96.245,0
+186_2,Pipestone,2014,105,45,9_10_17,Tributary_Poplar_Creek,in_channel,in-channel/MCB,"muck, silt",43.909,-96.245,0
+186_3,Pipestone,2014,105,45,9_10_18,Tributary_Poplar_Creek,off_channel,pool/off-channel,"muck, silt",43.910,-96.246,0
+187_1,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,pool,"gravel, ilt, muck",43.946,-96.143,0
+187_2,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,pool,"gravel, ilt, muck",43.946,-96.143,0
+187_3,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,in-channel/MCB,"gravel, ilt, muck",43.946,-96.142,0
+187_4,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,in-channel/MCB,"gravel, ilt, muck",43.949,-96.142,0
+187_5,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,pool,"gravel, ilt, muck",43.948,-96.142,0
+187_6,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,pool,"gravel, ilt, muck",43.949,-96.141,0
+187_7,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,pool,"gravel, ilt, muck",43.949,-96.141,0
+187_8,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,pool,"gravel, ilt, muck",43.943,-96.140,0
+187_9,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,in-channel/MCB,"gravel, ilt, muck",43.943,-96.139,0
+187_10,Pipestone,2014,106,44,33,Tributary_Rock_River,in_channel,in-channel/MCB,"gravel, ilt, muck",43.943,-96.139,0
+188_1,Pipestone,2014,106,43,29,North_Branch_Chanarambie_Creek,in_channel,pool,"sand, gravel, silt, muck",43.866,-96.205,0
+188_2,Pipestone,2014,106,43,30,North_Branch_Chanarambie_Creek,in_channel,pool,"sand, gravel, silt, muck",43.962,-96.038,1
+189_1,Pipestone,2014,105,45,25_26,Poplar_Creek,in_channel,pool,"gravel, sand, muck",43.866,-96.205,0
+189_2,Pipestone,2014,105,45,25_26,Poplar_Creek,in_channel,pool,"gravel, sand, muck",43.866,-96.205,1
+190_1,Pipestone,2014,105,44,30_31,Poplar_Creek,in_channel,pool,"sand, gravel, silt",43.865,-96.173,0
+190_2,Pipestone,2014,105,44,30_31,Poplar_Creek,in_channel,pool,"sand, gravel, silt",43.864,-96.173,0
+190_3,Pipestone,2014,105,44,30_31,Poplar_Creek,in_channel,pool,"sand, gravel, silt",43.864,-96.174,0
+190_4,Pipestone,2014,105,44,30_31,Poplar_Creek,in_channel,pool,"sand, gravel, silt",43.864,-96.174,0
+190_5,Pipestone,2014,105,44,30_31,Poplar_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",43.865,-96.173,0
+190_6,Pipestone,2014,105,44,30_31,Poplar_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",43.865,-96.172,0
+190_7,Pipestone,2014,105,44,30_31,Poplar_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",43.864,-96.169,1
+191_1,Rock,2014,104,46,7,Split_Rock_Creek,in_channel,pool,"sand, sand, silt",43.834,-96.412,0
+191_2,Rock,2014,104,47,12,Split_Rock_Creek,in_channel,pool,"sand, sand, silt",43.834,-96.412,1
+192_1,Rock,2014,103,45,19,Beaver_Creek,in_channel,pool,"silt, sand, boulders",43.715,-96.285,1
+193_1,Rock,2014,103,45,18_19,Beaver_Creek,in_channel,pool,"silt, boulders",43.718,-96.282,1
+194_1,Rock,2014,104,44,8_9,Rock_River,in_channel,in-channel/MCB,"gravel, silt, muck",43.824,-96.134,1
+195_1,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.791,-96.009,0
+195_2,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.791,-96.008,0
+195_3,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.792,-96.010,0
+195_4,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.792,-96.009,0
+195_5,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.794,-96.007,0
+195_6,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.795,-96.005,0
+195_7,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.794,-96.001,0
+195_8,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.794,-96.001,0
+195_9,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.795,-96.000,0
+195_10,Nobles,2014,104,43,21,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.795,-96.000,0
+196_1,Rock,2014,102,44,6,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.674,-96.168,0
+196_2,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.675,-96.166,0
+196_3,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.676,-96.167,0
+196_4,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.676,-96.167,0
+196_5,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.677,-96.167,0
+196_6,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.677,-96.166,0
+196_7,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.680,-96.165,0
+196_8,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.680,-96.164,0
+196_9,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.681,-96.165,0
+196_10,Rock,2014,103,44,31,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.683,-96.162,0
+197_1,Rock,2014,102,44,6,Rock_River,in_channel,pool,"gravel, sand, silt",43.669,-96.172,0
+197_2,Rock,2014,102,45,1,Rock_River,in_channel,pool,"gravel, sand, silt",43.671,-96.173,0
+197_3,Rock,2014,102,45,1,Rock_River,in_channel,pool,"gravel, sand, silt",43.672,-96.174,0
+197_4,Rock,2014,102,45,1,Rock_River,in_channel,pool,"gravel, sand, silt",43.672,-96.174,0
+197_5,Rock,2014,102,45,1,Rock_River,in_channel,pool,"gravel, sand, silt",43.672,-96.170,0
+197_6,Rock,2014,102,45,1,Rock_River,in_channel,pool,"gravel, sand, silt",43.668,-96.174,0
+197_7,Rock,2014,102,45,1,Rock_River,in_channel,pool,"gravel, sand, silt",43.668,-96.174,0
+197_8,Rock,2014,102,45,1,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.668,-96.176,0
+197_9,Rock,2014,102,45,1,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.667,-96.176,0
+197_10,Rock,2014,102,45,1,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.667,-96.176,0
+198_1,Rock,2014,102,44,15_16,Elk_Creek,in_channel,pool,"sand, silt, gravel",43.641,-96.112,0
+198_2,Rock,2014,102,44,15_16,Elk_Creek,in_channel,pool,"sand, silt, gravel",43.642,-96.112,0
+198_3,Rock,2014,102,44,15_16,Elk_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.640,-96.113,0
+198_4,Rock,2014,102,44,15_16,Elk_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.640,-96.113,0
+198_5,Rock,2014,102,44,15_16,Elk_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.640,-96.112,0
+198_6,Rock,2014,102,44,15_16,Elk_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.640,-96.112,0
+198_7,Rock,2014,102,44,15_16,Elk_Creek,in_channel,pool,"sand, silt, gravel",43.638,-96.113,0
+198_8,Rock,2014,102,44,15_16,Elk_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.638,-96.115,0
+198_9,Rock,2014,102,44,15_16,Elk_Creek,off_channel,pool/off-channel,"sand, silt, gravel",43.636,-96.115,0
+198_10,Rock,2014,102,44,15_16,Elk_Creek,off_channel,pool/off-channel,"sand, silt, gravel",43.636,-96.115,0
+198_11,Rock,2014,102,44,15_16,Elk_Creek,off_channel,pool/off-channel,"sand, silt, gravel",43.636,-96.115,0
+199_1,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.781,-96.033,0
+199_2,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.781,-96.032,0
+199_3,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.782,-96.032,0
+199_4,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.783,-96.032,0
+199_5,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.784,-96.032,0
+199_6,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.784,-96.032,0
+199_7,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.786,-96.031,0
+199_8,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.786,-96.030,0
+199_9,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.787,-96.030,0
+199_10,Nobles,2014,104,43,29,Champepadan_Creek,in_channel,in-channel/MCB,"sand, silt, gravel",43.787,-96.030,0
+200_1,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.546,-95.811,0
+200_2,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.545,-95.810,0
+200_3,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.545,-95.810,0
+200_4,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.547,-95.805,0
+200_5,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.547,-95.805,0
+200_6,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.547,-95.805,0
+200_7,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.549,-95.804,0
+200_8,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.549,-95.803,0
+200_9,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.550,-95.803,0
+200_10,Nobles,2014,101,41,18,Little_Rock_River,in_channel,,"gravel, sand, silt, muck",43.551,-95.802,0
+83_1,Pipestone,2013,,,,South_Branch_Pipestone_Creek,in_channel,in-channel/MCB,"gravel, sand, silt",44.023,-96.368,0
+84_1,Pipestone,2013,,,,North_Branch_Pipestone_Creek,in_channel,pool,"gravel, silt, sand",44.081,-96.308,0
+85_1,Pipestone,2013,,,,North_Branch_Pipestone_Creek,in_channel,pool,"gravel, cobble, silt",44.095,-96.257,0
+86_1,Pipestone,2013,,,,Split_Rock_Creek,off_channel,pool,"boulder, silt, gravel",43.892,-96.368,1
+87_1,Pipestone,2013,,,,Poplar_Creek,in_channel,in-channel/MCB,"sand, gravel, silt",43.866,-96.205,1
+88_1,Pipestone,2013,,,,Rock_River,in_channel,oxbow,"silt, sand",43.878,-96.150,0
+91_1,Rock,2013,,,,Beaver_Creek,in_channel,pool,"gravel, silt, large cobble",43.689,-96.289,1
+94_1,Rock,2013,,,,Elk_Creek,in_channel,in-channel/MCB,"silt, muck, sand",43.660,-96.093,1
+95_1,Rock,2013,,,,Tributary_Champepadan,in_channel,pool,"gravel, silt",43.718,-96.086,1
+96_4,Rock,2013,,,,Kanaranzi_Creek,in_channel,in-channel/MCB,"gravel, sand, silt ",43.512,-96.093,0
+97_1,Nobles,2013,,,,Kanaranzi_Creek,in_channel,in-channel/MCB,"sand, silt, muck",43.703,-95.914,0
+98_2,Nobles,2013,,,,East_Branch_Kanaranzi_Creek,off_channel,pool/off-channel,,43.659,-95.904,0
+99_1,Nobles,2013,,,,West_Branch_Little_Rock_River,in_channel,pool,"silt, gravel, cobble",43.558,-95.863,1
+101_1,Lincoln,2013,,,,Medary_Creek,in_channel,pool,"cobble, gravel, muck",44.248,-96.442,1
+104_1,Pipestone,2013,,,,North_Branch_Pipestone_Creek,in_channel,pool,"gravel, sand, silt",44.071,-96.348,1
+108_2,Pipestone,2013,,,,Split_Rock_Creek,in_channel,pool,"gravel, cobble, boulders",43.878,-96.380,1
+109_1,Rock,2013,,,,Split_Rock_Creek,in_channel,pool,"gravel, sand, silt",43.834,-96.412,1
+112_1,Rock,2013,,,,Split_Rock_Creek,in_channel,pool,"bedrock, silt",43.707,-96.288,1
+113_1,Rock,2013,,,,Tributary_Rock_River,in_channel,pool,"sand, gravel, silt",43.740,-96.152,0
+115_1,Rock,2013,,,,Elk_Creek,in_channel,pool,"sand, gravel, silt",43.603,-96.173,1
+119_1,Nobles,2013,,,,West_Branch_Little_Rock_River,in_channel,pool,"gravel, sand, silt",43.572,-95.861,1
+120_1,Nobles,2013,,,,West_Branch_Little_Rock_River,in_channel,pool,"silt, gravel",43.543,-95.848,1
+123_1,Pipestone,2013,,,,Rock_River,in_channel,in-channel/MCB,"gravel, sand, silt",43.936,-96.136,0
+127_3,Pipestone,2013,,,,Willow_creek,in_channel,in-channel/MCB,"muck, silt, sand",43.936,-96.136,1
+135_1,Rock,2013,,,,Elk_Creek,off_channel,pool/off-channel,"sand, muck",43.603,-96.173,1
+201_1,Pipestone,2015,108,45,6,Tributary_Flandreau_Creek,in_channel,main_channel,,44.184,-96.304,0
+201_2,Pipestone,2015,108,45,6,Tributary_Flandreau_Creek,in_channel,main_channel,,44.185,-96.299,0
+201_3,Pipestone,2015,108,45,6,Tributary_Flandreau_Creek,in_channel,crossing_pond,,44.187,-96.298,0
+201_4,Pipestone,2015,108,45,6,Tributary_Flandreau_Creek,off_channel,stock_pond,,44.188,-96.297,0
+202_1,Pipestone,2015,108,45,17,Tributary_Flandreau_Creek,in_channel,culvert_pool_,,44.154,-96.277,0
+202_2,Pipestone,2015,108,45,17,Tributary_Flandreau_Creek,in_channel,main_channel,,44.155,-96.277,0
+202_3,Pipestone,2015,108,45,17,Tributary_Flandreau_Creek,in_channel,channel_border_pool,,44.156,-96.277,1
+202_4,Pipestone,2015,108,45,17,Tributary_Flandreau_Creek,off_channel,off_channel_dugout,,44.156,-96.277,1
+203_1 ,Pipestone,2015,107,46,14,North_Branch_Pipestone_Creek,in_channel,glide_pool/run,,44.073,-96.339,0
+203_2 ,Pipestone,2015,107,46,14,North_Branch_Pipestone_Creek,in_channel,channel_border_pool,,44.074,-96.337,0
+203_3 ,Pipestone,2015,107,46,14,North_Branch_Pipestone_Creek,in_channel,channel_border_pool,,44.074,-96.336,0
+203_4 ,Pipestone,2015,107,46,14,North_Branch_Pipestone_Creek,in_channel,channel_border_pool,,44.075,-96.334,0
+203_5 ,Pipestone,2015,107,46,14,North_Branch_Pipestone_Creek,in_channel,glide_pool/run,,44.076,-96.334,0
+204_1,Pipestone,2015,106,46,2_3,Pipstone_Creek,in_channel,glide_pool/run,,44.020,-96.348,0
+204_2,Pipestone,2015,106,46,2_3,Pipstone_Creek,in_channel,culvert_pool_,,44.020,-96.348,0
+204_3,Pipestone,2015,106,46,2_3,Pipstone_Creek,in_channel,pool,,44.020,-96.349,1
+204_4,Pipestone,2015,106,46,2_3,Pipstone_Creek,in_channel,riffle,,44.020,-96.348,0
+205_1,Pipestone,2015,107,44,29,Rock_River,off_channel,dugout,,44.046,-96.164,1
+205_2,Pipestone,2015,107,44,29,Rock_River,in_channel,main_channel,,44.046,-96.164,0
+205_3,Pipestone,2015,107,44,29,Rock_River,in_channel,channel_border_pool,,44.046,-96.162,1
+206_1,Pipestone,2015,107,44,28,East_Branch_Rock_River,in_channel,main_channel,,44.043,-96.129,1
+206_2,Pipestone,2015,107,44,28,East_Branch_Rock_River,in_channel,riffle,,44.043,-96.129,1
+206_3,Pipestone,2015,107,44,28,East_Branch_Rock_River,in_channel,glide_pool/run,,44.042,-96.130,1
+207_1,Pipestone,2015,105,46,9,Split_Rock_Creek,in_channel,main_channel,,43.909,-96.374,1
+207_2,Pipestone,2015,105,46,9,Split_Rock_Creek,in_channel,bend_pool,,43.913,-96.369,0
+207_3,Pipestone,2015,105,46,9,Split_Rock_Creek,in_channel,channel_border_pool,,43.913,-96.370,1
+208_1,Pipestone,2015,104,47,12,Split_Rock_Creek,in_channel,channel_border_pool,,43.823,-96.416,1
+208_2,Pipestone,2015,104,47,12,Split_Rock_Creek,in_channel,channel_border_pool,,43.826,-96.415,1
+209_1 ,Rock,2015,104,46,6,Split_Rock_Creek,in_channel,channel_border_pool_,,43.846,-96.404,1
+209_2 ,Rock,2015,104,46,7,Split_Rock_Creek,in_channel,channel_margin_,,43.845,-96.406,1
+209_3 ,Rock,2015,104,46,8,Split_Rock_Creek,in_channel,riffle_,,43.845,-96.406,0
+209_4 ,Rock,2015,104,46,9,Split_Rock_Creek,in_channel,pool,,43.845,-96.406,1
+209_5 ,Rock,2015,104,46,10,Split_Rock_Creek,in_channel,bend_pool_,,43.845,-96.407,1
+210_1,Pipestone,2015,105,46,35,Tributary_Split_Rock_Creek,in_channel,main_channel,,43.849,-96.339,0
+210_2,Rock,2015,104,46,3,Tributary_Split_Rock_Creek,in_channel,culvert_pool_,,43.849,-96.339,0
+210_3,Pipestone,2015,105,46,35,Tributary_Split_Rock_Creek,in_channel,pool,,43.852,-96.332,0
+210_4,Pipestone,2015,105,46,35,Tributary_Split_Rock_Creek,in_channel,dugout,,43.854,-96.331,0
+210_5,Pipestone,2015,105,46,35,Tributary_Split_Rock_Creek,in_channel,pool,,43.854,-96.331,0
+211_1,Pipestone,2015,105,45,27,Poplar_Creek,in_channel,spring_seep_pool,,43.864,-96.230,1
+211_2,Pipestone,2015,105,45,27,Poplar_Creek,in_channel,pool,,43.864,-96.230,1
+211_3,Pipestone,2015,105,45,27,Poplar_Creek,in_channel,in-channel/MCB,,43.865,-96.230,1
+211_4,Pipestone,2015,105,45,27,Poplar_Creek,in_channel,channel_boarder_pool,,43.864,-96.231,1
+211_5,Pipestone,2015,105,45,27,Poplar_Creek,in_channel,channel_boarder_pool,,43.864,-96.231,1
+211_6,Pipestone,2015,105,45,27,Poplar_Creek,in_channel,channel_boarder_pool,,43.864,-96.231,1
+211_7,Pipestone,2015,105,45,27,Poplar_Creek,in_channel,in-channel/MCB,,43.864,-96.231,1
+212_1,Pipestone,2015,108,46,21,Flandreau_Creek,in_channel,bend_pool_,,44.142,-96.382,0
+212_2,Pipestone,2015,108,46,21,Flandreau_Creek,in_channel,bend_pool_,,44.142,-96.382,0
+212_3,Pipestone,2015,108,46,21,Flandreau_Creek,in_channel,bend_pool_,,44.142,-96.381,0
+212_4,Pipestone,2015,108,46,21,Flandreau_Creek,in_channel,channel_border_pool_,,44.142,-96.380,0
+212_5,Pipestone,2015,108,46,21,Flandreau_Creek,in_channel,pool_,,44.143,-96.379,0
+212_6,Pipestone,2015,108,46,21,Flandreau_Creek,in_channel,bend_pool_,,44.145,-96.376,0
+212_7,Pipestone,2015,108,46,21,Flandreau_Creek,in_channel,off_channel_slough_,,44.144,-96.379,0
+213_1,Nobles,2015,104,43,14,Champepadan_Creek,in_channel,all_habitat,,43.807,-95.969,0
+213_2,Nobles,2015,104,43,15,Champepadan_Creek,in_channel,all_habitat,,43.806,-95.974,0
+214_1,Rock,2015,103,45,18,Beaver_Creek,in_channel,in-channel/MCB,,43.719,-96.282,1
+214_2,Rock,2015,103,45,18,Beaver_Creek,in_channel,side_channel,,43.719,-96.278,1
+214_3,Rock,2015,103,45,18,Beaver_Creek,in_channel,pool,,43.719,-96.278,1
+214_4,Rock,2015,103,45,18,Beaver_Creek,in_channel,side_channel,,43.719,-96.278,1
+214_5,Rock,2015,103,45,18,Beaver_Creek,in_channel,riffle,,43.719,-96.279,1
+214_6,Rock,2015,103,45,18,Beaver_Creek,in_channel,pool,,43.719,-96.279,1
+215_1,Pipestone,2015,105,47,1,Tributary_Pipestone_Creek,in_channel,main_channel,,43.719,-96.282,0
+215_2,Pipestone,2015,105,47,1,Tributary_Pipestone_Creek,in_channel,bend_pool,,43.719,-96.278,0
+215_3,Pipestone,2015,105,47,1,Tributary_Pipestone_Creek,in_channel,in-channel/MCB,,43.719,-96.278,0
+215_4,Pipestone,2015,105,47,1,Tributary_Pipestone_Creek,in_channel,pool,,43.719,-96.278,0
+215_5,Pipestone,2015,105,47,1,Tributary_Pipestone_Creek,in_channel,pool,,43.719,-96.279,0
+215_6,Pipestone,2015,105,47,1,Tributary_Pipestone_Creek,in_channel,culvert_pool_,,43.719,-96.279,0
+216_1,Pipestone,2015,102,42,1_2,East_Branch_Kanaranzi_Creek,in_channel,pool,,43.672,-95.831,1
+217_1,Nobles,2015,104,43,31,Champepadan_Creek,in_channel,glide_pool/run,,43.766,-96.049,0
+217_2,Nobles,2015,104,43,31,Champepadan_Creek,in_channel,riffle,,43.765,-96.049,0
+217_3,Nobles,2015,104,43,31,Champepadan_Creek,in_channel,bend_pool,,43.765,-96.049,0
+217_4,Nobles,2015,104,43,31,Champepadan_Creek,in_channel,channel_boarder_pool,,43.764,-96.049,0
+217_5,Nobles,2015,104,43,31,Champepadan_Creek,in_channel,bend_pool,,43.764,-96.050,0
+217_6,Nobles,2015,104,43,31,Champepadan_Creek,in_channel,channel_boarder_pool,,43.763,-96.049,0
+218_1,Rock,2015,102,45,11_14,Rock_River,in_channel,side_pool,,43.646,-96.199,1
+219_1,Nobles,2015,102,43,11_14,Kanaranzi_Creek,off_channel,slough,,43.645,-95.960,1
+219_2,Nobles,2015,102,43,11_14,Kanaranzi_Creek,off_channel,main_channel,,43.644,-95.962,0
+219_3,Nobles,2015,102,43,11_14,Kanaranzi_Creek,off_channel,side_channel,,43.645,-95.963,0
+219_4,Nobles,2015,102,43,11_14,Kanaranzi_Creek,off_channel,main_channel,,43.642,-95.962,0
+219_5,Nobles,2015,102,43,11_14,Kanaranzi_Creek,off_channel,channel_boarder_pool,,43.641,-95.960,1
+220_1,Nobles,2015,101,42,23,Little_Rock_River,in_channel,channel_boarder_pool,,43.538,-95.839,1
+220_2,Nobles,2015,101,42,23,Little_Rock_River,in_channel,in-channel/MCB,,43.535,-95.839,0
+220_3,Nobles,2015,101,42,23,Little_Rock_River,in_channel,riffle,,43.535,-95.841,1
+221_1 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,in_channel/MCB,,43.689,-95.906,0
+221_2 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,in_channel/MCB,,43.688,-95.906,0
+221_3 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,pool_,,43.688,-95.907,0
+221_4 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,pool_,,43.688,-95.908,0
+221_5 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,pool_,,43.687,-95.908,0
+221_6 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,pool_,,43.687,-95.907,0
+221_7 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,pool_,,43.686,-95.906,0
+221_8 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,pool_,,43.685,-95.905,0
+221_9 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,in_channel/MCB_,,43.684,-95.907,0
+221_10 ,Nobles,2016,103,42,32,Kanaranzi_Creek,in_channel,pool_,,43.683,-95.907,0
+222_1,Pipestone,2016,106,44,33,Tributary_Rock_River,in_channel,channel_boarder_pool,,43.946,-96.143,1
+223_1,Nobles,2016,104,43,29,Champepadan_Creek,off_channel,pool/off-channel,,43.784,-96.031,1
+224_1,Rock,2016,104,45,5,Beaver_Creek,in_channel,glide_pool/run,,43.761,-96.255,1
+225_1,Rock,2016,102,44,16,Elk_Creek,in_channel,channel_boarder_pool,,43.638,-96.115,1
+226_1 ,Rock,2016,104,47,12,Split_Rock_Creek,in_channel,bend_pool_,,43.832,-96.415,0
+226_2 ,Rock,2016,104,47,13,Split_Rock_Creek,in_channel,bend_pool_,,43.831,-96.414,0
+226_3 ,Rock,2016,104,47,14,Split_Rock_Creek,in_channel,channel_border_pool,,43.832,-96.413,1
+227_1,Pipestone,2016,106,44,14,Kanaranzi_Creek,in_channel,in-channel/MCB,,43.965,-96.159,1
+228_1,Nobles,2016,102,43,14,Kanaranzi_Creek,off_channel,pool/off-channel,,43.645,-95.960,0
+228_2,Nobles,2016,102,43,14,Kanaranzi_Creek,off_channel,pool/off-channel,,43.644,-95.960,1
+229_1 ,Pipestone,2016,106,46,18,Pipstone_Creek,in_channel,channel_border_pool,,43.989,-96.426,0
+229_2 ,Pipestone,2016,106,46,18,Pipstone_Creek,in_channel,channel_margin_,,43.989,-96.424,0
+229_3 ,Pipestone,2016,106,46,18,Pipstone_Creek,in_channel,riffle_,,43.989,-96.426,0
+229_4 ,Pipestone,2016,106,46,18,Pipstone_Creek,in_channel,main_channel_pool,,43.988,-96.424,1
+230_1,Pipestone,2016,105,45,26,Poplar_Creek,off_channel,pool/off-channel,,43.865,-96.223,1
+231_1 ,Pipestone,2016,107,47,1,Flandreau_Creek,in_channel,main_channel_,,44.099,-96.429,0
+231_2 ,Pipestone,2016,107,46,6,Flandreau_Creek,in_channel,riffle_,,44.099,-96.428,0
+231_3 ,Pipestone,2016,107,46,6,Flandreau_Creek,in_channel,in-channel/MCB,,44.099,-96.428,0
+231_4 ,Pipestone,2016,107,46,6,Flandreau_Creek,in_channel,in-channel/MCB,,44.098,-96.427,1
+232_1,Rock,2016,103,45,18,Beaver_Creek,in_channel,in-channel/MCB,,43.719,-96.278,1
+233_1 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,glide_run/pool_,,43.877,-96.114,0
+233_2 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,riffle_,,43.878,-96.115,0
+233_3 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,bend_pool_,,43.879,-96.115,0
+233_4 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,channel_border_pool,,43.880,-96.115,0
+233_5 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,bend_pool_,,43.876,-96.113,0
+233_6 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,bend_pool_,,43.876,-96.111,0
+233_7 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,bend_pool_,,43.874,-96.109,0
+233_8 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,bend_pool_,,43.875,-96.107,0
+233_9 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,bend_pool_,,43.876,-96.107,0
+233_10 ,Pipestone,2016,105,44,22,Champepadan_Creek,in_channel,channel_boarder_pool,,43.876,-96.106,0
+234_1,Murray,2016,105,43,8,Champepadan_Creek,in_channel,main_channel,,43.911,-96.032,0
+234_2,Murray,2016,105,43,8,Champepadan_Creek,in_channel,in-channel/MCB,,43.911,-96.031,1
+235_1,Nobles,2016,101,41,4,Little_Rock_River,off_channel,pool/off-channel,,43.576,-95.758,1
+236_1,Pipestone,2016,105,44,9,Rock_River,in_channel,in-channel/MCB,,43.908,-96.145,1
+237_1,Rock,2016,103,44,6,Tributary_Rock_River,in_channel,in-channel/MCB,,43.757,-96.168,1
+238_1,Rock,2016,103,44,29,Rock_River,in_channel,channel_boarder,,43.702,-96.150,1
+239_1,Rock,2016,103,45,31,Little_Beaver_Creek,in_channel,main_channel,,43.683,-96.273,1
+240_1,Pipestone,2016,108,46,17,Willow_creek,in_channel,channel_boarder,,44.158,-96.399,1
+241_1 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,dugout_pond_,,44.283,-96.374,0
+241_2 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,main_channel_,,44.283,-96.375,0
+241_3 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,bend_pool_,,44.282,-96.376,0
+241_4 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,main_channel_,,44.282,-96.378,0
+241_5 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,bend_pool_,,44.281,-96.378,0
+241_6 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,bend_pool_,,44.281,-96.379,0
+241_7 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,bend_pool_,,44.281,-96.382,0
+241_8 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,bend_pool_,,44.281,-96.383,0
+241_9 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,main_channel_,,44.280,-96.383,0
+241_10 ,Lincoln,2017,109,46,3,Medary_Creek,in_channel,main_channel,,44.280,-96.383,0
+242_1,Lincoln,2017,109,46,4,Medary_Creek,in_channel,pool,,44.279,-96.384,1
+243_1,Pipestone,2017,108,46,1,Flandreau_Creek,in_channel,bend_pool,,44.197,-96.326,0
+243_2,Pipestone,2017,108,46,1,Flandreau_Creek,in_channel,main_channel,,44.197,-96.326,0
+243_3,Pipestone,2017,108,46,1,Flandreau_Creek,in_channel,main_channel,,44.195,-96.328,0
+243_4,Pipestone,2017,108,46,1,Flandreau_Creek,in_channel,pool,,44.193,-96.328,0
+243_5,Pipestone,2017,108,46,1,Flandreau_Creek,in_channel,bend_pool,,44.193,-96.328,0
+243_6,Lincoln,2017,109,45,36,Flandreau_Creek,in_channel,pool,,44.198,-96.326,0
+243_7,Lincoln,2017,109,45,36,Flandreau_Creek,in_channel,pool,,44.198,-96.326,0
+243_8,Lincoln,2017,109,45,36,Flandreau_Creek,in_channel,pool,,44.199,-96.326,0
+243_9,Lincoln,2017,109,45,36,Flandreau_Creek,in_channel,bend_pool_,,44.201,-96.324,0
+243_10,Lincoln,2017,109,45,36,Flandreau_Creek,off_channel,marsh_pool,,44.201,-96.323,0
+244_1,Pipestone,2017,106,47,24,Tributary_Pipestone_Creek,in_channel,pool,,43.972,-96.432,1
+245_1,Pipestone,2017,107,44,31,Rock_River,in_channel,channel_boarder_pool,,44.029,-96.174,1
+246_1 ,Murray,2017,106,43,29,North_Branch_Chanarambie_Creek,in_channel,pool_,,43.954,-96.031,0
+246_2 ,Murray,2017,106,43,29,North_Branch_Chanarambie_Creek,in_channel,bend_pool_,,43.955,-96.030,0
+246_3 ,Murray,2017,106,43,29,North_Branch_Chanarambie_Creek,in_channel,bend_pool_,,43.957,-96.032,0
+246_4 ,Murray,2017,106,43,29,North_Branch_Chanarambie_Creek,in_channel,bend_pool_,,43.958,-96.032,0
+246_5 ,Murray,2017,106,43,29,North_Branch_Chanarambie_Creek,in_channel,dugout_pond_,,43.958,-96.032,1
+247_1 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.858,-96.283,0
+247_2 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.858,-96.282,0
+247_3 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.859,-96.282,0
+247_4 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.859,-96.281,0
+247_5 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.859,-96.280,0
+247_6 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.859,-96.280,0
+247_7 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.860,-96.278,0
+247_8 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.861,-96.277,0
+247_9 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.861,-96.276,0
+247_10 ,Pipestone,2017,105,45,32,Tributary_Poplar_Creek,in_channel,in-channel/MCB,,43.861,-96.275,0
+248_1,Rock,2017,104,46,19,Tributary_Pipestone_Creek,in_channel,bend_pool,,43.792,-96.400,1
+249_1 ,Rock,2017,103,46,1,Mound_Creek,in_channel,bend_pool_,,43.760,-96.296,0
+249_2 ,Rock,2017,103,46,1,Mound_Creek,in_channel,bend_pool_,,43.760,-96.297,0
+249_3 ,Rock,2017,103,46,1,Mound_Creek,in_channel,bend_pool_,,43.759,-96.297,0
+249_4 ,Rock,2017,103,46,1,Mound_Creek,in_channel,pool_,,43.760,-96.299,0
+249_5 ,Rock,2017,103,46,1,Mound_Creek,in_channel,glide_run/pool_,,43.759,-96.299,0
+249_6 ,Rock,2017,103,46,1,Mound_Creek,in_channel,glide_run/pool_,,43.758,-96.298,0
+249_7 ,Rock,2017,103,46,1,Mound_Creek,in_channel,glide_run_,,43.757,-96.296,0
+249_8 ,Rock,2017,103,46,1,Mound_Creek,in_channel,dugout_pond_,,43.757,-96.295,0
+249_9 ,Rock,2017,103,46,1,Mound_Creek,in_channel,bend_pool_,,43.755,-96.294,0
+249_10 ,Rock,2017,103,46,1,Mound_Creek,in_channel,glide_run/pool_,,43.754,-96.295,0
+250_1 ,Rock,2017,104,45,35,Mound_Creek,in_channel,pool_,,43.762,-96.197,0
+250_2 ,Rock,2017,104,45,35,Mound_Creek,in_channel,glide_pool_,,43.763,-96.200,0
+250_3 ,Rock,2017,104,45,35,Mound_Creek,in_channel,glide_pool_,,43.763,-96.201,0
+250_4 ,Rock,2017,104,45,35,Mound_Creek,in_channel,off_channel_pool_,,43.763,-96.201,0
+250_5 ,Rock,2017,104,45,35,Mound_Creek,in_channel,pool_,,43.763,-96.203,0
+250_6 ,Rock,2017,104,45,35,Mound_Creek,in_channel,bend_pool_,,43.766,-96.202,0
+250_7 ,Rock,2017,104,45,35,Mound_Creek,in_channel,pool_,,43.767,-96.202,0
+250_8 ,Rock,2017,104,45,35,Mound_Creek,in_channel,bend_pool_,,43.768,-96.202,0
+250_9 ,Rock,2017,104,45,35,Mound_Creek,in_channel,bend_pool_,,43.768,-96.203,0
+250_10 ,Rock,2017,104,45,35,Mound_Creek,in_channel,bend_pool_,,43.769,-96.203,0
+251_1,Rock,2017,104,44,33,Rock_River,in_channel,in-channel/MCB,,43.763,-96.127,1
+252_1 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,pool_,,43.737,-96.100,0
+252_2 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,pool_,,43.736,-96.102,0
+252_3 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,pool_,,43.736,-96.103,0
+252_4 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,bend_pool_,,43.735,-96.104,0
+252_5 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,bend_pool_,,43.734,-96.103,0
+252_6 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,bend_pool_,,43.734,-96.104,0
+252_7 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,bend_pool_,,43.739,-96.101,0
+252_8 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,main_channel_,,43.738,-96.102,0
+252_9 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,main_channel_,,43.738,-96.103,0
+252_10 ,Rock,2017,103,44,10,Tributary_Rock_River,in_channel,bend_pool_,,43.739,-96.103,0
+253_1 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,bend_pool_,,43.789,-96.023,0
+253_2 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,bend_pool_,,43.789,-96.024,0
+253_3 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,bend_pool_,,43.788,-96.025,0
+253_4 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,pool_,,43.788,-96.025,0
+253_5 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,bend_pool_,,43.787,-96.025,0
+253_6 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,bend_pool_,,43.787,-96.029,0
+253_7 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,glide_run_,,43.788,-96.022,0
+253_8 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,bend_pool_,,43.788,-96.021,0
+253_9 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,bend_pool_,,43.787,-96.020,0
+253_10 ,Pipestone,2017,104,43,29,Champepadan_Creek,in_channel,bend_pool_,,43.788,-96.020,0
+254_1 ,Rock,2017,102,47,35,Beaver_Creek,off_channel,off_channel_pool_,,43.594,-96.439,0
+254_2 ,Rock,2017,102,47,35,Beaver_Creek,in_channel,bend_pool_,,43.595,-96.440,0
+254_3 ,Rock,2017,102,47,35,Beaver_Creek,in_channel,main_channel_border_,,43.595,-96.439,0
+254_4 ,Rock,2017,102,47,35,Beaver_Creek,in_channel,bend_pool_,,43.595,-96.440,1
+255_1,Rock,2017,101,45,14,Ash_Creek,in_channel,pool,,43.549,-96.196,1
+256_1,Rock,2017,102,45,36,Rock_River,off_channel,off_channel_pool_,,43.595,-96.190,1
+257_1,Rock,2017,102,44,30,Elk_Creek,in_channel,bend_pool,,43.607,-96.157,1
+258_1,Rock,2017,102,44,29,Elk_Creek,in_channel,bend_pool,,43.610,-96.142,0
+258_2,Rock,2017,102,44,29,Elk_Creek,in_channel,sidechannel_pool,,43.611,-96.140,0
+258_3,Rock,2017,102,44,29,Elk_Creek,in_channel,bend_pool,,43.610,-96.140,1
+259_1,Rock,2017,101,44,1,Kanaranzi_Creek,in_channel,in-channel/MCB,,43.579,-96.058,1
+260_1,Nobles,2017,101,41,4,Little_Rock_River,in_channel,in-channel/MCB,,43.573,-95.757,0
+260_2,Nobles,2017,101,41,9,Little_Rock_River,in_channel,in-channel/MCB,,43.572,-95.757,0
+260_3,Nobles,2017,101,41,9,Little_Rock_River,in_channel,bend_pool,,43.572,-95.756,0
+260_4,Nobles,2017,101,41,9,Little_Rock_River,in_channel,channel_boarder,,43.571,-95.757,0
+260_5,Nobles,2017,101,41,9,Little_Rock_River,in_channel,channel_boarder,,43.571,-95.759,0
+260_6,Nobles,2017,101,41,9,Little_Rock_River,in_channel,in-channel/MCB,,43.570,-95.760,0
+260_7,Nobles,2017,101,41,4,Little_Rock_River,in_channel,bend_pool,,43.575,-95.759,0
+260_8,Nobles,2017,101,41,4,Little_Rock_River,in_channel,bend_pool,,43.574,-95.758,0
+260_9,Nobles,2017,101,41,4,Little_Rock_River,in_channel,main_channel,,43.574,-95.757,0
+260_10,Nobles,2017,101,41,4,Little_Rock_River,in_channel,bend_pool,,43.573,-95.757,0
+261_1,Pipestone,2018,107,46_47,6_7_1_12,Flandreau_Creek,in_channel,in-channel/MCB,,44.099,-96.428,0
+261_2,Pipestone,2018,107,46_47,6_7_1_12,Flandreau_Creek,in_channel,in-channel/MCB,,44.098,-96.427,0
+261_3,Pipestone,2018,107,46_47,6_7_1_12,Flandreau_Creek,in_channel,in-channel/MCB,,44.098,-96.427,0
+261_4,Pipestone,2018,107,46_47,6_7_1_12,Flandreau_Creek,in_channel,in-channel/MCB,,44.098,-96.427,0
+261_5,Pipestone,2018,107,46_47,6_7_1_12,Flandreau_Creek,off_channel,off_channel_pool_,,44.097,-96.428,1
+262_1,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.162,-96.306,0
+262_2,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.162,-96.305,0
+262_3,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.162,-96.306,0
+262_4,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.161,-96.306,0
+262_5,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.160,-96.305,0
+262_6,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.159,-96.305,0
+262_7,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.158,-96.305,0
+262_8,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.157,-96.304,0
+262_9,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.157,-96.303,0
+262_10,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,off_channel,off_channel_pool_,,44.156,-96.302,0
+262_11,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.157,-96.301,0
+262_12,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.156,-96.298,0
+262_13,Pipestone,2018,108,45,18,East_Branch_Flandreau_Creek,in_channel,in-channel/MCB,,44.156,-96.298,0
+263_1 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,pool_,,44.090,-96.265,0
+263_2 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,pool_,,44.090,-96.265,0
+263_3 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,main_channel_border_,,44.090,-96.264,0
+263_4 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,­­main_channel_border_,,44.090,-96.262,0
+263_5 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,pool_,,44.091,-96.261,0
+263_6 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,main_channel_border_,,44.092,-96.262,0
+263_7 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,main_channel_border_,,44.092,-96.261,0
+263_8 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,main_channel_border_,,44.093,-96.261,0
+263_9 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,main_channel_border_,,44.093,-96.261,0
+263_10 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,main_channel_border_,,44.089,-96.266,0
+263_11 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,main_channel_border_,,44.089,-96.266,0
+263_12 ,Pipestone,2018,107,45,8_9,North_Branch_Pipestone_Creek,in_channel,main_channel_border_,,44.089,-96.266,0
+264_1,Pipestone,2018,106,46,7_8_18,Pipstone_Creek,in_channel,channel_boarder_pool,,43.994,-96.441,1
+265_1,Pipestone,2018,106,46,5,North_Branch_Pipestone_Creek,in_channel,side_channel_pool,,44.010,-96.400,1
+266_1,Rock,2018,106,46,18,Pipstone_Creek,in_channel,in-channel/MCB,,43.991,-96.419,0
+266_2,Rock,2018,106,46,18,Pipstone_Creek,in_channel,in-channel/MCB,,43.991,-96.419,1
+267_1,Pipestone,2018,107,44,34,East_Branch_Rock_River,off_channel,off_channel_pool_,,44.032,-96.111,1
+268_1,Pipestone,2018,106,44,29,Rock_River,off_channel,off_channel_pool_,,43.960,-96.158,0
+268_2,Pipestone,2018,106,44,30,Rock_River,in_channel,in-channel/MCB,,43.960,-96.157,0
+268_3,Pipestone,2018,106,44,31,Rock_River,in_channel,in-channel/MCB,,43.959,-96.157,0
+268_4,Pipestone,2018,106,44,32,Rock_River,in_channel,in-channel/MCB,,43.959,-96.157,0
+268_5,Pipestone,2018,106,44,33,Rock_River,in_channel,in-channel/MCB,,43.957,-96.158,1
+269_1 ,Pipestone,2018,105,44,4_33,Rock_River,off_channel,off_channel_pool_,,43.848,-96.126,0
+269_2 ,Pipestone,2018,105,44,4_33,Rock_River,off_channel,off_channel_pool_,,43.848,-96.127,0
+269_3 ,Pipestone,2018,105,44,4_33,Rock_River,off_channel,off_channel_pool_,,43.848,-96.127,0
+269_4 ,Pipestone,2018,105,44,4_33,Rock_River,in_channel,main_channel,,43.848,-96.129,0
+269_5 ,Pipestone,2018,105,44,4_33,Rock_River,in_channel,main_channel,,43.848,-96.129,0
+269_6 ,Pipestone,2018,105,44,4_33,Rock_River,in_channel,main_channel_border,,43.849,-96.130,0
+269_7 ,Pipestone,2018,105,44,4_33,Rock_River,in_channel,main_channel_border/pool,,43.849,-96.128,0
+269_8 ,Pipestone,2018,105,44,4_33,Rock_River,in_channel,main_channel_border,,43.849,-96.127,0
+269_9 ,Pipestone,2018,105,44,4_33,Rock_River,in_channel,main_channel_border,,43.850,-96.127,0
+269_10 ,Pipestone,2018,105,44,4_33,Rock_River,in_channel,main_channel_border/pool,,43.851,-96.127,1
+270_1,Pipestone,2018,105,44,8,Tributary_Rock_River,in_channel,main_channel_border/pool,,43.919,-96.165,1
+271_1,Pipestone,2018,105,44,20_29,Rock_River,in_channel,main_channel_border/pool,,43.878,-96.150,1
+272_1,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.737,-96.292,0
+272_2,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.737,-96.291,0
+272_3,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.737,-96.291,0
+272_4,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.737,-96.290,0
+272_5,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.737,-96.289,0
+272_6,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.737,-96.289,0
+272_7,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.737,-96.289,0
+272_8,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.738,-96.291,0
+272_9,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.739,-96.289,0
+272_10,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.740,-96.288,0
+272_11,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.740,-96.288,0
+272_12,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.740,-96.288,0
+272_13,Nobles,2018,103,45,7,Beaver_Creek,in_channel,main_channel_border/pool,,43.741,-96.289,0
+273_1,Pipestone,2018,105,44,6,Tributary_Rock_River,in_channel,main_channel_border/pool,,43.933,-96.183,1
+274_1,Rock,2018,103,44,30,Rock_River,off_channel,off_channel_pool_,,43.695,-96.146,1
+275_1,Pipestone,2018,102,44,10,Elk_Creek,in_channel,main_channel_pool_,,43.660,-96.093,1
+276_1 ,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.705,-95.993,0
+276_2 ,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.705,-95.993,0
+276_3 ,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.705,-95.993,0
+276_4 ,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.705,-95.993,0
+276_5 ,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.705,-95.992,0
+276_6,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.705,-95.992,0
+276_7,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.706,-95.992,0
+276_8,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.706,-95.992,0
+276_9,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.706,-95.992,0
+276_10,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.707,-95.992,0
+276_11,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.707,-95.992,0
+276_12,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.707,-95.992,0
+276_13,Nobles,2018,103,43,22,Elk_Creek,in_channel,main_channel_boarder,,43.708,-95.991,0
+277_1 ,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border/pool,,43.571,-96.062,0
+277_2 ,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.571,-96.062,0
+277_3 ,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.571,-96.061,0
+277_4 ,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.570,-96.060,0
+277_5 ,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border/pool,,43.570,-96.060,0
+277_6 ,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.568,-96.061,0
+277_7,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.567,-96.064,0
+277_8,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.567,-96.064,0
+277_9,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.566,-96.064,0
+277_10,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.566,-96.064,0
+277_11,Rock,2018,101,44,12,Kanaranzi_Creek,in_channel,main_channel_border,,43.566,-96.063,0
+278_1 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.660,-95.915,0
+278_2 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.660,-95.916,0
+278_3 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,side_channel,,43.660,-95.916,0
+278_4 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,side_channel,,43.661,-95.916,0
+278_5 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.661,-95.916,0
+278_6 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.661,-95.917,0
+278_7 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.661,-95.917,0
+278_8 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.662,-95.917,0
+278_9 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.661,-95.918,0
+278_10 ,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.660,95.919,0
+278_11,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.660,-95.919,0
+278_12,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,off_channel_pool,,43.660,-95.920,0
+278_13,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,off_channel_pool,,43.660,-95.920,0
+278_14,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,off_channel_pool,,43.660,-95.920,0
+278_15,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,off_channel_pool,,43.660,-95.920,0
+278_16,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,off_channel_pool,,43.661,-95.920,0
+278_17,Nobles,2018,102,42,6,Kanaranzi_Creek,in_channel,main_channel_border,,43.660,-95.923,0
+279_1,Nobles,2018,101,42,35,Little_Rock_River,in_channel,main_channel_border/pool,,43.500,-95.849,0
+279_2,Nobles,2018,101,42,35,Little_Rock_River,in_channel,main_channel_border/pool,,43.500,-95.849,0
+279_3,Nobles,2018,101,42,35,Little_Rock_River,off_channel,off_channel_pool,,43.502,-95.850,1
+280_1,Rock,2018,103,44,6,Tributary_Rock_River,in_channel,main_channel_border/pool,,43.757,-96.168,0
+280_2,Rock,2018,103,44,6,Tributary_Rock_River,in_channel,main_channel_border/pool,,43.502,-95.850,1
+281_1,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.529,-96.034,0
+281_2,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.529,-96.034,0
+281_3,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.528,-96.036,0
+281_4,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.526,-96.037,0
+281_5,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.525,-96.037,0
+281_6,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.525,-96.037,0
+281_7,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.524,-96.038,0
+281_8,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.524,-96.038,0
+281_9,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.524,-96.039,0
+281_10,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.524,-96.039,0
+281_11,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.523,-96.040,0
+281_12,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.523,-96.040,0
+281_13,Pipestone,2019,101,43,30,Norwegian_Creek,in_channel,main_channel_boarder,"coarse gravel, sand",43.523,-96.041,0
+282_1,Pipestone,2019,106,44,29,Rock_River,,main_channel_boarder,"gravel, silt",43.961,-96.157,1
+283_1,Lincoln,2019,109,47,13,Medary_Creek,,main_channel_boarder/pool,coarse gravel,44.248,-96.444,1
+284_1,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.515,-96.092,0
+284_2,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.516,-96.092,0
+284_3,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.516,-96.092,0
+284_4,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.517,-96.089,0
+284_5,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.515,-96.093,0
+284_6,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.513,-96.092,0
+284_7,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.512,-96.094,0
+284_8,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.511,-96.094,0
+284_9,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.511,-96.096,0
+284_10,Rock,2019,101,44,24,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel",43.512,-96.092,0
+285_1,Rock,2019,104,44,21,Rock_River,,main_channel_boarder,"coarse gravel, silt, muck",43.790,-96.125,1
+286_1,Pipestone,2019,105,46,34,Unnamed_Tributary_Split_Rock_Creek,,main_channel_boarder,"coarse gravel, silt, muck",43.852,-96.347,0
+286_2,Pipestone,2019,105,46,34,Unnamed_Tributary_Split_Rock_Creek,,main_channel_boarder,"coarse gravel, silt, muck",43.852,-96.347,0
+286_3,Pipestone,2019,105,46,34,Unnamed_Tributary_Split_Rock_Creek,,main_channel_boarder,"coarse gravel, silt, muck",43.852,-96.348,0
+286_4,Pipestone,2019,105,46,34,Unnamed_Tributary_Split_Rock_Creek,,main_channel_boarder,"coarse gravel, silt, muck",43.852,-96.348,0
+286_5,Pipestone,2019,105,46,34,Unnamed_Tributary_Split_Rock_Creek,,main_channel_boarder,"coarse gravel, silt, muck",43.852,-96.348,1
+287_1,Nobles,2019,101,42,26,Little_Rock_Creek,,main_channel_boundry,,43.528,-95.846,1
+288_1,Pipestone,2019,108,46,17,Willow_creek,,off_channel_pool,"silt, coarse gravel",43.158,-96.396,1
+289_1,Pipestone,2019,105,44,8,Rock_River,,main_channel_pool,silt,43.919,-96.165,1
+290_1,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.720,-96.279,0
+290_2,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,side_channel,"coarse gravel, cobble",43.720,-96.279,0
+290_3,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.721,-96.278,0
+290_4,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.722,-96.279,0
+290_5,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.721,-96.280,0
+290_6,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.722,-96.283,0
+290_7,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.721,-96.280,0
+290_8,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.723,-96.284,0
+290_9,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.724,-96.285,0
+290_10,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.725,-96.285,0
+290_11,Pipestone,2019,105,44,20_29,Unnamed_Tributary_Beaver_Creek,,main_channel_boarder,"coarse gravel, cobble",43.724,-96.288,0
+291_1,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.659,-95.905,0
+291_2,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.659,-95.905,0
+291_3,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.659,-96.905,0
+291_4,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.659,-96.905,0
+291_5,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.659,-96.908,0
+291_6,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.660,-96.908,0
+291_7,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.659,-96.904,0
+291_8,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.658,-96.903,0
+291_9,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.655,-96.903,0
+291_10,Nobles,2019,102,42,8,East_Branch_Kanaranzi_Creek,,off_channel_pool,,43.654,-96.903,0
+292_1,Nobles,2019,101,42,24,Little_Rock_River,,main_channel_pool_,"sand, coarse gravel, sand",43.543,-95.817,1
+293_1,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.597,-96.034,0
+293_2,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.597,-96.035,0
+293_3,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.597,-96.035,0
+293_4,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.594,-96.037,0
+293_5,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.592,-96.037,0
+293_6,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.591,-96.038,0
+293_7,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.590,-96.039,0
+293_8,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.590,-96.039,0
+293_9,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.590,-96.040,0
+293_10,Nobles,2019,102,43,31,Kanaranzi_Creek,,main_channel_boarder,"sand, small coarse gravel, silt",43.590,-96.041,0
+294_1,Rock,2019,102,44,30,Elk_Creek,,main_channel_boarder/pool,"sand, small corase gravel",43.602,-96.163,0
+294_2,Rock,2019,102,44,30,Elk_Creek,,main_channel_boarder,"sand, small corase gravel",43.602,-96.163,0
+294_3,Rock,2019,102,44,30,Elk_Creek,,main_channel_boarder,"sand, small corase gravel",43.602,-96.163,0
+294_4,Rock,2019,102,44,30,Elk_Creek,,main_channel_boarder,"sand, small corase gravel",43.602,-96.163,1
+295_1,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.704,-96.294,1
+296_1,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.514,-96.085,0
+296_2,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.513,-96.084,0
+296_3,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.514,-96.083,0
+296_4,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.514,-96.080,0
+296_5,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.514,-96.080,0
+296_6,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.513,-96.080,0
+296_7,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.513,-96.079,0
+296_8,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.514,-96.079,0
+296_9,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.515,-96.080,0
+296_10,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.515,-96.079,0
+296_11,Rock,2019,103,45_45,19_24_25,Beaver_Creek,,main_channel_pool,"silt, muck, coarse gravel",43.515,-96.078,0
+297_1,Pipestone,2019,107,44,27_34,Rock_River,,side_channel,"silt, muck, coarse gravel",43.757,-96.168,0
+297_2,Pipestone,2019,107,44,27_34,Rock_River,,side_channel,"silt, muck, coarse gravel",43.502,-95.850,1
+298_1,Nobles,2019,102,42,7,Kanaranzi_Creek,,off_channel_pool,"sand, small cobble",43.651,-95.933,0
+298_2,Nobles,2019,102,42,7,Kanaranzi_Creek,,off_channel_pool,"sand, small cobble",43.541,-95.933,0
+298_3,Nobles,2019,102,42,7,Kanaranzi_Creek,,off_channel_pool,"sand, small cobble",43.652,-95.932,0
+298_4,Nobles,2019,102,42,7,Kanaranzi_Creek,,off_channel_pool,"sand, small cobble",43.652,-95.933,0
+298_5,Nobles,2019,102,42,7,Kanaranzi_Creek,,main_channel_boarder,"sand, small cobble",43.651,-95.932,0
+298_6,Nobles,2019,102,42,7,Kanaranzi_Creek,,main_channel_boarder,"sand, small cobble",43.651,-95.932,0
+298_7,Nobles,2019,102,42,7,Kanaranzi_Creek,,main_channel_boarder,"sand, small cobble",43.651,-95.932,0
+298_8,Nobles,2019,102,42,7,Kanaranzi_Creek,,main_channel_boarder,"sand, small cobble",43.653,-95.931,0
+298_9,Nobles,2019,102,42,7,Kanaranzi_Creek,,main_channel_boarder,"sand, small cobble",43.654,-95.929,0
+298_10,Nobles,2019,102,42,7,Kanaranzi_Creek,,main_channel_boarder,"sand, small cobble",43.655,-95.928,0
+298_11,Nobles,2019,102,42,7,Kanaranzi_Creek,,off_channel_pool,"sand, small cobble",43.655,-95.928,0
+298_12,Nobles,2019,102,42,7,Kanaranzi_Creek,,off_channel_pool,"sand, small cobble",43.658,-95.926,0
+298_13,Nobles,2019,102,42,7,Kanaranzi_Creek,,main_channel_boarder,"sand, small cobble",43.658,-95.925,0
+299_1,Nobles,2019,103,43,31,Elk_Creek,,main_channel_boarder,"sand, small coasr gravel",43.675,-96.048,0
+299_2,Nobles,2019,103,43,31,Elk_Creek,,main_channel_boarder,"sand, small coasr gravel",43.675,-96.049,0
+299_3,Nobles,2019,103,43,31,Elk_Creek,,main_channel_boarder,"sand, small coasr gravel",43.677,-96.050,0
+299_4,Nobles,2019,103,43,31,Elk_Creek,,main_channel_boarder,"sand, small coasr gravel",43.677,-96.051,0
+299_5,Nobles,2019,103,43,31,Elk_Creek,,main_channel_boarder,"sand, small coasr gravel",43.677,-96.051,0
+299_6,Nobles,2019,103,43,31,Elk_Creek,,main_channel_boarder,"sand, small coasr gravel",43.676,-96.046,0
+299_7,Nobles,2019,103,43,31,Elk_Creek,,main_channel_pool,"sand, small coasr gravel",43.675,-96.045,0
+299_8,Nobles,2019,103,43,31,Elk_Creek,,side_channel,"sand, small coasr gravel",43.675,-96.044,1
+300_1,Nobles,2019,101,41,9,Little_Rock_River,oxbow,off_channel_pool,"silt, muck",43.566,-95.759,0
+300_2,Nobles,2019,101,41,9,Little_Rock_River,oxbow,off_channel_pool,"silt, muck",43.566,-95.758,1
