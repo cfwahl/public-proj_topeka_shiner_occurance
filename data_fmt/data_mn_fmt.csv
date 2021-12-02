@@ -1,4 +1,4 @@
-segment,year,occurrence,lat,long,site_id
+segment,year,occurrence,lat,long,lat_long
 1,2004,1,44.052,-96.157,44.052 -96.157
 2,2004,1,43.859,-96.265,43.859 -96.265
 3,2004,1,43.695,-96.286,43.695 -96.286

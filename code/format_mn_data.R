@@ -9,7 +9,7 @@ pacman::p_load(tidyverse,
 # read data ---------------------------------------------------------------
 
 df0 <- read_csv("data_raw/mn_topeka_shiner_occurrence_2.csv") %>% 
-  select(Site_Num:Topeka_Shiner)
+  select(Site_Num:Topeka_Shiner) # select columns from Site_num to Topeka_Shiner
 
 colnames(df0) <- str_to_lower(colnames(df0)) # make all column names lowercase
 
@@ -54,17 +54,20 @@ write_csv(df1, "data_fmt/data_mn_fmt.csv")
 
 # mapping -----------------------------------------------------------------
 
+# sf is the package for shape file operations
+# st_as_sf is to convert dataframe to sf object (i.e., points/polygons with coordinates)
+
 # error in row 314?
 st_df1 <- df1 %>% 
   st_as_sf(coords = c("long", "lat"),
-           crs = 4326)
+           crs = 4326) # crs 4326 = WGS84
 
 mapview::mapView(st_df1)
 
 ## error in row 406 and 1335?
 st_df0 <- st_as_sf(df0,
                    coords = c("long", "lat"),
-                   crs = 4326)
+                   crs = 4326) # crs 4326 = WGS84
 
 mapview::mapView(st_df0$geometry)
 
