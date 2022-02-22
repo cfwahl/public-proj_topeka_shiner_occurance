@@ -1,4 +1,6 @@
 
+# this code creates the segment identifer based on lat/long
+
 # setup -------------------------------------------------------------------
 
 ## loading packages
