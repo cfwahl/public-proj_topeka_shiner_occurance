@@ -22,7 +22,7 @@ model {
     Y[i] ~ dbern(p[i])		# The 'residual' random variable
     logit(p[i]) <- beta[Watshed[i], 1] + 
                    beta[Watshed[i], 2] * Agr[i] + 
-                   beta[Watshed[i], 3] * Elv[i] + # Expectation
+                   beta[Watshed[i], 3] * Elv[i] + 
                    beta[Watshed[i], 4] * Area[i] +
                    beta[Watshed[i], 5] * Slop[i] 
   }

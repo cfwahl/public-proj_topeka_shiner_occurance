@@ -20,7 +20,7 @@ model {
   
   # Binomial likelihood
   for (i in 1:N_sample) {
-    Y[i] ~ dbern(p[i],tau)
+    Y[i] ~ dbern(p[i])
     logit(p[i]) <- alpha[Watshed[i]] + 
                     beta[1]* Agr[i] +
                     beta[2] * Elv[i] +
