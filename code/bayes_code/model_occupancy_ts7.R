@@ -3,19 +3,16 @@ model {
 # model with random slopes and intercept 
   
   # Priors
-  for (j in 1:5){
+  for (j in 1:N_watshed) {
     beta[j, 1:5] ~ dmnorm(beta_hat[], Tau_beta[,])
   }
   
-  for(i in 1:N_watshed) {
-    beta_hat[i] ~ dnorm(0, 0.001)
+  for(i in 1:5) {
+    beta_hat[i] ~ dnorm(0, 0.01)
   }
   
-  Tau_beta[1:7,1:7] ~ dwish(W[,], 4)
-  Sigma_beta[1:7, 1:7] <- inverse(Tau_beta[,])
-  
-  tau ~ dscaled.gamma(2.5, 3)
-  sigma <- sqrt(1 / tau)
+  Tau_beta[1:5, 1:5] ~ dscaled.wishart(rep(5, 5), 2)
+  Sigma_beta[1:5, 1:5] <- inverse(Tau_beta[,])
   
   # Likelihood
   for (i in 1:N_sample) {

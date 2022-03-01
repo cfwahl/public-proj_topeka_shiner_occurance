@@ -36,8 +36,7 @@ d_jags <- list(Y = Y,
                Slop = Slop,
                Watshed = Watshed,
                N_sample = length(Y),
-               N_watshed = n_distinct(Watshed),
-               W = diag(7))
+               N_watshed = n_distinct(Watshed))
 
 d_jags # check to make sure its correct
 str(d_jags)
@@ -45,8 +44,7 @@ str(d_jags)
 ## parameters ####
 para <- c("beta_hat",
           "beta",
-          "Sigma_beta",
-          "sigma")
+          "Sigma_beta")
 
 ## model file ####
 m <- read.jagsfile("code/bayes_code/model_occupancy_ts7.R")
