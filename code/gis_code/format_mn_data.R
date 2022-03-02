@@ -48,6 +48,9 @@ df_n_obs <- df1 %>%
   group_by(segment) %>% 
   summarize(n_year = n_distinct(year)) # count unique year ID for each group
 
+## There were sites where more than one shiner was caught, we want binary
+## if occurrence is >0 then make 1
+df1 <-  df1 %>% mutate(occurrence = replace(occurrence, occurrence>0, 1))
 
 # export ------------------------------------------------------------------
 
