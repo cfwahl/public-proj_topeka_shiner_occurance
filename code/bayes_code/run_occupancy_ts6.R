@@ -42,7 +42,7 @@ d_jags # check to make sure its correct
 str(d_jags)
 
 ## parameters ####
-para <- c("aplha",
+para <- c("alpha",
           "beta",
           "mu_alpha",
           "sd_alpha")
