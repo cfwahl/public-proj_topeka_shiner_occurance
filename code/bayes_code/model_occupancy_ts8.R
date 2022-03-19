@@ -1,30 +1,43 @@
 model {
   
-  # random intercept model
+  ninfo <- 0.01 # precision value for vague priors
+  scale <- 2.5 # scale parameter for dscaled.gamma
+  df <- 3 # degree of freedom
   
-  # Priors and linear models
+  
+  # prior -------------------------------------------------------------------
+  
+  # random effect
   for (j in 1:N_watshed){		
-    alpha[j] ~ dnorm(mu_alpha, tau_alpha)	# Random effects
+    r[j] ~ dnorm(mu_r, tau_r)	# random effects
   }
   
-  # Priors for hyper-parameters
-  mu_alpha ~ dnorm(0, 1.0E-06)                          # Hyperprior for mean hyperparam
-  tau_alpha <- pow(sd_alpha, -2)
-  sd_alpha ~ dunif(0, 100)                              # Hyperprior for sd hyperparam
+  # priors for hyper-parameters
+  mu_r ~ dnorm(0, ninfo) # prior for hyper-mean
+  tau_r ~ dscaled.gamma(scale, df)
+  sd_r <- sqrt(1 / tau_r)  # half-t distribution for sd prior
   
-  # Other priors
+  # prior for fixed effects
   for (j in 1:5){
-    beta[j] ~ dnorm(0, 0.01)                              # Slope of beta
+    beta[j] ~ dnorm(0, ninfo)
   }
   
-  tau <- pow(sd, -2)
-  sd ~ dunif(0, 1000)                                   # 1/residual variance
+  # prior for connectivity
+  for (k in 1:2) {
+    # truncated normal distribution for alpha ("T(,)" defines lower and upper limits)
+    # produce values from 0.01 to 100
+    # average dispersal 0.01 km (alpha = 100) to 100 km (alpha = 0.01)
+    alpha[k] ~ dnorm(0, ninfo)T(0.01, 100)
+  }
+    
   
+  # likelihood --------------------------------------------------------------
   
   # Binomial likelihood
   for (i in 1:N_sample) {
     Y[i] ~ dbern(p[i])
-    logit(p[i]) <- alpha[Watshed[i]] + 
+    logit(p[i]) <- 
+      r[Watshed[i]] + 
       beta[1]* Agr[i] +
       beta[2] * Elv[i] +
       beta[3] * Area[i] +

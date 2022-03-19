@@ -79,8 +79,8 @@ str(d_jags)
 para <- c("alpha",
           "beta",
           "s",
-          "mu_alpha",
-          "sd_alpha")
+          "mu_r",
+          "sd_r")
 
 ## model file ####
 m <- read.jagsfile("code/bayes_code/model_occupancy_ts8.R")
