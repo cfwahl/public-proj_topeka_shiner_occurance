@@ -46,7 +46,7 @@ model {
     
     # connectivity summed over j
     # subtract c[i,Segment_id[i]] from the sum; self-connection removal
-    s[i] <- sum(c[i,]) - c[i, Segment_id[i]]
+    s[i] <- sum(c[i,] * M[Segment_id[i],])# - c[i, Segment_id[i]]
     
     # connectivity measure for a specific pair of i and j
     for(j in 1:N_site) {

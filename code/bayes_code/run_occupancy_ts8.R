@@ -55,6 +55,15 @@ D <- dplyr::select(down_dmat, -segment_id)
 Segment_id <- data$segment_id
 Watshed <- data$watershed
 
+TD <- U + D
+M <- foreach(i = seq_len(nrow(TD)), .combine = rbind) %do% {
+  x <- TD[i,]
+  y <- ifelse(x == 0 | x > 25,
+              yes = 0,
+              no = 1)
+  return(y)
+}
+
 
 # jags --------------------------------------------------------------------
 
@@ -70,7 +79,8 @@ d_jags <- list(Y = Y,
                Segment_id = Segment_id,
                N_sample = length(Y),
                N_watshed = n_distinct(Watshed),
-               N_site = nrow(U))
+               N_site = nrow(U),
+               M = M)
 
 d_jags # check to make sure its correct
 str(d_jags)
@@ -78,7 +88,6 @@ str(d_jags)
 ## parameters ####
 para <- c("alpha",
           "beta",
-          "s",
           "mu_r",
           "sd_r")
 
