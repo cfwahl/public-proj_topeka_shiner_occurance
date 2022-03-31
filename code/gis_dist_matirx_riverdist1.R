@@ -60,13 +60,13 @@ site_strnet <- bind_cols(utm_sf_outlet, site_snap)
 dmat <- riverdistancemat(site_strnet$seg, site_strnet$vert, strnet_fixed, 
                          ID = site_strnet$segment ) %>% as.matrix
 
-dmat <- dmat/1000 # convert to km
+tot_dist <- dmat/1000 # convert to km
 
 # Save data frame
-write.csv(dmat,"data_fmt/gis/watersheds/watershed6/total_dist_ws6.csv", row.names = TRUE)
+write.csv(tot_dist,"data_fmt/gis/watersheds/watershed6/total_dist_ws6.csv", row.names = TRUE)
 
 # make total distance between sites into matrix for subtraction/addition 
-TD <- matrix(dmat, nrow = 126, ncol = 126)
+#TD <- matrix(dmat, nrow = 126, ncol = 126)
 
 
 # remove duplicate sites --------------------------------------------------
@@ -105,20 +105,24 @@ updmat <- upstreammat(seg = site_strnet$seg, vert = site_strnet$vert,
                       rivers = strnet_fixed, 
                       ID = site_strnet$segment, net = TRUE) %>% as.matrix
 
-updmat <- updmat/1000 # convert to km
+net_up <- updmat/1000 # convert to km
 
 # Save data frame
-write.csv(updmat,"data_fmt/gis/watersheds/watershed6/net_up_dist_ws6.csv", row.names = TRUE)
+write.csv(net_up,"data_fmt/gis/watersheds/watershed6/net_up_dist_ws6.csv", row.names = TRUE)
 
 # make in matrix for subtraction/addition
-up_dist <- matrix(updmat, nrow = 126, ncol = 126)
+#net_up <- matrix(net_up, nrow = 126, ncol = 126)
 
 
 # downstream and upstream distance matrices -----------------------------------
 
+# net down stream should equal TD - net_up, but it makes some values TD instead
+# for some reason this changes the column numbers which is not wanted
+net_down <- tot_dist - net_up
+ 
 # make negative values, aka more downstream dist than upstream, zero thus only 
 # positive net upstream distances remains
-U <- pmax(updmat,0) # if negative value, make zero
+U <- pmax(net_up,0) # if negative value, make zero
 
 # make positive values, aka more upstream dist, zero. This negative nummber added
 # to the total distance becomes the downstream distance 
