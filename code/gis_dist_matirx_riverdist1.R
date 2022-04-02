@@ -2,12 +2,9 @@
 # setup -------------------------------------------------------------------
 
 pacman::p_load(riverdist,
-               dplyr,
                sf, 
-               tidyverse,
-               stringr)
+               tidyverse)
 
-# set working directory 
 
 # data --------------------------------------------------------------------
 
@@ -19,19 +16,19 @@ utm_sf_outlet <- st_read(dsn = "data_fmt/gis/watersheds/watershed6",
                          layer = "epsg3722_sites_ws6",
                          drivers = "ESRI Shapefile")
 
-# create dataframe 
-df <- utm_sf_outlet %>% 
+# data frame for sampling sites
+df_coord <- utm_sf_outlet %>% 
   mutate(X = st_coordinates(.)[,1],
          Y = st_coordinates(.)[,2]) %>% 
-  as_tibble()
+  as_tibble() %>% 
+  distinct(segment, X, Y) # remove duplicates
 
-# coordinates  from utm_sf_outlet 
-X <- df$X
-Y <- df$Y
+X <- df_coord$X
+Y <- df_coord$Y
 
 # read in the network
-strnet <- line2network(path="data_fmt/gis/watersheds/watershed6", 
-                       layer="epsg3722_StrNet_ws6")
+strnet <- line2network(path = "data_fmt/gis/watersheds/watershed6", 
+                       layer = "epsg3722_StrNet_ws6")
 
 
 # prep stream network and sites --------------------------------------------------
@@ -43,101 +40,47 @@ plot(strnet)
 topologydots(strnet)
 
 # do a clean up: dissolve - y, insert vertices - y, distance - 1, 
-#     examine figure for mouth questions, remove additional segments - n, 
-#     build segment routes - y
+# examine figure for mouth questions, remove ad4ditional segments - n, 
+# build segment routes - y
 strnet_fixed <- cleanup(rivers = strnet)
 
 # snap sites to stream network
-site_snap <- xy2segvert(x=X, y=Y, rivers=strnet_fixed)
-
-# add vertices
-site_strnet <- bind_cols(utm_sf_outlet, site_snap)
+site_snap <- xy2segvert(x = X,
+                        y = Y,
+                        rivers = strnet_fixed)
 
 
 # distance matrix  --------------------------------------------------------
 
-# create matrix of total distances among sites
-dmat <- riverdistancemat(site_strnet$seg, site_strnet$vert, strnet_fixed, 
-                         ID = site_strnet$segment ) %>% as.matrix
+# distance matrix: total, m_x
+m_x <- riverdistancemat(site_snap$seg,
+                        site_snap$vert,
+                        strnet_fixed, 
+                        ID = site_snap$segment) %>%
+  data.matrix()
 
-tot_dist <- dmat/1000 # convert to km
-
-# Save data frame
-write.csv(tot_dist,"data_fmt/gis/watersheds/watershed6/total_dist_ws6.csv", row.names = TRUE)
-
-# make total distance between sites into matrix for subtraction/addition 
-#TD <- matrix(dmat, nrow = 126, ncol = 126)
+m_x <- round(m_x / 1000, 2) # convert to km
 
 
-# remove duplicate sites --------------------------------------------------
+# distance matrix: net upstream, m_y
+m_y <- upstreammat(seg = site_snap$seg,
+                   vert = site_snap$vert, 
+                   rivers = strnet_fixed, 
+                   ID = site_snap$segment,
+                   net = TRUE) %>%
+  data.matrix()
 
-# I tried removing the duplicate sites and columns with coding but I 
-# cannot figure it out
+m_y <- round(m_y / 1000, 2) # convert to km
 
-# read in distance matrix just created
-#site_dists <- read.csv("data_fmt/distance_matrices/siteXdist_combined.csv",
-#                       header = TRUE)
+# distance matrix: up and downstream distance (m_u & m_d)
+m_u <- (m_x + m_y) / 2
+m_d <- (m_x - m_y) / 2
 
-# assigning the first column a new name
-#colnames(site_dists)[1] <- "segment_id"
+m_td <- round(m_u + m_d, 2)
 
-# select sites which have "." in segment_id then assign to a df
-#SD <- site_dists %>% 
-#  filter(str_count(segment_id, fixed(".")) == 1)
+# check if m_td = m_x
+identical(m_td, m_x)
 
-# remove SD sites from the other dataframe and create a new df
-#site_dists1 <- site_dists[!(site_dists$segment_id %in% SD$segment_id),]
-
-# write the data out
-#site_dists1 <- as.data.frame(site_dists1)
-#write.csv(site_dists1,"data_fmt/distance_matrices\\siteXdist_combined2.csv", row.names = TRUE)
-
-
-# flow direction ----------------------------------------------------------
-
-# Mouth of network must be specified, get seg and vert from cleanup() above
-#setmouth(seg=1844, vert=4246, rivers=strnet_fixed)
-#setmouth(seg=702, vert=73, rivers=strnet_fixed)
-
-# net UPSTREAM distance among sites
-# net = TRUE subtracts downstream movement from upstream, otherwise it total dist
-updmat <- upstreammat(seg = site_strnet$seg, vert = site_strnet$vert, 
-                      rivers = strnet_fixed, 
-                      ID = site_strnet$segment, net = TRUE) %>% as.matrix
-
-net_up <- updmat/1000 # convert to km
-
-# Save data frame
-write.csv(net_up,"data_fmt/gis/watersheds/watershed6/net_up_dist_ws6.csv", row.names = TRUE)
-
-# make in matrix for subtraction/addition
-#net_up <- matrix(net_up, nrow = 126, ncol = 126)
-
-
-# downstream and upstream distance matrices -----------------------------------
-
-# net down stream should equal TD - net_up, but it makes some values TD instead
-# for some reason this changes the column numbers which is not wanted
-net_down <- tot_dist - net_up
- 
-# make negative values, aka more downstream dist than upstream, zero thus only 
-# positive net upstream distances remains
-U <- pmax(net_up,0) # if negative value, make zero
-
-# make positive values, aka more upstream dist, zero. This negative nummber added
-# to the total distance becomes the downstream distance 
-updmat1 <- pmin(updmat,0) # if positive value, make zero
-U1 <- matrix(updmat1, nrow = 126, ncol = 126) # convert to matrix
-
-
-# negative values from net upstream distance plus TD equals the downstream dist
-# the problem is that the total distance is now cells that were zero. Instead of 
-# total dist we want the value from "U" in those cells
-D <- U1 + TD 
-
-# write the data out
-# there are lots of repeating values, the math is wrong
-D <- as.data.frame(D)
-write.csv(D,"data_fmt/gis/watersheds/watershed6/net_down_dist_ws6.csv", row.names = TRUE)
-
-
+# export
+save(m_u, file = "data_fmt/m_u_ws6.RData")
+save(m_d, file = "data_fmt/m_d_ws6.RData")
