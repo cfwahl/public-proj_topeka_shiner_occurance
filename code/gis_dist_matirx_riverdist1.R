@@ -18,8 +18,8 @@ utm_sf_outlet <- st_read(dsn = "data_fmt/gis/watersheds/watershed6",
 
 # data frame for sampling sites
 df_coord <- utm_sf_outlet %>% 
-  mutate(X = st_coordinates(.)[,1],
-         Y = st_coordinates(.)[,2]) %>% 
+  mutate(X = round(st_coordinates(.)[,1], 6),
+         Y = round(st_coordinates(.)[,2], 6)) %>% 
   as_tibble() %>% 
   distinct(segment, X, Y) # remove duplicates
 
