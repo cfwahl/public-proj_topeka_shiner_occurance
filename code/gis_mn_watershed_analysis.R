@@ -26,14 +26,14 @@ rm(list = ls())
 # read data ---------------------------------------------------------------
 
 df0 <- read_csv("data_raw/mn_topeka_shiner_occurrence_2.csv") %>% 
-  select(Site_Num:Topeka_Shiner) # select columns from Site_num to Topeka_Shiner
+  dplyr::select(Site_Num:Topeka_Shiner) # select columns from Site_num to Topeka_Shiner
 
 colnames(df0) <- str_to_lower(colnames(df0)) # make all column names lowercase
 
 
 # format ------------------------------------------------------------------
 
-df1 <- df0 %>% 
+df_mn <- df0 %>% 
   separate(site_num,
            into = c("segment", "transect"),
            sep = "_") %>% # separate `site_num` into `segment` and `transect` columns
@@ -42,34 +42,40 @@ df1 <- df0 %>%
   group_by(segment, year) %>%  # grouping by segment and year columns for group operation
   summarize(occurrence = sum(topeka_shiner), # take sum of topeka shiner for each group
             lat = round(lat[1], 3), # take the first element of lat for each group
-            long = round(long[1], 3), # take the first element of long for each group
-            lat_long = paste(lat, long)) # make unique site_id (combination of long-lat)
+            long = round(long[1], 3)) %>%  # take the first element of long for each group
+  ungroup() %>% 
+  group_by(lat, long) %>% 
+  summarize(occurrence = sum(occurrence),
+            year = max(year), # latest year of observation
+            lat = unique(lat),
+            long = unique(long)) %>% 
+  ungroup() %>% 
+  mutate(occurrence = replace(occurrence, occurrence > 0, 1),  # if occurrence is >0 then make 1
+         site = seq_len(n_distinct(paste0(.$lat, .$long))))
 
 
 # error check -------------------------------------------------------------
 
 ## check if each segment has unique segment coordinates
-df_coords <- df1 %>% 
-  group_by(segment) %>% 
-  summarize(n_coords = n_distinct(lat_long))
+df_coords <- df_mn %>% 
+  distinct(site, lat, long) %>% 
+  group_by(site) %>% 
+  summarize(n_coord = n_distinct(paste0(lat, long)))
 
 ## segment with multiple unique coords  
-df_coords %>% 
-  filter(n_coords > 1) %>% # select segment with multiple coordinates
-  pull(segment) # pull segment ID
+unique(df_coords$n_coord)
 
 ## count number of observations for each segment
-df_n_obs <- df1 %>% 
-  group_by(segment) %>% 
+df_n_obs <- df_mn %>% 
+  group_by(site) %>% 
   summarize(n_year = n_distinct(year)) # count unique year ID for each group
 
-## There were sites where more than one shiner was caught, we want binary
-## if occurrence is >0 then make 1
-df1 <-  df1 %>% mutate(occurrence = replace(occurrence, occurrence>0, 1))
 
 # export ------------------------------------------------------------------
 
-write_csv(df1, "data_fmt/data_mn_fmt.csv")
+save(df_mn, file = "data_fmt/data_mn_fmt.RData")
+#write_csv(df_mn, "data_fmt/data_mn_fmt.csv")
+
 
 # mapping -----------------------------------------------------------------
 
