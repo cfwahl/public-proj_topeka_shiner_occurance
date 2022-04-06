@@ -12,8 +12,8 @@ pacman::p_load(riverdist,
 rm(list = ls())
 
 # read sites
-utm_sf_outlet <- st_read(dsn = "data_fmt/gis/watersheds/watershed6",
-                         layer = "epsg3722_sites_ws6",
+utm_sf_outlet <- st_read(dsn = "data_fmt/gis/watersheds/watersheds_combined",
+                         layer = "epsg3722_sites_relocated",
                          drivers = "ESRI Shapefile")
 
 # data frame for sampling sites
@@ -27,8 +27,8 @@ X <- df_coord$X
 Y <- df_coord$Y
 
 # read in the network
-strnet <- line2network(path = "data_fmt/gis/watersheds/watershed6", 
-                       layer = "epsg3722_StrNet_ws6")
+strnet <- line2network(path = "data_fmt/gis/watersheds/watersheds_combined", 
+                       layer = "epsg3722_strnet")
 
 
 # prep stream network and sites --------------------------------------------------
@@ -44,11 +44,12 @@ topologydots(strnet)
 # build segment routes - y
 strnet_fixed <- cleanup(rivers = strnet)
 
+save(strnet_fixed, file = "data_fmt/strnet_fixed.RData")
+
 # snap sites to stream network
 site_snap <- xy2segvert(x = X,
                         y = Y,
                         rivers = strnet_fixed)
-
 
 # distance matrix  --------------------------------------------------------
 
@@ -56,17 +57,16 @@ site_snap <- xy2segvert(x = X,
 m_x <- riverdistancemat(site_snap$seg,
                         site_snap$vert,
                         strnet_fixed, 
-                        ID = site_snap$segment) %>%
+                        ID = df_coord$segment) %>%
   data.matrix()
 
 m_x <- round(m_x / 1000, 2) # convert to km
-
 
 # distance matrix: net upstream, m_y
 m_y <- upstreammat(seg = site_snap$seg,
                    vert = site_snap$vert, 
                    rivers = strnet_fixed, 
-                   ID = site_snap$segment,
+                   ID = df_coord$segment,
                    net = TRUE) %>%
   data.matrix()
 
