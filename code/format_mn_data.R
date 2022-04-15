@@ -61,7 +61,7 @@ df_n_obs <- df_mn %>%
 save(df_mn, file = "data_fmt/data_mn_fmt.RData")
 
 # need a csv to display points in qgis
-write_csv(df_mn, "data_fmt/data_mn_fmt1.csv")
+write_csv(df_mn, "data_fmt/data_mn_fmt.csv")
 
 
 # mapping -----------------------------------------------------------------

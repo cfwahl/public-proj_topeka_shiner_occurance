@@ -8,52 +8,63 @@ rm(list = ls())
 pacman::p_load(runjags,
                tidyverse,
                MCMCvis,
-               mcmcOutput)
+               mcmcOutput,
+               foreach)
 
 # Read in the data
 # upstream distance matrix 
-up_dmat <- read_csv("data_fmt/distance_matrices/siteXupdist_combine.csv")
-names(up_dmat) <- c("segment_id", paste0("j", 1:300))
 
-up_dmat <- up_dmat %>% 
-  mutate(segment_id = str_remove(segment_id, "X"),
-         segment_id = as.numeric(segment_id))
+m_u <- load("data_fmt/m_u_ws6.RData")
+up_dmat <- m_u
 
-segment_set <- unique(up_dmat$segment_id)
+#up_dmat <- read_csv("data_fmt/distance_matrices/siteXupdist_combine.csv")
+#names(up_dmat) <- c("segment_id", paste0("j", 1:300))
 
-up_dmat <- up_dmat %>% 
-  mutate(segment_id = as.numeric(as.factor(segment_id)))
+#up_dmat <- up_dmat %>% 
+#  mutate(segment_id = str_remove(segment_id, "X"),
+#         segment_id = as.numeric(segment_id))
+
+#segment_set <- unique(up_dmat$segment_id)
+
+#up_dmat <- up_dmat %>% 
+#  mutate(segment_id = as.numeric(as.factor(segment_id)))
 
 # down stream distance matrix
-down_dmat <- read_csv("data_fmt/distance_matrices/siteXdowndist_combine.csv")
-names(down_dmat) <- c("segment_id", paste0("j", 1:300))
+m_d <- load("data_fmt/m_d_ws6.RData")
+down_dmat <- m_d
 
-down_dmat <- down_dmat %>% 
-  mutate(segment_id = str_remove(segment_id, "X"),
-         segment_id = as.numeric(segment_id))
+#down_dmat <- read_csv("data_fmt/distance_matrices/siteXdowndist_combine.csv")
+#names(down_dmat) <- c("segment_id", paste0("j", 1:300))
 
-segment_set <- unique(down_dmat$segment_id)
+#down_dmat <- down_dmat %>% 
+#  mutate(segment_id = str_remove(segment_id, "X"),
+#         segment_id = as.numeric(segment_id))
 
-down_dmat <- down_dmat %>% 
-  mutate(segment_id = as.numeric(as.factor(segment_id)))
+#segment_set <- unique(down_dmat$segment_id)
 
-data <- read_csv("data_fmt/MN_TS_occurance_watershed_stats.csv") %>% 
-  filter(segment %in% segment_set) %>% 
-  mutate(segment_id = as.numeric(as.factor(segment)))
+#down_dmat <- down_dmat %>% 
+#  mutate(segment_id = as.numeric(as.factor(segment_id)))
 
-str(data)
+df_mn <- load("data_fmt/data_mn_fmt.rdata")
+data <- df_mn
+
+data <- read_csv("data_fmt/mn_fmt_watershed_landuse.csv")  
+
+#  filter(segment %in% segment_set) %>% 
+#  mutate(segment_id = as.numeric(as.factor(segment)))
+
+#str(data)
 
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
 Y <- data$occurrence
 Agr <- c(scale(data$frac_agri))
-Elv <- c(scale(data$elevationmean))
+Elv <- c(scale(data$elv_mean))
 Area <- c(scale(data$area))
-Slop <- c(scale(data$slopemean))
-U <- dplyr::select(up_dmat, -segment_id)
-D <- dplyr::select(down_dmat, -segment_id)
-Segment_id <- data$segment_id
-Watshed <- data$watershed
+Slop <- c(scale(data$slope_mean))
+U <- up_dmat
+D <- down_dmat
+Watshed <- data$watershed_num
 
 TD <- U + D
 M <- foreach(i = seq_len(nrow(TD)), .combine = rbind) %do% {
@@ -76,7 +87,6 @@ d_jags <- list(Y = Y,
                Watshed = Watshed,
                U = data.matrix(U),
                D = data.matrix(D),
-               Segment_id = Segment_id,
                N_sample = length(Y),
                N_watshed = n_distinct(Watshed),
                N_site = nrow(U),
@@ -92,7 +102,7 @@ para <- c("alpha",
           "sd_r")
 
 ## model file ####
-m <- read.jagsfile("code/bayes_code/model_occupancy_ts8.R")
+m <- read.jagsfile("code/model_occupancy_ts8.R")
 
 ## mcmc setup ####
 n_ad <- 100 
@@ -129,3 +139,4 @@ mcmc_summary   # Bayesian analysis
 
 MCMCtrace(post$mcmc)
 
+save(mcmc_summary, file = "data_fmt/mcmc_summary.RData")

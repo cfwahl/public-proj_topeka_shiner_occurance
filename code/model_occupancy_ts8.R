@@ -45,15 +45,15 @@ model {
       beta[5] * s[i]
     
     # connectivity summed over j
-    # subtract c[i,Segment_id[i]] from the sum; self-connection removal
-    s[i] <- sum(c[i,] * M[Segment_id[i],])# - c[i, Segment_id[i]]
+    # subtract c[i,] from the sum; self-connection removal
+    s[i] <- sum(c[i,] * M[i,])
     
     # connectivity measure for a specific pair of i and j
     for(j in 1:N_site) {
       c[i,j] <- exp(u[i,j] + d[i,j])
       
-      u[i,j] <- -alpha[1] * U[Segment_id[i], j]
-      d[i,j] <- -alpha[2] * D[Segment_id[i], j]
+      u[i,j] <- -alpha[1] * U[i, j]
+      d[i,j] <- -alpha[2] * D[i, j]
     }
   }
 }
