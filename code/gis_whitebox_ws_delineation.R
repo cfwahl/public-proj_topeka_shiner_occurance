@@ -14,50 +14,51 @@ pacman::p_load(sf,
 # DEM setup ---------------------------------------------------------------
 
 # read in DEM
-wgs84_ups <- raster("raster/epsg4326_n40w100_upa_clipped.tif")
+wgs84_ups <- raster("data_fmt/raster/epsg4326_n40w100_upa_clipped.tif")
 
 ## read outlet points
-wgs84_sites <- st_read(dsn = "vector/epsg4326_mn_fmt_sites.gpkg") 
+wgs84_sites <- st_read(dsn = "data_fmt/vector/epsg4326_mn_fmt_sites.gpkg") 
 
-#'- Read flow direction raster
-wgs84_dir <- raster("raster/epsg4326_n40w100_dir_clipped.tif")
+# - Read flow direction raster
+wgs84_dir <- raster("data_fmt/raster/epsg4326_n40w100_dir_clipped.tif")
 
 
-#'- convert arc format to d8 format
+# - convert arc format to d8 format
 source("code/function_arc2d8.R")
 wgs84_dir_d8 <- arc2d8(wgs84_dir)
 
-writeRaster(wgs84_dir_d8,'raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif',
-            options=c('TFW=YES'), overwrite = TRUE)
+writeRaster(wgs84_dir_d8,
+            "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
+            options = c('TFW=YES'),
+            overwrite = TRUE)
 
 
 # gis ---------------------------------------------------------------------
 
-#'## Extract stream network
-#'- the function wbt_extract_streams was used to extract stream network
-#'- threshold is 1 = 1 km^2
-wbt_extract_streams(flow_accum = "raster/epsg4326_n40w100_upa_clipped.tif",
-                    output = "raster/epsg4326_mn_fmt_stream.tif",
+# ## Extract stream network
+# - the function wbt_extract_streams was used to extract stream network
+# - threshold is 1 = 1 km^2
+wbt_extract_streams(flow_accum = "data_fmt/raster/epsg4326_n40w100_upa_clipped.tif",
+                    output = "data_fmt/raster/epsg4326_mn_fmt_stream.tif",
                     threshold = 1) # Based on MERIT hydro, 1 indicates 1 km^2
 
-#'## Snap pour point
-#'- the function wbt_jenson_snap_pour_points rather than wbt_snap_pour_points
-#'- This function snap the spoint to stream network and it wored better than snapping into catchment area
-wbt_jenson_snap_pour_points(pour_pts = "vector/epsg4326_sites_snap.shp", # GPKG file is not accepted. Used SHP file.
-                            streams = "raster/epsg4326_mn_fmt_stream.tif",
+# ## Snap pour point
+# - the function wbt_jenson_snap_pour_points rather than wbt_snap_pour_points
+# - This function snap the spoint to stream network and it wored better than snapping into catchment area
+wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_sites_snap.shp", # GPKG file is not accepted. Used SHP file.
+                            streams = "data_fmt/raster/epsg4326_mn_fmt_stream.tif",
                             output = "data_fmt/epsg4326_mn_fmt_sites_snap.shp",
                             snap_dist = 1)
 
 
-#'## Unnested watershed delineation
-#'- This function generate multiple rasterfiles, thus I have made different folders to save the file
-wbt_unnest_basins(d8_pntr = "raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
-                  pour_pts= "vector/epsg4326_mn_fmt_sites_snap.shp", # GPKG file is not accepted. Used SHP file.
+# ## Unnested watershed delineation
+# - This function generate multiple rasterfiles, thus I have made different folders to save the file
+wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
+                  pour_pts= "data_fmt/vector/epsg4326_mn_fmt_sites_snap.shp", # GPKG file is not accepted. Used SHP file.
                   output = "wsraster/unnestedws.tif")
 
 
-#'## Read result of delineated watershed raster files
-#'- There should be better way to read multiple files at once. I will figure it out
+# ## Read result of delineated watershed raster files
 wgs84_ws01 <- raster("wsraster/unnestedws_1.tif")
 wgs84_ws02 <- raster("wsraster/unnestedws_2.tif")
 wgs84_ws03 <- raster("wsraster/unnestedws_3.tif")
@@ -95,9 +96,9 @@ wgs84_ws34 <- raster("wsraster/unnestedws_34.tif")
 wgs84_ws35 <- raster("wsraster/unnestedws_35.tif")
 
 
-#'## Convert raster watershed to polygon shapefile
-#'if error code appears then turn off raster package: "unable to find an inherited method for function 
-#'# 'select' for signature '"sf""
+# ## Convert raster watershed to polygon shapefile
+# if error code appears then turn off raster package: "unable to find an inherited method for function
+# # 'select' for signature '"sf""
 wgs84_ws_shp01 <- st_as_stars(wgs84_ws01) %>% st_as_sf(merge = T) %>% select(unwsID = unnestedws_1,geometry)
 wgs84_ws_shp02 <- st_as_stars(wgs84_ws02) %>% st_as_sf(merge = T) %>% select(unwsID = unnestedws_2,geometry)
 wgs84_ws_shp03 <- st_as_stars(wgs84_ws03) %>% st_as_sf(merge = T) %>% select(unwsID = unnestedws_3,geometry)
@@ -135,7 +136,7 @@ wgs84_ws_shp34 <- st_as_stars(wgs84_ws34) %>% st_as_sf(merge = T) %>% select(unw
 wgs84_ws_shp35 <- st_as_stars(wgs84_ws35) %>% st_as_sf(merge = T) %>% select(unwsID = unnestedws_35,geometry)
 
 
-#'## Combine shapefiles 
+# Combine shapefiles
 wgs84_ws_shp <- rbind(wgs84_ws_shp01, wgs84_ws_shp02, wgs84_ws_shp03, wgs84_ws_shp04, wgs84_ws_shp05,
                       wgs84_ws_shp06, wgs84_ws_shp07, wgs84_ws_shp08, wgs84_ws_shp09, wgs84_ws_shp10,
                       wgs84_ws_shp11, wgs84_ws_shp12, wgs84_ws_shp13, wgs84_ws_shp14, wgs84_ws_shp15,
