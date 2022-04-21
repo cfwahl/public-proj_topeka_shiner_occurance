@@ -5,11 +5,9 @@ pacman::p_load(riverdist,
                sf, 
                tidyverse)
 
+rm(list = ls())
 
 # data --------------------------------------------------------------------
-
-# clean objects
-rm(list = ls())
 
 # read sites
 wgs_sf_outlet <- st_read(dsn = "data_fmt/vector",
