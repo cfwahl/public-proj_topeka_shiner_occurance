@@ -13,20 +13,10 @@ pacman::p_load(sf,
 rm(list = ls())
 
 # DEM setup ---------------------------------------------------------------
-
-# read in DEM
-wgs84_ups <- raster("data_fmt/raster/epsg4326_n40w100_upa_clipped.tif")
-
-## read outlet points
-wgs84_sites <- st_read(dsn = "data_fmt/vector",
-                       layer = "epsg4326_mn_fmt_sites",
-                       drivers = "ESRI Shapefile") 
-
-# - Read flow direction raster
+# flow direction
 wgs84_dir <- raster("data_fmt/raster/epsg4326_n40w100_dir_clipped.tif")
 
-
-# - convert arc format to d8 format
+# convert arc format to d8 format
 source("code/function_arc2d8.R")
 wgs84_dir_d8 <- arc2d8(wgs84_dir)
 
@@ -79,12 +69,14 @@ wgs84_sf_ws_polygon <- lapply(wgs84_list_raster,
   bind_rows() %>% 
   st_transform(crs = 3722) %>% 
   mutate(area = units::set_units(st_area(.), "km^2")) %>% 
-  filter(area > units::set_units(1, "km^2")) %>% 
+  group_by(site) %>% 
+  slice(which.max(area)) %>% 
+  ungroup() %>% 
   st_transform(crs = 4326)
 
 
 # export ------------------------------------------------------------------
 
 st_write(wgs84_sf_ws_polygon,
-         dsn = "data_fmt/wgs84_mn_fmt_watersheds.gpkg",
+         dsn = "data_fmt/vector/wgs84_mn_fmt_watersheds.gpkg",
          append = FALSE)

@@ -10,9 +10,12 @@ rm(list = ls())
 # data --------------------------------------------------------------------
 
 # read sites
+utm_sf_wsd <- st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse.gpkg")
+
 wgs_sf_outlet <- st_read(dsn = "data_fmt/vector",
                          layer = "epsg4326_mn_fmt_sites_snap",
-                         drivers = "ESRI Shapefile")
+                         drivers = "ESRI Shapefile") %>% 
+  filter(site %in% utm_sf_wsd$site) # select sites with watershed delineation
 
 utm_sf_outlet <- st_transform(wgs_sf_outlet, crs = 3722)
 
@@ -20,7 +23,7 @@ utm_sf_outlet <- st_transform(wgs_sf_outlet, crs = 3722)
 df_coord <- utm_sf_outlet %>% 
   mutate(X = st_coordinates(.)[,1],
          Y = st_coordinates(.)[,2]) %>% 
-  as_tibble() 
+  as_tibble()
 
 X <- df_coord$X
 Y <- df_coord$Y
