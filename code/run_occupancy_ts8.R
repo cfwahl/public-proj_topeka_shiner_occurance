@@ -16,9 +16,11 @@ pacman::p_load(runjags,
 
 load("data_fmt/distance_matrix.RData")
 load("data_fmt/data_mn_fmt.RData")
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse.gpkg") %>% 
+  as_tibble()
 
-data <- read_csv("data_fmt/mn_fmt_watershed_landuse.csv")  
-
+data <- df_mn %>% 
+  left_join(df_landuse, by = "site")
 
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
