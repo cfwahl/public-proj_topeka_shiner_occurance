@@ -7,6 +7,7 @@
 pacman::p_load(tidyverse,
                sf)
 
+rm(list = ls())
 
 # read data ---------------------------------------------------------------
 
@@ -60,26 +61,13 @@ df_n_obs <- df_mn %>%
 # this will recall code in R script
 save(df_mn, file = "data_fmt/data_mn_fmt.RData")
 
+# shape file export
+df_mn %>% 
+  st_as_sf(coords = c("long", "lat"),
+           crs = 4326) %>% 
+  st_write(dsn = "data_fmt/vector/epsg4326_mn_fmt_sites.shp",
+           drivers = "ESRI Shapefile",
+           append = FALSE)
+
 # need a csv to display points in qgis
 write_csv(df_mn, "data_fmt/data_mn_fmt.csv")
-
-
-# mapping -----------------------------------------------------------------
-
-# sf is the package for shape file operations
-# st_as_sf is to convert dataframe to sf object (i.e., points/polygons with coordinates)
-
-# error in row 314?
-st_df1 <- df1 %>% 
-  st_as_sf(coords = c("long", "lat"),
-           crs = 4326) # crs 4326 = WGS84
-
-mapview::mapView(st_df1)
-
-## error in row 406 and 1335?
-st_df0 <- st_as_sf(df0,
-                   coords = c("long", "lat"),
-                   crs = 4326) # crs 4326 = WGS84
-
-mapview::mapView(st_df0$geometry)
-
