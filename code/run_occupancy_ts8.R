@@ -16,7 +16,7 @@ pacman::p_load(runjags,
 
 load("data_fmt/distance_matrix.RData")
 load("data_fmt/data_mn_fmt.RData")
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse.gpkg") %>% 
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse2.gpkg") %>% 
   as_tibble()
 
 data <- df_mn %>% 

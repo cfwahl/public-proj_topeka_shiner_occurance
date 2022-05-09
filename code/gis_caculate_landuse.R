@@ -1,4 +1,3 @@
-
 ##### calculate land use in watersheds ------------------------------------
 
 # this section of code will calculate percent land use for agriculture, 
@@ -22,7 +21,7 @@ pacman::p_load(raster,
 
 # transform to projected crs for extraction - 
 # extraction needs to be performed with projected crs
-wgs84_sf_wsd <- st_read(dsn = "data_fmt/vector/wgs84_mn_fmt_watersheds.gpkg")
+wgs84_sf_wsd <- st_read(dsn = "data_fmt/wgs84_mn_fmt_watersheds.gpkg")
 utm_sf_wsd <- wgs84_sf_wsd %>% 
   st_transform(crs = 3722)
 
@@ -116,4 +115,3 @@ utm_sf_wsd <- utm_sf_wsd %>%
 st_write(utm_sf_wsd,
          dsn = "data_fmt/vector/espg3722_watersheds_landuse.gpkg",
          append = FALSE)
-

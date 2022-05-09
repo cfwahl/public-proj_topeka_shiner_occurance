@@ -13,10 +13,11 @@ pacman::p_load(sf,
 rm(list = ls())
 
 # DEM setup ---------------------------------------------------------------
-# flow direction
+# - Read flow direction raster
 wgs84_dir <- raster("data_fmt/raster/epsg4326_n40w100_dir_clipped.tif")
 
-# convert arc format to d8 format
+
+# - convert arc format to d8 format
 source("code/function_arc2d8.R")
 wgs84_dir_d8 <- arc2d8(wgs84_dir)
 
@@ -38,7 +39,7 @@ wbt_extract_streams(flow_accum = "data_fmt/raster/epsg4326_n40w100_upa_clipped.t
 # ## Snap pour point
 # - the function wbt_jenson_snap_pour_points rather than wbt_snap_pour_points
 # - This function snap the spoint to stream network and it wored better than snapping into catchment area
-wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_fmt_sites.shp", # GPKG file is not accepted. Used SHP file.
+wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_fmt_sites_relocated2.shp", # GPKG file is not accepted. Used SHP file.
                             streams = "data_fmt/raster/epsg4326_mn_fmt_stream.tif",
                             output = "data_fmt/vector/epsg4326_mn_fmt_sites_snap.shp",
                             snap_dist = 1)
@@ -69,14 +70,12 @@ wgs84_sf_ws_polygon <- lapply(wgs84_list_raster,
   bind_rows() %>% 
   st_transform(crs = 3722) %>% 
   mutate(area = units::set_units(st_area(.), "km^2")) %>% 
-  group_by(site) %>% 
-  slice(which.max(area)) %>% 
-  ungroup() %>% 
+  filter(area > units::set_units(1, "km^2")) %>% 
   st_transform(crs = 4326)
 
 
 # export ------------------------------------------------------------------
 
 st_write(wgs84_sf_ws_polygon,
-         dsn = "data_fmt/vector/wgs84_mn_fmt_watersheds.gpkg",
+         dsn = "data_fmt/wgs84_mn_fmt_watersheds.gpkg",
          append = FALSE)
