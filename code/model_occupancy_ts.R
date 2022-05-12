@@ -27,7 +27,7 @@ model {
     # truncated normal distribution for alpha ("T(,)" defines lower and upper limits)
     # produce values from 0.01 to 100
     # average dispersal 0.01 km (alpha = 100) to 100 km (alpha = 0.01)
-    alpha[k] ~ dnorm(0, ninfo)T(0, 10)
+    alpha[k] ~ dnorm(0, ninfo)T(0, 100)
   }
     
   
@@ -50,7 +50,7 @@ model {
     
     # connectivity measure for a specific pair of i and j
     for(j in 1:N_site) {
-      c[i,j] <- exp(u[i,j] + d[i,j])
+      c[i,j] <- exp(u[i,j] + d[i,j]) * Incidence[j]
       
       u[i,j] <- -alpha[1] * U[i, j]
       d[i,j] <- -alpha[2] * D[i, j]
