@@ -24,7 +24,10 @@ model {
   
   # prior for connectivity
   for (k in 1:2) {
-    alpha[k] ~ dnorm(0, ninfo)T(0,)
+    # truncated normal distribution for alpha ("T(,)" defines lower and upper limits)
+    # produce values from 0.01 to 100
+    # average dispersal 0.01 km (alpha = 100) to 100 km (alpha = 0.01)
+    alpha[k] ~ dnorm(ninfo, 100)
   }
     
   
