@@ -35,6 +35,9 @@ model {
   
   # Binomial likelihood
   for (i in 1:N_sample) {
+    
+    ld[i] <- logdensity.bern(Y[i], p[i])
+    
     Y[i] ~ dbern(p[i])
     logit(p[i]) <- 
       r[Watshed[i]] + 
