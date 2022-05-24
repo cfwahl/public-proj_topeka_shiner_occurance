@@ -70,7 +70,7 @@ para <- c("alpha",
           "sd_r")
 
 ## model file ####
-m <- read.jagsfile("code/model_occupancy_ts.R")
+m <- read.jagsfile("code/model_occupancy_down_bias.R")
 
 ## mcmc setup ####
 n_ad <- 100 
