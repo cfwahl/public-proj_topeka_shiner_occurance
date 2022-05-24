@@ -50,10 +50,10 @@ model {
     
     # connectivity measure for a specific pair of i and j
     for(j in 1:N_site) {
-      c[i,j] <- exp(u[i,j] + d[i,j]) * Incidence[j]
+      c[i, j] <- exp(u[i, j] + d[i, j]) * Incidence[j]
       
-      u[i,j] <- -alpha[1] * U[i, j]
-      d[i,j] <- -alpha[2] * D[i, j]
+      u[i, j] <- -alpha[1] * U[i, j]
+      d[i, j] <- -alpha[2] * D[i, j]
     }
   }
 }
