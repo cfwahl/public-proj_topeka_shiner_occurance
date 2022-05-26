@@ -121,7 +121,7 @@ waic_hat <- loo::waic(loglik)
 ## save mcmc trace plot to "output/"
 MCMCtrace(post$mcmc,
           wd = here::here("output"),
-          filename = "mcmc_trace_equal")
+          filename = "mcmc_trace_down")
 
 ## save mcmc_summary & waic
 save(mcmc_summary, waic,
