@@ -112,7 +112,7 @@ mcmc_summary_up   # Bayesian analysis
 loglik <- sapply(1:length(Y),
                  function(i) unlist(post$mcmc[, paste0("ld[", i, "]")]))
 
-waic_hat <- loo::waic(loglik)
+waic_hat_up <- loo::waic(loglik)
 
 
 # export ------------------------------------------------------------------
@@ -123,5 +123,5 @@ MCMCtrace(post$mcmc,
           filename = "mcmc_trace_up")
 
 ## save mcmc_summary & waic
-save(mcmc_summary_up, waic_hat,
+save(mcmc_summary_up, waic_hat_up,
      file = "data_fmt/mcmc_summary_up.RData")
