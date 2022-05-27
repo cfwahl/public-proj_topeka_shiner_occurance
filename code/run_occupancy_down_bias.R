@@ -74,8 +74,8 @@ para <- c("alpha",
 m <- read.jagsfile("code/model_occupancy_down_bias.R")
 
 ## mcmc setup ####
-n_ad <- 0 
-n_iter <- 1.0E+3 #number of draws
+n_ad <- 100 
+n_iter <- 1.0E+4 #number of draws
 n_thin <- max(3, ceiling(n_iter / 500)) #number of thins
 n_burn <- ceiling(max(10, n_iter/2)) # number of draws to burn
 n_sample <- ceiling(n_iter / n_thin)
@@ -124,5 +124,5 @@ MCMCtrace(post$mcmc,
           filename = "mcmc_trace_down")
 
 ## save mcmc_summary & waic
-save(mcmc_summary, waic,
-     file = "data_fmt/mcmc_summary.RData")
+save(mcmc_summary, waic_hat,
+     file = "data_fmt/mcmc_summary_down.RData")
