@@ -90,6 +90,20 @@ wgs84_sf_ws_polygon <- lapply(wgs84_list_raster,
   st_transform(crs = 4326)
 
 
+# associate line id -------------------------------------------------------
+point <- st_read(dsn = here::here("data_fmt/vector"),
+                 layer = "epsg4326_mn_fmt_sites_snap_3km2")
+
+line <- st_read(dsn = here::here("data_fmt/vector"),
+                layer = "epsg4326_str_net_3km2") %>% 
+  st_set_crs(4326)
+
+point %>% 
+  mutate(line_id = st_nearest_feature(., line)) %>% 
+  left_join(as_tibble(line),
+            by = c("line_id" = "FID"))
+
+
 # export ------------------------------------------------------------------
 
 st_write(wgs84_sf_ws_polygon,
