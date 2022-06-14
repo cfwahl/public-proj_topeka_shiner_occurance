@@ -22,7 +22,7 @@ source("code/function_arc2d8.R")
 wgs84_dir_d8 <- arc2d8(wgs84_dir)
 
 writeRaster(wgs84_dir_d8,
-            "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
+            "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass_5km2.tif",
             options = c('TFW = YES'),
             overwrite = TRUE)
 
@@ -33,23 +33,39 @@ writeRaster(wgs84_dir_d8,
 # - the function wbt_extract_streams was used to extract stream network
 # - threshold is 1 = 1 km^2
 wbt_extract_streams(flow_accum = "data_fmt/raster/epsg4326_n40w100_upa_clipped.tif",
-                    output = "data_fmt/raster/epsg4326_mn_fmt_stream.tif",
-                    threshold = 1) # Based on MERIT hydro, 1 indicates 1 km^2
+                    output = "data_fmt/raster/epsg4326_mn_fmt_stream_3km2.tif",
+                    threshold = 3) # Based on MERIT hydro, 1 indicates 1 km^2
 
 # ## Snap pour point
 # - the function wbt_jenson_snap_pour_points rather than wbt_snap_pour_points
 # - This function snap the spoint to stream network and it wored better than snapping into catchment area
 wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_fmt_sites_relocated2.shp", # GPKG file is not accepted. Used SHP file.
-                            streams = "data_fmt/raster/epsg4326_mn_fmt_stream.tif",
-                            output = "data_fmt/vector/epsg4326_mn_fmt_sites_snap.shp",
+                            streams = "data_fmt/raster/epsg4326_mn_fmt_stream_3km2.tif",
+                            output = "data_fmt/vector/epsg4326_mn_fmt_sites_snap_3km2.shp",
                             snap_dist = 1)
 
 
 # ## Unnested watershed delineation
 # - This function generate multiple rasterfiles, thus I have made different folders to save the file
-wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
-                  pour_pts= "data_fmt/vector/epsg4326_mn_fmt_sites_snap.shp", # GPKG file is not accepted. Used SHP file.
+wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass_5km2.tif",
+                  pour_pts= "data_fmt/vector/epsg4326_mn_fmt_sites_snap_3km2.shp", # GPKG file is not accepted. Used SHP file.
                   output = "data_fmt/wsraster/unnestedws.tif")
+
+# Assigns a unique identifier to each link in a stream network
+wbt_stream_link_identifier(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass_5km2.tif",
+                           streams = "data_fmt/raster/epsg4326_mn_fmt_stream_3km2.tif",
+                           output = "data_fmt/raster/epsg4326_mn_fmt_stream_id_3km2.tif")
+
+# Estimates the average slope of each link (or tributary) in a stream network
+wbt_stream_link_slope(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass_5km2.tif",
+                      linkid = "data_fmt/raster/epsg4326_mn_fmt_stream_id_3km2.tif",
+                      dem = "data_fmt/raster/epsg4326_n40w100_upa_clipped.tif", 
+                      output = "data_fmt/raster/epsg4326_mn_fmt_stream_link_slope_3km2.tif")
+
+# Converts a raster stream file into a vector file.
+wbt_raster_streams_to_vector(streams = "data_fmt/raster/epsg4326_mn_fmt_stream_link_slope_3km2.tif", 
+                             d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass_5km2.tif",
+                             output = "data_fmt/vector/epsg4326_str_net_3km2.shp")
 
 
 # ## Read result of delineated watershed raster files
@@ -70,12 +86,12 @@ wgs84_sf_ws_polygon <- lapply(wgs84_list_raster,
   bind_rows() %>% 
   st_transform(crs = 3722) %>% 
   mutate(area = units::set_units(st_area(.), "km^2")) %>% 
-  filter(area > units::set_units(1, "km^2")) %>% 
+  filter(area > units::set_units(3, "km^2")) %>% 
   st_transform(crs = 4326)
 
 
 # export ------------------------------------------------------------------
 
 st_write(wgs84_sf_ws_polygon,
-         dsn = "data_fmt/wgs84_mn_fmt_watersheds.gpkg",
+         dsn = "data_fmt/wgs84_mn_fmt_watersheds_3km2.gpkg",
          append = FALSE)

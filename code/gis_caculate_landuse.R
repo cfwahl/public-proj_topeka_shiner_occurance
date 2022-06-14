@@ -21,7 +21,7 @@ pacman::p_load(raster,
 
 # transform to projected crs for extraction - 
 # extraction needs to be performed with projected crs
-wgs84_sf_wsd <- st_read(dsn = "data_fmt/wgs84_mn_fmt_watersheds.gpkg")
+wgs84_sf_wsd <- st_read(dsn = "data_fmt/wgs84_mn_fmt_watersheds_3km2.gpkg")
 utm_sf_wsd <- wgs84_sf_wsd %>% 
   st_transform(crs = 3722)
 
@@ -113,5 +113,5 @@ utm_sf_wsd <- utm_sf_wsd %>%
   mutate(area = units::set_units(st_area(.), "km^2")) # add watershed area
 
 st_write(utm_sf_wsd,
-         dsn = "data_fmt/vector/espg3722_watersheds_landuse.gpkg",
+         dsn = "data_fmt/vector/espg3722_watersheds_landuse_3km2.gpkg",
          append = FALSE)
