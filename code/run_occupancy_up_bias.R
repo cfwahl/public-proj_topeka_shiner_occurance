@@ -15,23 +15,23 @@ pacman::p_load(runjags,
 # upstream distance matrix 
 
 load("data_fmt/distance_matrix.RData")
-load("data_fmt/data_mn_fmt.RData")
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse2.gpkg") %>% 
+load("data_fmt/mn_dnr_fws_line_centroid.Rdata")
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_5km2.gpkg") %>% 
   as_tibble()
 
-data <- df_mn %>% 
-  left_join(df_landuse, by = "site")
+data <- snapped_points %>% 
+  left_join(df_landuse, by = "line_id")
 
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
-Y <- data$occurrence
-Agr <- c(scale(data$frac_agri))
-Elv <- c(scale(data$elv_mean))
-Area <- c(scale(data$area))
-Slop <- c(scale(data$slope_mean))
+Y <- df_landuse$occurrence
+Agr <- c(scale(df_landuse$frac_agri))
+Gras <- c(scale(df_landuse$frac_grass))
+Area <- c(scale(df_landuse$area))
+Slop <- c(scale(df_landuse$slope))
 U <- m_u
 D <- m_d
-Watshed <- data$watershed_num
+Watshed <- df_landuse$watershed
 
 TD <- U + D
 M <- foreach(i = seq_len(nrow(TD)), .combine = rbind) %do% {
@@ -48,7 +48,7 @@ M <- foreach(i = seq_len(nrow(TD)), .combine = rbind) %do% {
 ## data ####
 d_jags <- list(Y = Y,
                Agr = Agr,
-               Elv = Elv,
+               Gras = Gras,
                Area = Area,
                Slop = Slop,
                Watshed = Watshed,
@@ -75,7 +75,7 @@ m <- read.jagsfile("code/model_occupancy_up_bias.R")
 
 ## mcmc setup ####
 n_ad <- 100 
-n_iter <- 1.0E+4 #number of draws
+n_iter <- 2.0E+4 #number of draws
 n_thin <- max(3, ceiling(n_iter / 500)) #number of thins
 n_burn <- ceiling(max(10, n_iter/2)) # number of draws to burn
 n_sample <- ceiling(n_iter / n_thin)
@@ -119,9 +119,9 @@ waic_hat_up <- loo::waic(loglik)
 
 ## save mcmc trace plot to "output/"
 MCMCtrace(post$mcmc,
-          wd = here::here("output"),
+          wd = "output/",
           filename = "mcmc_trace_up")
 
 ## save mcmc_summary & waic
 save(mcmc_summary_up, waic_hat_up,
-     file = "data_fmt/mcmc_summary_up.RData")
+     file = "output/mcmc_summary_up.RData")

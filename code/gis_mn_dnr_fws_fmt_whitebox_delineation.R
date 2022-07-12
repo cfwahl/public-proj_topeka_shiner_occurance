@@ -132,6 +132,8 @@ st_write(snapped_points,
          dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
          append = FALSE)
 
+# save code in R script
+save(snapped_points, file = "data_fmt/mn_dnr_fws_line_centroid.Rdata")
 
 
 # Unnested watershed delineation ------------------------------------------
@@ -186,3 +188,10 @@ wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_5km2.shp",
                 input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
                 fkey = "siteid",
                 import_field = "slope")
+
+# add line_id from site point file to watershed polygon attribute table
+wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_5km2.shp",
+                pkey = "siteid",
+                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
+                fkey = "siteid",
+                import_field = "occurrence")

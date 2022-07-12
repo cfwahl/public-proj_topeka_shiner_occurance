@@ -40,7 +40,7 @@ model {
     logit(p[i]) <- 
       r[Watshed[i]] + 
       beta[1]* Agr[i] +
-      beta[2] * Elv[i] +
+      beta[2] * Gras[i] +
       beta[3] * Area[i] +
       beta[4] * Slop[i] +
       beta[5] * s[i]
