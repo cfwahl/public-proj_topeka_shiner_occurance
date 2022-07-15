@@ -17,10 +17,11 @@ pacman::p_load(runjags,
 load("data_fmt/distance_matrix.RData")
 load("data_fmt/mn_dnr_fws_line_centroid.Rdata")
 df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_5km2.gpkg") %>% 
-  as_tibble()
+  as_tibble() %>% 
+  arrange(siteid)
 
 data <- snapped_points %>% 
-  left_join(df_landuse, by = "line_id")
+  left_join(df_landuse, by = "siteid")
 
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
