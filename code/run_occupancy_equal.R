@@ -15,23 +15,23 @@ pacman::p_load(runjags,
 # upstream distance matrix 
 
 load("data_fmt/distance_matrix.RData")
-load("data_fmt/data_mn_fmt.RData")
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse2.gpkg") %>% 
+load("data_fmt/mn_dnr_fws_line_centroid.Rdata")
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_5km2.gpkg") %>% 
   as_tibble()
 
-data <- df_mn %>% 
-  left_join(df_landuse, by = "site")
+data <- snapped_points %>% 
+  left_join(df_landuse, by = "line_id")
 
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
-Y <- data$occurrence
-Agr <- c(scale(data$frac_agri))
-Elv <- c(scale(data$elv_mean))
-Area <- c(scale(data$area))
-Slop <- c(scale(data$slope_mean))
+Y <- df_landuse$occurrence
+Agr <- c(scale(df_landuse$frac_agri))
+Gras <- c(scale(df_landuse$frac_grass))
+Area <- c(scale(df_landuse$area))
+Slop <- c(scale(df_landuse$slope))
 U <- m_u
 D <- m_d
-Watshed <- data$watershed_num
+Watshed <- df_landuse$watershed
 
 TD <- U + D
 M <- foreach(i = seq_len(nrow(TD)), .combine = rbind) %do% {
@@ -48,7 +48,7 @@ M <- foreach(i = seq_len(nrow(TD)), .combine = rbind) %do% {
 ## data ####
 d_jags <- list(Y = Y,
                Agr = Agr,
-               Elv = Elv,
+               Gras = Gras,
                Area = Area,
                Slop = Slop,
                Watshed = Watshed,
@@ -104,8 +104,8 @@ post <- run.jags(m$model,
                  module = "glm")
 
 # summarize outputs
-mcmc_summary <- MCMCsummary(post$mcmc)  
-mcmc_summary   # Bayesian analysis
+mcmc_summary_equal <- MCMCsummary(post$mcmc)  
+mcmc_summary_equal   # Bayesian analysis
 
 # waic --------------------------------------------------------------------
 
@@ -120,9 +120,9 @@ waic_hat <- loo::waic(loglik)
 
 ## save mcmc trace plot to "output/"
 MCMCtrace(post$mcmc,
-          wd = here::here("output"),
+          wd = "output/",
           filename = "mcmc_trace_equal")
 
 ## save mcmc_summary & waic
-save(mcmc_summary, waic_hat,
-     file = "data_fmt/mcmc_summary_equal.RData")
+save(mcmc_summary_equal, waic_hat,
+     file = "output/mcmc_summary_equal.RData")
