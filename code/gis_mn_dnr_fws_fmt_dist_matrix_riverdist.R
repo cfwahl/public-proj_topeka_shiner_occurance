@@ -13,9 +13,9 @@ rm(list = ls())
 # data --------------------------------------------------------------------
 
 # read sites
-utm_sf_wsd <- st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_5km2.gpkg")
+utm_sf_wsd <- st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg")
 
-wgs_sf_outlet <- st_read(dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp") %>% 
+wgs_sf_outlet <- st_read(dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp") %>% 
   filter(siteid %in% utm_sf_wsd$siteid) # select sites with watershed delineation
 
 utm_sf_outlet <- st_transform(wgs_sf_outlet, crs = 3722)
@@ -41,7 +41,7 @@ strnet <- line2network(path = "data_fmt/vector",
 # # check topology (nodes)
 # topologydots(strnet)
 # 
-# # do a clean up: dissolve - y, insert vertices - y, distance - 1, 
+# # do a clean up: dissolve - y, split segment - n, insert vertices - y, distance - 1, 
 # # examine figure for mouth questions, remove additional segments - n, 
 # # build segment routes - y
 strnet_fixed <- cleanup(rivers = strnet)

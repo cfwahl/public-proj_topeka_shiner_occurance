@@ -118,7 +118,7 @@ line_centroid <- st_centroid(line_id)
 snapped_points <- spNetwork::snapPointsToLines2(line_centroid, # snap centroid to stream
                                      line,
                                      "line_id") %>% 
-  mutate(siteid = row_number())
+  mutate(siteid = row_number()) 
 
 # export ------------------------------------------------------------------
 
@@ -136,12 +136,13 @@ st_write(snapped_points,
 save(snapped_points, file = "data_fmt/mn_dnr_fws_line_centroid.Rdata")
 
 
+
 # Unnested watershed delineation ------------------------------------------
 
 # - This function generate multiple rasterfiles, thus I have made different folders to save the file
 wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
                   pour_pts= "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp", # GPKG file is not accepted. Used SHP file.
-                  output = "data_fmt/wsraster/unnestedws.tif")
+                  output = "data_fmt/wsrasterunnestedws.tif")
 
 # ## Read result of delineated watershed raster files
 # list.files() calls file names in the folder
@@ -182,16 +183,95 @@ wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_5km2.shp",
                 fkey = "siteid",
                 import_field = "line_id")
 
-# add line_id from site point file to watershed polygon attribute table
+# add slope from site point file to watershed polygon attribute table
 wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_5km2.shp",
                 pkey = "siteid",
                 input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
                 fkey = "siteid",
                 import_field = "slope")
 
-# add line_id from site point file to watershed polygon attribute table
+# add occurrence from site point file to watershed polygon attribute table
 wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_5km2.shp",
                 pkey = "siteid",
                 input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
                 fkey = "siteid",
                 import_field = "occurrence")
+
+
+
+# create dummy + real occurrence combined data set ------------------------------------
+
+# read in stream network
+stream <- st_read(dsn = "data_fmt/vector",
+                 layer = "epsg3722_mn_str_connectivity_dummy_5km2")
+
+dummy <- st_point_on_surface(stream) %>%
+  rename (line_id = FID,
+          slope = STRM_VAL) %>%
+  mutate(occurrence = NA)
+
+# dummy sites, export to remove points outside of study location
+#st_write(dummy,
+#         dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy.shp",
+#         append = FALSE)
+
+# read in shapefile from with removed sites
+#dummy <- st_read(dsn = "data_fmt/vector",
+#                         layer = "epsg4326_mn_dnr_fws_dummy")
+
+# red in line_id sites
+site <- st_read(dsn = "data_fmt/vector",
+                 layer = "epsg4326_mn_dnr_fws_line_centroid")
+
+site$siteid=NULL # remove site_id so coulmns will match
+join <- rbind(site, dummy) %>%
+  mutate(siteid = row_number())
+
+# site info, one point representing all sites along a stream segment
+st_write(join,
+         dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp",
+         append = FALSE)
+
+# save code in R script
+save(join, file = "data_fmt/epsg4326_mn_dnr_fws_dummy_real_occurrence.Rdata")
+load(file = "data_fmt/epsg4326_mn_dnr_fws_dummy_real_occurrence.Rdata")
+
+
+# dummy watersheds --------------------------------------------------------
+
+
+# - This function generate multiple rasterfiles, thus I have made different folders to save the file
+wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
+                  pour_pts= "data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp", # GPKG file is not accepted. Used SHP file.
+                  output = "data_fmt/wsraster/dummy/unnestedws.tif")
+
+# ## Read result of delineated watershed raster files
+# list.files() calls file names in the folder
+# lapply() applies function to each element
+wgs84_list_raster <- list.files("data_fmt/wsraster/dummy",
+                                full.names = TRUE) %>%
+  lapply(FUN = raster)
+
+# ## Convert rater to shape
+wgs84_sf_ws_polygon <- lapply(wgs84_list_raster,
+                              function(x) {
+                                st_as_stars(x) %>% 
+                                  st_as_sf(merge = TRUE,
+                                           as_points = FALSE) %>% 
+                                  rename(siteid = starts_with("unnested"))
+                              }) %>% 
+  bind_rows() %>% 
+  st_transform(crs = 3722) %>% 
+  mutate(area = units::set_units(st_area(.), "km^2")) %>% 
+  filter(area > units::set_units(5, "km^2")) %>% 
+  st_transform(crs = 4326)
+
+
+# export ------------------------------------------------------------------
+
+
+# watersheds
+st_write(wgs84_sf_ws_polygon,
+         dsn = "data_fmt/vector/epsg4326_mn_fmt_watersheds_dummy_5km2.shp",
+         append = FALSE)
+
