@@ -3,12 +3,14 @@
 
 # setup -------------------------------------------------------------------
 
+rm(list = ls())
+
+
 pacman::p_load(riverdist,
                sf,
                sp,
                tidyverse)
 
-rm(list = ls())
 
 # data --------------------------------------------------------------------
 
@@ -88,4 +90,4 @@ m_td <- round(m_u + m_d, 2)
 identical(m_td, m_x)
 
 # export
-save(m_u, m_d, file = "data_fmt/distance_matrix.RData")
+save(m_u, m_d, file = "data_fmt/distance_matrix_dummy.RData")

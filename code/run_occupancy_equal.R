@@ -14,14 +14,14 @@ pacman::p_load(runjags,
 # Read in the data
 # upstream distance matrix 
 
-load("data_fmt/distance_matrix.RData")
-load("data_fmt/mn_dnr_fws_line_centroid.Rdata")
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_5km2.gpkg") %>% 
+load("data_fmt/distance_matrix_dummy.RData")
+load("data_fmt/mn_dnr_fws_dummy_real_occurrence.Rdata")
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg") %>% 
   as_tibble() %>% 
   arrange(siteid)
 
-data <- snapped_points %>% 
-  left_join(df_landuse, by = "siteid")
+#data <- join %>% 
+#  left_join(df_landuse, by = "siteid")
 
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
@@ -76,7 +76,7 @@ m <- read.jagsfile("code/model_occupancy_equal.R")
 
 ## mcmc setup ####
 n_ad <- 100 
-n_iter <- 1.0E+4 #number of draws
+n_iter <- 1.0E+3 #number of draws
 n_thin <- max(3, ceiling(n_iter / 500)) #number of thins
 n_burn <- ceiling(max(10, n_iter/2)) # number of draws to burn
 n_sample <- ceiling(n_iter / n_thin)

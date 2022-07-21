@@ -107,7 +107,8 @@ df_temp <- exact_extract(utm_rs_temp, # raster layer for extraction
 utm_sf_wsd <- utm_sf_wsd %>% 
   left_join(df_lu, by = "siteid") %>% 
   left_join(df_temp, by = "siteid") %>% 
-  mutate(area = units::set_units(st_area(.), "km^2")) # add watershed area
+  mutate(area = units::set_units(st_area(.), "km^2")) %>% # add watershed area
+  arrange(siteid)
 
 st_write(utm_sf_wsd,
          dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg",

@@ -60,9 +60,9 @@ wbt_zonal_statistics(input = "data_fmt/raster/epsg4326_mn_fmt_stream_slope_cont_
                      stat = "mean")
 
 # Converts link slope raster into a vector file.
-wbt_raster_streams_to_vector(streams = "data_fmt/raster/epsg4326_mn_fmt_stream_link_slope_5km2.tif", 
+wbt_raster_streams_to_vector(streams = "data_fmt/raster/epsg4326_mn_fmt_stream_id_5km2.tif", 
                              d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
-                             output = "data_fmt/vector/epsg4326_mn_str_slope_5km2.shp")
+                             output = "data_fmt/vector/epsg4326_mn_str_network_5km2.shp")
 
 # Estimates the average slope of each link (or tributary) in a stream network
 #wbt_stream_link_slope(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
@@ -94,8 +94,8 @@ site.info <- point %>%
   mutate(line_id = st_nearest_feature(., line)) %>% 
   left_join(as_tibble(line),
             by = c("line_id" = "FID")) %>%
-  select(occurrence:geometry.x) # remove line geometry
-
+  select(occurrence:geometry.x) %>% # remove line geometry 
+  rename(slope = STRM_VAL)
 
 # export ------------------------------------------------------------------
 
@@ -107,33 +107,33 @@ st_write(site.info,
 
 # aggregate sites with line_id --------------------------------------------
 
-line_id <- site.info %>%
-  group_by(line_id)  %>%
-  summarize(occurrence = sum(occurrence),
-            slope = mean(STRM_VAL)) %>%
-  mutate(occurrence = replace(occurrence, occurrence > 0, 1)) 
+#line_id <- site.info %>%
+#  group_by(line_id)  %>%
+#  summarize(occurrence = sum(occurrence),
+#            slope = mean(STRM_VAL)) %>%
+#  mutate(occurrence = replace(occurrence, occurrence > 0, 1)) 
   
 # creates one point that is the centroid on the points along a line segment
-line_centroid <- st_centroid(line_id) 
-snapped_points <- spNetwork::snapPointsToLines2(line_centroid, # snap centroid to stream
-                                     line,
-                                     "line_id") %>% 
-  mutate(siteid = row_number()) 
+#line_centroid <- st_centroid(line_id) 
+#snapped_points <- spNetwork::snapPointsToLines2(line_centroid, # snap centroid to stream
+#                                     line,
+#                                     "line_id") %>% 
+#  mutate(siteid = row_number()) 
 
 # export ------------------------------------------------------------------
 
 # line id, sites within a stream segment grouped
-st_write(line_id,
-         dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_line_id.gpkg",
-         append = FALSE)
+#st_write(line_id,
+#         dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_line_id.gpkg",
+#         append = FALSE)
 
 # site info, one point representing all sites along a stream segment
-st_write(snapped_points,
-         dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
-         append = FALSE)
+#st_write(snapped_points,
+#         dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
+#         append = FALSE)
 
 # save code in R script
-save(snapped_points, file = "data_fmt/mn_dnr_fws_line_centroid.Rdata")
+#save(snapped_points, file = "data_fmt/mn_dnr_fws_line_centroid.Rdata")
 
 
 
@@ -141,7 +141,7 @@ save(snapped_points, file = "data_fmt/mn_dnr_fws_line_centroid.Rdata")
 
 # - This function generate multiple rasterfiles, thus I have made different folders to save the file
 wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
-                  pour_pts= "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp", # GPKG file is not accepted. Used SHP file.
+                  pour_pts= "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_site_link.shp", # GPKG file is not accepted. Used SHP file.
                   output = "data_fmt/wsrasterunnestedws.tif")
 
 # ## Read result of delineated watershed raster files
@@ -179,21 +179,21 @@ st_write(wgs84_sf_ws_polygon,
 # add line_id from site point file to watershed polygon attribute table
 wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_5km2.shp",
                 pkey = "siteid",
-                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
+                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_site_link.shp",
                 fkey = "siteid",
                 import_field = "line_id")
 
 # add slope from site point file to watershed polygon attribute table
 wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_5km2.shp",
                 pkey = "siteid",
-                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
+                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_site_link.shp",
                 fkey = "siteid",
                 import_field = "slope")
 
 # add occurrence from site point file to watershed polygon attribute table
 wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_5km2.shp",
                 pkey = "siteid",
-                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_line_centroid.shp",
+                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_site_link.shp",
                 fkey = "siteid",
                 import_field = "occurrence")
 
@@ -221,11 +221,12 @@ dummy <- st_point_on_surface(stream) %>%
 
 # red in line_id sites
 site <- st_read(dsn = "data_fmt/vector",
-                 layer = "epsg4326_mn_dnr_fws_line_centroid")
+                 layer = "epsg4326_mn_dnr_fws_fmt_site_link")
 
-site$siteid=NULL # remove site_id so coulmns will match
+site$siteid = NULL # remove site_id so coulmns will match
+site$year = NULL # remove year so coulmns will match
 join <- rbind(site, dummy) %>%
-  mutate(siteid = row_number())
+  mutate(siteid = row_number()) # create new site_id
 
 # site info, one point representing all sites along a stream segment
 st_write(join,
@@ -275,3 +276,25 @@ st_write(wgs84_sf_ws_polygon,
          dsn = "data_fmt/vector/epsg4326_mn_fmt_watersheds_dummy_5km2.shp",
          append = FALSE)
 
+# join --------------------------------------------------------------------
+
+# add line_id from site point file to watershed polygon attribute table
+wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_dummy_5km2.shp",
+                pkey = "siteid",
+                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp",
+                fkey = "siteid",
+                import_field = "line_id")
+
+# add slope from site point file to watershed polygon attribute table
+wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_dummy_5km2.shp",
+                pkey = "siteid",
+                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp",
+                fkey = "siteid",
+                import_field = "slope")
+
+# add occurrence from site point file to watershed polygon attribute table
+wbt_join_tables(input1 = "data_fmt/vector/epsg4326_mn_fmt_watersheds_dummy_5km2.shp",
+                pkey = "siteid",
+                input2 = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp",
+                fkey = "siteid",
+                import_field = "occurrence")
