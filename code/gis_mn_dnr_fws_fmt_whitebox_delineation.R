@@ -8,7 +8,8 @@ pacman::p_load(sf,
                stars,
                whitebox,
                mapview,
-               tidyverse, sp)
+               tidyverse, 
+               sp)
 
 rm(list = ls())
 
@@ -94,8 +95,9 @@ site.info <- point %>%
   mutate(line_id = st_nearest_feature(., line)) %>% 
   left_join(as_tibble(line),
             by = c("line_id" = "FID")) %>%
-  select(occurrence:geometry.x) %>% # remove line geometry 
-  rename(slope = STRM_VAL)
+  dplyr::select(occurrence:geometry.x) %>% # remove line geometry 
+  rename(slope = STRM_VAL) %>%
+  arrange(siteid)
 
 # export ------------------------------------------------------------------
 
@@ -103,6 +105,9 @@ site.info <- point %>%
 st_write(site.info,
          dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_site_link.shp",
          append = FALSE)
+
+# save code in R script
+save(site.info, file = "data_fmt/mn_dnr_fws_fmt_site_link.Rdata")
 
 
 # aggregate sites with line_id --------------------------------------------
