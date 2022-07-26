@@ -76,7 +76,7 @@ m <- read.jagsfile("code/model_occupancy_up_bias.R")
 
 ## mcmc setup ####
 n_ad <- 100 
-n_iter <- 1.0E+4 #number of draws
+n_iter <- 2.0E+4 #number of draws
 n_thin <- max(3, ceiling(n_iter / 500)) #number of thins
 n_burn <- ceiling(max(10, n_iter/2)) # number of draws to burn
 n_sample <- ceiling(n_iter / n_thin)
@@ -104,8 +104,8 @@ post <- run.jags(m$model,
                  module = "glm")
 
 # summarize outputs
-mcmc_summary_up <- MCMCsummary(post$mcmc)  
-mcmc_summary_up   # Bayesian analysis
+mcmc_summary_up2 <- MCMCsummary(post$mcmc)  
+mcmc_summary_up2   # Bayesian analysis
 
 # waic --------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ mcmc_summary_up   # Bayesian analysis
 loglik <- sapply(1:length(Y),
                  function(i) unlist(post$mcmc[, paste0("ld[", i, "]")]))
 
-waic_hat_up <- loo::waic(loglik)
+waic_hat_up2 <- loo::waic(loglik)
 
 
 # export ------------------------------------------------------------------
@@ -121,8 +121,8 @@ waic_hat_up <- loo::waic(loglik)
 ## save mcmc trace plot to "output/"
 MCMCtrace(post$mcmc,
           wd = "output/",
-          filename = "mcmc_trace_up")
+          filename = "mcmc_trace_up2")
 
 ## save mcmc_summary & waic
-save(mcmc_summary_up, waic_hat_up,
-     file = "output/mcmc_summary_up.RData")
+save(mcmc_summary_up2, waic_hat_up2,
+     file = "output/mcmc_summary_up2.RData")
