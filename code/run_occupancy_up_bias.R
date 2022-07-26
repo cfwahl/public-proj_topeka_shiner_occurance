@@ -11,6 +11,14 @@ pacman::p_load(runjags,
                mcmcOutput,
                foreach)
 
+f2v <- function(x) {
+  tibble(value = c(x),
+         col = rep(1:ncol(x), each = nrow(x)),
+         row = rep(1:nrow(x), times = ncol(x)))
+}
+
+# data --------------------------------------------------------------------
+
 # Read in the data
 # upstream distance matrix 
 
@@ -43,6 +51,8 @@ M <- foreach(i = seq_len(nrow(TD)), .combine = rbind) %do% {
   return(y)
 }
 
+list_d <- lapply(list(U, D, TD), FUN = f2v)
+names(list_d) <- c("U", "D", "TD")
 
 # jags --------------------------------------------------------------------
 
@@ -53,13 +63,18 @@ d_jags <- list(Y = Y,
                Area = Area,
                Slop = Slop,
                Watshed = Watshed,
-               U = data.matrix(U),
-               D = data.matrix(D),
+               #U = data.matrix(U),
+               #D = data.matrix(D),
                N_sample = length(Y),
                N_watshed = n_distinct(Watshed),
                N_site = nrow(U),
                M = M,
-               Incidence = Y)
+               Incidence = Y,
+               V_U = list_d$U$value,
+               V_D = list_d$D$value,
+               Col = list_d$U$col,
+               Row = list_d$U$row,
+               Ndim = length(list_d$U$value))
 
 d_jags # check to make sure its correct
 str(d_jags)
@@ -76,7 +91,7 @@ m <- read.jagsfile("code/model_occupancy_up_bias.R")
 
 ## mcmc setup ####
 n_ad <- 100 
-n_iter <- 2.0E+4 #number of draws
+n_iter <- 100#2.0E+4 #number of draws
 n_thin <- max(3, ceiling(n_iter / 500)) #number of thins
 n_burn <- ceiling(max(10, n_iter/2)) # number of draws to burn
 n_sample <- ceiling(n_iter / n_thin)

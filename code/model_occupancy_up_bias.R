@@ -58,3 +58,13 @@ model {
     }
   }
 }
+
+
+data {
+  
+  for (n in 1:Ndim) {
+    U[Row[n], Col[n]] <- V_U[n]
+    D[Row[n], Col[n]] <- V_D[n]
+  }
+  
+}
