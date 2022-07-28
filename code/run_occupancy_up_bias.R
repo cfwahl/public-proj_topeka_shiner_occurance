@@ -22,9 +22,9 @@ f2v <- function(x) {
 # Read in the data
 # upstream distance matrix 
 
-load("data_fmt/distance_matrix.RData")
-load("data_fmt/mn_dnr_fws_fmt_site_link.Rdata")
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_5km2.gpkg") %>% 
+load("data_fmt/distance_matrix_test.RData")
+load("data_fmt/epsg4326_mn_dnr_fws_dummy_real_occurrence_test.Rdata")
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2_test.shp") %>% 
   as_tibble() %>%
   arrange(siteid)
 
@@ -83,8 +83,7 @@ str(d_jags)
 para <- c("alpha",
           "beta",
           "mu_r",
-          "sd_r",
-          "ld")
+          "sd_r")
 
 ## model file ####
 m <- read.jagsfile("code/model_occupancy_up_bias.R")
