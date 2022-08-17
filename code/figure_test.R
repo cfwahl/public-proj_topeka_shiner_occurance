@@ -202,3 +202,31 @@ df_y %>%
 
 
 
+# catapiller bar plot -----------------------------------------------------
+
+load(file = "output/post_summary_up.Rdata")
+
+mcmc_data <- post$mcmc
+MCMCplot(mcmc_data, 
+         params = 'alpha', 
+         horiz = FALSE,
+         rank = TRUE,
+         ref_ovl = FALSE,
+         xlab = 'My x-axis label', 
+         main = 'MCMCvis plot', 
+)
+
+MCMCplot(mcmc_data, 
+         params = 'beta', 
+         ci = c(50, 95),
+         HPD = TRUE,
+         ref_ovl = TRUE)
+
+MCMCplot(mcmc_data, 
+         params = c('alpha', 'beta'),
+         ci = c(50, 95),
+         HPD = TRUE,
+         ref_ovl = TRUE,
+         labels = c('upstream conn.', 'downstream conn.', '% agriculture', 
+                    '% grassland', 'drainage area', 'slope', 
+                    'tot. connectivity'))

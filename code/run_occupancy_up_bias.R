@@ -23,15 +23,15 @@ f2v <- function(x) {
 # upstream distance matrix 
 load("data_fmt/distance_matrix_dummy.RData")
 
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg") %>% 
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_2_5km2.gpkg") %>% 
   as_tibble() %>%
   arrange(siteid) %>% 
-  mutate(dummy = ifelse(is.na(occurrence), 1, 0)) %>% 
-  relocate(watershed)
+  mutate(dummy = ifelse(is.na(occrrnc), 1, 0)) %>% 
+  relocate(watrshd)
 
 df_test <- df_landuse %>% 
-  group_by(dummy, watershed) %>% 
-  sample_frac(size = 0.2) %>% # sample fraction of total data
+  group_by(dummy, watrshd) %>% 
+  sample_frac(size = 1) %>% # sample fraction of total data
   ungroup() %>% 
   mutate(site0 = as.numeric(factor(siteid))) %>% 
   arrange(site0) %>% 
@@ -39,8 +39,8 @@ df_test <- df_landuse %>%
   
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
-df_data <- filter(df_test, !is.na(occurrence))
-df_dummy <- filter(df_test, is.na(occurrence))
+df_data <- filter(df_test, !is.na(occrrnc))
+df_dummy <- filter(df_test, is.na(occrrnc))
 
 ## for actual sites
 U <- m_u[df_data$siteid, df_data$siteid]
@@ -80,16 +80,16 @@ names(list_d_hat) <- c("U", "D", "TD")
 
 ## data ####
 d_jags <- list(# actual data
-               Y = df_data$occurrence,
-               Agr = df_data$frac_agri,
-               Gras = df_data$frac_grass,
+               Y = df_data$occrrnc,
+               Agr = df_data$frac_gr,
+               Temp = df_data$tmp_ssn,
                Area = df_data$area,
-               Slop = df_data$slope,
-               Watshed = df_data$watershed,
+               Precp_wet = df_data$prcp_wt,
+               Watshed = df_data$watrshd,
                N_sample = n_distinct(df_data$siteid),
-               N_watshed = n_distinct(df_data$watershed),
+               N_watshed = n_distinct(df_data$watrshd),
                M = M,
-               Incidence = df_data$occurrence,
+               Incidence = df_data$occrrnc,
                V_U = list_d$U$value,
                V_D = list_d$D$value,
                Col = list_d$U$col,
@@ -97,11 +97,11 @@ d_jags <- list(# actual data
                Ndim = length(list_d$U$value),
                
                # dummy data
-               Agr_hat = df_dummy$frac_agri,
-               Gras_hat = df_dummy$frac_grass,
+               Agr_hat = df_dummy$frac_gr,
+               Temp_hat = df_dummy$tmp_ssn,
                Area_hat = df_dummy$area,
-               Slop_hat = df_dummy$slope,
-               Watshed_hat = df_dummy$watershed,
+               Precp_wet_hat = df_dummy$prcp_wt,
+               Watshed_hat = df_dummy$watrshd,
                N_dummy = n_distinct(df_dummy$siteid),
                M_hat = M_hat,
                V_U_hat = list_d_hat$U$value,
@@ -126,7 +126,7 @@ m <- read.jagsfile("code/model_occupancy_up_bias.R")
 
 ## mcmc setup ####
 n_ad <- 100 
-n_iter <- 5.0E+2 #number of draws
+n_iter <- 1.0E+4 #number of draws
 n_thin <- max(3, ceiling(n_iter / 500)) #number of thins
 n_burn <- ceiling(max(10, n_iter/2)) # number of draws to burn
 n_sample <- ceiling(n_iter / n_thin)
@@ -154,10 +154,9 @@ post <- run.jags(m$model,
                  module = "glm")
 
 # summarize outputs
-mcmc_summary_up2 <- MCMCsummary(post$mcmc)
+mcmc_summary_up2 <- MCMCsummary(post_mcmc)
+mcmc_summary_up2   # Bayesian analysis
 
-# mcmc_summary_up2   # Bayesian analysis
-# 
 # # waic --------------------------------------------------------------------
 # 
 # ## get mcmc samples of log likelihood
@@ -170,10 +169,19 @@ mcmc_summary_up2 <- MCMCsummary(post$mcmc)
 # # export ------------------------------------------------------------------
 # 
 # ## save mcmc trace plot to "output/"
-# MCMCtrace(post$mcmc,
-#           wd = "output/",
-#           filename = "mcmc_trace_up2")
+ MCMCtrace(post$mcmc,
+           wd = "output/",
+           filename = "mcmc_trace_up2")
 # 
 # ## save mcmc_summary & waic
 # save(mcmc_summary_up2, waic_hat_up2,
 #      file = "output/mcmc_summary_up2.RData")
+
+# ## save mcmc_summary
+save(mcmc_summary_up2,
+      file = "output/mcmc_summary_up2.RData")
+ 
+post_mcmc <- post$mcmc
+# ## save post$mcmc for plots
+save(post_mcmc,
+      file = "output/post_summary_up.RData")

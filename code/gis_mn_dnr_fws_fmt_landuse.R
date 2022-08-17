@@ -219,3 +219,79 @@ utm_sf_wsd <- utm_sf_wsd %>%
 st_write(utm_sf_wsd,
          dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg",
          append = FALSE)
+
+
+# add additional climate data ---------------------------------------------
+
+
+## watershed polygon ##
+
+# extraction needs to be performed with projected crs
+wgs84_sf_wsd <- st_read(dsn = "data_fmt/vector/espg4326_watersheds_landuse_dummy_5km2.shp")
+utm_sf_wsd <- wgs84_sf_wsd %>% 
+  st_transform(crs = 3722)
+
+## climate ####
+
+## example climate data (annual mean temperature) - CHELSA ver 2.1 (30 arcsecond ~ 1km)
+## "continuous" raster must be reprojected with "bilinear"
+## CHELSA layer from "https://chelsa-climate.org/downloads/"
+
+# precipitation seasonality 
+wgs84_rs_precip_season <- raster("data_fmt/raster/chelsa_clip_precip_seasonality.tif") %>% 
+  crop(extent(wgs84_sf_wsd)) # crop by extent of watershed layer
+
+utm_rs_precip_season <- projectRaster(from = wgs84_rs_precip_season,
+                             crs = st_crs(3722)$proj4string,
+                             method = 'bilinear',
+                             res = 1000)
+
+# precipitation during wettest month 
+wgs84_rs_precip_wettest <- raster("data_fmt/raster/chelsa_clip_precip_wettest.tif") %>% 
+  crop(extent(wgs84_sf_wsd)) # crop by extent of watershed layer
+
+utm_rs_precip_wettest <- projectRaster(from = wgs84_rs_precip_wettest,
+                                      crs = st_crs(3722)$proj4string,
+                                      method = 'bilinear',
+                                      res = 1000)
+
+# temp seasonality
+wgs84_rs_temp_seasonality <- raster("data_fmt/raster/chelsa_clip_temp_seasonality.tif") %>% 
+  crop(extent(wgs84_sf_wsd)) # crop by extent of watershed layer
+
+utm_rs_temp_seasonality <- projectRaster(from = wgs84_rs_temp_seasonality,
+                                       crs = st_crs(3722)$proj4string,
+                                       method = 'bilinear',
+                                       res = 1000)
+
+
+# extract by polygon ------------------------------------------------------
+
+# combine climate layers
+utm_rs_fua <- raster::stack(utm_rs_precip_season,
+                            utm_rs_precip_wettest,
+                            utm_rs_temp_seasonality) # combine 3 layers into one "stack"
+
+names(utm_rs_fua) <- c("precip_season", "precip_wet", "temp_season")
+
+
+## land use
+df_lu <- exact_extract(utm_rs_fua, # raster layer for extraction
+                       utm_sf_wsd, # masking layer
+                       "mean",
+                       append_cols = "siteid") %>% # take mean for each polygon
+  as_tibble() %>% 
+  rename(precip_season = mean.precip_season,
+         precip_wet = mean.precip_wet,
+         temp_season = mean.temp_season)
+
+
+# merge data --------------------------------------------------------------
+
+utm_sf_wsd <- utm_sf_wsd %>% 
+  left_join(df_lu, by = "siteid") %>% 
+   arrange(siteid)
+
+st_write(utm_sf_wsd,
+         dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.shp",
+         append = FALSE)

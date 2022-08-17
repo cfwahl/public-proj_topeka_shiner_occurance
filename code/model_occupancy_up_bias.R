@@ -19,7 +19,7 @@ model {
   
   # prior for fixed effects
   for (j in 1:5){
-    beta[j] ~ dnorm(0, ninfo)
+    b[j] ~ dnorm(0, ninfo)
   }
   
   # prior for connectivity
@@ -38,11 +38,11 @@ model {
     Y[i] ~ dbern(p[i])
     logit(p[i]) <- 
       r[Watshed[i]] + 
-      beta[1] * Agr[i] +
-      beta[2] * Gras[i] +
-      beta[3] * Area[i] +
-      beta[4] * Slop[i] +
-      beta[5] * s[i]
+      b[1] * Agr[i] +
+      b[2] * Temp[i] +
+      b[3] * Area[i] +
+      b[4] * Precp_wet[i] +
+      b[5] * s[i]
     
     # connectivity summed over j
     # subtract c[i,] from the sum; self-connection removal
@@ -63,10 +63,10 @@ model {
     
     logit(p_hat[i]) <- 
       r[Watshed_hat[i]] + 
-      beta[1] * Agr_hat[i] +
-      beta[2] * Gras_hat[i] +
-      beta[3] * Area_hat[i] +
-      beta[4] * Slop_hat[i]
+      b[1] * Agr_hat[i] +
+      b[2] * Temp_hat[i] +
+      b[3] * Area_hat[i] +
+      b[4] * Precp_wet_hat[i]
     
     s_hat[i] <- sum(c_hat[i,] * M_hat[i,])
     
@@ -82,11 +82,17 @@ model {
   
   # parameter conversion ----------------------------------------------------
   
-  b[1] <- beta[1] * sd(Agr[])  
-  b[2] <- beta[2] * sd(Gras[])  
-  b[3] <- beta[3] * sd(Area[])  
-  b[4] <- beta[4] * sd(Slop[])  
-  b[5] <- beta[5] * sd(s[])  
+  beta[1] <- b[1] / sd(Agr[])
+  beta[2] <- b[2] / sd(Temp[])
+  beta[3] <- b[3] / sd(Area[])
+  beta[4] <- b[4] / sd(Precp_wet[])
+  beta[5] <- b[5] / sd(s[])
+  
+#  b[1] <- beta[1] * sd(Agr[])  
+#  b[2] <- beta[2] * sd(Gras[])  
+#  b[3] <- beta[3] * sd(Area[])  
+#  b[4] <- beta[4] * sd(Slop[])  
+#  b[5] <- beta[5] * sd(s[])  
   
 }
 
