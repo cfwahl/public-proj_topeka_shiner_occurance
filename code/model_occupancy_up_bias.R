@@ -38,11 +38,11 @@ model {
     Y[i] ~ dbern(p[i])
     logit(p[i]) <- 
       r[Watshed[i]] + 
-      b[1] * Agr[i] +
-      b[2] * Temp[i] +
-      b[3] * Area[i] +
-      b[4] * Precp_wet[i] +
-      b[5] * s[i]
+      beta[1] * Agr[i] +
+      beta[2] * Temp[i] +
+      beta[3] * Area[i] +
+      beta[4] * Precp_wet[i] +
+      beta[5] * s[i]
     
     # connectivity summed over j
     # subtract c[i,] from the sum; self-connection removal
@@ -63,10 +63,10 @@ model {
     
     logit(p_hat[i]) <- 
       r[Watshed_hat[i]] + 
-      b[1] * Agr_hat[i] +
-      b[2] * Temp_hat[i] +
-      b[3] * Area_hat[i] +
-      b[4] * Precp_wet_hat[i]
+      beta[1] * Agr_hat[i] +
+      beta[2] * Temp_hat[i] +
+      beta[3] * Area_hat[i] +
+      beta[4] * Precp_wet_hat[i]
     
     s_hat[i] <- sum(c_hat[i,] * M_hat[i,])
     
@@ -81,6 +81,9 @@ model {
   
   
   # parameter conversion ----------------------------------------------------
+  
+  ## beta is unstandardized slope
+  ## b is standardized slope
   
   beta[1] <- b[1] / sd(Agr[])
   beta[2] <- b[2] / sd(Temp[])
