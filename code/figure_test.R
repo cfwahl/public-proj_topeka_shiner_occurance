@@ -58,7 +58,8 @@ x_name <- df_pred %>%
   select(!starts_with("mean")) %>% 
   colnames()
 
-# figure area ------------------------------------------------------------------
+
+# prediction --------------------------------------------------------------
 
 df_y <- foreach(i = 1:length(x_name),
                 .combine = bind_rows) %do% {
