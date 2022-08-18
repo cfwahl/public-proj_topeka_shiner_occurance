@@ -1,4 +1,34 @@
-df_s <- mcmc_summary_up2 %>% 
+
+
+### load mcmc_summary
+load("output/mcmc_summary_up_full.RData")
+
+### load jags output 
+load("output/post_summary_up_full.RData")
+
+
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_2_5km2.gpkg") %>% 
+  as_tibble() %>%
+  arrange(siteid) %>% 
+  mutate(dummy = ifelse(is.na(occrrnc), 1, 0)) %>% 
+  relocate(watrshd)
+
+df_test <- df_landuse %>% 
+  group_by(dummy, watrshd) %>% 
+  sample_frac(size = 1) %>% # sample fraction of total data
+  ungroup() %>% 
+  mutate(site0 = as.numeric(factor(siteid))) %>% 
+  arrange(site0) %>% 
+  relocate(site0)
+
+# assign variables
+# capitalize "data" in Jags codes to distinguish from parameters
+df_data <- filter(df_test, !is.na(occrrnc))
+df_dummy <- filter(df_test, is.na(occrrnc))
+
+
+
+df_s <- mcmc_summary_up_full %>% 
   mutate(param = rownames(.)) %>% 
   as_tibble() %>% 
   mutate(param_id = str_extract(param, pattern = "\\[\\d{1,}\\]"),
@@ -9,11 +39,11 @@ df_s <- mcmc_summary_up2 %>%
   filter(str_detect(param, pattern = "s\\[.{1,}\\]"))
 
 m_beta <- MCMCvis::MCMCchains(post$mcmc, param = c("mu_r", "beta"))
-X <- model.matrix(~ rep(mean(df_data$frac_agri), 100) +
-                    rep(mean(df_data$frac_grass), 100) +
-                    rep(mean(df_data$area), 100) +
-                    rep(mean(df_data$slope), 100) +
-                    seq(min(df_s$`50%`), max(df_s$`50%`), length = 100))  
+X <- model.matrix(~ rep(mean(df_data$frac_gr), 373) +
+                    rep(mean(df_data$tmp_ssn), 373) +
+                    rep(mean(df_data$area), 373) +
+                    rep(mean(df_data$prcp_wt), 373) +
+                    seq(min(df_s$`50%`), max(df_s$`50%`), length = 373))  
 
 Y <- boot::inv.logit(X %*% t(m_beta))
 
@@ -31,7 +61,7 @@ df_plot <- df_s %>%
 
 ggplot(data = df_plot,
        aes(x = `50%`,
-           y = occurrence)) +
+           y = occrrnc)) +
   geom_point() +
   geom_line(data = df_pred,
             aes(y = median,

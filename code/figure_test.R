@@ -11,30 +11,30 @@ pacman::p_load(runjags,
                mcmcOutput,
                foreach)
 
-load("output/mcmc_summary_up2.RData")
+load("output/mcmc_summary_up_full.RData")
 
 
-# figure ------------------------------------------------------------------
+# figure area ------------------------------------------------------------------
 
-df_data <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg") %>% 
+df_data <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_2_5km2.gpkg") %>% 
   as_tibble() %>%
-  filter(!is.na(occurrence)) %>% 
-  mutate(across(.cols = c(starts_with("frac"), area, slope),
+  filter(!is.na(occrrnc)) %>% 
+  mutate(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
                 .fns = function(x) c(scale(x))))
 
 # code is written for AREA to be plotted
 df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, slope),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 100))) %>% 
-  select(frac_agri, frac_grass, area, slope) %>% 
-  mutate(frac_agri = mean(df_data$frac_agri),
-         frac_grass = mean(df_data$frac_grass),
-         slope = mean(df_data$slope),
+  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
+                   .fns = function(x) seq(from = min(x), to = max(x), length = 373))) %>% 
+  select(frac_gr, tmp_ssn, area, prcp_wt) %>% 
+  mutate(agri = mean(df_data$frac_gr),
+         temp = mean(df_data$tmp_ssn),
+         precip = mean(df_data$prcp_wt),
          s = 0)
 
-m <- model.matrix(~ frac_agri + frac_grass + area + slope + s, data = df_pred)
+m <- model.matrix(~ frac_gr + tmp_ssn + area + prcp_wt + s, data = df_pred)
 
-df_beta <- mcmc_summary_up2 %>% 
+df_beta <- mcmc_summary_up_full %>% 
   mutate(param = rownames(.)) %>% 
   as_tibble() %>% 
   select(param,
@@ -53,24 +53,24 @@ df_y <- m %>%
 df_y %>% 
   ggplot(aes(x = area,
              y = y)) +
-  geom_line()
+  geom_point() + 
+  geom_line() 
 
 
-# frac agri figure ---------------------------------------------------------------
-
+# fraction agriculture figure ---------------------------------------------------------------
 
 df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, slope),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 100))) %>% 
-  select(frac_agri, frac_grass, area, slope) %>% 
+  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
+                   .fns = function(x) seq(from = min(x), to = max(x), length = 373))) %>% 
+  select(frac_gr, tmp_ssn, area, prcp_wt) %>% 
   mutate(area = mean(df_data$area),
-         frac_grass = mean(df_data$frac_grass),
-         slope = mean(df_data$slope),
+         tmp_ssn = mean(df_data$tmp_ssn),
+         prcp_wt = mean(df_data$prcp_wt),
          s = 0)
 
-m <- model.matrix(~ frac_agri + frac_grass + area + slope + s, data = df_pred)
+m <- model.matrix(~ frac_gr + tmp_ssn + area + prcp_wt + s, data = df_pred)
 
-df_beta <- mcmc_summary_up2 %>% 
+df_beta <- mcmc_summary_up_full %>% 
   mutate(param = rownames(.)) %>% 
   as_tibble() %>% 
   select(param,
@@ -87,27 +87,28 @@ df_y <- m %>%
   mutate(y = c(boot::inv.logit(m %*% pull(df_beta, median))))
 
 df_y %>% 
-  ggplot(aes(x = frac_agri,
+  ggplot(aes(x = frac_gr,
              y = y)) +
-  geom_line()
+  geom_line() +
+  geom_point()
 
 
 
-# frac grass figure ---------------------------------------------------------------
+# Temp figure ---------------------------------------------------------------
 
 
 df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, slope),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 100))) %>% 
-  select(frac_agri, frac_grass, area, slope) %>% 
+  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
+                   .fns = function(x) seq(from = min(x), to = max(x), length = 373))) %>% 
+  select(frac_gr, tmp_ssn, area, prcp_wt) %>% 
   mutate(area = mean(df_data$area),
-         frac_agri = mean(df_data$frac_agri),
-         slope = mean(df_data$slope),
+         agri = mean(df_data$frac_gr),
+         precip = mean(df_data$prcp_wt),
          s = 0)
 
-m <- model.matrix(~ frac_agri + frac_grass + area + slope + s, data = df_pred)
+m <- model.matrix(~ frac_gr + tmp_ssn + area + prcp_wt + s, data = df_pred)
 
-df_beta <- mcmc_summary_up2 %>% 
+df_beta <- mcmc_summary_up_full %>% 
   mutate(param = rownames(.)) %>% 
   as_tibble() %>% 
   select(param,
@@ -124,26 +125,27 @@ df_y <- m %>%
   mutate(y = c(boot::inv.logit(m %*% pull(df_beta, median))))
 
 df_y %>% 
-  ggplot(aes(x = frac_grass,
+  ggplot(aes(x = tmp_ssn,
              y = y)) +
-  geom_line()
+  geom_line() + 
+  geom_point()
 
 
-# slope figure ---------------------------------------------------------------
+# Precipitation figure ---------------------------------------------------------------
 
 
 df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, slope),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 100))) %>% 
-  select(frac_agri, frac_grass, area, slope) %>% 
+  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
+                   .fns = function(x) seq(from = min(x), to = max(x), length = 373))) %>% 
+  select(frac_gr, tmp_ssn, area, prcp_wt) %>% 
   mutate(area = mean(df_data$area),
-         frac_grass = mean(df_data$frac_grass),
-         frac_agri = mean(df_data$frac_agri),
+         temp = mean(df_data$tmp_ssn),
+         agri = mean(df_data$frac_gr),
          s = 0)
 
-m <- model.matrix(~ frac_agri + frac_grass + area + slope + s, data = df_pred)
+m <- model.matrix(~ frac_gr + tmp_ssn + area + prcp_wt + s, data = df_pred)
 
-df_beta <- mcmc_summary_up2 %>% 
+df_beta <- mcmc_summary_up_full %>% 
   mutate(param = rownames(.)) %>% 
   as_tibble() %>% 
   select(param,
@@ -160,9 +162,10 @@ df_y <- m %>%
   mutate(y = c(boot::inv.logit(m %*% pull(df_beta, median))))
 
 df_y %>% 
-  ggplot(aes(x = slope,
+  ggplot(aes(x = prcp_wt,
              y = y)) +
-  geom_line()
+  geom_line() +
+  geom_point()
 
 
 # s figure ---------------------------------------------------------------
@@ -204,10 +207,9 @@ df_y %>%
 
 # catapiller bar plot -----------------------------------------------------
 
-load(file = "output/post_summary_up.Rdata")
+load(file = "output/post_summary_up_full.Rdata")
 
-mcmc_data <- post$mcmc
-MCMCplot(mcmc_data, 
+MCMCplot(post$mcmc, 
          params = 'alpha', 
          horiz = FALSE,
          rank = TRUE,
@@ -216,17 +218,17 @@ MCMCplot(mcmc_data,
          main = 'MCMCvis plot', 
 )
 
-MCMCplot(mcmc_data, 
+MCMCplot(post$mcmc, 
          params = 'beta', 
          ci = c(50, 95),
          HPD = TRUE,
          ref_ovl = TRUE)
 
-MCMCplot(mcmc_data, 
+MCMCplot(post$mcmc, 
          params = c('alpha', 'beta'),
          ci = c(50, 95),
          HPD = TRUE,
          ref_ovl = TRUE,
          labels = c('upstream conn.', 'downstream conn.', '% agriculture', 
-                    '% grassland', 'drainage area', 'slope', 
+                    'temp', 'drainage area', 'precip', 
                     'tot. connectivity'))

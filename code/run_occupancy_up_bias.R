@@ -154,8 +154,8 @@ post <- run.jags(m$model,
                  module = "glm")
 
 # summarize outputs
-mcmc_summary_up2 <- MCMCsummary(post_mcmc)
-mcmc_summary_up2   # Bayesian analysis
+mcmc_summary_up_full <- MCMCsummary(post$mcmc)
+mcmc_summary_up_full   # Bayesian analysis
 
 # # waic --------------------------------------------------------------------
 # 
@@ -171,17 +171,16 @@ mcmc_summary_up2   # Bayesian analysis
 # ## save mcmc trace plot to "output/"
  MCMCtrace(post$mcmc,
            wd = "output/",
-           filename = "mcmc_trace_up2")
+           filename = "mcmc_trace_up_full")
 # 
 # ## save mcmc_summary & waic
 # save(mcmc_summary_up2, waic_hat_up2,
 #      file = "output/mcmc_summary_up2.RData")
 
 # ## save mcmc_summary
-save(mcmc_summary_up2,
-      file = "output/mcmc_summary_up2.RData")
+save(mcmc_summary_up_full,
+      file = "output/mcmc_summary_up_full.RData")
  
-post_mcmc <- post$mcmc
 # ## save post$mcmc for plots
-save(post_mcmc,
-      file = "output/post_summary_up.RData")
+save(post,
+      file = "output/post_summary_up_full.RData")
