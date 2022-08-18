@@ -108,7 +108,7 @@ df_y %>%
              strip.position = "bottom",
              labeller = labeller(focus = c(`area` = "Watershed area",
                                            `frac_gr` = "Prop. of agriculture",
-                                           `prcp` = "Precipitation",
+                                           `prcp_wt` = "Precipitation",
                                            `s` = "Connectivity",
                                            `tmp_ssn` = "Temperature"))) +
   labs(y = "Occurrence prob.") +
