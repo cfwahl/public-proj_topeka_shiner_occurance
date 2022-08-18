@@ -1,4 +1,3 @@
-
 # setup -------------------------------------------------------------------
 
 # clean objects
@@ -14,195 +13,101 @@ pacman::p_load(runjags,
 load("output/mcmc_summary_up_full.RData")
 
 
-# figure area ------------------------------------------------------------------
+# common data -------------------------------------------------------------
 
+## extract estimated connectivity values
+df_s <- mcmc_summary_up_full %>% 
+  as_tibble(rownames = "param") %>% 
+  filter(str_detect(param, "s\\[.{1,}\\]")) %>% 
+  mutate(siteid = as.numeric(str_extract(param, "\\d{1,}"))) %>% 
+  select(siteid,
+         s = `50%`)
+
+## data used for analysis
 df_data <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_2_5km2.gpkg") %>% 
   as_tibble() %>%
   filter(!is.na(occrrnc)) %>% 
-  mutate(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
-                .fns = function(x) c(scale(x))))
+  left_join(df_s,
+            by = "siteid")
 
-# code is written for AREA to be plotted
-df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 373))) %>% 
-  select(frac_gr, tmp_ssn, area, prcp_wt) %>% 
-  mutate(agri = mean(df_data$frac_gr),
-         temp = mean(df_data$tmp_ssn),
-         precip = mean(df_data$prcp_wt),
-         s = 0)
-
-m <- model.matrix(~ frac_gr + tmp_ssn + area + prcp_wt + s, data = df_pred)
-
+## regression slopes  
 df_beta <- mcmc_summary_up_full %>% 
-  mutate(param = rownames(.)) %>% 
-  as_tibble() %>% 
+  as_tibble(rownames = "param") %>% 
   select(param,
          median = `50%`) %>% 
   filter(str_detect(string = param,
-                    pattern = "mu_r|beta")) %>% 
+                    pattern = "mu_r|b\\[.{1,}\\]")) %>% 
   mutate(param = factor(param,
                         levels = c("mu_r",
-                                   paste0("beta[", 1:5, "]")))) %>% 
+                                   paste0("b[", 1:5, "]")))) %>% 
   arrange(param)
-
-df_y <- m %>% 
-  as_tibble() %>% 
-  mutate(y = c(boot::inv.logit(m %*% pull(df_beta, median))))
-
-df_y %>% 
-  ggplot(aes(x = area,
-             y = y)) +
-  geom_point() + 
-  geom_line() 
-
-
-# fraction agriculture figure ---------------------------------------------------------------
 
 df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 373))) %>% 
-  select(frac_gr, tmp_ssn, area, prcp_wt) %>% 
-  mutate(area = mean(df_data$area),
-         tmp_ssn = mean(df_data$tmp_ssn),
-         prcp_wt = mean(df_data$prcp_wt),
-         s = 0)
+  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt, s),
+                   .fns = function(x) seq(from = min(x, na.rm = T),
+                                          to = max(x, na.rm = T),
+                                          length = 100))) %>% 
+  select(frac_gr, tmp_ssn, area, prcp_wt, s) %>% 
+  mutate(mean_agri = mean(df_data$frac_gr),
+         mean_temp = mean(df_data$tmp_ssn),
+         mean_area = mean(area),
+         mean_precip = mean(df_data$prcp_wt),
+         mean_s = mean(s))
 
-m <- model.matrix(~ frac_gr + tmp_ssn + area + prcp_wt + s, data = df_pred)
+x_name <- df_pred %>% 
+  select(!starts_with("mean")) %>% 
+  colnames()
 
-df_beta <- mcmc_summary_up_full %>% 
-  mutate(param = rownames(.)) %>% 
-  as_tibble() %>% 
-  select(param,
-         median = `50%`) %>% 
-  filter(str_detect(string = param,
-                    pattern = "mu_r|beta")) %>% 
-  mutate(param = factor(param,
-                        levels = c("mu_r",
-                                   paste0("beta[", 1:5, "]")))) %>% 
-  arrange(param)
+# figure area ------------------------------------------------------------------
 
-df_y <- m %>% 
-  as_tibble() %>% 
-  mutate(y = c(boot::inv.logit(m %*% pull(df_beta, median))))
+df_y <- foreach(i = 1:length(x_name),
+                .combine = bind_rows) %do% {
+                  
+                  ## extract mean values for each predictor
+                  X <- df_pred %>% 
+                    select(starts_with("mean")) %>% 
+                    mutate(ones = 1) %>% 
+                    relocate(ones) %>% 
+                    data.matrix()
+                  
+                  ## replace the column of the predictor of interest
+                  x_focus <- df_pred %>% 
+                    select(x_name[i]) %>% 
+                    pull()
+                  
+                  X[, i + 1] <- x_focus # X[, 1] is intercept, so never replace
+                  
+                  y <- c(boot::inv.logit(X %*% pull(df_beta, median)))
+                  
+                  df_y0 <- tibble(y = y,
+                                  x = x_focus,
+                                  focus = colnames(df_pred)[i])
+                  
+                  return(df_y0)    
+                }
+
+## reformat to long-form
+df_data_l <- df_data %>% 
+  pivot_longer(cols = colnames(df_pred)[1:5],
+               values_to = "x",
+               names_to = "focus")
 
 df_y %>% 
-  ggplot(aes(x = frac_gr,
+  ggplot(aes(x = x,
              y = y)) +
   geom_line() +
-  geom_point()
-
-
-
-# Temp figure ---------------------------------------------------------------
-
-
-df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 373))) %>% 
-  select(frac_gr, tmp_ssn, area, prcp_wt) %>% 
-  mutate(area = mean(df_data$area),
-         agri = mean(df_data$frac_gr),
-         precip = mean(df_data$prcp_wt),
-         s = 0)
-
-m <- model.matrix(~ frac_gr + tmp_ssn + area + prcp_wt + s, data = df_pred)
-
-df_beta <- mcmc_summary_up_full %>% 
-  mutate(param = rownames(.)) %>% 
-  as_tibble() %>% 
-  select(param,
-         median = `50%`) %>% 
-  filter(str_detect(string = param,
-                    pattern = "mu_r|beta")) %>% 
-  mutate(param = factor(param,
-                        levels = c("mu_r",
-                                   paste0("beta[", 1:5, "]")))) %>% 
-  arrange(param)
-
-df_y <- m %>% 
-  as_tibble() %>% 
-  mutate(y = c(boot::inv.logit(m %*% pull(df_beta, median))))
-
-df_y %>% 
-  ggplot(aes(x = tmp_ssn,
-             y = y)) +
-  geom_line() + 
-  geom_point()
-
-
-# Precipitation figure ---------------------------------------------------------------
-
-
-df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 373))) %>% 
-  select(frac_gr, tmp_ssn, area, prcp_wt) %>% 
-  mutate(area = mean(df_data$area),
-         temp = mean(df_data$tmp_ssn),
-         agri = mean(df_data$frac_gr),
-         s = 0)
-
-m <- model.matrix(~ frac_gr + tmp_ssn + area + prcp_wt + s, data = df_pred)
-
-df_beta <- mcmc_summary_up_full %>% 
-  mutate(param = rownames(.)) %>% 
-  as_tibble() %>% 
-  select(param,
-         median = `50%`) %>% 
-  filter(str_detect(string = param,
-                    pattern = "mu_r|beta")) %>% 
-  mutate(param = factor(param,
-                        levels = c("mu_r",
-                                   paste0("beta[", 1:5, "]")))) %>% 
-  arrange(param)
-
-df_y <- m %>% 
-  as_tibble() %>% 
-  mutate(y = c(boot::inv.logit(m %*% pull(df_beta, median))))
-
-df_y %>% 
-  ggplot(aes(x = prcp_wt,
-             y = y)) +
-  geom_line() +
-  geom_point()
-
-
-# s figure ---------------------------------------------------------------
-
-
-df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, slope),
-                   .fns = function(x) seq(from = min(x), to = max(x), length = 100))) %>% 
-  select(frac_agri, frac_grass, area, slope) %>% 
-  mutate(area = mean(df_data$area),
-         frac_grass = mean(df_data$frac_grass),
-         frac_agri = mean(df_data$frac_agri),
-         s = 0)
-
-m <- model.matrix(~ frac_agri + frac_grass + area + slope + s, data = df_pred)
-
-df_beta <- mcmc_summary_up2 %>% 
-  mutate(param = rownames(.)) %>% 
-  as_tibble() %>% 
-  select(param,
-         median = `50%`) %>% 
-  filter(str_detect(string = param,
-                    pattern = "mu_r|beta")) %>% 
-  mutate(param = factor(param,
-                        levels = c("mu_r",
-                                   paste0("beta[", 1:5, "]")))) %>% 
-  arrange(param)
-
-df_y <- m %>% 
-  as_tibble() %>% 
-  mutate(y = c(boot::inv.logit(m %*% pull(df_beta, median))))
-
-df_y %>% 
-  ggplot(aes(x = slope,
-             y = y)) +
-  geom_line()
-
+  geom_point(data = df_data_l,
+             aes(y = occrrnc),
+             alpha = 0.2) +
+  facet_wrap(facets = ~ focus,
+             scales = "free",
+             strip.position = "bottom") +
+  labs(y = "Occurrence prob.") +
+  theme_bw() +
+  theme(strip.background = element_blank(),
+        strip.placement = "outside",
+        axis.title.x = element_blank())
+  
 
 
 # catapiller bar plot -----------------------------------------------------
