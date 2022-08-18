@@ -101,7 +101,12 @@ df_y %>%
              alpha = 0.2) +
   facet_wrap(facets = ~ focus,
              scales = "free",
-             strip.position = "bottom") +
+             strip.position = "bottom",
+             labeller = labeller(focus = c(`area` = "Watershed area",
+                                           `frac_gr` = "Prop. of agriculture",
+                                           `prcp` = "Precipitation",
+                                           `s` = "Connectivity",
+                                           `tmp_ssn` = "Temperature"))) +
   labs(y = "Occurrence prob.") +
   theme_bw() +
   theme(strip.background = element_blank(),
