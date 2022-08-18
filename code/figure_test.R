@@ -67,8 +67,6 @@ df_y <- foreach(i = 1:length(x_name),
                   ## extract mean values for each predictor
                   X <- df_pred %>% 
                     select(starts_with("mean")) %>% 
-                    mutate(ones = 1) %>% 
-                    relocate(ones) %>% 
                     data.matrix()
                   
                   ## replace the column of the predictor of interest
@@ -76,9 +74,10 @@ df_y <- foreach(i = 1:length(x_name),
                     select(x_name[i]) %>% 
                     pull()
                   
-                  X[, i + 1] <- x_focus # X[, 1] is intercept, so never replace
+                  X[, i] <- x_focus
+                  M <- model.matrix(~ X)
                   
-                  y <- c(boot::inv.logit(X %*% pull(df_beta, median)))
+                  y <- c(boot::inv.logit(M %*% pull(df_beta, median)))
                   
                   df_y0 <- tibble(y = y,
                                   x = x_focus,
