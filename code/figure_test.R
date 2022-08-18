@@ -89,7 +89,7 @@ df_y <- foreach(i = 1:length(x_name),
 
 ## reformat to long-form
 df_data_l <- df_data %>% 
-  pivot_longer(cols = colnames(df_pred)[1:5],
+  pivot_longer(cols = x_name,
                values_to = "x",
                names_to = "focus")
 
