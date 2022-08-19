@@ -36,23 +36,22 @@ df_beta <- mcmc_summary_up_full %>%
   select(param,
          median = `50%`) %>% 
   filter(str_detect(string = param,
-                    pattern = "mu_r|b\\[.{1,}\\]")) %>% 
+                    pattern = "mu_r|beta\\[.{1,}\\]")) %>% 
   mutate(param = factor(param,
                         levels = c("mu_r",
-                                   paste0("b[", 1:5, "]")))) %>% 
+                                   paste0("beta[", 1:5, "]")))) %>% 
   arrange(param)
 
 df_pred <- df_data %>% 
-  summarize(across(.cols = c(starts_with("frac"), area, tmp_ssn, prcp_wt, s),
+  summarize(across(.cols = c(starts_with("frac"), tmp_ssn, area, prcp_wt, s),
                    .fns = function(x) seq(from = min(x, na.rm = T),
                                           to = max(x, na.rm = T),
                                           length = 100))) %>% 
-  select(frac_gr, tmp_ssn, area, prcp_wt, s) %>% 
   mutate(mean_agri = mean(df_data$frac_gr),
          mean_temp = mean(df_data$tmp_ssn),
-         mean_area = mean(area),
+         mean_area = mean(df_data$area),
          mean_precip = mean(df_data$prcp_wt),
-         mean_s = mean(s))
+         mean_s = mean(df_data$s))
 
 x_name <- df_pred %>% 
   select(!starts_with("mean")) %>% 
@@ -61,10 +60,10 @@ x_name <- df_pred %>%
 
 # prediction --------------------------------------------------------------
 
+## extract mean values for each predictor
 df_y <- foreach(i = 1:length(x_name),
                 .combine = bind_rows) %do% {
                   
-                  ## extract mean values for each predictor
                   X <- df_pred %>% 
                     select(starts_with("mean")) %>% 
                     data.matrix()
@@ -103,7 +102,7 @@ df_y %>%
              aes(y = occrrnc),
              alpha = 0.2) +
   facet_wrap(facets = ~ focus,
-             scales = "free",
+             scales = "free_x",
              strip.position = "bottom",
              labeller = labeller(focus = c(`area` = "Watershed area",
                                            `frac_gr` = "Prop. of agriculture",
