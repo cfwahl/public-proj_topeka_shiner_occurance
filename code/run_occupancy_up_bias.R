@@ -36,7 +36,7 @@ df_test <- df_landuse %>%
   mutate(site0 = as.numeric(factor(siteid))) %>% 
   arrange(site0) %>% 
   relocate(site0)
-  
+
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
 df_data <- filter(df_test, !is.na(occrrnc))
@@ -65,12 +65,12 @@ D_hat <- m_d[df_dummy$siteid, df_dummy$siteid]
 TD_hat <- U_hat + D_hat
 M_hat <- foreach(i = seq_len(nrow(TD_hat)),
                  .combine = rbind) %do% {
-  x <- TD_hat[i,]
-  y <- ifelse(x == 0 | x > 25,
-              yes = 0,
-              no = 1)
-  return(y)
-}
+                   x <- TD_hat[i,]
+                   y <- ifelse(x == 0 | x > 25,
+                               yes = 0,
+                               no = 1)
+                   return(y)
+                 }
 
 list_d_hat <- lapply(list(U_hat, D_hat, TD_hat), FUN = f2v)
 names(list_d_hat) <- c("U", "D", "TD")
@@ -80,35 +80,35 @@ names(list_d_hat) <- c("U", "D", "TD")
 
 ## data ####
 d_jags <- list(# actual data
-               Y = df_data$occrrnc,
-               Agr = df_data$frac_gr,
-               Temp = df_data$tmp_ssn,
-               Area = df_data$area,
-               Precp_wet = df_data$prcp_wt,
-               Watshed = df_data$watrshd,
-               N_sample = n_distinct(df_data$siteid),
-               N_watshed = n_distinct(df_data$watrshd),
-               M = M,
-               Incidence = df_data$occrrnc,
-               V_U = list_d$U$value,
-               V_D = list_d$D$value,
-               Col = list_d$U$col,
-               Row = list_d$U$row,
-               Ndim = length(list_d$U$value),
-               
-               # dummy data
-               Agr_hat = df_dummy$frac_gr,
-               Temp_hat = df_dummy$tmp_ssn,
-               Area_hat = df_dummy$area,
-               Precp_wet_hat = df_dummy$prcp_wt,
-               Watshed_hat = df_dummy$watrshd,
-               N_dummy = n_distinct(df_dummy$siteid),
-               M_hat = M_hat,
-               V_U_hat = list_d_hat$U$value,
-               V_D_hat = list_d_hat$D$value,
-               Col_hat = list_d_hat$U$col,
-               Row_hat = list_d_hat$U$row,
-               Ndim_hat = length(list_d_hat$U$value))
+  Y = df_data$occrrnc,
+  Agr = df_data$frac_gr,
+  Temp = df_data$tmp_ssn,
+  Area = df_data$area,
+  Precp_wet = df_data$prcp_wt,
+  Watshed = df_data$watrshd,
+  N_sample = n_distinct(df_data$siteid),
+  N_watshed = n_distinct(df_data$watrshd),
+  M = M,
+  Incidence = df_data$occrrnc,
+  V_U = list_d$U$value,
+  V_D = list_d$D$value,
+  Col = list_d$U$col,
+  Row = list_d$U$row,
+  Ndim = length(list_d$U$value),
+  
+  # dummy data
+  Agr_hat = df_dummy$frac_gr,
+  Temp_hat = df_dummy$tmp_ssn,
+  Area_hat = df_dummy$area,
+  Precp_wet_hat = df_dummy$prcp_wt,
+  Watshed_hat = df_dummy$watrshd,
+  N_dummy = n_distinct(df_dummy$siteid),
+  M_hat = M_hat,
+  V_U_hat = list_d_hat$U$value,
+  V_D_hat = list_d_hat$D$value,
+  Col_hat = list_d_hat$U$col,
+  Row_hat = list_d_hat$U$row,
+  Ndim_hat = length(list_d_hat$U$value))
 
 d_jags # check to make sure its correct
 str(d_jags)
@@ -119,7 +119,7 @@ para <- c("alpha",
           "b",
           "mu_r",
           "sd_r",
-          "s")
+          "s_hat")
 
 ## model file ####
 m <- read.jagsfile("code/model_occupancy_up_bias.R")
@@ -157,6 +157,21 @@ post <- run.jags(m$model,
 mcmc_summary_up_full <- MCMCsummary(post$mcmc)
 mcmc_summary_up_full   # Bayesian analysis
 
+# # export ------------------------------------------------------------------
+
+# ## save mcmc trace plot to "output/"
+MCMCtrace(post$mcmc,
+          wd = "output/",
+          filename = "mcmc_trace_up_full")
+
+# ## save mcmc_summary
+save(mcmc_summary_up_full,
+     file = "output/mcmc_summary_up_full.RData")
+
+# ## save post$mcmc for plots
+save(post,
+     file = "output/post_summary_up_full.RData")
+
 # # waic --------------------------------------------------------------------
 # 
 # ## get mcmc samples of log likelihood
@@ -166,21 +181,7 @@ mcmc_summary_up_full   # Bayesian analysis
 # waic_hat_up2 <- loo::waic(loglik)
 # 
 # 
-# # export ------------------------------------------------------------------
-# 
-# ## save mcmc trace plot to "output/"
- MCMCtrace(post$mcmc,
-           wd = "output/",
-           filename = "mcmc_trace_up_full")
-# 
 # ## save mcmc_summary & waic
 # save(mcmc_summary_up2, waic_hat_up2,
 #      file = "output/mcmc_summary_up2.RData")
-
-# ## save mcmc_summary
-save(mcmc_summary_up_full,
-      file = "output/mcmc_summary_up_full.RData")
- 
-# ## save post$mcmc for plots
-save(post,
-      file = "output/post_summary_up_full.RData")
+# 

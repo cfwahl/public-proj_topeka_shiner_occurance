@@ -77,3 +77,33 @@ ggplot(data = df_plot,
   theme_bw()
 
 
+
+# remove NA only if actual data exist -------------------------------------
+
+pacman::p_load(sf,
+               tidyverse)
+
+## data
+df0 <- st_read(here::here("data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp")) %>%
+  as_tibble() %>% 
+  group_by(line_id) %>% 
+  mutate(type = ifelse(all(is.na(occurrence)),
+                       "dummy",
+                       "actual"))
+
+df_a <- df0 %>% 
+  filter(type == "actual") %>% 
+  drop_na(occurrence) %>% 
+  bind_rows(filter(df0, type == "dummy"))
+
+
+## stream line
+sf_line <- list.files("data_fmt/vector",
+           pattern = "connectivity_dummy_5km2.shp",
+           full.names = T) %>% 
+  st_read()
+
+## 
+load("output/mcmc_summary_up_full.RData")
+
+
