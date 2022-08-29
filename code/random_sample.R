@@ -84,7 +84,7 @@ pacman::p_load(sf,
                tidyverse)
 
 ## data
-df0 <- st_read(here::here("data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp")) %>%
+df0 <- st_read("data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp") %>%
   as_tibble() %>% 
   group_by(line_id) %>% 
   mutate(type = ifelse(all(is.na(occurrence)),
