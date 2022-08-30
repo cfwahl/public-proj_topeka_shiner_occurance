@@ -103,7 +103,35 @@ sf_line <- list.files("data_fmt/vector",
            full.names = T) %>% 
   st_read()
 
-## 
-load("output/mcmc_summary_up_full.RData")
+
+
+
+# load data ---------------------------------------------------------------
+
+# load mcmc_summary connectivity, dummy occurrence data
+s_hat <- readRDS("output/mcmc_summary_up_full2.RDS")
+
+# extract connectivity values
+df_s_hat <- s_hat %>% 
+  mutate(param = rownames(.)) %>% 
+  as_tibble() %>% 
+  mutate(param_id = str_extract(param, pattern = "\\[\\d{1,}\\]"),
+         param_id = str_remove_all(param_id, pattern = "\\[|\\]"),
+         site0 = ifelse(str_detect(param, pattern = "s_hat\\[.{1,}\\]"),
+                        as.numeric(param_id),
+                        NA)) %>% 
+  filter(str_detect(param, pattern = "s_hat\\[.{1,}\\]"))
+
+# subset actual sites from the rest
+df_actual <- filter(df_a, type == "actual") %>%
+  mutate(site0 = as.numeric(siteid)) # add site0 column to match connectivity
+
+# merge based on site0 column
+df_s_actual <- merge(df_actual, df_s, by = "site0")
+
+# subset dummy sites from the rest
+df_dummy <- filter(df_a, type == "dummy") 
+df_dummy$site0 <- 1:nrow(df_dummy)
+
 
 
