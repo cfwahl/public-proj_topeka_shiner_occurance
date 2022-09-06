@@ -168,3 +168,46 @@ df_mn_dnr_fws %>%
            drivers = "ESRI Shapefile",
            append = FALSE)
 
+
+######  extract oxbow data  ######----------------------------------------------
+
+# read fws data ---------------------------------------------------------------
+
+# fws and isu topeka shiner occurrence and env data
+df1 <- read_csv("data_fmt/tksn_env_fws_isu.csv") %>% 
+  select(SampleID:Topeka_Shiner) # select columns from Site_num to Topeka_Shiner
+
+colnames(df1) <- str_to_lower(colnames(df1)) # make all column names lowercase
+
+# format fws data ------------------------------------------------------------------
+
+df_mn_fws <- df1 %>% 
+  filter(habitat == "oxbow") %>% # select only stream samples, not oxbows
+  group_by(site, year) %>%  # grouping by site and year 
+  summarize(occurrence = sum(topeka_shiner), # take sum of topeka shiner for each group
+            lat = round(lat[1], 3), # take the first element of lat for each group
+            long = round(long[1], 3)) %>% # take the first element of long for each group
+  ungroup() %>% 
+  group_by(lat, long) %>% 
+  summarize(occurrence = sum(occurrence),
+            year = max(year), # latest year of observation
+            lat = unique(lat),
+            long = unique(long)) %>% 
+  ungroup() %>% 
+  mutate(occurrence = replace(occurrence, occurrence > 0, 1),  # if occurrence is >0 then make 1
+         site = seq_len(n_distinct(paste0(.$lat, .$long))))
+
+
+# export oxbow data------------------------------------------------------------------
+
+# this will recall code in R script
+saveRDS(df_mn_fws, file = "data_fmt/data_mn_fws_fmt_oxbows.RDS")
+
+# shape file export
+df_mn_fws %>% 
+  st_as_sf(coords = c("long", "lat"),
+           crs = 4326) %>% 
+  st_write(dsn = "data_fmt/vector/epsg4326_oxbow_sites.shp",
+           drivers = "ESRI Shapefile",
+           append = FALSE)
+
