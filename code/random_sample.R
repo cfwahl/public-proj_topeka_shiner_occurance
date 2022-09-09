@@ -3,6 +3,10 @@
 ### load mcmc_summary
 load("output/mcmc_summary_up_full.RData")
 
+saveRDS(mcmc_summary_up_full, "output/mcmc_summary_up_full.rds")
+mcmc_summary_up_full <- readRDS("output/mcmc_summary_up_full2.rds")
+
+
 ### load jags output 
 load("output/post_summary_up_full.RData")
 

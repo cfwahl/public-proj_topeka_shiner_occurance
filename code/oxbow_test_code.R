@@ -7,7 +7,8 @@ rm(list = ls())
 pacman::p_load(tidyverse,
                tmap,
                sf,
-               mapview)
+               mapview, 
+               foreach)
 
 
 # data --------------------------------------------------------------------
@@ -46,38 +47,65 @@ st_write(sf_line,
          append = FALSE)
 
 oxbow <- st_read("data_fmt/vector/epsg4326_oxbow_sites.shp") %>%
-  st_transform(oxbow, crs = 3722)
+  st_transform(oxbow, crs = 3722) %>% 
+  mutate(oxbow_id = row_number())
 
-#cut_dist = 200 # meters 
-#oxbow_snap <- st_nearest_points(oxbow, sf_line, tolerance = cut_dist) 
 
-st_snap_points = function(oxbow, sf_line, max_dist = 1000) {
+## snap function
+st_snap_points = function(oxbow, sf_line) {
+  
+  pacman::p_load(tidyverse,
+                 sf)
   
   if (inherits(oxbow, "sf")) n = nrow(oxbow)
   if (inherits(oxbow, "sfc")) n = length(oxbow)
   
-  out = do.call(c,
-                lapply(seq(n), function(i) {
-                  nrst = st_nearest_points(st_geometry(oxbow)[i], sf_line)
-                  nrst_len = st_length(nrst)
-                  nrst_mn = which.min(nrst_len)
-                  if (as.vector(nrst_len[nrst_mn]) > max_dist) return(st_geometry(oxbow)[i])
-                  return(st_cast(nrst[nrst_mn], "POINT")[2])
-                })
-  )
+  out = foreach(i = seq_len(n), .combine = bind_rows) %do% {
+    
+    nrst = sf::st_nearest_points(st_geometry(oxbow)[i], sf_line)
+    nrst_len = sf::st_length(nrst)
+    nrst_mn = which.min(nrst_len)
+    
+    df0 <- sf::st_cast(nrst[nrst_mn], "POINT")[2] %>%
+      sf::st_coordinates() %>% 
+      dplyr::as_tibble() %>% 
+      dplyr::mutate(X1 = st_coordinates(oxbow[i,])[1],
+                    Y1 = st_coordinates(oxbow[i,])[2],
+                    distance = nrst_len[nrst_mn],
+                    oxbow[i,]) %>% 
+      dplyr::rename(X2 = X,
+                    Y2 = Y) %>% 
+      dplyr::select(-geometry)
+    
+    return(df0)
+  }
+  
   return(out)
 }
 
-brew = st_transform(oxbow, st_crs(sf_line))
 
-tst = st_snap_points(brew, sf_line, 500)
+## example code
 
-mapview(oxbow) + mapview(tst, col.regions = "red") + sf_line
+### original output will be `tibble`
+df1 <- st_snap_points(oxbow, sf_line)
 
+### convert it to sf
+sf_point_snapped <- df1 %>% 
+  st_as_sf(coords = c("X2", "Y2")) %>% 
+  st_set_crs(st_crs(oxbow)) # ensure define CRS again
+
+  
+  
+### to link to line feature, use st_join()
+
+oxbow.info <- sf_point_snapped %>% 
+  mutate(site0 = st_nearest_feature(., sf_line)) %>%
+  left_join(as_tibble(sf_line), 
+          by = c("site0" = "site0"))
 
 
 # site info, one point representing all sites along a stream segment
-st_write(tst,
+st_write(oxbow.info,
          dsn = "data_fmt/vector/epsg4326_oxbow_snap.shp",
          append = FALSE)
 
