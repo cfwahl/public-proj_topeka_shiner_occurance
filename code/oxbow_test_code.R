@@ -41,10 +41,6 @@ sf_line <- sf_line %>%
             by = c("line_id" = "line_id")) %>%
   st_transform(sf_line, crs = 3722)
 
-# site info, one point representing all sites along a stream segment
-st_write(sf_line,
-         dsn = "data_fmt/vector/epsg4326_stream_connectivity.shp",
-         append = FALSE)
 
 oxbow <- st_read("data_fmt/vector/epsg4326_oxbow_sites.shp") %>%
   st_transform(oxbow, crs = 3722) %>% 
@@ -104,7 +100,14 @@ oxbow.info <- sf_point_snapped %>%
           by = c("site0" = "site0"))
 
 
-# site info, one point representing all sites along a stream segment
+# write shapefiles --------------------------------------------------------
+
+# sf_line, stream connectivity
+st_write(sf_line,
+         dsn = "data_fmt/vector/epsg4326_stream_connectivity.shp",
+         append = FALSE)
+
+# oxbow info, snapped oxbows and stream line info added
 st_write(oxbow.info,
          dsn = "data_fmt/vector/epsg4326_oxbow_snap.shp",
          append = FALSE)
