@@ -41,11 +41,10 @@ sf_line <- sf_line %>%
             by = c("line_id" = "line_id")) %>%
   st_transform(sf_line, crs = 3722)
 
-
+# read oxbow data, already is an sf from previous formatting code
 oxbow <- st_read("data_fmt/vector/epsg4326_oxbow_sites.shp") %>%
-  st_transform(oxbow, crs = 3722) %>% 
-  mutate(oxbow_id = row_number())
-
+  mutate(oxbow_id = row_number())%>%
+  st_transform(oxbow, crs = 3722) 
 
 ## snap function
 st_snap_points = function(oxbow, sf_line) {
@@ -91,27 +90,31 @@ sf_point_snapped <- df1 %>%
   st_set_crs(st_crs(oxbow)) # ensure define CRS again
 
   
-  
 ### to link to line feature, use st_join()
 
-oxbow.info <- sf_point_snapped %>% 
+oxbow_info <- sf_point_snapped %>% 
   mutate(site0 = st_nearest_feature(., sf_line)) %>%
   left_join(as_tibble(sf_line), 
           by = c("site0" = "site0"))
-
+ 
 
 # write shapefiles --------------------------------------------------------
 
 # sf_line, stream connectivity
 st_write(sf_line,
-         dsn = "data_fmt/vector/epsg4326_stream_connectivity.shp",
+         dsn = "data_fmt/vector/epsg3722_stream_connectivity.shp",
          append = FALSE)
 
 # oxbow info, snapped oxbows and stream line info added
-st_write(oxbow.info,
-         dsn = "data_fmt/vector/epsg4326_oxbow_snap.shp",
+st_write(oxbow_info,
+         dsn = "data_fmt/vector/epsg3722_oxbow_snap.shp",
          append = FALSE)
 
+
+# save oxbow_info as rds --------------------------------------------------
+
+# this will recall code in R script
+saveRDS(oxbow_info, file = "data_fmt/oxbow_connectivity.RDS")
 
 # map ---------------------------------------------------------------------
 

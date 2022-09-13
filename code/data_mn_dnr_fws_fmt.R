@@ -169,7 +169,8 @@ df_mn_dnr_fws %>%
            append = FALSE)
 
 
-######  extract oxbow data  ######----------------------------------------------
+
+######  extract oxbow data  ######
 
 # read fws data ---------------------------------------------------------------
 
@@ -195,7 +196,9 @@ df_mn_fws <- df1 %>%
             long = unique(long)) %>% 
   ungroup() %>% 
   mutate(occurrence = replace(occurrence, occurrence > 0, 1),  # if occurrence is >0 then make 1
-         site = seq_len(n_distinct(paste0(.$lat, .$long))))
+         site = seq_len(n_distinct(paste0(.$lat, .$long)))) %>%
+  slice(-c(1, 2, 3, 4, 5, 6)) # these sites fall outside connectivity stream network
+  
 
 
 # export oxbow data------------------------------------------------------------------
