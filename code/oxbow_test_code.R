@@ -42,32 +42,32 @@ sf_line <- sf_line %>%
   st_transform(sf_line, crs = 3722)
 
 # read oxbow data, already is an sf from previous formatting code
-oxbow <- st_read("data_fmt/vector/epsg4326_oxbow_sites.shp") %>%
+sf_oxbow <- st_read("data_fmt/vector/epsg4326_oxbow_sites.shp") %>%
   mutate(oxbow_id = row_number())%>%
   st_transform(oxbow, crs = 3722) 
 
 ## snap function
-st_snap_points = function(oxbow, sf_line) {
+st_snap_points = function(f1, f2) {
   
   pacman::p_load(tidyverse,
                  sf)
   
-  if (inherits(oxbow, "sf")) n = nrow(oxbow)
-  if (inherits(oxbow, "sfc")) n = length(oxbow)
+  if (inherits(f1, "sf")) n = nrow(f1)
+  if (inherits(f1, "sfc")) n = length(f1)
   
   out = foreach(i = seq_len(n), .combine = bind_rows) %do% {
     
-    nrst = sf::st_nearest_points(st_geometry(oxbow)[i], sf_line)
+    nrst = sf::st_nearest_points(st_geometry(f1)[i], f2)
     nrst_len = sf::st_length(nrst)
     nrst_mn = which.min(nrst_len)
     
     df0 <- sf::st_cast(nrst[nrst_mn], "POINT")[2] %>%
       sf::st_coordinates() %>% 
       dplyr::as_tibble() %>% 
-      dplyr::mutate(X1 = st_coordinates(oxbow[i,])[1],
-                    Y1 = st_coordinates(oxbow[i,])[2],
+      dplyr::mutate(X1 = st_coordinates(f1[i,])[1],
+                    Y1 = st_coordinates(f1[i,])[2],
                     distance = nrst_len[nrst_mn],
-                    oxbow[i,]) %>% 
+                    f1[i,]) %>% 
       dplyr::rename(X2 = X,
                     Y2 = Y) %>% 
       dplyr::select(-geometry)
@@ -82,14 +82,13 @@ st_snap_points = function(oxbow, sf_line) {
 ## example code
 
 ### original output will be `tibble`
-df1 <- st_snap_points(oxbow, sf_line)
+df1 <- st_snap_points(sf_oxbow, sf_line)
 
 ### convert it to sf
 sf_point_snapped <- df1 %>% 
   st_as_sf(coords = c("X2", "Y2")) %>% 
-  st_set_crs(st_crs(oxbow)) # ensure define CRS again
+  st_set_crs(st_crs(sf_oxbow)) # ensure define CRS again
 
-  
 ### to link to line feature, use st_join()
 
 oxbow_info <- sf_point_snapped %>% 
@@ -97,6 +96,19 @@ oxbow_info <- sf_point_snapped %>%
   left_join(as_tibble(sf_line), 
           by = c("site0" = "site0"))
  
+# ### potential alternative
+# tmap_mode("view")
+# 
+# tm_shape(shp = sf_point_snapped) +  
+#   tm_dots(col = "black") +
+#   tm_shape(shp = sf_line) +
+#   tm_lines()
+# 
+# st_join(x = sf_point_snapped, y = sf_line,
+#         join = st_is_within_distance,
+#         dist = 10) %>% 
+#   view()
+
 
 # write shapefiles --------------------------------------------------------
 
