@@ -37,7 +37,7 @@ df_s <- mcmc_summary_up_full %>%
   as_tibble() %>% 
   mutate(param_id = str_extract(param, pattern = "\\[\\d{1,}\\]"),
          param_id = str_remove_all(param_id, pattern = "\\[|\\]"),
-         site0 = ifelse(str_detect(param, pattern = "s\\[.{1,}\\]"),
+         site0 = ifelse(str_detect(param, pattern = "s_hat\\[.{1,}\\]"),
                         as.numeric(param_id),
                         NA)) %>% 
   filter(str_detect(param, pattern = "s_hat\\[.{1,}\\]"))
