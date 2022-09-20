@@ -13,6 +13,9 @@ pacman::p_load(tidyverse,
 
 # data --------------------------------------------------------------------
 
+## whole df real + dummy
+df_all <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_2_5km2.gpkg")
+
 ## stream polyline
 sf_line <- list.files("data_fmt/vector",
                       pattern = "connectivity_dummy_5km2.shp",
@@ -25,9 +28,9 @@ df_s <- readRDS("output/mcmc_summary_up_full.rds") %>%
   select(connectivity = `50%`,
          site0,
          siteid) %>% 
-  mutate(siteid = siteid + 373)
+  mutate(siteid = siteid + sum(!is.na(df_all$occrrnc)))
 
-df_x <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_2_5km2.gpkg") %>% 
+df_x <- df_all %>% 
   as_tibble() %>%
   filter(is.na(occrrnc)) %>% 
   select(siteid, line_id) %>% 
@@ -91,24 +94,16 @@ sf_point_snapped <- df1 %>%
 
 ### to link to line feature, use st_join()
 
-oxbow_info <- sf_point_snapped %>% 
-  mutate(site0 = st_nearest_feature(., sf_line)) %>%
-  left_join(as_tibble(sf_line), 
-          by = c("site0" = "site0"))
- 
-# ### potential alternative
-# tmap_mode("view")
-# 
-# tm_shape(shp = sf_point_snapped) +  
-#   tm_dots(col = "black") +
-#   tm_shape(shp = sf_line) +
-#   tm_lines()
-# 
-# st_join(x = sf_point_snapped, y = sf_line,
-#         join = st_is_within_distance,
-#         dist = 10) %>% 
-#   view()
+df_m <- st_join(x = sf_point_snapped,
+                y = sf_line,
+                join = st_is_within_distance,
+                dist = 10) %>%
+  as_tibble()
 
+ggplot(df_m,
+       aes(x = connectivity,
+           y = occurrence)) +
+  geom_point()
 
 # write shapefiles --------------------------------------------------------
 

@@ -10,15 +10,15 @@ pacman::p_load(runjags,
                mcmcOutput,
                foreach)
 
-load("output/mcmc_summary_up_full.RData")
+mcmc_summary_up_full <- readRDS("output/mcmc_summary_up_full.rds")
 
 
 # common data -------------------------------------------------------------
 
 ## extract estimated connectivity values
 df_s <- mcmc_summary_up_full %>% 
-  as_tibble(rownames = "param") %>% 
-  filter(str_detect(param, "s\\[.{1,}\\]")) %>% 
+  as_tibble() %>% 
+  filter(str_detect(param, "s_hat\\[.{1,}\\]")) %>% 
   mutate(siteid = as.numeric(str_extract(param, "\\d{1,}"))) %>% 
   select(siteid,
          s = `50%`)

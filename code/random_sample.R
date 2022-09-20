@@ -40,7 +40,7 @@ df_s <- mcmc_summary_up_full %>%
          site0 = ifelse(str_detect(param, pattern = "s\\[.{1,}\\]"),
                         as.numeric(param_id),
                         NA)) %>% 
-  filter(str_detect(param, pattern = "s\\[.{1,}\\]"))
+  filter(str_detect(param, pattern = "s_hat\\[.{1,}\\]"))
 
 m_beta <- MCMCvis::MCMCchains(post$mcmc, param = c("mu_r", "beta"))
 X <- model.matrix(~ rep(mean(df_data$frac_gr), 373) +
