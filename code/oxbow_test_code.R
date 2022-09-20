@@ -116,6 +116,7 @@ st_write(oxbow_info,
 # this will recall code in R script
 saveRDS(oxbow_info, file = "data_fmt/oxbow_connectivity.RDS")
 
+
 # map ---------------------------------------------------------------------
 
 ggplot(sf_line) +
@@ -128,3 +129,17 @@ ggplot(sf_line) +
 ggsave(file = "output/figure_map.pdf",
        width = 7,
        height = 9)
+
+
+# plot --------------------------------------------------------------------
+
+## load data
+oxbow_info <- readRDS("data_fmt/oxbow_connectivity.RDS")
+
+attach(oxbow_info)
+
+
+plot(occurrence, connectivity)
+abline(lm(occurrence~connectivity))
+lines(lowess(connectivity,occurrence), col="blue")   
+
