@@ -152,7 +152,7 @@ ggplot(sf_line) + # base map of stream lines
              shape = 16) + 
   geom_point(data = sf_stream_snapped, aes(x = X1, y = Y1), # stream sites
              aes(shape = occurrence)) + # shape based on occurrence
-  scale_shape_manual(values=c(0, 21)) 
+  scale_shape_manual(values = c(0, 21))
   
 
 ggsave(file = "output/figure_map.pdf",
