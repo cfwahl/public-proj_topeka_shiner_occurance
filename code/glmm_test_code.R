@@ -26,14 +26,14 @@ mod_glmer_conn<-glmer(occurrence ~ connectivity  +(1|line_id),
 summary(mod_glmer_conn)
 
 # other working method
-glmm <- glmm(occurrence ~ connectivity, 
-             random = siteid, 
-             family.glmm = bernoulli.glmm, varcomps.names = c(siteid),
-             m = 10^4, debug = TRUE, data = oxbow_info)
+#glmm <- glmm(occurrence ~ connectivity, 
+#             random = siteid, 
+#             family.glmm = bernoulli.glmm, varcomps.names = c(siteid),
+#             m = 10^4, debug = TRUE, data = oxbow_info)
 
 
 ### glmm water quality
-mod_glmer_wq<-glmer(occurrence ~  temp + dopercent + do_mgl + turb + ph + (1|year),
+mod_glmer_wq<-glmer(occurrence ~  temp + dopercent + do_mgl + turb + ph + (1|oxbow_id),
                   data = oxbow_conn,
                   family="binomial")
 summary(mod_glmer_wq)
