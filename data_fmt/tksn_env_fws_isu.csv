@@ -1,4 +1,4 @@
-SampleID,Site,source,Date,Year,Time,State,StreamName,Lat,Long,PrimaryCrewMembers,HabitatType,Habitat,GearType,HUC8,Topeka_Shiner,Substrate,BankStability,Depth_m,DepthCategory,Velocity_ms,VelocityCategory,WaterTemp_C,DrainTile,DOPercent,DO_mgL,Nitrate_mgL,Ammonium_mgL,Turbidity_NTU,Chloride_mgL,Conductivity_?Scm,pH,SiteNotes
+SampleID,Site,source,Date,Year,Time,State,StreamName,Lat,Long,PrimaryCrewMembers,HabitatType,Habitat,GearType,HUC8,Topeka_Shiner,Substrate,BankStability,Depth_m,DepthCategory,Velocity_ms,VelocityCategory,WaterTemp_C,DrainTile,DOPercent,DO_mgL,Nitrate_mgL,Ammonium_mgL,Turbidity_NTU,Chloride_mgL,Conductivity_Scm,pH,SiteNotes
 219,52417-1,ISU,24-May-17,2017,,,Trib_to_Rock_River,43.92928683,-96.18498865,,Restored_oxbow,oxbow,,,31,,,,,,,26,,,7.19,,,22.2,,508.7,8.3,
 220,52417-2,ISU,24-May-17,2017,,,Trib_to_Rock_River,43.93174708,-96.18571855,,Restored_oxbow,oxbow,,,223,,,,,,,24.36,,,5.79,,,28.3,,534.8,8.3,
 218,52417-6,ISU,24-May-17,2017,,,Trib_to_Rock_River,43.86694419,-96.20430149,,Restored_oxbow,oxbow,,,221,,,,,,,25.51,,,6.51,,,25.7,,519.9,8.4,
