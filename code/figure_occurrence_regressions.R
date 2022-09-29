@@ -12,7 +12,6 @@ pacman::p_load(runjags,
 
 ## read in mcmc summary output
 mcmc_summary_up_full <- readRDS(here::here("output/mcmc_summary_up_full.rds"))
-mcmc_summary_up_full <- readRDS("output/mcmc_summary_up_full.rds")
 
 # common data -------------------------------------------------------------
 
@@ -21,20 +20,20 @@ df_s <- mcmc_summary_up_full %>%
   as_tibble() %>% 
   filter(str_detect(param, "s_hat\\[.{1,}\\]")) %>% # remove alpha/beta, only want s_hat
   mutate(siteid = as.numeric(str_extract(param, "\\d{1,}"))) %>% 
-  select(siteid,
-         s = `50%`) # select only siteid and connectivity value, or s
+  dplyr::select(siteid,
+                s = `50%`) # select only siteid and connectivity value, or s
 
 ## data used for analysis
-df_actual_occurrence <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_2_5km2.gpkg") %>% 
+df_actual_occurrence <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg") %>% 
   as_tibble() %>%
-  filter(!is.na(occrrnc)) %>%  # filter out NA data for occurrence 
+  filter(!is.na(occurrence)) %>%  # filter out NA data for occurrence 
   left_join(df_s,
             by = "siteid")
 
 ## regression slopes  
 df_beta <- mcmc_summary_up_full %>% 
-  select(param,
-         median = `50%`) %>% # select param and median columns 
+  dplyr::select(param,
+                median = `50%`) %>% # select param and median columns 
   filter(str_detect(string = param,
                     pattern = "mu_r|beta\\[.{1,}\\]")) %>% # keep only beta and mu values
   mutate(param = factor(param,
@@ -42,20 +41,21 @@ df_beta <- mcmc_summary_up_full %>%
                                    paste0("beta[", 1:5, "]")))) %>% 
   arrange(param) # move mu_r to the top
 
+# predictor 
 df_prediction <- df_actual_occurrence %>% 
-  summarize(across(.cols = c(starts_with("frc"), frac_gr, tmp_ssn, area, prcp_wt, s),
+  summarize(across(.cols = c(frac_agri, temp_season, area, precip_wet, s),
                    .fns = function(x) seq(from = min(x, na.rm = T),
                                           to = max(x, na.rm = T),
-                                          length = 100))) %>% # select these variables
-  mutate(mean_agri = mean(df_actual_occurrence$frac_gr), # add columns with mean values for these variables 
-         mean_temp = mean(df_actual_occurrence$tmp_ssn),
+                                          length = 100))) %>% # dplyr::select these variables
+  mutate(mean_agri = mean(df_actual_occurrence$frac_agri), # add columns with mean values for these variables 
+         mean_temp = mean(df_actual_occurrence$temp_season),
          mean_area = mean(df_actual_occurrence$area),
-         mean_precip = mean(df_actual_occurrence$prcp_wt),
+         mean_precip = mean(df_actual_occurrence$precip_wet),
          mean_s = mean(df_actual_occurrence$s))
 
 x_name <- df_prediction %>% 
-  select(!starts_with("mean")) %>% 
-  colnames() # select the 9 column names that do not start with "mean"
+  dplyr::select(!starts_with("mean")) %>% 
+  colnames() # dplyr::select the 9 column names that do not start with "mean"
 
 
 # prediction --------------------------------------------------------------
@@ -65,15 +65,15 @@ df_y <- foreach(i = 1:length(x_name),
                 .combine = bind_rows) %do% {
                   
                   X <- df_prediction %>% 
-                    select(starts_with("mean")) %>% # extract mean value for all rows combined
+                    dplyr::select(starts_with("mean")) %>% # extract mean value for all rows combined
                     data.matrix()
                   
                   ## replace the column of the predictor of interest
                   x_focus <- df_prediction %>% 
-                    select(x_name[i]) %>% 
-                    pull()
+                    dplyr::select(x_name[i]) %>% # select specific column for each loop
+                    pull() # make vector
                   
-                  X[, i] <- x_focus # THIS LINE DOES NOT WORK FOR ME, SCRIPT OUT OF BOUNDS
+                  X[, i] <- x_focus 
                   M <- model.matrix(~ X)
                   
                   y <- c(boot::inv.logit(M %*% pull(df_beta, median)))
@@ -99,7 +99,7 @@ df_y %>%
              y = y)) +
   geom_line() +
   geom_point(data = df_data_l,
-             aes(y = occrrnc),
+             aes(y = occurrence),
              alpha = 0.2) +
   facet_wrap(facets = ~ focus,
              scales = "free_x",
@@ -114,7 +114,7 @@ df_y %>%
   theme(strip.background = element_blank(),
         strip.placement = "outside",
         axis.title.x = element_blank())
-  
+
 
 
 # caterpillar bar plot -----------------------------------------------------

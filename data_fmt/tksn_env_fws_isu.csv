@@ -146,7 +146,7 @@ SampleID,Site,source,Date,Year,Time,State,StreamName,Lat,Long,PrimaryCrewMembers
 15MNRKKNZ05,KE1A,FWS,6/4/2015,2015,1235,MN,Kanaranzi Creek,43.641,-95.916,"Emerson, Utrup, Mauldin, Kenney",stream,stream,SN,,0,,Light to Moderate Degredation,0.07,,0.235,,20.47,,123.6,10.73,50.06,0.02,25.3,11125,797.8,6.88,Incised River Channel
 16MNRKKNZ61,KE1A,FWS,6/14/2016,2016,845,MN,Kanaranzi Creek,43.652,-95.931,"Emerson, Ralston, Loechner, Passaro",stream,stream,,Rock,0,,Light to Moderate Degredation,0.55,,0.49,,19.05,,100.3,7.76,31.17,0.35,24.1,49.11,841,8.08,
 16MNRKKNZ88,KELLEN16,FWS,6/28/2016,2016,1150,MN,Kanaranzi Creek,43.655,-95.894,"Emerson, McClure, Keuler",stream,stream,,Rock,0,,Light to Moderate Degredation,0.58,,0.53,,19.4,,119.2,9.15,23.3,0.32,35,58.85,847.4,8.06,
-17MNRKCPPD19,KR1,FWS,6/1/2017,2017,1525,MN,Champepedan Creek,43.763,-96.048,"Emerson, Utrup",oxbow,oxbow,,,3,,Light to Moderate Degradation,,Deep,,Still,222.6,,140.4,10.18,2.73,0.1,31.5,78.47,777.1,8.6,
+17MNRKCPPD19,KR1,FWS,6/1/2017,2017,1525,MN,Champepedan Creek,43.763,-96.048,"Emerson, Utrup",oxbow,oxbow,,,3,,Light to Moderate Degradation,,Deep,,Still,22.26,,140.4,10.18,2.73,0.1,31.5,78.47,777.1,8.6,
 16MNRKCPPD105,KR123A,FWS,7/27/2016,2016,1155,MN,Champepedan Creek,43.761,-96.05,"McClure, Emerson",stream,stream,,Rock,1,,Heavily Degraded,0.37,,0.61,,23.35,,122.9,8.69,6.1,2.95,9.5,32.14,818.6,8.04,
 17MNRKCPPD20,KR123A,FWS,6/1/2017,2017,1540,MN,Champepedan Creek,43.763,-96.049,Emerson,stream,stream,,,0,,Heavily Degraded,,Mid-depth,,Slow,19.36,,131.6,10.09,35.22,0.08,43.1,82.69,799.4,8.7,
 17MNRKCPPD17,KR2,FWS,6/1/2017,2017,1545,MN,Champepedan Creek,43.763,-96.05,Emerson,oxbow,oxbow,,,0,,Light to Moderate Degradation,,Deep,,Still,24.28,,38.6,2.68,19.03,0.19,86.3,76.13,681.7,8.41,
@@ -306,7 +306,7 @@ SampleID,Site,source,Date,Year,Time,State,StreamName,Lat,Long,PrimaryCrewMembers
 17MNBSFDUT77,ST1(b),FWS,6/14/2017,2017,1140,MN,Flandreau Creek Tributary,44.153,-96.282,"Emerson, Utrup, Appel, ISU",oxbow,oxbow,,,7,,.,.,.,,.,.,.,.,.,.,.,.,.,.,.,
 15MNBSFDUT44,ST1A,FWS,6/23/2015,2015,1400,MN,Flandreau Creek Tributary,44.153,-96.282,"Emerson, Ralston, Mauldin",stream,stream,SN,,0,,Light to Moderate Degredation,0.16,,0.54,,19.8,,86.4,7.56,34.82,0.07,42,1539,717.2,6.69,"Pipestone CR10 Stream Realignment. Banks not vegetated yet, seeing minimal erosion. "
 16MNBSFDUT42,ST1A,FWS,5/19/2016,2016,1135,MN,Flandreau Creek Tributary,44.153,-96.281,"Emerson, Riens, Mauldin, ISU",stream,stream,,Big Sioux,0,,Light to Moderate Degredation,0.34,,0.53,,15.3,,128.8,10.76,16.6,0.06,5.2,36.53,745.2,8.28,
-17MNRKKNZ43,SV1,FWS,5/22/2017,2017,1400,MN,Kanaranzi Creek,43.637,-95.961,"Emerson, Utrup",oxbow,oxbow,,,0,,Stable,,Deep,,Still,12.57,,126.9,11.26,71.55,0.17,3.1,429.7,876.3,837,
+17MNRKKNZ43,SV1,FWS,5/22/2017,2017,1400,MN,Kanaranzi Creek,43.637,-95.961,"Emerson, Utrup",oxbow,oxbow,,,0,,Stable,,Deep,,Still,12.57,,126.9,11.26,71.55,0.17,3.1,429.7,876.3,8.37,
 18MNRKKNZ56,SV1,FWS,2018,2018,,MN,Kanaranzi Creek,43.637,-95.961,"HeidiKeuler,KimEmerson,CoryBraastad,Others",oxbow,oxbow,SN,,5,,moderate,,0.475 - 0.914,,,21,yes,59.6,,1.84,,63.2,,857,,
 16MNRKKNZ65,SV1A,FWS,6/14/2016,2016,1200,MN,Kanaranzi Creek,43.637,-95.961,Emerson,stream,stream,,Rock,0,,Light to Moderate Degredation,0.67,,0.82,,21.29,,112.1,8.28,25.76,0.42,32.5,73.56,865.7,8.13,
 17MNBSBVR15,TS1,FWS,6/1/2017,2017,1240,MN,Beaver Creek,43.745,-96.261,Emerson,oxbow,oxbow,,,21,,Light to Moderate Degradation,,Deep,,Still,17.95,,122,9.66,3.86,0.02,69.2,23.19,440.1,8.27,
