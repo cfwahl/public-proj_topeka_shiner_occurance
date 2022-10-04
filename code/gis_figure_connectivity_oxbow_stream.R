@@ -155,8 +155,24 @@ ggplot(df_oxbow_snap,
   geom_point() 
 
 # basic scatterplot and best line of fit
-plot(df_oxbow_snap$occurrence, df_oxbow_snap$connectivity)
-abline(lm(df_oxbow_snap$connectivity ~ df_oxbow_snap$occurrence))
+plot(df_oxbow_snap2$occurrence, df_oxbow_snap2$connectivity)
+abline(lm(df_oxbow_snap2$connectivity ~ df_oxbow_snap2$occurrence))
+
+#  plot of stream occurrence ------------------------------------------
+
+## to link to line feature, use st_join()
+df_stream_conn <- st_join(x = df_stream_occ,
+                          y = sf_line,
+                          join = st_is_within_distance,
+                          dist = 10) %>% # join two features, then make as tibble data frame
+  as_tibble()
+
+# plot of occurrence and connectivity
+ggplot(df_stream_conn,
+       aes(x = connectivity,
+           y = occurrence))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
 
 # export --------------------------------------------------------
 
@@ -175,6 +191,5 @@ st_write(df_oxbow_snap,
 
 # this will recall code in R script
 saveRDS(df_oxbow_snap, file = "data_fmt/oxbow_connectivity.RDS")
-
 
 
