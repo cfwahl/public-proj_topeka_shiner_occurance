@@ -193,3 +193,7 @@ st_write(df_oxbow_snap,
 saveRDS(df_oxbow_snap, file = "data_fmt/oxbow_connectivity.RDS")
 
 
+
+# touches example ---------------------------------------------------------
+
+st_touches(sf_line, sparse = TRUE)
