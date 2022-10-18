@@ -243,39 +243,23 @@ closeness <- closeness(graph)
 # shortest paths between two nodes
 betweenness <- betweenness(graph)
 
-## Reach at k=2
-reach_2 <- (ego_size(graph, 2)-1)/(vcount(graph)-1)
-
-## Reach at k=3
-reach_3 <- (ego_size(graph, 3)-1)/(vcount(graph)-1)
-
-# compare different centrality scores
-centralities <- cbind(degree, 
-                      eig, 
-                      hub,
-                      authority,
-                      closeness,
-                      reach_2, 
-                      reach_3, 
-                      betweenness)
-
-# examine how correlated the different degrees are to each other
-round(cor(centralities), 2)
 
 
 
-centr_eigen(graph,
-  directed = FALSE,
-  scale = TRUE,
-  options = arpack_defaults,
-  normalized = TRUE)
+V(graph)$degree <- degree(graph)                        # Degree centrality
+V(graph)$eig <- evcent(graph)$vector                    # Eigenvector centrality
+V(graph)$hubs <- hub.score(graph)$vector                # "Hub" centrality
+V(graph)$authorities <- authority.score(graph)$vector   # "Authority" centrality
+V(graph)$closeness <- closeness(graph)                  # Closeness centrality
+V(graph)$betweenness <- betweenness(graph)              # Vertex betweenness centrality
 
-alpha_centrality(graph, 
-                 nodes = V(graph), 
-                 alpha = 1, 
-                 loops = FALSE, 
-                 exo = 1, 
-                 weights = NULL, 
-                 tol = 1e-07, 
-                 sparse = TRUE )
+centrality <- data.frame(row.names   = V(graph)$name,
+                         degree      = V(graph)$degree,
+                         closeness   = V(graph)$closeness,
+                         betweenness = V(graph)$betweenness,
+                         eigenvector = V(graph)$eig,
+                         hub         = V(graph)$hubs, 
+                         authorities = V(graph)$authorities)
+
+
 
