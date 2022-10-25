@@ -134,13 +134,13 @@ ggplot(sf_line) + # base map of stream lines
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
   labs(color = "Immigration potential") + # label legend 
   theme_minimal() +
-  ggtitle("Minnesota watersheds and Oxbow Locations") +
-  geom_point(data = sf_point_snapped, aes(x = X1, y = Y1), # oxbow sites
+    geom_point(data = sf_point_snapped, aes(x = X1, y = Y1), # oxbow sites
              shape = 16, size = 1, color = 'green') + # define point shape and color
   geom_point(data = sf_stream_snapped_1, aes(x = X1, y = Y1), # stream sites (present)
              shape = 16, size = 1, color = 'blue') + # define point shape and color
   geom_point(data = sf_stream_snapped_0, aes(x = X1, y = Y1), # stream sites (absent)
-             shape = 16, size = 1, color = 'red') # define point shape and color
+             shape = 16, size = 1, color = 'red') + # define point shape and color
+  xlab("") + ylab("")
 
 # save map
 ggsave(file = "output/figure_map_stream_oxbows.pdf",

@@ -109,8 +109,8 @@ oxbow_conn$area <- scale(oxbow_conn$area)
 # glmm --------------------------------------------------------------------
 
 ### glmm (lme4) connectivity
-mod_glmer_conn <- glmer(occurrence ~ connectivity + temp + dopercent + 
-                        do_mgl + turb + ph + area + (1|line_id),
+mod_glmer_conn <- glmer(occurrence ~ connectivity +  temp + dopercent + 
+                        do_mgl + turb + ph + area +  (1|line_id),
                   data = oxbow_conn, family="binomial")
 
 summary(mod_glmer_conn)
