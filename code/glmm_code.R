@@ -13,6 +13,16 @@ pacman::p_load(tidyverse,
 # read oxbow connectivity 
 oxbow_conn <- readRDS("data_fmt/oxbow_connectivity.rds")
 
+# read shapefile to examine different watersheds independently 
+oxbow <- sf::st_read(dsn = "data_fmt/vector/epsg3722_oxbow_snap_2.gpkg") 
+
+# subset watersheds -------------------------------------------------------
+
+ws2 <- filter(oxbow, watershed == "2")
+ws3 <- filter(oxbow, watershed == "3")
+ws4 <- filter(oxbow, watershed == "4")
+ws6 <- filter(oxbow, watershed == "6")
+ws7 <- filter(oxbow, watershed == "7")
 
 # prep distance column  ---------------------------------------------------
 
@@ -86,13 +96,42 @@ ggplot(oxbow_conn,
   geom_point()
 
 
-## plot of occurrence and distance  
+## plot of connectivity and temperature  
 ggplot(oxbow_conn,
-       aes(x = distance,
-           y = occurrence))  +
+       aes(x = connectivity,
+           y = temp))  +
   geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(family = "binomial")) + 
+              method.args = list(family = "Gamma")) + 
   geom_point()
+
+## plot of connectivity and temperature  
+ggplot(oxbow_conn,
+       aes(x = connectivity,
+           y = dopercent))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
+
+## plot of connectivity and temperature  
+ggplot(oxbow_conn,
+       aes(x = connectivity,
+           y = do_mgl))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
+
+## plot of connectivity and temperature  
+ggplot(oxbow_conn,
+       aes(x = connectivity,
+           y = turb))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
+
+## plot of connectivity and temperature  
+ggplot(oxbow_conn,
+       aes(x = connectivity,
+           y = pH))  +
+  geom_smooth(method = 'glm', se = TRUE) + 
+  geom_point()
+
 
 # scale variables  --------------------------------------------------------
 
