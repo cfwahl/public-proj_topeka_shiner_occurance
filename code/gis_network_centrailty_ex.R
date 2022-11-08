@@ -17,6 +17,8 @@ pacman::p_load(igraph,
 ## stream polyline
 sf_line2 <- sf::st_read(dsn = "data_fmt/vector/espg3722_stream_connectivity_2.gpkg") 
 
+## oxbow point
+sf_ox_point <- sf::st_read(dsn = "data_fmt/vector/epsg3722_oxbow_snap_2.gpkg") 
 
 # network centrality eigenvector ---------------------------------------------------------
 
@@ -132,6 +134,15 @@ ws6 <- filter(df_m, watershed == "6")
 ws7 <- filter(df_m, watershed == "7")
 ws8 <- filter(df_m, watershed == "8")
 
+
+#  join occurrence with eigen ---------------------------------------------
+
+df_e <- sf_ox_point %>%
+  as_tibble %>%
+  left_join(as_tibble(df_m),
+            by = c("line_id"))
+
+
 # visualize relationship ----------------------------------------------------------
 
 
@@ -140,7 +151,8 @@ ws8 <- filter(df_m, watershed == "8")
 ggplot(df_m,
        aes(x = eigen,
            y = connectivity))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(family = "Gamma")) + 
   geom_point()
 
 
@@ -184,6 +196,22 @@ ggplot(df_m,
               method.args = list(gaussian(link = 'log'))) + 
   geom_point()
 
+
+## eigenvector X oxbow occurrence
+## linear model 
+ggplot(df_e,
+       aes(x = eigen,
+           y = occurrence))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
+
+## eigenvector X oxbow occurrence
+## linear model 
+ggplot(df_e,
+       aes(x = connectivity.y,
+           y = occurrence))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
 
 
 # glmm --------------------------------------------------------------------

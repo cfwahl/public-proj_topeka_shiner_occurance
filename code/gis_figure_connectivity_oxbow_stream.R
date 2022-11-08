@@ -134,12 +134,12 @@ ggplot(sf_line) + # base map of stream lines
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
   labs(color = "Immigration potential") + # label legend 
   theme_minimal() +
-    geom_point(data = sf_point_snapped, aes(x = X1, y = Y1), # oxbow sites
-             shape = 16, size = 1, color = 'green') + # define point shape and color
+  geom_point(data = sf_point_snapped, aes(x = X1, y = Y1), # oxbow sites
+             shape = 16, size = 0.3, color = 'green') + # define point shape and color
   geom_point(data = sf_stream_snapped_1, aes(x = X1, y = Y1), # stream sites (present)
-             shape = 16, size = 1, color = 'blue') + # define point shape and color
+             shape = 16, size = 0.3, color = 'green') + # define point shape and color
   geom_point(data = sf_stream_snapped_0, aes(x = X1, y = Y1), # stream sites (absent)
-             shape = 16, size = 1, color = 'red') + # define point shape and color
+             shape = 16, size = 0.3, color = 'red') + # define point shape and color
   xlab("") + ylab("")
 
 # save map
@@ -155,8 +155,8 @@ ggplot(df_oxbow_snap,
   geom_point() 
 
 # basic scatterplot and best line of fit
-plot(df_oxbow_snap2$occurrence, df_oxbow_snap2$connectivity)
-abline(lm(df_oxbow_snap2$connectivity ~ df_oxbow_snap2$occurrence))
+plot(df_oxbow_snap$occurrence, df_oxbow_snap$connectivity)
+abline(lm(df_oxbow_snap$connectivity ~ df_oxbow_snap$occurrence))
 
 #  plot of stream occurrence ------------------------------------------
 
@@ -171,7 +171,8 @@ df_stream_conn <- st_join(x = df_stream_occ,
 ggplot(df_stream_conn,
        aes(x = connectivity,
            y = occurrence))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(family = "binomial")) + 
   geom_point()
 
 # export --------------------------------------------------------
