@@ -146,6 +146,7 @@ pacman::p_load(igraph,
 ## stream polyline
 sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_str_net_5km2.shp") 
 
+site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp") 
 
 # network centrality test ---------------------------------------------------------
 
@@ -157,7 +158,9 @@ df_i <- lapply(X = 1:n_distinct(sf_line$watershed),
                  y <- df_subset %>% 
                    st_touches() %>% 
                    graph.adjlist() %>% 
-                   eigen_centrality(directed = FALSE)
+                   eigen_centrality(directed = FALSE,
+                                    scale = TRUE,
+                                    weights = NULL)
                  
                  out <- df_subset %>% 
                    mutate(eigen = y$vector) %>% 
@@ -167,11 +170,6 @@ df_i <- lapply(X = 1:n_distinct(sf_line$watershed),
                }) %>% 
   bind_rows()
 
-# subset watersheds -------------------------------------------------------
-
-ws1 <- filter(df_i, watershed == "1")
-ws2 <- filter(df_i, watershed == "2")
-
 
 #  join occurrence with eigen ---------------------------------------------
 
@@ -180,6 +178,10 @@ df_e <- site_info %>%
  left_join(as_tibble(df_i),
             by = c("line_id"))
   
+# subset watersheds -------------------------------------------------------
+
+ws1 <- filter(df_e, watershed == "1")
+ws2 <- filter(df_e, watershed == "2")
 
 # visualize relationship ----------------------------------------------------------
 
