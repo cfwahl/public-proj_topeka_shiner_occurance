@@ -144,7 +144,7 @@ pacman::p_load(igraph,
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_str_net_5km2.shp") 
+sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_str_net_5km2_2.shp") 
 
 site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp") 
 
@@ -158,9 +158,7 @@ df_i <- lapply(X = 1:n_distinct(sf_line$watershed),
                  y <- df_subset %>% 
                    st_touches() %>% 
                    graph.adjlist() %>% 
-                   eigen_centrality(directed = FALSE,
-                                    scale = TRUE,
-                                    weights = NULL)
+                   eigen_centrality(directed = FALSE)
                  
                  out <- df_subset %>% 
                    mutate(eigen = y$vector) %>% 
@@ -182,13 +180,15 @@ df_e <- site_info %>%
 
 ws1 <- filter(df_e, watershed == "1")
 ws2 <- filter(df_e, watershed == "2")
+ws3 <- filter(df_e, watershed == "3")
+ws4 <- filter(df_e, watershed == "4")
 
 # visualize relationship ----------------------------------------------------------
 
 
 ## eigenvector X connectivity
 ## linear model 
-ggplot(df_e,
+ggplot(ws4,
        aes(x = eigen,
            y = occurrence)) +
   geom_smooth(method = 'lm', se = TRUE) + 
