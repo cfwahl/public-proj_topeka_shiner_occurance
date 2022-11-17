@@ -132,6 +132,10 @@ site_info %>%
            drivers = "ESRI Shapefile",
            append = FALSE)
 
+
+
+
+
 # network centrality ------------------------------------------------------
 
 pacman::p_load(igraph,
@@ -144,7 +148,7 @@ pacman::p_load(igraph,
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_str_net_5km2_2.shp") 
+sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_str_net_5km2_3.shp") 
 
 site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp") 
 
@@ -194,3 +198,12 @@ ggplot(ws4,
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
+
+# maps --------------------------------------------------------------------
+
+# map of network centrality scores from the  subwatersheds
+ggplot(df_i) + # base map of stream lines
+  geom_sf(aes(color = eigen))+ # heat map for connectivity 
+  MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
+  labs(color = "Eigenvector") + # label legend 
+  theme_minimal()

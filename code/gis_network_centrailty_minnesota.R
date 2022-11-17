@@ -227,3 +227,14 @@ mod_lmer_conn <- lmer(connectivity ~ eigen + (1|watershed),
                         data = df_m)
 
 summary(mod_lmer_conn)
+
+
+
+# maps --------------------------------------------------------------------
+
+# map of network centrality scores from the eight subwatersheds
+ggplot(df_m) + # base map of stream lines
+  geom_sf(aes(color = eigen))+ # heat map for connectivity 
+  MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
+  labs(color = "Eigenvector") + # label legend 
+  theme_minimal()
