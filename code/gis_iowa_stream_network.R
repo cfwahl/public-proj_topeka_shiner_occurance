@@ -162,7 +162,10 @@ df_i <- lapply(X = 1:n_distinct(sf_line$watershed),
                  y <- df_subset %>% 
                    st_touches() %>% 
                    graph.adjlist() %>% 
-                   eigen_centrality(directed = FALSE)
+                   eigen_centrality(directed = FALSE,
+                                    scale = TRUE,
+                                    weights = NULL,
+                                    options = arpack_defaults)
                  
                  out <- df_subset %>% 
                    mutate(eigen = y$vector) %>% 
