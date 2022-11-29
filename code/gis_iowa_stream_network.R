@@ -133,7 +133,75 @@ site_info %>%
            append = FALSE)
 
 
+# Unnested watershed delineation ------------------------------------------
 
+### create points for each line segment for watersheds
+
+#add in stream network
+stream <- st_read(dsn = "data_fmt/vector",
+                  layer = "epsg4326_iowa_str_net_5km2_dummy") 
+
+# create point for each stream segment
+ia_dummmy <- sf::st_point_on_surface(stream) %>%
+  mutate(siteid = row_number())
+
+# export ------------------------------------------------------------------
+
+
+# site info, one point representing all sites along a stream segment
+st_write(ia_dummmy,
+         dsn = "data_fmt/vector/epsg4326_ia_dummy_sites.shp",
+         append = FALSE)
+
+# - This function generate multiple rasterfiles, thus I have made different folders to save the file
+wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_ia_flow_dir_clip_reclass_5km2.tif",
+                  pour_pts= "data_fmt/vector/epsg4326_ia_dummy_sites.shp", # GPKG file is not accepted. Used SHP file.
+                  output = "data_fmt/wsraster/iowa/wsrasterunnestedws.tif")
+
+# ## Read result of delineated watershed raster files
+# list.files() calls file names in the folder
+# lapply() applies function to each element
+wgs84_list_raster <- list.files("data_fmt/wsraster/iowa",
+                                full.names = TRUE) %>%
+  lapply(FUN = raster)
+
+# ## Convert rater to shape
+wgs84_sf_ws_polygon <- lapply(wgs84_list_raster,
+                              function(x) {
+                                st_as_stars(x) %>% 
+                                  st_as_sf(merge = TRUE,
+                                           as_points = FALSE) %>% 
+                                  rename(siteid = starts_with("wsrasterunnested"))
+                              }) %>% 
+  bind_rows() %>% 
+  st_transform(crs = 3722) %>% 
+  mutate(area = units::set_units(st_area(.), "km^2")) %>% 
+  filter(area > units::set_units(5, "km^2")) %>% 
+  st_transform(crs = 4326)
+
+
+# export ------------------------------------------------------------------
+
+# watersheds
+st_write(wgs84_sf_ws_polygon,
+         dsn = "data_fmt/vector/epsg4326_ia_watersheds_dummy_5km2.shp",
+         append = FALSE)
+
+# join --------------------------------------------------------------------
+
+# add line_id from site point file to watershed polygon attribute table
+wbt_join_tables(input1 = "data_fmt/vector/epsg4326_ia_watersheds_dummy_5km2.shp",
+                pkey = "siteid",
+                input2 = "data_fmt/vector/epsg4326_ia_dummy_sites.shp",
+                fkey = "siteid",
+                import_field = "line_id")
+
+# add area from watershed polygon file to stream line attribute table
+wbt_join_tables(input1 = "data_fmt/vector/epsg4326_iowa_str_net_5km2_dummy.shp",
+                pkey = "line_id",
+                input2 = "data_fmt/vector/epsg4326_ia_watersheds_dummy_5km2.shp",
+                fkey = "line_id",
+                import_field = "area")
 
 
 # network centrality ------------------------------------------------------
@@ -148,7 +216,7 @@ pacman::p_load(igraph,
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_str_net_5km2_3.shp") 
+sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_str_net_5km2_dummy.shp") 
 
 site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp") 
 
@@ -167,8 +235,15 @@ df_i <- lapply(X = 1:n_distinct(sf_line$watershed),
                                     weights = NULL,
                                     options = arpack_defaults)
                  
+                 weight <- df_subset$area %>% 
+                   scale(center = min(.), scale = max(. - min(.))) %>% # scales from 0-1
+                   c() # combine into matrix
+                 
+                 v_w_cent <- y$vector * weight 
+                 
                  out <- df_subset %>% 
-                   mutate(eigen = y$vector) %>% 
+                   mutate(eigen = v_w_cent) %>% 
+                   #mutate(eigen = y$vector) %>%
                    relocate(eigen)
                  
                  return(out)
