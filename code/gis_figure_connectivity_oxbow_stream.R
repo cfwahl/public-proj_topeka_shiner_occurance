@@ -134,13 +134,15 @@ ggplot(sf_line) + # base map of stream lines
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
   labs(color = "Immigration potential") + # label legend 
   theme_minimal() +
-  geom_point(data = sf_point_snapped, aes(x = X1, y = Y1), # oxbow sites
-             shape = 16, size = 0.3, color = 'green') + # define point shape and color
-  geom_point(data = sf_stream_snapped_1, aes(x = X1, y = Y1), # stream sites (present)
-             shape = 16, size = 0.3, color = 'green') + # define point shape and color
-  geom_point(data = sf_stream_snapped_0, aes(x = X1, y = Y1), # stream sites (absent)
-             shape = 16, size = 0.3, color = 'red') + # define point shape and color
-  xlab("") + ylab("")
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank()) # remove lat/long from map
+  #geom_point(data = sf_point_snapped, aes(x = X1, y = Y1), # oxbow sites
+  #           shape = 16, size = 0.3, color = 'green') + # define point shape and color
+  #geom_point(data = sf_stream_snapped_1, aes(x = X1, y = Y1), # stream sites (present)
+  #           shape = 16, size = 0.3, color = 'green') + # define point shape and color
+  #geom_point(data = sf_stream_snapped_0, aes(x = X1, y = Y1), # stream sites (absent)
+  #           shape = 16, size = 0.3, color = 'red') + # define point shape and color
+  #xlab("") + ylab("")
 
 # save map
 ggsave(file = "output/figure_map_stream_oxbows.pdf",
@@ -173,7 +175,8 @@ ggplot(df_stream_conn,
            y = occurrence))  +
   geom_smooth(method = 'glm', se = TRUE,
               method.args = list(family = "binomial")) + 
-  geom_point()
+  geom_point() +
+  theme(rect = element_blank()) 
 
 # export --------------------------------------------------------
 
@@ -193,8 +196,17 @@ st_write(df_oxbow_snap,
 # this will recall code in R script
 saveRDS(df_oxbow_snap, file = "data_fmt/oxbow_connectivity.RDS")
 
+df_oxbow_snap <- readRDS(file = "data_fmt/oxbow_connectivity.RDS")
 
 
-# touches example ---------------------------------------------------------
+# figures -----------------------------------------------------------------
 
-st_touches(sf_line, sparse = TRUE)
+# Histogram of stream connectivty values
+ggplot(df_x, aes(x=connectivity)) + 
+  geom_histogram(binwidth=0.2, color="black", fill="grey") +
+  theme(rect = element_blank()) # remove grid from figure
+
+# Histogram of stream connectivty values
+ggplot(df_oxbow_snap, aes(x=connectivity)) + 
+  geom_histogram(binwidth=0.2, color="black", fill="grey") +
+  theme(rect = element_blank())

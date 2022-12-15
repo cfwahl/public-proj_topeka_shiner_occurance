@@ -15,7 +15,7 @@ pacman::p_load(igraph,
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line2 <- sf::st_read(dsn = "data_fmt/vector/espg3722_stream_connectivity_2.gpkg") 
+sf_line2 <- sf::st_read(dsn = "data_fmt/vector/espg3722_stream_connectivity.gpkg") 
 
 ## oxbow point
 sf_ox_point <- sf::st_read(dsn = "data_fmt/vector/epsg3722_oxbow_snap_2.gpkg") 
@@ -30,7 +30,7 @@ df_m <- lapply(X = 1:n_distinct(sf_line2$watershed),
          y <- df_subset %>% 
            st_touches() %>% 
            graph.adjlist() %>% 
-           eigen_centrality(directed = FALSE)
+           eigen_centrality()
          
          out <- df_subset %>% 
            mutate(eigen = y$vector) %>% 
@@ -51,7 +51,7 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
                  b <- df_subset %>% 
                    st_touches() %>% 
                    graph.adjlist() %>% 
-                   betweenness()
+                   betweenness(normalized = TRUE)
                  
                  out <- df_subset %>% 
                    mutate(between = b) %>% 
@@ -67,7 +67,7 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
 df_c <- lapply(X = 1:n_distinct(sf_line2$watershed),
                FUN = function(x) {
                  df_subset <- sf_line2 %>% 
-                   filter(watershed == x)
+                   filter(watershed == 6)
                  
                  c <- df_subset %>% 
                    st_touches() %>% 
@@ -147,14 +147,20 @@ df_e <- sf_ox_point %>%
 
 
 ## eigenvector X connectivity
-## linear model 
 ggplot(df_m,
        aes(x = eigen,
            y = connectivity))  +
   geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(family = "Gamma")) + 
+              method.args = list(Gamma(link = 'log'))) + 
   geom_point()
 
+## betweenness X connectivity
+ggplot(df_b,
+       aes(x = between,
+           y = connectivity))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(Gamma(link = 'log'))) + 
+  geom_point()
 
 ## linear model betweenness
 ggplot(df_b,
@@ -216,7 +222,7 @@ ggplot(df_e,
 
 # glmm --------------------------------------------------------------------
 
-### glmm (lme4) connectivity and eigen
+### glmm (lme4) connectivity and eigenvector
 mod_glmer_conn <- glmer(connectivity ~ eigen + (1|watershed),
                         data = df_m, family = Gamma(link = "log"))
 
@@ -224,7 +230,20 @@ summary(mod_glmer_conn)
 
 ## lmer
 mod_lmer_conn <- lmer(connectivity ~ eigen + (1|watershed),
-                        data = df_m)
+                      data = df_m)
+
+summary(mod_lmer_conn)
+
+
+### glmm (lme4) connectivity and betweenness
+mod_glmer_conn <- glmer(connectivity ~ between + (1|watershed),
+                        data = df_b, family = Gamma(link = "log"))
+
+summary(mod_glmer_conn)
+
+## lmer
+mod_lmer_conn <- lmer(connectivity ~ between + (1|watershed),
+                        data = df_b)
 
 summary(mod_lmer_conn)
 
