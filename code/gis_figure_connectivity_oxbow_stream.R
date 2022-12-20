@@ -201,12 +201,12 @@ df_oxbow_snap <- readRDS(file = "data_fmt/oxbow_connectivity.RDS")
 
 # figures -----------------------------------------------------------------
 
-# Histogram of stream connectivty values
+# Histogram of stream connectivity values
 ggplot(df_x, aes(x=connectivity)) + 
   geom_histogram(binwidth=0.2, color="black", fill="grey") +
   theme(rect = element_blank()) # remove grid from figure
 
-# Histogram of stream connectivty values
+# Histogram of stream connectivity values
 ggplot(df_oxbow_snap, aes(x=connectivity)) + 
   geom_histogram(binwidth=0.2, color="black", fill="grey") +
   theme(rect = element_blank())
