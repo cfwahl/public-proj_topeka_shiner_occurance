@@ -1,4 +1,9 @@
-# network centrality ------------------------------------------------------
+
+
+# setup -------------------------------------------------------------------
+
+# clean objects
+rm(list = ls())
 
 pacman::p_load(igraph,
                tidyverse,
@@ -16,10 +21,10 @@ site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp")
 
 # network centrality test ---------------------------------------------------------
 
-df_i <- lapply(X = 1:n_distinct(sf_line$watershed),
+df_e <- lapply(X = 1:n_distinct(sf_line$watershed),
                FUN = function(x) {
                  df_subset <- sf_line %>% 
-                   filter(watershed == 1)
+                   filter(watershed == x)
                  
                  y <- df_subset %>% 
                    st_touches() %>% 
@@ -56,21 +61,8 @@ df_b <- lapply(X = 1:n_distinct(sf_line$watershed),
                  y <- df_subset %>% 
                    st_touches() %>% 
                    graph.adjlist() %>% 
-                   betweenness(normalized = TRUE,
-                               nobigint = TRUE)
+                   betweenness(normalized = TRUE)
                  
-                 #weight <- df_subset
-                 $area %>% 
-                   #scale(center = min(.), scale = max(. - min(.))) %>% # scales from 0-1
-                   #c() # combine into matrix
-                   #group_by(watershed) %>%
-                   #summarise(area = max(area))
-                   
-                   #weight2 <- weight$area/df_subset$area 
-                   
-                   
-                   #v_w_cent <- y * weight2 
-                   
                    out <- df_subset %>% 
                    mutate(between = y) %>% 
                    relocate(between)
@@ -81,9 +73,11 @@ df_b <- lapply(X = 1:n_distinct(sf_line$watershed),
 
 #  join occurrence with eigen ---------------------------------------------
 
-df_e <- site_info %>%
+df_i <- site_info %>%
   as_tibble %>%
-  left_join(as_tibble(df_i),
+  left_join(as_tibble(df_e),
+            by = c("line_id")) %>%
+  left_join(as_tibble(df_b),
             by = c("line_id"))
 
 
@@ -92,18 +86,48 @@ df_e <- site_info %>%
 
 ## eigenvector X connectivity
 ## linear model 
-ggplot(ws4,
+ggplot(df_i,
        aes(x = eigen,
            y = occurrence)) +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
+## betweenness X connectivity
+## linear model 
+ggplot(df_i,
+       aes(x = between,
+           y = occurrence)) +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
+
+
+
+# cleanup dataframe --------------------------------------------------------------
+
+df_i <- df_i %>%
+  select(, -c(fid.x, geometry.x, fid.y, geometry.y, area.y, watershed.y)) %>%
+  rename(watershed = watershed.x,
+         area = area.x)
 
 # maps --------------------------------------------------------------------
 
-# map of network centrality scores from the  subwatersheds
-ggplot(df_b) + # base map of stream lines
-  geom_sf(aes(color = between))+ # heat map for connectivity 
+# map of eigen scores from the sub-watersheds
+ggplot(df_e) + # base map of stream lines
+  geom_sf(aes(color = eigen))+ # heat map for connectivity 
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
   labs(color = "Eigenvector") + # label legend 
   theme_minimal()
+
+# map of eigen scores from the sub-watersheds
+ggplot(df_b) + # base map of stream lines
+  geom_sf(aes(color = between))+ # heat map for connectivity 
+  MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
+  labs(color = "Betweenness") + # label legend 
+  theme_minimal()
+
+# export oxbow data------------------------------------------------------------------
+
+# this will recall code in R script
+saveRDS(df_i, file = "data_fmt/data_iowa_network_centrality.rds")
+
+df_i <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")

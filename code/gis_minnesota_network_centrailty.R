@@ -15,10 +15,18 @@ pacman::p_load(igraph,
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line2 <- sf::st_read(dsn = "data_fmt/vector/espg3722_stream_connectivity.gpkg") 
+sf_line2 <- sf::st_read(dsn = "data_fmt/vector/espg3722_stream_connectivity.gpkg") %>%
+  select(-c(STRM_VA)) # remove slope variable
 
 ## oxbow point
-sf_ox_point <- sf::st_read(dsn = "data_fmt/vector/epsg3722_oxbow_snap_2.gpkg") 
+sf_ox_point <- sf::st_read(dsn = "data_fmt/vector/epsg3722_oxbow_snap_2.gpkg") %>%
+  rename(oxbow_occurrence = occurrence) %>%
+  select(-c(distance, site, year, STRM_VAL)) # remove unneeded variables
+
+## stream point
+sf_stream_point <- sf::st_read(dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp") %>%
+  rename(stream_occurrence = occurrence)
+
 
 # network centrality eigenvector ---------------------------------------------------------
 
@@ -67,12 +75,12 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
 df_c <- lapply(X = 1:n_distinct(sf_line2$watershed),
                FUN = function(x) {
                  df_subset <- sf_line2 %>% 
-                   filter(watershed == 6)
+                   filter(watershed == x)
                  
                  c <- df_subset %>% 
                    st_touches() %>% 
                    graph.adjlist() %>% 
-                   closeness()
+                   closeness(normalized = TRUE)
                  
                  out <- df_subset %>% 
                    mutate(closeness = c) %>% 
@@ -123,30 +131,63 @@ df_a <- lapply(X = 1:n_distinct(sf_line2$watershed),
                }) %>% 
   bind_rows()
 
-# subset watersheds -------------------------------------------------------
+#  join occurrence with centrality measures ---------------------------------------------
 
-ws1 <- filter(df_m, watershed == "1")
-ws2 <- filter(df_m, watershed == "2")
-ws3 <- filter(df_m, watershed == "3")
-ws4 <- filter(df_m, watershed == "4")
-ws5 <- filter(df_m, watershed == "5")
-ws6 <- filter(df_m, watershed == "6")
-ws7 <- filter(df_m, watershed == "7")
-ws8 <- filter(df_m, watershed == "8")
-
-
-#  join occurrence with eigen ---------------------------------------------
-
-df_e <- sf_ox_point %>%
+df_ox_cent <- sf_ox_point %>%
   as_tibble %>%
   left_join(as_tibble(df_m),
-            by = c("line_id"))
+            by = c("line_id")) %>% 
+  select(-c(geom.y, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  
+  left_join(as_tibble(df_b),
+            by = c("line_id")) %>%
+  select(-c(geom.x, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
+  
+  left_join(as_tibble(df_c),
+            by = c("line_id")) %>%
+  select(-c(geom.y, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  
+  left_join(as_tibble(df_h),
+            by = c("line_id")) %>%
+  select(-c(geom.x, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
+  
+  left_join(as_tibble(df_a),
+            by = c("line_id")) %>%
+  select(-c(geom.y, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  rename(siteid = siteid.x,
+         connectivity = connectivity.x,
+         site0 = site0.x,
+         watershed = watershed.x,
+         geom = geom.x)
+
+df_strm_cent <- sf_stream_point %>%
+  as_tibble %>%
+  left_join(as_tibble(df_m),
+            by = c("line_id")) %>%
+  select(-c(siteid.y, geom)) %>%
+  
+  left_join(as_tibble(df_b),
+            by = c("line_id")) %>%
+  select(-c(geom, watershed.y, site0.y, connectivity.y, siteid.x)) %>%
+  
+  left_join(as_tibble(df_c),
+            by = c("line_id")) %>%
+  select(-c(geom, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
+  
+  left_join(as_tibble(df_h),
+            by = c("line_id")) %>%
+  select(-c(geom, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  
+  left_join(as_tibble(df_a),
+            by = c("line_id")) %>%
+  select(-c(geom, watershed.x, site0.x, connectivity.x, siteid.y)) %>%
+  rename(siteid = siteid.x)
 
 
 # visualize relationship ----------------------------------------------------------
 
-
-## eigenvector X connectivity
+### glm 
+# eigen model df
 ggplot(df_m,
        aes(x = eigen,
            y = connectivity))  +
@@ -154,68 +195,56 @@ ggplot(df_m,
               method.args = list(Gamma(link = 'log'))) + 
   geom_point()
 
-## betweenness X connectivity
-ggplot(df_b,
-       aes(x = between,
+# stream df
+ggplot(df_strm_cent,
+       aes(x = eigen,
            y = connectivity))  +
   geom_smooth(method = 'glm', se = TRUE,
               method.args = list(Gamma(link = 'log'))) + 
   geom_point()
 
-## linear model betweenness
+# oxbow df
+ggplot(df_ox_cent,
+       aes(x = eigen,
+           y = connectivity))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(Gamma(link = 'log'))) + 
+  geom_point()
+
+
+### linear model
+# betweenness model
 ggplot(df_b,
        aes(x = between,
            y = connectivity))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
+ggplot(df_strm_cent,
+       aes(x = between,
+           y = connectivity))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
 
-## linear model closeness
-ggplot(df_c,
-       aes(x = closeness,
+ggplot(df_ox_cent,
+       aes(x = between,
            y = connectivity))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
 
-## linear model hub
-ggplot(df_h,
-       aes(x = hub,
-           y = connectivity))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
-  geom_point()
-
-## linear model authority
-ggplot(df_a,
-       aes(x = authority,
-           y = connectivity))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
-  geom_point()
-
-
-## plot of eigenvector X connectivity  
-# glm with gamma distribution
-ggplot(df_m,
+### occurrence
+## lm - stream 
+ggplot(df_strm_cent,
        aes(x = eigen,
-           y = connectivity))  +
-  geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(gaussian(link = 'log'))) + 
-  geom_point()
-
-
-## eigenvector X oxbow occurrence
-## linear model 
-ggplot(df_e,
-       aes(x = eigen,
-           y = occurrence))  +
+           y = stream_occurrence))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
-## eigenvector X oxbow occurrence
-## linear model 
-ggplot(df_e,
-       aes(x = connectivity.y,
-           y = occurrence))  +
+# oxbow
+ggplot(df_ox_cent,
+       aes(x = eigen,
+           y = oxbow_occurrence))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
@@ -251,9 +280,34 @@ summary(mod_lmer_conn)
 
 # maps --------------------------------------------------------------------
 
-# map of network centrality scores from the eight subwatersheds
+# map of eigen scores 
 ggplot(df_m) + # base map of stream lines
   geom_sf(aes(color = eigen))+ # heat map for connectivity 
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
   labs(color = "Eigenvector") + # label legend 
   theme_minimal()
+
+# map of betweenness scores 
+ggplot(df_b) + # base map of stream lines
+  geom_sf(aes(color = between))+ # heat map for connectivity 
+  MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
+  labs(color = "Eigenvector") + # label legend 
+  theme_minimal()
+
+# map of closeness scores
+ggplot(df_c) + # base map of stream lines
+  geom_sf(aes(color = closeness))+ # heat map for connectivity 
+  MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
+  labs(color = "Eigenvector") + # label legend 
+  theme_minimal()
+
+
+# export data ------------------------------------------------------------------
+
+# export stream network centrality scores
+saveRDS(df_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
+
+# export oxbow network centrality scores
+saveRDS(df_strm_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
+
+
