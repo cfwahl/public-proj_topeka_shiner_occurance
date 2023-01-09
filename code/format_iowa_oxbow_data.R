@@ -5,13 +5,7 @@
 rm(list = ls())
 
 # load libaries
-pacman::p_load(sf,
-               raster,
-               stars,
-               whitebox,
-               mapview,
-               tidyverse, 
-               sp)
+source(here::here("code/library.R")) 
 
 # read culled data ---------------------------------------------------------------
 

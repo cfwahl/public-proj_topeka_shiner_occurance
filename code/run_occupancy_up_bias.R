@@ -4,12 +4,8 @@
 # clean objects
 rm(list = ls())
 
-# Load packages
-pacman::p_load(runjags,
-               tidyverse,
-               MCMCvis,
-               mcmcOutput,
-               foreach)
+# load libraries
+source(here::here("code/library.R")) 
 
 f2v <- function(x) {
   tibble(value = c(x),
@@ -21,16 +17,19 @@ f2v <- function(x) {
 
 # Read in the data
 # upstream distance matrix 
-load("data_fmt/distance_matrix_dummy.RData")
+#load("data_fmt/distance_matrix_dummy.Rdata")
+datalist <- readRDS(file = "data_fmt/data_minnesota_distance_matrix_dummy_real.rds")
+m_u <- datalist$m_u
+m_d <- datalist$m_d
 
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_2_5km2.gpkg") %>% 
+df_landuse <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg") %>% 
   as_tibble() %>%
   arrange(siteid) %>% 
-  mutate(dummy = ifelse(is.na(occrrnc), 1, 0)) %>% 
-  relocate(watrshd)
+  mutate(dummy = ifelse(is.na(occurrence), 1, 0)) %>% 
+  relocate(watershed)
 
 df_test <- df_landuse %>% 
-  group_by(dummy, watrshd) %>% 
+  group_by(dummy, watershed) %>% 
   sample_frac(size = 1) %>% # sample fraction of total data
   ungroup() %>% 
   mutate(site0 = as.numeric(factor(siteid))) %>% 
@@ -39,8 +38,8 @@ df_test <- df_landuse %>%
 
 # assign variables
 # capitalize "data" in Jags codes to distinguish from parameters
-df_data <- filter(df_test, !is.na(occrrnc))
-df_dummy <- filter(df_test, is.na(occrrnc))
+df_data <- filter(df_test, !is.na(occurrence))
+df_dummy <- filter(df_test, is.na(occurrence))
 
 ## for actual sites
 U <- m_u[df_data$siteid, df_data$siteid]
@@ -80,16 +79,16 @@ names(list_d_hat) <- c("U", "D", "TD")
 
 ## data ####
 d_jags <- list(# actual data
-  Y = df_data$occrrnc,
-  Agr = df_data$frac_gr,
-  Temp = df_data$tmp_ssn,
+  Y = df_data$occurrence,
+  Agr = df_data$frac_agri,
+  Temp = df_data$temp_season,
   Area = df_data$area,
-  Precp_wet = df_data$prcp_wt,
-  Watshed = df_data$watrshd,
+  Precp_wet = df_data$precip_wet,
+  Watshed = df_data$watershed,
   N_sample = n_distinct(df_data$siteid),
-  N_watshed = n_distinct(df_data$watrshd),
+  N_watshed = n_distinct(df_data$watershed),
   M = M,
-  Incidence = df_data$occrrnc,
+  Incidence = df_data$occurrence,
   V_U = list_d$U$value,
   V_D = list_d$D$value,
   Col = list_d$U$col,
@@ -97,11 +96,11 @@ d_jags <- list(# actual data
   Ndim = length(list_d$U$value),
   
   # dummy data
-  Agr_hat = df_dummy$frac_gr,
-  Temp_hat = df_dummy$tmp_ssn,
+  Agr_hat = df_dummy$frac_agri,
+  Temp_hat = df_dummy$temp_season,
   Area_hat = df_dummy$area,
-  Precp_wet_hat = df_dummy$prcp_wt,
-  Watshed_hat = df_dummy$watrshd,
+  Precp_wet_hat = df_dummy$precip_wet,
+  Watshed_hat = df_dummy$watershed,
   N_dummy = n_distinct(df_dummy$siteid),
   M_hat = M_hat,
   V_U_hat = list_d_hat$U$value,
@@ -165,12 +164,16 @@ MCMCtrace(post$mcmc,
           filename = "mcmc_trace_up_full")
 
 # ## save mcmc_summary
-save(mcmc_summary_up_full,
-     file = "output/mcmc_summary_up_full.RData")
+#save(mcmc_summary_up_full,
+#     file = "output/mcmc_summary_up_full.RData")
+
+saveRDS(mcmc_summary_up_full, file = "output/mcmc_summary_up_full.rds")
 
 # ## save post$mcmc for plots
-save(post,
-     file = "output/post_summary_up_full.RData")
+#save(post,
+#     file = "output/post_summary_up_full.RData")
+
+saveRDS(post, file = "output/post_summary_up_full.rds")
 
 # # waic --------------------------------------------------------------------
 # 

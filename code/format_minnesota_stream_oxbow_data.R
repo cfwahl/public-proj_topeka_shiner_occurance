@@ -3,9 +3,9 @@
 # setup -------------------------------------------------------------------
 
 ## loading packages
-pacman::p_load(tidyverse,
-               sf)
+source(here::here("code/library.R")) 
 
+# clean up
 rm(list = ls())
 
 
@@ -156,7 +156,7 @@ df_mn_dnr_fws <- df_dnr_fws %>%
 # export combined fws and dnr data------------------------------------------------------------------
 
 # this will recall code in R script
-saveRDS(df_mn_dnr_fws, file = "data_fmt/data_mn_dnr_fws_fmt.rds")
+saveRDS(df_mn_dnr_fws, file = "data_fmt/data_minnesota_fmt_streams.rds")
 
 # shape file export
 df_mn_dnr_fws %>% 
@@ -203,13 +203,13 @@ df_oxbow <- df_all %>%
 # export oxbow data------------------------------------------------------------------
 
 # this will recall code in R script
-saveRDS(df_oxbow, file = "data_fmt/data_mn_fws_fmt_oxbows_2.rds")
+saveRDS(df_oxbow, file = "data_fmt/data_minnesota_fmt_oxbows.rds")
 
 # shape file export
 df_oxbow %>% 
   st_as_sf(coords = c("long", "lat"),
            crs = 4326) %>% 
-  st_write(dsn = "data_fmt/vector/epsg4326_oxbow_sites_2.shp",
+  st_write(dsn = "data_fmt/vector/epsg4326_minnesota_oxbow_sites.shp",
            drivers = "ESRI Shapefile",
            append = FALSE)
 

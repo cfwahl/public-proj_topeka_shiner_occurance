@@ -4,11 +4,7 @@
 rm(list = ls())
 
 # Load packages
-pacman::p_load(runjags,
-               tidyverse,
-               MCMCvis,
-               mcmcOutput,
-               foreach)
+source(here::here("code/library.R")) 
 
 ## read in mcmc summary output
 mcmc_summary_up_full <- readRDS(here::here("output/mcmc_summary_up_full.rds"))
@@ -24,7 +20,7 @@ df_s <- mcmc_summary_up_full %>%
                 s = `50%`) # select only siteid and connectivity value, or s
 
 ## data used for analysis
-df_actual_occurrence <- sf::st_read(dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg") %>% 
+df_actual_occurrence <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg") %>% 
   as_tibble() %>%
   filter(!is.na(occurrence)) %>%  # filter out NA data for occurrence 
   left_join(df_s,
@@ -105,10 +101,10 @@ df_y %>%
              scales = "free_x",
              strip.position = "bottom",
              labeller = labeller(focus = c(`area` = "Watershed area",
-                                           `frac_gr` = "Prop. of agriculture",
-                                           `prcp_wt` = "Precipitation",
+                                           `frac_agri` = "Prop. of agriculture",
+                                           `precip_wet` = "Precipitation",
                                            `s` = "Connectivity",
-                                           `tmp_ssn` = "Temperature"))) +
+                                           `temp_season` = "Temperature"))) +
   labs(y = "Occurrence prob.") +
   theme_bw() +
   theme(strip.background = element_blank(),

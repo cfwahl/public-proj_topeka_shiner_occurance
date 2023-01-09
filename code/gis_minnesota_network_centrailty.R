@@ -4,27 +4,24 @@
 # clean objects
 rm(list = ls())
 
-pacman::p_load(igraph,
-               tidyverse,
-               tidygraph,
-               sf,
-               foreach,
-               lme4,
-               lmerTest)
+# load libraries
+source(here::here("code/library.R")) 
+
 
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line2 <- sf::st_read(dsn = "data_fmt/vector/espg3722_stream_connectivity.gpkg") %>%
-  select(-c(STRM_VA)) # remove slope variable
+sf_line2 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
+  dplyr::select(-c(STRM_VA)) %>% # remove slope variable
+  rename(connectivity = connectivi)
 
 ## oxbow point
-sf_ox_point <- sf::st_read(dsn = "data_fmt/vector/epsg3722_oxbow_snap_2.gpkg") %>%
+sf_ox_point <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_oxbow_snap.gpkg") %>%
   rename(oxbow_occurrence = occurrence) %>%
-  select(-c(distance, site, year, STRM_VAL)) # remove unneeded variables
+  dplyr::select(-c(distance, site, year, STRM_VAL)) # remove unneeded variables
 
 ## stream point
-sf_stream_point <- sf::st_read(dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy_real_occurrence.shp") %>%
+sf_stream_point <- sf::st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") %>%
   rename(stream_occurrence = occurrence)
 
 
@@ -137,57 +134,56 @@ df_ox_cent <- sf_ox_point %>%
   as_tibble %>%
   left_join(as_tibble(df_m),
             by = c("line_id")) %>% 
-  select(-c(geom.y, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  dplyr::select(-c(geometry, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
   
   left_join(as_tibble(df_b),
             by = c("line_id")) %>%
-  select(-c(geom.x, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
+  dplyr::select(-c(geometry, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
   
   left_join(as_tibble(df_c),
             by = c("line_id")) %>%
-  select(-c(geom.y, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  dplyr::select(-c(geometry, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
   
   left_join(as_tibble(df_h),
             by = c("line_id")) %>%
-  select(-c(geom.x, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
+  dplyr::select(-c(geometry, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
   
   left_join(as_tibble(df_a),
             by = c("line_id")) %>%
-  select(-c(geom.y, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  dplyr::select(-c(geometry, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
   rename(siteid = siteid.x,
          connectivity = connectivity.x,
          site0 = site0.x,
-         watershed = watershed.x,
-         geom = geom.x)
+         watershed = watershed.x)
 
 df_strm_cent <- sf_stream_point %>%
   as_tibble %>%
   left_join(as_tibble(df_m),
             by = c("line_id")) %>%
-  select(-c(siteid.y, geom)) %>%
+  dplyr::select(-c(siteid.y, geometry.y)) %>%
   
   left_join(as_tibble(df_b),
             by = c("line_id")) %>%
-  select(-c(geom, watershed.y, site0.y, connectivity.y, siteid.x)) %>%
+  dplyr::select(-c(geometry, watershed.y, site0.y, connectivity.y, siteid.x)) %>%
   
   left_join(as_tibble(df_c),
             by = c("line_id")) %>%
-  select(-c(geom, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
+  dplyr::select(-c(geometry, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
   
   left_join(as_tibble(df_h),
             by = c("line_id")) %>%
-  select(-c(geom, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  dplyr::select(-c(geometry, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
   
   left_join(as_tibble(df_a),
             by = c("line_id")) %>%
-  select(-c(geom, watershed.x, site0.x, connectivity.x, siteid.y)) %>%
+  dplyr::select(-c(geometry.x, watershed.x, site0.x, connectivity.x, siteid.y)) %>%
   rename(siteid = siteid.x)
 
 
 # visualize relationship ----------------------------------------------------------
 
-### glm 
-# eigen model df
+### eigenvector
+# MODEL df
 ggplot(df_m,
        aes(x = eigen,
            y = connectivity))  +
@@ -195,7 +191,7 @@ ggplot(df_m,
               method.args = list(Gamma(link = 'log'))) + 
   geom_point()
 
-# stream df
+# STREAM df
 ggplot(df_strm_cent,
        aes(x = eigen,
            y = connectivity))  +
@@ -203,9 +199,34 @@ ggplot(df_strm_cent,
               method.args = list(Gamma(link = 'log'))) + 
   geom_point()
 
-# oxbow df
+# OXBOW df
 ggplot(df_ox_cent,
        aes(x = eigen,
+           y = connectivity))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(Gamma(link = 'log'))) + 
+  geom_point()
+
+### betweenness
+# MODEL df
+ggplot(df_b,
+       aes(x = between,
+           y = connectivity))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(Gamma(link = 'log'))) + 
+  geom_point()
+
+# STREAM df
+ggplot(df_strm_cent,
+       aes(x = between,
+           y = connectivity))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(Gamma(link = 'log'))) + 
+  geom_point()
+
+# OXBOW df
+ggplot(df_ox_cent,
+       aes(x = between,
            y = connectivity))  +
   geom_smooth(method = 'glm', se = TRUE,
               method.args = list(Gamma(link = 'log'))) + 
@@ -213,37 +234,52 @@ ggplot(df_ox_cent,
 
 
 ### linear model
-# betweenness model
-ggplot(df_b,
-       aes(x = between,
-           y = connectivity))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
-  geom_point()
+# betweenness MODEL
+#ggplot(df_b,
+#       aes(x = between,
+#           y = connectivity))  +
+#  geom_smooth(method = 'lm', se = TRUE) + 
+#  geom_point()
 
-ggplot(df_strm_cent,
-       aes(x = between,
-           y = connectivity))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
-  geom_point()
+#ggplot(df_strm_cent,
+#       aes(x = between,
+#           y = connectivity))  +
+#  geom_smooth(method = 'lm', se = TRUE) + 
+#  geom_point()
 
-ggplot(df_ox_cent,
-       aes(x = between,
-           y = connectivity))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
-  geom_point()
+#ggplot(df_ox_cent,
+#       aes(x = between,
+#           y = connectivity))  +
+#  geom_smooth(method = 'lm', se = TRUE) + 
+#  geom_point()
 
 
 ### occurrence
-## lm - stream 
+
+# stream occurrence X eigenvector
 ggplot(df_strm_cent,
        aes(x = eigen,
            y = stream_occurrence))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
-# oxbow
+# oxbow occurrence X eigenvector
 ggplot(df_ox_cent,
        aes(x = eigen,
+           y = oxbow_occurrence))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
+
+# stream occurrence X betweenness
+ggplot(df_strm_cent,
+       aes(x = between,
+           y = stream_occurrence))  +
+  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_point()
+
+# oxbow occurrence X betweenness
+ggplot(df_ox_cent,
+       aes(x = between,
            y = oxbow_occurrence))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
@@ -291,15 +327,15 @@ ggplot(df_m) + # base map of stream lines
 ggplot(df_b) + # base map of stream lines
   geom_sf(aes(color = between))+ # heat map for connectivity 
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
-  labs(color = "Eigenvector") + # label legend 
+  labs(color = "Betweenness") + # label legend 
   theme_minimal()
 
 # map of closeness scores
-ggplot(df_c) + # base map of stream lines
-  geom_sf(aes(color = closeness))+ # heat map for connectivity 
-  MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
-  labs(color = "Eigenvector") + # label legend 
-  theme_minimal()
+#ggplot(df_c) + # base map of stream lines
+#  geom_sf(aes(color = closeness))+ # heat map for connectivity 
+#  MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
+#  labs(color = "Eigenvector") + # label legend 
+#  theme_minimal()
 
 
 # export data ------------------------------------------------------------------
@@ -308,6 +344,14 @@ ggplot(df_c) + # base map of stream lines
 saveRDS(df_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
 
 # export oxbow network centrality scores
-saveRDS(df_strm_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
+saveRDS(df_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
 
 
+# readRDS -----------------------------------------------------------------
+
+# import RDS files for scores
+# network centrality scores
+#df_mn_strm_cent <- readRDS(file = "data_fmt/data_minnesota_stream_network_centrality.rds")
+
+# import oxbow network centrality scores
+#df_mn_ox_cent <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")

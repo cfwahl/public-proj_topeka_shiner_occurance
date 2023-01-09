@@ -5,19 +5,17 @@
 # clean objects
 rm(list = ls())
 
-pacman::p_load(igraph,
-               tidyverse,
-               sf,
-               foreach,
-               lme4,
-               lmerTest)
+# load libaries
+source(here::here("code/library.R")) 
+
 
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_str_net_5km2_dummy.shp") 
+sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2_dummy.shp") 
 
 site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp") 
+
 
 # network centrality test ---------------------------------------------------------
 
@@ -77,14 +75,19 @@ df_i <- site_info %>%
   as_tibble %>%
   left_join(as_tibble(df_e),
             by = c("line_id")) %>%
+  select(-c(fid.y, geometry.y)) %>%
   left_join(as_tibble(df_b),
-            by = c("line_id"))
+            by = c("line_id")) %>%
+  select(-c(area.y, watershed.y, fid.x, geometry)) %>%
+  rename(geometry = geometry.x,
+         area = area.x,
+         watershed = watershed.x)
 
 
 # visualize relationship ----------------------------------------------------------
 
 
-## eigenvector X connectivity
+## eigenvector X oxbow occurrence
 ## linear model 
 ggplot(df_i,
        aes(x = eigen,
@@ -100,14 +103,6 @@ ggplot(df_i,
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
-
-
-# cleanup dataframe --------------------------------------------------------------
-
-df_i <- df_i %>%
-  select(, -c(fid.x, geometry.x, fid.y, geometry.y, area.y, watershed.y)) %>%
-  rename(watershed = watershed.x,
-         area = area.x)
 
 # maps --------------------------------------------------------------------
 
@@ -130,4 +125,7 @@ ggplot(df_b) + # base map of stream lines
 # this will recall code in R script
 saveRDS(df_i, file = "data_fmt/data_iowa_network_centrality.rds")
 
-df_i <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")
+# readRDS -----------------------------------------------------------------
+
+#df_ia_ox_cent <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")
+

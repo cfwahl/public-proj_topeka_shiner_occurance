@@ -9,10 +9,8 @@
 # clean objects
 rm(list = ls())
 
-pacman::p_load(raster,
-               tidyverse,
-               sf,
-               exactextractr)  
+# load libraries
+source(here::here("code/library.R")) 
 
 
 ###  REAL OCCURRENCE DATA  ###
@@ -126,7 +124,7 @@ pacman::p_load(raster,
 
 # transform to projected crs for extraction - 
 # extraction needs to be performed with projected crs
-wgs84_sf_wsd <- st_read(dsn = "data_fmt/vector/old/epsg4326_mn_fmt_watersheds_dummy_5km2.shp")
+wgs84_sf_wsd <- st_read(dsn = "data_fmt/vector/old/epsg4326_minnesota_stream_watersheds_dummy_real.shp")
 utm_sf_wsd <- wgs84_sf_wsd %>% 
   st_transform(crs = 3722)
 
@@ -251,7 +249,7 @@ utm_sf_wsd <- utm_sf_wsd %>%
 
 # save shapefile as geopackage, saving as shapefile will change column names
 st_write(utm_sf_wsd,
-         dsn = "data_fmt/vector/espg3722_watersheds_landuse_dummy_5km2.gpkg",
+         dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg",
          append = FALSE)
 
 
