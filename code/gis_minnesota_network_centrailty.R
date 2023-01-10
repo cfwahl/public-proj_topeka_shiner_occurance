@@ -130,7 +130,7 @@ df_a <- lapply(X = 1:n_distinct(sf_line2$watershed),
 
 #  join occurrence with centrality measures ---------------------------------------------
 
-df_ox_cent <- sf_ox_point %>%
+df_mn_ox_cent <- sf_ox_point %>%
   as_tibble %>%
   left_join(as_tibble(df_m),
             by = c("line_id")) %>% 
@@ -156,7 +156,7 @@ df_ox_cent <- sf_ox_point %>%
          site0 = site0.x,
          watershed = watershed.x)
 
-df_strm_cent <- sf_stream_point %>%
+df_mn_strm_cent <- sf_stream_point %>%
   as_tibble %>%
   left_join(as_tibble(df_m),
             by = c("line_id")) %>%
@@ -192,7 +192,7 @@ ggplot(df_m,
   geom_point()
 
 # STREAM df
-ggplot(df_strm_cent,
+ggplot(df_mn_strm_cent,
        aes(x = eigen,
            y = connectivity))  +
   geom_smooth(method = 'glm', se = TRUE,
@@ -200,7 +200,7 @@ ggplot(df_strm_cent,
   geom_point()
 
 # OXBOW df
-ggplot(df_ox_cent,
+ggplot(df_mn_ox_cent,
        aes(x = eigen,
            y = connectivity))  +
   geom_smooth(method = 'glm', se = TRUE,
@@ -217,7 +217,7 @@ ggplot(df_b,
   geom_point()
 
 # STREAM df
-ggplot(df_strm_cent,
+ggplot(df_mn_strm_cent,
        aes(x = between,
            y = connectivity))  +
   geom_smooth(method = 'glm', se = TRUE,
@@ -225,7 +225,7 @@ ggplot(df_strm_cent,
   geom_point()
 
 # OXBOW df
-ggplot(df_ox_cent,
+ggplot(df_mn_ox_cent,
        aes(x = between,
            y = connectivity))  +
   geom_smooth(method = 'glm', se = TRUE,
@@ -257,28 +257,28 @@ ggplot(df_ox_cent,
 ### occurrence
 
 # stream occurrence X eigenvector
-ggplot(df_strm_cent,
+ggplot(df_mn_strm_cent,
        aes(x = eigen,
            y = stream_occurrence))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
 # oxbow occurrence X eigenvector
-ggplot(df_ox_cent,
+ggplot(df_mn_ox_cent,
        aes(x = eigen,
            y = oxbow_occurrence))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
 # stream occurrence X betweenness
-ggplot(df_strm_cent,
+ggplot(df_mn_strm_cent,
        aes(x = between,
            y = stream_occurrence))  +
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
 # oxbow occurrence X betweenness
-ggplot(df_ox_cent,
+ggplot(df_mn_ox_cent,
        aes(x = between,
            y = oxbow_occurrence))  +
   geom_smooth(method = 'lm', se = TRUE) + 
@@ -288,29 +288,29 @@ ggplot(df_ox_cent,
 # glmm --------------------------------------------------------------------
 
 ### glmm (lme4) connectivity and eigenvector
-mod_glmer_conn <- glmer(connectivity ~ eigen + (1|watershed),
-                        data = df_m, family = Gamma(link = "log"))
+#mod_glmer_conn <- glmer(connectivity ~ eigen + (1|watershed),
+#                        data = df_m, family = Gamma(link = "log"))
 
-summary(mod_glmer_conn)
+#summary(mod_glmer_conn)
 
 ## lmer
-mod_lmer_conn <- lmer(connectivity ~ eigen + (1|watershed),
-                      data = df_m)
+#mod_lmer_conn <- lmer(connectivity ~ eigen + (1|watershed),
+#                      data = df_m)
 
-summary(mod_lmer_conn)
+#summary(mod_lmer_conn)
 
 
 ### glmm (lme4) connectivity and betweenness
-mod_glmer_conn <- glmer(connectivity ~ between + (1|watershed),
-                        data = df_b, family = Gamma(link = "log"))
+#mod_glmer_conn <- glmer(connectivity ~ between + (1|watershed),
+#                        data = df_b, family = Gamma(link = "log"))
 
-summary(mod_glmer_conn)
+#summary(mod_glmer_conn)
 
 ## lmer
-mod_lmer_conn <- lmer(connectivity ~ between + (1|watershed),
-                        data = df_b)
+#mod_lmer_conn <- lmer(connectivity ~ between + (1|watershed),
+#                        data = df_b)
 
-summary(mod_lmer_conn)
+#summary(mod_lmer_conn)
 
 
 
@@ -341,10 +341,10 @@ ggplot(df_b) + # base map of stream lines
 # export data ------------------------------------------------------------------
 
 # export stream network centrality scores
-saveRDS(df_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
+saveRDS(df_mn_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
 
 # export oxbow network centrality scores
-saveRDS(df_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
+saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
 
 
 # readRDS -----------------------------------------------------------------

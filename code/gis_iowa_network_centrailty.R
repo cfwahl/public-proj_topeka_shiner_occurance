@@ -95,7 +95,7 @@ ggplot(df_i,
   geom_smooth(method = 'lm', se = TRUE) + 
   geom_point()
 
-## betweenness X connectivity
+## betweenness X oxbow occurrence
 ## linear model 
 ggplot(df_i,
        aes(x = between,
@@ -127,5 +127,5 @@ saveRDS(df_i, file = "data_fmt/data_iowa_network_centrality.rds")
 
 # readRDS -----------------------------------------------------------------
 
-#df_ia_ox_cent <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")
+#df_i <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")
 

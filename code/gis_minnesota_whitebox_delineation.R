@@ -21,7 +21,7 @@ wgs84_dir_d8 <- arc2d8(wgs84_dir)
 
 ## produce D8 raster file
 writeRaster(wgs84_dir_d8,
-            "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif",
+            "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
             options = c('TFW = YES'),
             overwrite = TRUE)
 
@@ -45,12 +45,12 @@ wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_
                             snap_dist = 1)
 
 # Assigns a unique identifier to each link in a stream network
-wbt_stream_link_identifier(d8_pntr = "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif",
+wbt_stream_link_identifier(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
                            streams = "data_fmt/raster/epsg4326_mn_fmt_stream_5km2.tif",
                            output = "data_fmt/raster/epsg4326_mn_fmt_stream_id_5km2.tif")
 
 # determine continuous slope for each stream segment
-wbt_stream_slope_continuous(d8_pntr = "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif", 
+wbt_stream_slope_continuous(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif", 
                             streams = "data_fmt/raster/epsg4326_mn_fmt_stream_id_5km2.tif", 
                             dem = "data_fmt/raster/epsg4326_n40w100_elv_clipped.tif",
                             output = "data_fmt/raster/epsg4326_mn_fmt_stream_slope_cont_5km2.tif")
@@ -63,22 +63,22 @@ wbt_zonal_statistics(input = "data_fmt/raster/epsg4326_mn_fmt_stream_slope_cont_
 
 # Converts link slope raster into a vector file
 wbt_raster_streams_to_vector(streams = "data_fmt/raster/epsg4326_mn_fmt_stream_id_5km2.tif", 
-                             d8_pntr = "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif",
+                             d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
                              output = "data_fmt/vector/epsg4326_mn_str_network_5km2.shp")
 
 # Estimates the average slope of each link (or tributary) in a stream network
-#wbt_stream_link_slope(d8_pntr = "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif",
+#wbt_stream_link_slope(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
 #                      linkid = "data_fmt/raster/epsg4326_mn_fmt_stream_id_5km2.tif",
 #                      dem = "data_fmt/raster/epsg4326_n40w100_elv_clipped.tif", 
 #                      output = "data_fmt/raster/epsg4326_mn_fmt_stream_link_slope_5km2.tif")
 #
-#wbt_strahler_stream_order(d8_pntr = "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif",
+#wbt_strahler_stream_order(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
 #                          streams = "data_fmt/raster/epsg4326_mn_fmt_stream_id_5km2.tif",
 #                          output = "data_fmt/raster/epsg4326_mn_fmt_stream_order_5km2.tif")
 #
 # Converts stream order raster into a vector file.
 #wbt_raster_streams_to_vector(streams = "data_fmt/raster/epsg4326_mn_fmt_stream_order_5km2.tif", 
-#                             d8_pntr = "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif",
+#                             d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
 #                             output = "data_fmt/vector/epsg4326_mn_stream_order_5km2.shp")
 
 
@@ -148,7 +148,7 @@ saveRDS(site_info, file = "data_fmt/mn_dnr_fws_fmt_site_link.rds")
 # Unnested watershed delineation ------------------------------------------
 
 # - This function generate multiple rasterfiles, thus I have made different folders to save the file
-#wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif",
+#wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
 #                  pour_pts= "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_site_link.shp", # GPKG file is not accepted. Used SHP file.
 #                  output = "data_fmt/wsrasterunnestedws.tif")
 
@@ -220,6 +220,8 @@ dummy <- sf::st_point_on_surface(stream) %>%
   rename (slope = STRM_VAL) %>%
   mutate(occurrence = NA) # create occurrence column with NAs 
 
+dummy$watershed = NULL # remove watershed so columns will match for rbind
+
 # dummy sites, export to remove points outside of study location
 #st_write(dummy,
 #         dsn = "data_fmt/vector/epsg4326_mn_dnr_fws_dummy.shp",
@@ -232,13 +234,12 @@ dummy <- sf::st_point_on_surface(stream) %>%
 # read line_id sites
 site <- st_read(dsn = "data_fmt/vector/old",
                  layer = "epsg4326_mn_dnr_fws_fmt_site_link") %>%
-  st_transform(crs = 3722)
+  st_transform(crs = 3722) 
 
 site$siteid = NULL # remove site_id so columns will match
 site$year = NULL # remove year so columns will match
 join <- rbind(site, dummy) %>%
   mutate(siteid = row_number()) # create new site_id
-
 
 # export ------------------------------------------------------------------
 
@@ -250,13 +251,13 @@ st_write(join,
 
 # save code in R script
 saveRDS(join, file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds")
-
+join <- readRDS(file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds")
 
 # Unnested dummy watershed delineation --------------------------------------------------------
 
 
 #  This function generate multiple rasterfiles, thus I have made different folders to save the file
-wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_minnesota_fmt_flow_dir_clip_reclass.tif",
+wbt_unnest_basins(d8_pntr = "data_fmt/raster/epsg4326_mn_fmt_flow_dir_clip_reclass.tif",
                   pour_pts= "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp", # GPKG file is not accepted. Used SHP file.
                   output = "data_fmt/wsraster/dummy/unnestedws.tif")
 
@@ -312,3 +313,10 @@ wbt_join_tables(input1 = "data_fmt/vector/epsg4326_minnesota_stream_watersheds_d
                 input2 = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp",
                 fkey = "siteid",
                 import_field = "occurrence")
+
+# add watershed ID from stream line file to watershed polygon attribute table
+wbt_join_tables(input1 = "data_fmt/vector/old/epsg4326_minnesota_stream_watersheds_dummy_real.shp",
+                pkey = "line_id",
+                input2 = "data_fmt/vector/old/epsg3722_minnesota_stream_network_5km2.shp",
+                fkey = "line_id",
+                import_field = "watershed")
