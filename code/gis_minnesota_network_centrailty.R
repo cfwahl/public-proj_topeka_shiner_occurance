@@ -183,7 +183,7 @@ df_mn_strm_cent <- sf_stream_point %>%
 # visualize relationship ----------------------------------------------------------
 
 ### eigenvector
-# MODEL df
+# stream connectivity x eigen
 ggplot(df_m,
        aes(x = eigen,
            y = connectivity))  +
@@ -191,15 +191,7 @@ ggplot(df_m,
               method.args = list(Gamma(link = 'log'))) + 
   geom_point()
 
-# STREAM df
-ggplot(df_mn_strm_cent,
-       aes(x = eigen,
-           y = connectivity))  +
-  geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(Gamma(link = 'log'))) + 
-  geom_point()
-
-# OXBOW df
+# oxbow connectivity x eigen
 ggplot(df_mn_ox_cent,
        aes(x = eigen,
            y = connectivity))  +
@@ -208,7 +200,7 @@ ggplot(df_mn_ox_cent,
   geom_point()
 
 ### betweenness
-# MODEL df
+# stream connectivity x betweenness 
 ggplot(df_b,
        aes(x = between,
            y = connectivity))  +
@@ -216,15 +208,7 @@ ggplot(df_b,
               method.args = list(Gamma(link = 'log'))) + 
   geom_point()
 
-# STREAM df
-ggplot(df_mn_strm_cent,
-       aes(x = between,
-           y = connectivity))  +
-  geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(Gamma(link = 'log'))) + 
-  geom_point()
-
-# OXBOW df
+# oxbow connectivity x betweenness
 ggplot(df_mn_ox_cent,
        aes(x = between,
            y = connectivity))  +
@@ -233,86 +217,135 @@ ggplot(df_mn_ox_cent,
   geom_point()
 
 
-### linear model
-# betweenness MODEL
-#ggplot(df_b,
-#       aes(x = between,
-#           y = connectivity))  +
-#  geom_smooth(method = 'lm', se = TRUE) + 
-#  geom_point()
-
-#ggplot(df_strm_cent,
-#       aes(x = between,
-#           y = connectivity))  +
-#  geom_smooth(method = 'lm', se = TRUE) + 
-#  geom_point()
-
-#ggplot(df_ox_cent,
-#       aes(x = between,
-#           y = connectivity))  +
-#  geom_smooth(method = 'lm', se = TRUE) + 
-#  geom_point()
-
-
-### occurrence
-
-# stream occurrence X eigenvector
+### occurrence plots
+# stream eigenvector x occurrence
 ggplot(df_mn_strm_cent,
        aes(x = eigen,
            y = stream_occurrence))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
   geom_point()
 
-# oxbow occurrence X eigenvector
-ggplot(df_mn_ox_cent,
-       aes(x = eigen,
-           y = oxbow_occurrence))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
-  geom_point()
-
-# stream occurrence X betweenness
+# stream betweenness x occurrence
 ggplot(df_mn_strm_cent,
        aes(x = between,
            y = stream_occurrence))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
   geom_point()
 
-# oxbow occurrence X betweenness
+# oxbow eigenvector x occurrence
+ggplot(df_mn_ox_cent,
+       aes(x = eigen,
+           y = oxbow_occurrence))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
+  geom_point()
+
+# oxbow betweenness x occurrence
 ggplot(df_mn_ox_cent,
        aes(x = between,
            y = oxbow_occurrence))  +
-  geom_smooth(method = 'lm', se = TRUE) + 
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
   geom_point()
 
 
-# glmm --------------------------------------------------------------------
+# glmm and lmm --------------------------------------------------------------------
 
-### glmm (lme4) connectivity and eigenvector
-#mod_glmer_conn <- glmer(connectivity ~ eigen + (1|watershed),
-#                        data = df_m, family = Gamma(link = "log"))
+# connectivity x eigenvector
 
-#summary(mod_glmer_conn)
+### stream connectivity and eigenvector
+glmer_str_eigen_conn <- glmer(connectivity ~ eigen + (1|watershed),
+                        data = df_m, family = Gamma(link = "log"))
 
-## lmer
-#mod_lmer_conn <- lmer(connectivity ~ eigen + (1|watershed),
-#                      data = df_m)
+summary(glmer_str_eigen_conn)
 
-#summary(mod_lmer_conn)
+### oxbow connectivity and eigenvector
+glmer_ox_eigen_conn <- glmer(connectivity ~ eigen + (1|watershed),
+                         data = df_mn_ox_cent, family = Gamma(link = "log"))
 
-
-### glmm (lme4) connectivity and betweenness
-#mod_glmer_conn <- glmer(connectivity ~ between + (1|watershed),
-#                        data = df_b, family = Gamma(link = "log"))
-
-#summary(mod_glmer_conn)
-
-## lmer
-#mod_lmer_conn <- lmer(connectivity ~ between + (1|watershed),
-#                        data = df_b)
-
-#summary(mod_lmer_conn)
+summary(glmer_ox_eigen_conn)
 
 
+### eigen occurrence
+
+# connectivity and stream_occurrence
+glmer_strm_occ_conn <- glmer(stream_occurrence ~ connectivity + (1|watershed),
+                         data = df_mn_strm_cent, family = "binomial")
+
+summary(glmer_strm_occ_conn)
+
+# eigenvector and stream_occurrence
+glmer_strm_occ_eigen <- glmer(stream_occurrence ~ eigen + (1|watershed),
+                           data = df_mn_strm_cent, family = "binomial")
+
+summary(glmer_strm_occ_eigen)
+
+# connectivity and oxbow_occurrence
+glmer_ox_occ_conn <- glmer(oxbow_occurrence ~ connectivity + (1|watershed),
+                           data = df_mn_ox_cent, family = "binomial")
+
+summary(glmer_ox_occ_conn)
+
+# eigenvector and oxbow_occurrence
+glmer_ox_occ_conn <- glmer(oxbow_occurrence ~ eigen + (1|watershed),
+                            data = df_mn_ox_cent, family = "binomial")
+
+summary(glmer_ox_occ_conn)
+
+
+### connectivity and betweenness
+
+### stream connectivity and betweenness
+glmer_strm_between_conn <- glmer(connectivity ~ between + (1|watershed),
+                           data = df_b, family = Gamma(link = "log"))
+
+summary(glmer_strm_between_conn)
+
+### oxbow connectivity and betweenness
+glmer_ox_between_conn <- glmer(connectivity ~ between + (1|watershed),
+                           data = df_mn_ox_cent, family = Gamma(link = "log"))
+
+summary(glmer_ox_between_conn)
+
+
+### betweenness occurrence
+
+# betweenness and stream_occurrence
+glmer_strm_between_occ <- glmer(stream_occurrence ~ between + (1|watershed),
+                           data = df_mn_strm_cent, family = "binomial")
+
+summary(glmer_strm_between_occ)
+
+# betweenness and oxbow_occurrence
+glmer_ox_between_occ <- glmer(oxbow_occurrence ~ between + (1|watershed),
+                           data = df_mn_ox_cent, family = "binomial")
+
+summary(glmer_ox_between_occ)
+
+
+# correlation  ------------------------------------------------------------
+
+# correlation between stream connectivity and eigenvector centrality
+corr <- cor.test(x=df_mn_strm_cent$connectivity, y=df_mn_strm_cent$eigen, 
+                 method = 'spearman')
+corr
+
+# correlation between stream connectivity and betweenness 
+corr2 <- cor.test(x=df_mn_strm_cent$connectivity, y=df_mn_strm_cent$between, 
+                  method = 'spearman')
+corr2
+
+# correlation between stream connectivity and eigenvector centrality
+corr3 <- cor.test(x=df_mn_ox_cent$connectivity, y=df_mn_ox_cent$eigen,
+                  method = 'spearman')
+corr3
+
+# correlation between stream connectivity and betweenness 
+corr4 <- cor.test(x=df_mn_ox_cent$connectivity, y=df_mn_ox_cent$between, 
+                  method = 'spearman')
+corr4
 
 # maps --------------------------------------------------------------------
 
@@ -330,21 +363,14 @@ ggplot(df_b) + # base map of stream lines
   labs(color = "Betweenness") + # label legend 
   theme_minimal()
 
-# map of closeness scores
-#ggplot(df_c) + # base map of stream lines
-#  geom_sf(aes(color = closeness))+ # heat map for connectivity 
-#  MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
-#  labs(color = "Eigenvector") + # label legend 
-#  theme_minimal()
-
 
 # export data ------------------------------------------------------------------
 
 # export stream network centrality scores
-saveRDS(df_mn_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
+#saveRDS(df_mn_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
 
 # export oxbow network centrality scores
-saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
+#saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
 
 
 # readRDS -----------------------------------------------------------------
