@@ -21,9 +21,18 @@ sf_ox_point <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_oxbow_snap.
   dplyr::select(-c(distance, site, year, STRM_VAL)) # remove unneeded variables
 
 ## stream point
-sf_stream_point <- sf::st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") %>%
-  rename(stream_occurrence = occurrence)
+#sf_stream_point <- sf::st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") %>%
+#  rename(stream_occurrence = occurrence)
 
+## stream point with covariates for GLMM
+sf_stream_point <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_site_covariates.shp") %>%
+  rename(stream_occurrence = occrrnc,
+         frac_agri = frac_gr,
+         watershed = watrshd,
+         frac_forest = frc_frs,
+         frac_urban = frc_rbn,
+         frac_wetland = frc_wtl,
+         frac_grass = frc_grs)
 
 # network centrality eigenvector ---------------------------------------------------------
 
@@ -157,28 +166,52 @@ df_mn_ox_cent <- sf_ox_point %>%
          watershed = watershed.x)
 
 df_mn_strm_cent <- sf_stream_point %>%
-  as_tibble %>%
+  as_tibble() %>%
   left_join(as_tibble(df_m),
             by = c("line_id")) %>%
-  dplyr::select(-c(siteid.y, geometry.y)) %>%
+  dplyr::select(-c(siteid.y, geometry.y, watershed.y)) %>%
   
   left_join(as_tibble(df_b),
             by = c("line_id")) %>%
-  dplyr::select(-c(geometry, watershed.y, site0.y, connectivity.y, siteid.x)) %>%
+  dplyr::select(-c(geometry, watershed.x, site0.y, connectivity.y, siteid.x)) %>%
   
   left_join(as_tibble(df_c),
             by = c("line_id")) %>%
-  dplyr::select(-c(geometry, watershed.x, site0.x, connectivity.x, siteid.x)) %>%
+  dplyr::select(-c(geometry, watershed.y, site0.x, connectivity.x, siteid.y)) %>%
   
   left_join(as_tibble(df_h),
             by = c("line_id")) %>%
-  dplyr::select(-c(geometry, watershed.y, site0.y, connectivity.y, siteid.y)) %>%
+  dplyr::select(-c(geometry, watershed.x, site0.y, connectivity.y, siteid.x)) %>%
   
   left_join(as_tibble(df_a),
             by = c("line_id")) %>%
-  dplyr::select(-c(geometry.x, watershed.x, site0.x, connectivity.x, siteid.y)) %>%
-  rename(siteid = siteid.x)
+  dplyr::select(-c(geometry, watershed.y, site0.x, connectivity.x, siteid.y)) %>%
+  rename(siteid = siteid.x,
+         geometry = geometry.x,
+         watershed = watershed.x)
 
+
+# segment length ----------------------------------------------------------
+
+# determine length of stream segments
+l <- st_length(sf_line2)
+
+# add column
+sf_line2 <- sf_line2 %>% 
+  add_column(l = l)
+
+# new cloumn with "[m]" removed  
+sf_line2$seg_length <- stringr::str_remove(sf_line2$l, '\\[m]')
+
+# remove original l column 
+sf_line2 <- sf_line2 %>%
+  dplyr::select(-c(l))
+
+# join segment length with the rest of stream point df
+df_mn_strm_cent <- merge(x = df_mn_strm_cent, y = sf_line2[ , c("line_id", "seg_length")], 
+                         by = "line_id", all.x=TRUE) %>%
+  dplyr::select(-c(geometry.y)) %>%
+  mutate(seg_length = as.numeric(seg_length))
 
 # visualize relationship ----------------------------------------------------------
 
@@ -229,6 +262,22 @@ ggplot(df_mn_strm_cent,
 # stream betweenness x occurrence
 ggplot(df_mn_strm_cent,
        aes(x = between,
+           y = stream_occurrence))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
+  geom_point()
+
+####### stream betweenness x occurrence
+ggplot(df_mn_strm_cent,
+       aes(x = connectivity,
+           y = seg_length))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(gaussian(link = 'log'))) + 
+  geom_point()
+
+######## stream betweenness x occurrence
+ggplot(df_mn_strm_cent,
+       aes(x = seg_length,
            y = stream_occurrence))  +
   geom_smooth(method = 'glm', se = TRUE,
               method.args = list(binomial(link = 'logit'))) + 
@@ -313,7 +362,10 @@ summary(glmer_ox_between_conn)
 ### betweenness occurrence
 
 # betweenness and stream_occurrence
-glmer_strm_between_occ <- glmer(stream_occurrence ~ between + (1|watershed),
+glmer_strm_between_occ <- glmer(stream_occurrence ~ between + scale(area) + 
+                                  frac_agri + scale(tmp_ssn) + scale(seg_length) +
+                                  scale(prcp_wt) + scale(slope) + 
+                                  (1|watershed),
                            data = df_mn_strm_cent, family = "binomial")
 
 summary(glmer_strm_between_occ)
@@ -381,3 +433,149 @@ ggplot(df_b) + # base map of stream lines
 
 # import oxbow network centrality scores
 #df_mn_ox_cent <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
+
+
+-----------------------------------------------------------------------------
+# data manipulation -------------------------------------------------
+
+
+## whole data frame of real occurrence + dummy data
+df_all <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg") %>%
+  filter(!is.na(occurrence)) %>%
+  as_tibble()
+
+## stream sites (for the connectivity map)
+df_stream_occ <- sf::st_read("data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") %>%
+  filter(!is.na(occurrence)) %>%
+  st_transform(crs = 3722) %>%
+  as_tibble()
+
+df_join <- df_stream_occ %>%
+  left_join(df_all, by = "siteid") %>%
+  dplyr::select(-c(line_id.y, slope.y, occurrence.y, geom)) %>%
+  rename(occurrence = occurrence.x,
+         line_id = line_id.x,
+         slope = slope.x)
+
+
+# export ------------------------------------------------------------------
+
+#st_write(df_join,
+#         dsn = "data_fmt/vector/epsg3722_minnesota_stream_site_covariates.shp",
+#         append = FALSE)
+
+
+
+
+# data --------------------------------------------------------------------
+
+## stream polyline
+#sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2_dummy.shp") %>%
+#  as_tibble() 
+
+site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp") %>%
+  as_tibble() %>%
+  filter(hbtttyp == "Restored_Oxbow")
+
+# read minnesota oxbow rds
+df_mn_ox_cent <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centrality.rds") %>%
+  df_mn_ox_cent  
+  as_tibble() %>%
+  dplyr::select(-c(X1, Y1))
+
+# read iowa oxbow rds
+df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds") %>%
+  as_tibble() %>%
+  dplyr::select(-c(fid, sampled, siteid, date, year, state,
+                   stremnm, habitat, hbtttyp)) %>%
+  rename(oxbow_occurrence = occurrence,
+         temp = wtrtmp_) %>%
+  mutate(oxbow_id = row_number()+142,
+         watershed = watershed+7) %>%
+  mutate(temp = as.numeric(temp),
+         doprcnt = as.numeric(doprcnt),
+         do_mgl = as.numeric(do_mgl),
+         trbdty_ = as.numeric(trbdty_),
+         cndctv_ = as.numeric(cndctv_),
+         ph = as.numeric(ph))
+
+
+df_mn_ia_oxbows_join <- df_iowa_oxbow %>%
+  full_join(df_mn_ox_cent, by = "oxbow_id") %>%
+  mutate(oxbow_occurrence = coalesce(oxbow_occurrence.x,oxbow_occurrence.y),
+         do_mgl = coalesce(do_mgl.x, do_mgl.y),
+         dp_percent = coalesce(doprcnt, dopercent),
+         turbidity = coalesce(trbdty_, turb),
+         ph = coalesce(ph.x, ph.y),
+         temperature = coalesce(temp.x, temp.y),
+         between = coalesce(between.x, between.y),
+         eigen = coalesce(eigen.x, eigen.y),
+         watershed = coalesce(watershed.x, watershed.y)) %>%
+  dplyr::select(-c(temp.x, temp.y, doprcnt, do_mgl.x, do_mgl.y, trbdty_, turb,
+                   ph.x, ph.y, oxbow_occurrence.x, oxbow_occurrence.y, dopercent, 
+                   line_id.x, line_id.y, watershed.x, watershed.y, oxbowid, 
+                   siteid, site0, eigen.x, eigen.y, between.x, between.y, closeness,
+                   hub, authority, geometry, geom))
+  
+
+# visualize ---------------------------------------------------------------
+
+
+# MN + IA oxbow betweenness x occurrence
+ggplot(df_mn_ia_oxbows_join,
+       aes(x = between,
+           y = oxbow_occurrence))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
+  geom_point()
+
+# MN + IA oxbow eigenvector x occurrence
+ggplot(df_mn_ia_oxbows_join,
+       aes(x = eigen,
+           y = oxbow_occurrence))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
+  geom_point()
+
+
+
+# analyze -----------------------------------------------------------------
+
+
+# betweenness and join oxbow_occurrence
+glmer_strm_between_occ <- glmer(oxbow_occurrence ~ between + scale(do_mgl) + 
+                                  scale(turbidity) + scale(dp_percent) + scale(ph) +
+                                  scale(temperature) +  (1|watershed),
+                                data = df_mn_ia_oxbows_join, family = "binomial")
+
+
+summary(glmer_strm_between_occ)
+
+
+
+
+
+
+
+# llc ---------------------------------------------------------------------
+
+# setup --------------------------------------------------------------------
+
+# clean objects
+rm(list = ls())
+
+# load libraries
+source(here::here("code/library.R")) 
+
+library(lconnect)
+
+sf_line2 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
+  relocate(watershed) %>%
+  rename(habitat = watershed)
+
+#sf_poly_ws <- system.file("data_fmt/vector/old/epsg4326_minnesota_stream_watersheds_dummy_real.shp", package = "lconnect") %>%
+
+
+upload_land(sf_line2, bound_path = NULL, habitat, max_dist = NULL)
+
+con_metric(sf_line2, metric = IIC)
