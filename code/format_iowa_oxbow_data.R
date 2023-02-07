@@ -1,4 +1,6 @@
 
+# 
+
 # setup -------------------------------------------------------------------
 
 # clean up
@@ -24,7 +26,6 @@ df_ia <- df0 %>%
 df_ia <- df_ia %>% 
   filter(habitat=="oxbow") %>%
   mutate(occurrence = replace(topeka_shiner, topeka_shiner > 0, 1))  # if occurrence is >0 then make 1
-
 
 # export ------------------------------------------------------------------
 

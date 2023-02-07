@@ -1,3 +1,7 @@
+
+# this script produces prediction plots among occurrence and covariates
+# in Bayes model. Also caterpillar lot of Bayes significance 
+
 # setup -------------------------------------------------------------------
 
 # clean objects
@@ -53,7 +57,6 @@ x_name <- df_prediction %>%
   dplyr::select(!starts_with("mean")) %>% 
   colnames() # dplyr::select the 9 column names that do not start with "mean"
 
-
 # prediction --------------------------------------------------------------
 
 ## extract mean values for each predictor
@@ -87,7 +90,6 @@ df_data_l <- df_actual_occurrence %>%
                values_to = "x",
                names_to = "focus")
 
-
 # regression plot ---------------------------------------------------------
 
 df_y %>% 
@@ -111,32 +113,10 @@ df_y %>%
         strip.placement = "outside",
         axis.title.x = element_blank())
 
-
-
 # caterpillar bar plot -----------------------------------------------------
 
 ## read in jags output
 post <- readRDS("output/post_summary_up_full.rds")
-
-# connectivity, alpha only
-MCMCplot(post$mcmc, 
-         params = 'alpha', 
-         horiz = FALSE,
-         rank = TRUE,
-         ref_ovl = FALSE,
-         xlab = 'My x-axis label', 
-         main = 'MCMCvis plot', 
-)
-
-# alpha and beta 
-#MCMCplot(post$mcmc, 
-#         params = c('alpha', 'beta'),
-#         ci = c(50, 95),
-#         HPD = TRUE,
-#         ref_ovl = TRUE,
-#         labels = c('upstream conn.', 'downstream conn.', '% agriculture', 
-#                    'temp', 'drainage area', 'precip', 
-#                    'tot. connectivity'))
 
 # alpha and b 
 MCMCplot(post$mcmc, 
@@ -147,4 +127,3 @@ MCMCplot(post$mcmc,
          labels = c('upstream conn.', 'downstream conn.', '% agriculture', 
                     'temp', 'drainage area', 'precip', 
                     'tot. connectivity'))
-

@@ -14,43 +14,24 @@ source(here::here("code/library.R"))
 ## stream polyline
 sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2_dummy.shp") 
 
-site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp") 
-
+site_info <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp") %>%
+  dplyr::select(-c(sampled, siteid, date, year, state, stremnm, habitat, fid)) %>%
+  rename(temp = wtrtmp_,
+         dopercent = doprcnt,
+         turb = trbdty_,
+         cond = cndctv_,
+         habitat = hbtttyp) %>%
+  mutate(temp = as.numeric(temp),
+         dopercent = as.numeric(dopercent),
+         turb = as.numeric(turb),
+         cond = as.numeric(cond),
+         do_mgl = as.numeric(do_mgl),
+         ph = as.numeric(ph))
+  
 
 # network centrality test ---------------------------------------------------------
 
-df_e <- lapply(X = 1:n_distinct(sf_line$watershed),
-               FUN = function(x) {
-                 df_subset <- sf_line %>% 
-                   filter(watershed == x)
-                 
-                 y <- df_subset %>% 
-                   st_touches() %>% 
-                   graph.adjlist() %>% 
-                   eigen_centrality()
-                 
-                 #weight <- df_subset$area %>% 
-                 #scale(center = min(.), scale = max(. - min(.))) %>% # scales from 0-1
-                 #c() # combine into matrix
-                 #group_by(watershed) %>%
-                 #summarise(area = max(area))
-                 
-                 #weight2 <- weight$area/df_subset$area 
-                 
-                 
-                 #v_w_cent <- y * weight 
-                 
-                 out <- df_subset %>% 
-                   #mutate(eigen = y) %>% 
-                   mutate(eigen = y$vector) %>%
-                   relocate(eigen)
-                 
-                 return(out)
-               }) %>% 
-  bind_rows()
-
-### betweenness
-
+# betweenness
 df_b <- lapply(X = 1:n_distinct(sf_line$watershed),
                FUN = function(x) {
                  df_subset <- sf_line %>% 
@@ -67,62 +48,34 @@ df_b <- lapply(X = 1:n_distinct(sf_line$watershed),
                  
                  return(out)
                }) %>% 
-  bind_rows()
+  bind_rows() %>%
+  as_tibble()
 
 #  join occurrence with eigen ---------------------------------------------
 
-df_i <- site_info %>%
-  as_tibble %>%
-  left_join(as_tibble(df_e),
-            by = c("line_id")) %>%
-  dplyr::select(-c(fid.y, geometry.y)) %>%
-  left_join(as_tibble(df_b),
-            by = c("line_id")) %>%
-  dplyr::select(-c(area.y, watershed.y, fid.x, geometry)) %>%
-  rename(geometry = geometry.x,
-         area = area.x,
-         watershed = watershed.x)
-
+df_i <-  merge(x = site_info, y = df_b[ , c("line_id", "between")], 
+        by = "line_id", all.x=TRUE)
 
 # visualize relationship ----------------------------------------------------------
 
-
-## eigenvector X oxbow occurrence
-## linear model 
-ggplot(df_i,
-       aes(x = eigen,
-           y = occurrence)) +
-  geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(binomial(link = 'logit'))) + 
-  geom_point()
-
-## betweenness X oxbow occurrence
-## linear model 
+# betweenness X oxbow occurrence
 ggplot(df_i,
        aes(x = between,
-           y = occurrence)) +
+           y = oxbow_occurrence)) +
   geom_smooth(method = 'glm', se = TRUE,
               method.args = list(binomial(link = 'logit'))) + 
   geom_point()
-
 
 # glmm --------------------------------------------------------------------
 
-# connectivity x eigenvector
-
-### iowa oxbow occurrence and eigenvector
-glmer_str_eigen_conn <- glm(occurrence ~ eigen ,
-                              data = df_i, family = "binomial")
-
-summary(glmer_str_eigen_conn)
-
 ### iowa oxbow occurrence and betweenness 
-glmer_str_eigen_conn <- glm(occurrence ~ between,
+glmer_str_eigen_conn <- glmer(oxbow_occurrence ~ between + scale(ph) +
+                                (1|watershed) + scale(do_mgl) + scale(temp),
                               data = df_i, family = "binomial")
 
 summary(glmer_str_eigen_conn)
 
-# maps --------------------------------------------------------------------
+# maps -------------------------------------------------------------------
 
 ## snap function
 st_snap_points = function(f1, f2) {
