@@ -61,11 +61,14 @@ st_write(wgs84_sf_ws_polygon,
 
 # read data ---------------------------------------------------------------
 
-sfline <- st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_network_5km2.shp") %>%
-  st_transform(crs = 4326)
+sfline <- st_read(dsn = "data_fmt/vector/epsg4326_mn_str_slope_5km2.shp") %>%
+  st_set_crs(4326)
 
 sfwspolygon <- st_read(dsn = "data_fmt/vector/epsg4326_minnesota_wspolygons.shp")
 
+st_join(sfline, sfwspolygon) %>% 
+  drop_na(siteid)
+  
 # intersect ---------------------------------------------------------------
 
 
