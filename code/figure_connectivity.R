@@ -154,13 +154,3 @@ saveRDS(df_stream_conn, file = "data_fmt/data_minnesota_stream_occur_connect.RDS
 
 # save oxbow occurrence and connectivity RDS
 saveRDS(df_oxbow_snap, file = "data_fmt/data_minnesota_oxbow_occur_connect.RDS")
-
-# stream sites with connectivity scores shapefile
-#st_write(df_oxbow_snap,
-#         dsn = "data_fmt/vector/epsg3722_minnesota_oxbow_snap.shp",
-#         append = FALSE)
-
-# oxbow sites with connectivity scores shapefile
-#st_write(df_oxbow_snap,
-#         dsn = "data_fmt/vector/epsg3722_minnesota_oxbow_snap.shp",
-#         append = FALSE)
