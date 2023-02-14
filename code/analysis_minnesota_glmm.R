@@ -85,3 +85,40 @@ summary(glmer_ox_between_conn)
 corr <- cor.test(x=df_mn_strm_cent$connectivity, y=df_mn_strm_cent$between, 
                   method = 'spearman')
 corr
+
+
+
+# IOWA --------------------------------------------------------------------
+# data -----------------------------------------------------------------
+
+# import oxbow data
+df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_stream_network_centrality.rds")
+
+
+# glmm --------------------------------------------------------------------
+
+### iowa oxbow occurrence and betweenness 
+glmer_str_eigen_conn <- glmer(oxbow_occurrence ~ between + scale(ph) +
+                                (1|watershed) + scale(do_mgl) + scale(temp),
+                              data = df_iowa_oxbow, family = "binomial")
+
+summary(glmer_str_eigen_conn)
+
+
+
+
+# MN & IA COMBINED --------------------------------------------------------
+# data --------------------------------------------------------------------
+
+df_mn_ia_oxbow <- readRDS(file = "data_fmt/data_ia_mn_oxbow_join.rds")
+
+# analyze -----------------------------------------------------------------
+
+# betweenness and join oxbow_occurrence
+glmer_strm_between_occ <- glmer(oxbow_occurrence ~ between + scale(do_mgl) + 
+                                  scale(turbidity) + scale(do_percent) + scale(ph) +
+                                  scale(temperature) +  (1|watershed),
+                                data = df_mn_ia_oxbow, family = "binomial")
+
+summary(glmer_strm_between_occ)
+

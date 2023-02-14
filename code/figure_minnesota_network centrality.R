@@ -61,3 +61,46 @@ ggplot(df_mn_ox_cent,
   geom_smooth(method = 'glm', se = TRUE,
               method.args = list(binomial(link = 'logit'))) + 
   geom_point()
+
+
+
+# IOWA --------------------------------------------------------------------
+# data -----------------------------------------------------------------
+
+# import oxbow data
+df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_stream_network_centrality.rds")
+
+# visualize relationship ----------------------------------------------------------
+
+# betweenness X oxbow occurrence
+ggplot(df_iowa_oxbow,
+       aes(x = between,
+           y = oxbow_occurrence)) +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
+  geom_point()
+
+# MN & IA COMBINED --------------------------------------------------------
+# data --------------------------------------------------------------------
+
+df_mn_ia_oxbow <- readRDS(file = "data_fmt/data_ia_mn_oxbow_join.rds")
+
+# visualize ---------------------------------------------------------------
+
+
+# MN + IA oxbow betweenness x occurrence
+ggplot(df_mn_ia_oxbows_join,
+       aes(x = between,
+           y = oxbow_occurrence))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
+  geom_point()
+
+# MN + IA oxbow eigenvector x occurrence
+ggplot(df_mn_ia_oxbows_join,
+       aes(x = eigen,
+           y = oxbow_occurrence))  +
+  geom_smooth(method = 'glm', se = TRUE,
+              method.args = list(binomial(link = 'logit'))) + 
+  geom_point()
+
