@@ -86,7 +86,7 @@ site_info <- readRDS("data_fmt/data_iowa_oxbow_lineid.rds") %>%
          do_mgl = as.numeric(do_mgl),
          ph = as.numeric(ph)) 
 
-# network centrality test ---------------------------------------------------------
+# network centrality ---------------------------------------------------------
 
 # betweenness
 df_b <- lapply(X = 1:n_distinct(sf_line$watershed),

@@ -26,8 +26,11 @@ ggplot(df_mn_strm_cent,
        aes(x = between,
            y = stream_occurrence))  +
   geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(binomial(link = 'logit'))) + 
-  geom_point()
+              method.args = list(binomial(link = 'logit')),
+              color = "black",
+              fill = "grey70") + 
+  geom_point() +
+  theme_minimal()
 
 # oxbow betweenness x occurrence
 #ggplot(df_mn_ox_cent,

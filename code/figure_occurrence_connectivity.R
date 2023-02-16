@@ -31,17 +31,22 @@ ggplot(df_stream_conn,
        aes(x = connectivity,
            y = stream_occurrence))  +
   geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(family = "binomial")) + 
+              method.args = list(family = "binomial"),
+              color = "black",
+              fill = "grey70") + 
   geom_point() +
-  theme(rect = element_blank()) 
+  theme_minimal() 
 
 # plot of oxbow occurrence and connectivity
 ggplot(df_oxbow_snap,
        aes(x = connectivity,
            y = oxbow_occurrence)) +
   geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(family = "binomial"))+
-  geom_point() 
+              method.args = list(family = "binomial"),
+              color = "black",
+              fill = "grey70")+
+  geom_point() + 
+  theme_minimal()
 
 # histograms -----------------------------------------------------------------
 
