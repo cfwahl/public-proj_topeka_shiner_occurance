@@ -115,7 +115,8 @@ df_i <- site_info %>%
   left_join(df_b,
             by = "line_id") %>%
   dplyr::select(-c(geometry.y)) %>%
-  rename(geometry = geometry.x)
+  rename(geometry = geometry.x,
+         oxbow_occurrence = occurrence)
 
 # export  -----------------------------------------------------------------
 
