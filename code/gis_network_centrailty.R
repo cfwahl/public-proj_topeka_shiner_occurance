@@ -62,6 +62,9 @@ df_mn_strm_cent <-  merge(x = sf_stream_point, y = df_b[ , c("line_id", "between
 # export stream network centrality scores
 saveRDS(df_mn_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
 
+# export stream network with betweenness scores
+saveRDS(df_b, file = "data_fmt/data_minnesota_stream_betweenness.rds")
+
 # export oxbow network centrality scores
 saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
 
@@ -86,7 +89,7 @@ site_info <- readRDS("data_fmt/data_iowa_oxbow_lineid.rds") %>%
          do_mgl = as.numeric(do_mgl),
          ph = as.numeric(ph)) 
 
-# network centrality test ---------------------------------------------------------
+# network centrality ---------------------------------------------------------
 
 # betweenness
 df_b <- lapply(X = 1:n_distinct(sf_line$watershed),
