@@ -41,6 +41,29 @@ df_mn_strm_cent <- merge(x = df_mn_strm_cent, y = sf_line2[ , c("line_id", "seg_
   mutate(seg_length = as.numeric(seg_length)) %>%
   rename(geometry = geometry.x)
 
+
+# connectivity classes ----------------------------------------------------
+
+# make segment length numeric
+sf_line2 <- sf_line2 %>%
+  mutate(seg_length = as.numeric(seg_length))
+sum(sf_line2$seg_length) # total length
+
+# subset connectivity <=2
+low <- sf_line2 %>%
+  filter(connectivity <= 2)
+sum(low$seg_length) # length 
+
+# subset connectivity between 2-3.9
+med <- sf_line2 %>%
+  filter(connectivity >= 2 & connectivity <= 3.9)
+sum(med$seg_length) # length
+
+# subset connectivity >=4
+high <- sf_line2 %>%
+  filter(connectivity >= 4)
+sum(high$seg_length)
+
 # export data ------------------------------------------------------------------
 
 # export stream network centrality scores
