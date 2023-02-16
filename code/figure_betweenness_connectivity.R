@@ -26,8 +26,11 @@ ggplot(df_mn_strm_cent,
        aes(x = between,
            y = connectivity))  +
   geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(Gamma(link = 'log'))) + 
-  geom_point()
+              method.args = list(Gamma(link = 'log')),
+              color = "black",
+              fill = "grey70") + 
+  geom_point() +
+  theme_minimal()
 
 # oxbow connectivity x betweenness
 #ggplot(df_mn_ox_cent,
