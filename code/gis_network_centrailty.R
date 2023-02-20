@@ -73,7 +73,8 @@ saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp") 
+sf_line <- readRDS(file = "data_fmt/data_iowa_stream_network_5km2.rds")
+#sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp") 
 
 #data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp
 site_info <- readRDS("data_fmt/data_iowa_oxbow_lineid.rds") %>%
