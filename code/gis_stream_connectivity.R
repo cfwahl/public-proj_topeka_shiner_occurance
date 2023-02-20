@@ -13,14 +13,18 @@ source(here::here("code/library.R"))
 # data --------------------------------------------------------------------
 
 # read real and dummy sites
-df_all <- sf::st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") %>%
+df_all <- readRDS(file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds") %>%
+#df_all1 <- sf::st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") %>%
   st_transform(crs = 3722)
 
 ## read stream network
-sf_line <- list.files("data_fmt/vector",
-                      pattern = "epsg3722_minnesota_stream_network_5km2.shp",
-                      full.names = T) %>% 
-  st_read()
+sf_line <- readRDS(file = "data_fmt/data_minnesota_stream_network_5km2.rds") %>%
+  st_transform(crs = 3722)
+
+# sf_line <- list.files("data_fmt/vector",
+#                       pattern = "epsg3722_minnesota_stream_network_5km2.shp",
+#                       full.names = T) %>% 
+#  st_read()
 
 ## read connectivity estimate
 df_s <- readRDS("output/mcmc_summary_up_full.rds") %>% 
@@ -55,3 +59,5 @@ sf_line <- sf_line %>%
 st_write(sf_line,
          dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp",
          append = FALSE)
+
+saveRDS(sf_line, file = "data_fmt/data_minnesota_stream_connectivity.rds")

@@ -14,7 +14,8 @@ source(here::here("code/library.R"))
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line2 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
+sf_line2 <- readRDS(file = "data_fmt/data_minnesota_stream_connectivity.rds") %>%
+#sf_line2 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
   dplyr::select(-c(STRM_VA)) %>% # remove slope variable
   rename(connectivity = connectivi)
 
@@ -74,6 +75,7 @@ saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.
 ## stream polyline
 sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp") 
 
+#data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp
 site_info <- readRDS("data_fmt/data_iowa_oxbow_lineid.rds") %>%
   dplyr::select(-c(sampled, siteid, date, year, state, stremnm, habitat, STRM_VAL,
                    occrrnc)) %>%

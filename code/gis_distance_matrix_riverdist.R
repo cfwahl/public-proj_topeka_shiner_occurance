@@ -13,7 +13,8 @@ source(here::here("code/library.R"))
 
 # read site and stream data --------------------------------------------------------------------
 
-wgs_sf_outlet <- st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") 
+wgs_sf_outlet <- readRDS(file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds")
+#wgs_sf_outlet <- st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") 
   #filter(siteid %in% utm_sf_wsd$siteid) # select sites with watershed delineation
 
 utm_sf_outlet <- st_transform(wgs_sf_outlet, crs = 3722)
@@ -83,4 +84,4 @@ identical(m_td, m_x)
 datalist <- list(m_u = m_u, m_d = m_d)
 
 # export
-saveRDS(datalist, file = "data_fmt/data_minnesota_distance_matrix_dummy_real.rds")
+saveRDS(datalist, file = "data_fmt/data_minnesota_distance_matrix_dummy_real1.rds")
