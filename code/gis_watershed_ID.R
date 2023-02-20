@@ -129,9 +129,9 @@ sfline <- st_read(dsn = "data_fmt/vector/epsg4326_ia_str_network_5km2.shp") %>%
 
 join <- st_join(sfline, wgs84_sf_ws_polygon) %>% 
   drop_na(siteid) %>% 
-  rename(line_id = STRM_VAL,
+  rename(line_id = FID,
          watershed = siteid) %>%
-  dplyr::select(-c(FID)) %>%
+  dplyr::select(-c(STRM_VAL)) %>%
   st_set_crs(4326)
 
 # export stream network  ------------------------------------------------------------------
