@@ -62,9 +62,9 @@ join <- rbind(site_info, dummy) %>%
 # export dummy and real sites ------------------------------------------------------------------
 
 # create shapefile
-# st_write(join,
-#          dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp",
-#          append = FALSE)
+st_write(join,
+         dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp",
+         append = FALSE)
 
 # create RDS file
 saveRDS(join, file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds")

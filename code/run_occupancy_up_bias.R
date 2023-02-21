@@ -17,12 +17,13 @@ f2v <- function(x) {
 
 # Read in the data
 # upstream distance matrix 
-#load("data_fmt/distance_matrix_dummy.Rdata")
-datalist <- readRDS(file = "data_fmt/data_minnesota_distance_matrix_dummy_real.rds")
+#load("data_fmt/old/distance_matrix_dummy.Rdata")
+datalist <- readRDS(file = "data_fmt/data_minnesota_distance_matrix_dummy_real1.rds") 
 m_u <- datalist$m_u
 m_d <- datalist$m_d
 
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg") %>% 
+df_landuse <- readRDS(file ="data_fmt/data_minnesota_stream_landuse_dummy_real.rds") %>%
+#df_landuse1 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg") %>% 
   as_tibble() %>%
   arrange(siteid) %>% 
   mutate(dummy = ifelse(is.na(occurrence), 1, 0)) %>% 
@@ -153,8 +154,8 @@ post <- run.jags(m$model,
                  module = "glm")
 
 # summarize outputs
-mcmc_summary_up_full <- MCMCsummary(post$mcmc)
-mcmc_summary_up_full   # Bayesian analysis
+mcmc_summary_up_full_test <- MCMCsummary(post$mcmc)
+mcmc_summary_up_full_test   # Bayesian analysis
 
 # # export ------------------------------------------------------------------
 
@@ -167,13 +168,13 @@ MCMCtrace(post$mcmc,
 #save(mcmc_summary_up_full,
 #     file = "output/mcmc_summary_up_full.RData")
 
-saveRDS(mcmc_summary_up_full, file = "output/mcmc_summary_up_full.rds")
+saveRDS(mcmc_summary_up_full_test, file = "output/mcmc_summary_up_full_test.rds")
 
 # ## save post$mcmc for plots
 #save(post,
 #     file = "output/post_summary_up_full.RData")
 
-saveRDS(post, file = "output/post_summary_up_full.rds")
+saveRDS(post, file = "output/post_summary_up_full_test.rds")
 
 # # waic --------------------------------------------------------------------
 # 

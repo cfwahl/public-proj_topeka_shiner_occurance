@@ -124,7 +124,8 @@ utm_sf_wsd <- utm_sf_wsd %>%
   left_join(df_lu, by = "siteid") %>% 
   left_join(df_clim, by = "siteid") %>% 
   mutate(area = units::set_units(st_area(.), "km^2")) %>% # add watershed area
-  arrange(siteid)
+  arrange(siteid) %>%
+  mutate(area = as.numeric(area))
 
 # save shapefile as geopackage, saving as shapefile will change column names
 # st_write(utm_sf_wsd,

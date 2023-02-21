@@ -42,7 +42,7 @@ wgs84_sf_ws_polygon <- lapply(wgs84_list_raster,
 # read stream occurrence data
 stream_occurrence <- readRDS(file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds")
 
-#read in steam network
+# read in steam network
 stream_network <- readRDS(file = "data_fmt/data_minnesota_stream_network_5km2.rds")
 
 # join attributes --------------------------------------------------------------------
