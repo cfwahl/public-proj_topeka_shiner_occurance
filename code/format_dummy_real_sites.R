@@ -15,6 +15,9 @@ source(here::here("code/library.R"))
 # clean objects
 rm(list = ls())
 
+# turn this back on if coming from previous step
+sf::sf_use_s2(TRUE)
+
 # MINNESOTA ---------------------------------------------------------------
 # join stream sampling sites and stream network attributes -------------------------------------------------------
 
@@ -61,7 +64,7 @@ join <- rbind(site_info, dummy) %>%
 
 # export dummy and real sites ------------------------------------------------------------------
 
-# create shapefile
+# create shapefile, need this file for next step
 st_write(join,
          dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp",
          append = FALSE)

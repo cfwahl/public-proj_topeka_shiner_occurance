@@ -54,7 +54,8 @@ join <- wgs84_sf_ws_polygon %>%
   dplyr::select(-c(geometry.y)) %>%
   left_join(as_tibble(stream_network),
             by = c("line_id" = "line_id")) %>%
-  dplyr::select(-c(STRM_VAL, geometry))
+  dplyr::select(-c(STRM_VAL, geometry)) %>%
+  mutate(area = as.numeric(area))
 
 # export data -------------------------------------------------------------
 
