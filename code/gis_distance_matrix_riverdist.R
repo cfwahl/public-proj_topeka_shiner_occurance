@@ -48,6 +48,7 @@ site_snap <- xy2segvert(x = X,
 
 # save file 
 #saveRDS(strnet_fixed, file = "data_fmt/riverdist_minnesota_stream_network.rds")
+#strnet_fixed <- readRDS(file = "data_fmt/riverdist_minnesota_stream_network.rds" )
 
 # create distance matrices  --------------------------------------------------------
 

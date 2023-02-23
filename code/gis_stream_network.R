@@ -40,10 +40,10 @@ wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_
                             output = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap.shp",
                             snap_dist = 1)
 
-# manually moved locations not properly snaped and re-did snapping to stream network
-wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap.shp", # GPKG file is not accepted. Used SHP file.
+# manually moved locations not properly snapped and re-did snapping to stream network
+wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap2.shp", # GPKG file is not accepted. Used SHP file.
                             streams = "data_fmt/raster/epsg4326_mn_fmt_stream_5km2.tif",
-                            output = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap2.shp",
+                            output = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap3.shp",
                             snap_dist = 1)
 
 # Assigns a unique identifier to each link in a stream network

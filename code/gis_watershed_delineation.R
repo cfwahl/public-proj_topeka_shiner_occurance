@@ -55,8 +55,14 @@ join <- wgs84_sf_ws_polygon %>%
   left_join(as_tibble(stream_network),
             by = c("line_id" = "line_id")) %>%
   dplyr::select(-c(STRM_VAL, geometry)) %>%
-  mutate(area = as.numeric(area))
+  mutate(area = as.numeric(area)) %>%
+  rename(geometry = geometry.x)
 
 # export data -------------------------------------------------------------
+
+# create shapefile, need this file for next step
+# st_write(wgs84_sf_ws_polygon,
+#          dsn = "data_fmt/vector/epsg4326_minnesota_test.shp",
+#          append = FALSE)
 
 saveRDS(join, file = "data_fmt/data_minnesota_stream_watersheds_dummy_real.rds")

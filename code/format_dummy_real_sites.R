@@ -23,7 +23,7 @@ sf::sf_use_s2(TRUE)
 
 # read in snapped point file
 point <- st_read(dsn = "data_fmt/vector",
-                 layer = "epsg4326_mn_dnr_fws_fmt_sites_snap2")
+                 layer = "epsg4326_mn_dnr_fws_fmt_sites_snap3")
 
 # read stream network with mean slope and segment identifier 
 line <- st_read(dsn = "data_fmt/vector",
@@ -39,7 +39,7 @@ site_info <- point %>%
   rename(slope = STRM_VAL,
          geometry = geometry.x) %>%
   arrange(siteid) %>%
-  #st_transform(3722) %>%
+  st_transform(4326) %>%
   dplyr::select(-c("year"))
 
 # create dummy sites ------------------------------------
