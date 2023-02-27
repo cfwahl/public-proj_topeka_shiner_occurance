@@ -78,6 +78,6 @@ ggplot(sf_line) + # base map of stream lines
 
 # save map ----------------------------------------------------------------
 
-ggsave(file = "output/figure_map_stream_oxbows.pdf",
+ggsave(file = "output/figure_map_stream_connectivity.pdf",
        width = 7,
        height = 9)
