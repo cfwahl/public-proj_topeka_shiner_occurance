@@ -14,27 +14,39 @@ source(here::here("code/library.R"))
 
 # read real and dummy sites
 df_all <- readRDS(file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds") %>%
-#df_all1 <- sf::st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") %>%
   st_transform(crs = 3722)
 
 ## read stream network
 sf_line <- readRDS(file = "data_fmt/data_minnesota_stream_network_5km2.rds") %>%
   st_transform(crs = 3722)
 
-# sf_line <- list.files("data_fmt/vector",
-#                       pattern = "epsg3722_minnesota_stream_network_5km2.shp",
-#                       full.names = T) %>% 
-#  st_read()
+# real mcmc output
+mcmc_summary_up_full <- readRDS(file = "output/mcmc_summary_up_full.rds")
 
-## read connectivity estimate
-df_s <- readRDS("output/mcmc_summary_up_full.rds") %>% 
-  filter(str_detect(param, "s_hat")) %>% #remove alpha and beta parameters 
-  dplyr::select(connectivity = `50%`,
-         site0,
-         siteid) %>% # select 3 columns, connectivity, site0, and siteid (site0 is dummy site identifier)
-  mutate(siteid = siteid + sum(!is.na(df_all$occurrence))) #reorganize data by occurrence=NA, move NA to the top (! command)
+# prep mcmc output --------------------------------------------------------------------
+
+# make the rows into a column named param
+df_s1 <- tibble::rownames_to_column(mcmc_summary_up_full, "param") 
+
+# only look at s_hat rows, siteid and site0 columns with row numbers
+df_s2 <- df_s1 %>%
+  filter(str_detect(param, "s_hat")) %>% #remove alpha and beta parameters
+  mutate(siteid = row_number(),
+         site0 = row_number()) 
+
+# slice model parameters (alpha, beta, mu, etc) from mcmc_summary   
+df_s3 <- slice(df_s1, 1:14)
+df_s <-  bind_rows(df_s3, df_s2) # bind parameters and connectivity values
 
 # prep occurrence and connectivity data ---------------------------------------------------------------
+
+# extract 50% connectivity value and make into date frame
+df_s <- df_s %>%
+  filter(str_detect(param, "s_hat")) %>% #remove alpha and beta parameters 
+  dplyr::select(connectivity = `50%`,
+                site0,
+                siteid) %>% # select 3 columns, connectivity, site0, and siteid (site0 is dummy site identifier)
+  mutate(siteid = siteid + sum(!is.na(df_all$occurrence))) #reorganize data by occurrence=NA, move NA to the top (! command)
 
 # filter dummy sites only, join attributes with connectivity
 df_x <- df_all %>% 
@@ -48,16 +60,16 @@ df_x <- df_all %>%
 # join shapefiles ---------------------------------------------------------
 
 # combine with stream and dummy site attributes
-sf_line <- sf_line %>% 
+sf_line2 <- sf_line %>% 
   left_join(df_x,
             by = c("line_id" = "line_id")) %>% # join data frames based on line_id 
-  st_transform(sf_line, crs = 3722) # transform to utm
+  st_transform(sf_line2, crs = 3722) # transform to utm
 
 # export connectivity stream network--------------------------------------------------------
 
 # write stream connectivity shapefile
-st_write(sf_line,
-         dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp",
-         append = FALSE)
+# st_write(sf_line2,
+#          dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp",
+#          append = FALSE)
 
-saveRDS(sf_line, file = "data_fmt/data_minnesota_stream_connectivity.rds")
+saveRDS(sf_line2, file = "data_fmt/data_minnesota_stream_connectivity.rds")

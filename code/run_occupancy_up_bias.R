@@ -17,13 +17,11 @@ f2v <- function(x) {
 
 # Read in the data
 # upstream distance matrix 
-#load("data_fmt/old/distance_matrix_dummy.Rdata")
-datalist <- readRDS(file = "data_fmt/data_minnesota_distance_matrix_dummy_real1.rds") 
+datalist <- readRDS(file = "data_fmt/data_minnesota_distance_matrix_dummy_real.rds") 
 m_u <- datalist$m_u
 m_d <- datalist$m_d
 
 df_landuse <- readRDS(file ="data_fmt/data_minnesota_stream_landuse_dummy_real.rds") %>%
-#df_landuse1 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg") %>% 
   as_tibble() %>%
   arrange(siteid) %>% 
   mutate(dummy = ifelse(is.na(occurrence), 1, 0)) %>% 
@@ -74,7 +72,6 @@ M_hat <- foreach(i = seq_len(nrow(TD_hat)),
 
 list_d_hat <- lapply(list(U_hat, D_hat, TD_hat), FUN = f2v)
 names(list_d_hat) <- c("U", "D", "TD")
-
 
 # jags --------------------------------------------------------------------
 
@@ -164,17 +161,11 @@ MCMCtrace(post$mcmc,
           wd = "output/",
           filename = "mcmc_trace_up_full")
 
-# ## save mcmc_summary
-#save(mcmc_summary_up_full,
-#     file = "output/mcmc_summary_up_full.RData")
+# save mcmc output
+saveRDS(mcmc_summary_up_full_test, file = "output/mcmc_summary_up_full.rds")
 
-saveRDS(mcmc_summary_up_full_test, file = "output/mcmc_summary_up_full_test.rds")
-
-# ## save post$mcmc for plots
-#save(post,
-#     file = "output/post_summary_up_full.RData")
-
-saveRDS(post, file = "output/post_summary_up_full_test.rds")
+# save jags output
+saveRDS(post, file = "output/post_summary_up_full.rds")
 
 # # waic --------------------------------------------------------------------
 # 

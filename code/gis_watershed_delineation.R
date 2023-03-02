@@ -60,9 +60,4 @@ join <- wgs84_sf_ws_polygon %>%
 
 # export data -------------------------------------------------------------
 
-# create shapefile, need this file for next step
-# st_write(wgs84_sf_ws_polygon,
-#          dsn = "data_fmt/vector/epsg4326_minnesota_test.shp",
-#          append = FALSE)
-
 saveRDS(join, file = "data_fmt/data_minnesota_stream_watersheds_dummy_real.rds")

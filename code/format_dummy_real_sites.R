@@ -46,8 +46,6 @@ site_info <- point %>%
 
 # read in stream network
 stream <- readRDS(file = "data_fmt/data_minnesota_stream_network_5km2.rds")
-# stream <- st_read(dsn = "data_fmt/vector/old",
-#                   layer = "epsg3722_minnesota_stream_network_5km2")
 
 # create point for each stream segment
 dummy <- sf::st_point_on_surface(stream) %>%
@@ -98,14 +96,6 @@ site_info <- point %>%
   arrange(oxbowid)
 
 # export ------------------------------------------------------------------
-
-# export geopackage, shapefile changes the column names
-#site_info %>% 
-#  st_as_sf(coords = c("longitudewq", "latutudewq"),
-#           crs = 4326) %>% 
-#  st_write(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp",
-#           drivers = "ESRI Shapefile",
-#           append = FALSE)
 
 # create RDS file
 saveRDS(site_info, file = "data_fmt/data_iowa_oxbow_lineid.rds")

@@ -14,7 +14,6 @@ source(here::here("code/library.R"))
 
 # watershed polygon
 wgs84_sf_wsd <- readRDS(file = "data_fmt/data_minnesota_stream_watersheds_dummy_real.rds")
-#wgs84_sf_wsd <- st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_watersheds_dummy_real.shp")
 utm_sf_wsd <- wgs84_sf_wsd %>% 
   st_transform(crs = 3722)
 
@@ -126,10 +125,5 @@ utm_sf_wsd <- utm_sf_wsd %>%
   mutate(area = units::set_units(st_area(.), "km^2")) %>% # add watershed area
   arrange(siteid) %>%
   mutate(area = as.numeric(area))
-
-# save shapefile as geopackage, saving as shapefile will change column names
-# st_write(utm_sf_wsd,
-#          dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg",
-#          append = FALSE)
 
 saveRDS(utm_sf_wsd, file ="data_fmt/data_minnesota_stream_landuse_dummy_real.rds")
