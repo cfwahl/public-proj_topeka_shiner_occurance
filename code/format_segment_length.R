@@ -15,9 +15,8 @@ source(here::here("code/library.R"))
 df_mn_strm_cent <- readRDS(file = "data_fmt/data_minnesota_stream_network_centrality.rds")
 
 ## stream polyline
-sf_line2 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
-  dplyr::select(-c(STRM_VA)) %>% # remove slope variable
-  rename(connectivity = connectivi)
+sf_line2 <- readRDS(file = "data_fmt/data_minnesota_stream_connectivity.rds") %>%
+  dplyr::select(-c(STRM_VAL))  # remove slope variable
 
 # segment length ----------------------------------------------------------
 
@@ -39,7 +38,8 @@ sf_line2 <- sf_line2 %>%
 df_mn_strm_cent <- merge(x = df_mn_strm_cent, y = sf_line2[ , c("line_id", "seg_length")], 
                          by = "line_id", all.x=TRUE) %>%
   dplyr::select(-c(geometry.y)) %>%
-  mutate(seg_length = as.numeric(seg_length))
+  mutate(seg_length = as.numeric(seg_length)) %>%
+  rename(geometry = geometry.x)
 
 # export data ------------------------------------------------------------------
 
