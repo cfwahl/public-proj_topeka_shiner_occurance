@@ -1,8 +1,7 @@
 
-# this code examines relationships among oxbow occurrence (Minnesota and Iowa joined)
+# prediction regression of oxbow occurrence (Minnesota and Iowa joined)
 # and betweenness
 
-# MN & IA COMBINED --------------------------------------------------------
 # data --------------------------------------------------------------------
 
 df_mn_ia_oxbow <- readRDS(file = "data_fmt/data_ia_mn_oxbow_join.rds") %>%
@@ -11,22 +10,41 @@ df_mn_ia_oxbow <- readRDS(file = "data_fmt/data_ia_mn_oxbow_join.rds") %>%
   mutate(state = replace(state, state == 'FALSE', 'Iowa'),
          state = replace(state, state == 'TRUE', 'Minnesota'))
 
-# visualize ---------------------------------------------------------------
+# remove NAs --------------------------------------------------------------------
 
-# MN + IA oxbow betweenness x occurrence
-sp <- ggplot(df_mn_ia_oxbow,
-       aes(x = between,
-           y = oxbow_occurrence))  +
-  geom_smooth(method = 'glm', se = TRUE,
-              method.args = list(binomial(link = 'logit')),
-              color = "black",
-              fill = "grey70") + 
-  geom_point(aes(colour = state)) +  
+df_fit <- df_mn_ia_oxbow %>% 
+  drop_na(oxbow_occurrence,
+          turbidity,
+          temperature,
+          do_mgl,
+          ph)
+
+# glmm --------------------------------------------------------------------
+
+fit <- glmer(oxbow_occurrence ~ between + scale(do_mgl) + 
+                                  scale(turbidity) +  scale(ph) +
+                                  scale(temperature) +  (1|watershed),
+                                data = df_fit, family = "binomial")
+
+summary(fit)
+
+# figure ------------------------------------------------------------------
+
+df_pred <-  tibble(x = seq(min(df_fit$between),
+                           max(df_fit$between),
+                           length = 100)) %>% 
+  mutate(y = boot::inv.logit(fit@beta[1] + fit@beta[2] * x))
+
+df_fit %>% 
+  ggplot(aes(x = between,
+             y = oxbow_occurrence)) +
+  geom_point(aes(colour = state)) +
+  geom_line(data = df_pred,
+            aes(x = x,
+                y = y)) +
   theme_minimal() +
   theme(legend.background = element_rect(fill = FALSE, size = 4, colour = FALSE),
-        legend.justification = c(-0.5, 1.75),
+        legend.justification = c(-2.5, 2.75),
         legend.position = c(0, 1),
-        legend.title=element_blank()) 
-
-sp + scale_color_manual(values=c("chocolate", "grey39")) 
-
+        legend.title=element_blank()) + 
+  scale_color_manual(values=c("chocolate", "grey39")) 

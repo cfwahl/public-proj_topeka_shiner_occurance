@@ -13,9 +13,8 @@ source(here::here("code/library.R"))
 # data --------------------------------------------------------------------
 
 # stream network
-sf_line2 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
-  dplyr::select(-c(STRM_VA)) %>% # remove slope variable
-  rename(connectivity = connectivi)
+sf_line2 <- readRDS(file = "data_fmt/data_minnesota_stream_connectivity.rds") %>%
+  dplyr::select(-c(STRM_VAL)) # remove slope variable
 
 # network centrality betweenness ---------------------------------------------------------
 
@@ -36,7 +35,7 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
                  return(out)
                }) %>% 
   bind_rows() %>%
-  as.tibble()
+  as_tibble()
 
 # join --------------------------------------------------------------------
 

@@ -1,40 +1,38 @@
 
-# prediction regression between Iowa oxbow occurrence (Iowa) and betweenness 
+# prediction regression of Minnesota oxbow occurrence and betweeness
 
 # setup --------------------------------------------------------------------
 
 # clean objects
 rm(list = ls())
 
-# Load packages
+# load libraries
 source(here::here("code/library.R")) 
 
-# data -----------------------------------------------------------------
+# data --------------------------------------------------------------------
 
-# import oxbow data
-df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds") %>%
-  filter(habitat=='Restored_Oxbow')
+# import oxbow rds
+df_mn_ox_cent <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
 
 # remove NAs --------------------------------------------------------------------
 
-df_fit <- df_iowa_oxbow %>% 
+df_fit <- df_mn_ox_cent %>% 
   drop_na(oxbow_occurrence,
-          cond,
           turb,
           temp,
           do_mgl,
+          dopercent,
           ph)
 
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(oxbow_occurrence ~ between + scale(ph) +
-                                (1|line_id) + scale(do_mgl) + scale(temp) +
-                                scale(cond) + scale(turb),
-                              data = df_iowa_oxbow, family = "binomial")
+fit <- glmer(oxbow_occurrence ~  between + 
+                             scale(dopercent) + scale(ph) + (1|watershed),
+                           data = df_fit, family = "binomial")
 
 summary(fit)
 
-# figure ----------------------------------------------------------
+# figure ------------------------------------------------------------------
 
 df_pred <-  tibble(x = seq(min(df_fit$between),
                            max(df_fit$between),
