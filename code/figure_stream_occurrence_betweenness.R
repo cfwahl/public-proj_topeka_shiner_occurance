@@ -30,8 +30,8 @@ sf_covar <- df_mn_strm_cent %>%
 
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(stream_occurrence ~ between + scale(area) + scale(frac_agri) + 
-               scale(seg_length) + scale(temp_season) + scale(precip_wet) + 
+fit <- glmer(stream_occurrence ~ between + scale(area) + + scale(precip_wet) +
+               #scale(frac_agri) + scale(seg_length) + scale(temp_season)  +
                scale(slope) +  (1|watershed), data = sf_covar, family = "binomial")
 
 summary(fit)
@@ -40,7 +40,7 @@ summary(fit)
 
 df_pred <-  tibble(x = seq(min(sf_covar$between),
                            max(sf_covar$between),
-                           length = 113)) %>% 
+                           length = 100)) %>% 
   mutate(y = boot::inv.logit(fit@beta[1] + fit@beta[2] * x))
 
 sf_covar %>% 
