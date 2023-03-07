@@ -29,11 +29,12 @@ sf_covar <- df_stream_conn %>%
          slope = slope.x,
          geometry = geometry.x,
          watershed = watershed.x)
+
 # glmm --------------------------------------------------------------------
 
 fit <- glmer(stream_occurrence ~ connectivity + scale(area) + 
-                               #scale(frac_agri) + scale(temp_season) + scale(seg_length) +
-                               scale(precip_wet) + scale(slope) + 
+                               scale(frac_agri) + scale(temp_season) + #scale(seg_length) +
+                               scale(precip_wet) + #scale(slope) + 
                                (1|watershed),
                              data = sf_covar, family = "binomial")
 

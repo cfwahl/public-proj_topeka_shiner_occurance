@@ -16,19 +16,21 @@ df_oxbow_snap <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centralit
 
 # remove NAs --------------------------------------------------------------------
 
+# number of NAs
+colSums(is.na(df_oxbow_snap))
+
 df_fit <- df_oxbow_snap %>% 
   drop_na(oxbow_occurrence,
           turb,
-          temp,
-          do_mgl,
+          #temp,
+          #do_mgl,
           dopercent,
           ph)
 
 # glmm --------------------------------------------------------------------
 
 fit <- glmer(oxbow_occurrence ~  connectivity + scale(turb) +
-                             scale(temp) + scale (do_mgl) + scale(dopercent) +
-                             scale(ph) + (1|siteid),
+                           scale(dopercent) +  scale(ph) + (1|line_id),
                            data = df_fit, family = "binomial")
 
 summary(fit)

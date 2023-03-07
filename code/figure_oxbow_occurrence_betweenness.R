@@ -2,6 +2,14 @@
 # prediction regression of oxbow occurrence (Minnesota and Iowa joined)
 # and betweenness
 
+# setup --------------------------------------------------------------------
+
+# clean objects
+rm(list = ls())
+
+# load libraries
+source(here::here("code/library.R")) 
+
 # data --------------------------------------------------------------------
 
 df_mn_ia_oxbow <- readRDS(file = "data_fmt/data_ia_mn_oxbow_join.rds") %>%
@@ -12,10 +20,13 @@ df_mn_ia_oxbow <- readRDS(file = "data_fmt/data_ia_mn_oxbow_join.rds") %>%
 
 # remove NAs --------------------------------------------------------------------
 
+# number of NAs
+colSums(is.na(df_mn_ia_oxbow))
+
 df_fit <- df_mn_ia_oxbow %>% 
   drop_na(oxbow_occurrence,
           turbidity,
-          temperature,
+          #temperature,
           do_mgl,
           ph)
 
@@ -23,7 +34,7 @@ df_fit <- df_mn_ia_oxbow %>%
 
 fit <- glmer(oxbow_occurrence ~ between + scale(do_mgl) + 
                                   scale(turbidity) +  scale(ph) +
-                                  scale(temperature) +  (1|watershed),
+                                    (1|watershed),
                                 data = df_fit, family = "binomial")
 
 summary(fit)
@@ -44,7 +55,7 @@ df_fit %>%
                 y = y)) +
   theme_minimal() +
   theme(legend.background = element_rect(fill = FALSE, size = 4, colour = FALSE),
-        legend.justification = c(-2.5, 2.75),
+        legend.justification = c(-0.25, 1.30),
         legend.position = c(0, 1),
         legend.title=element_blank()) + 
   scale_color_manual(values=c("chocolate", "grey39")) 

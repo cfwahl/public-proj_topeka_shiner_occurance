@@ -17,17 +17,18 @@ df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds") %>%
 
 # remove NAs --------------------------------------------------------------------
 
+# number of NAs
+colSums(is.na(df_iowa_oxbow))
+
 df_fit <- df_iowa_oxbow %>% 
   drop_na(oxbow_occurrence,
-          cond,
-          turb,
           temp,
           do_mgl,
           ph)
 
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(oxbow_occurrence ~ between + scale(ph) +
+fit <- glmer(oxbow_occurrence ~ between + scale(ph) + scale(cond) +
                                 (1|line_id) + scale(do_mgl) + scale(temp) +
                                 scale(cond) + scale(turb),
                               data = df_iowa_oxbow, family = "binomial")

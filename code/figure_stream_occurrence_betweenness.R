@@ -30,11 +30,9 @@ sf_covar <- df_mn_strm_cent %>%
 
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(stream_occurrence ~ between + scale(area) + 
-                                  #scale(frac_agri) + scale(seg_length) + scale(temp_season) +
-                                  scale(precip_wet) + scale(slope) + 
-                                  (1|watershed),
-                                data = sf_covar, family = "binomial")
+fit <- glmer(stream_occurrence ~ between + scale(area) + scale(frac_agri) + 
+               scale(seg_length) + scale(temp_season) + scale(precip_wet) + 
+               scale(slope) +  (1|watershed), data = sf_covar, family = "binomial")
 
 summary(fit)
 
