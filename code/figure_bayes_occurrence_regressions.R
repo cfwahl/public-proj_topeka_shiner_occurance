@@ -10,7 +10,9 @@ rm(list = ls())
 # Load packages
 source(here::here("code/library.R")) 
 
-## read in mcmc summary output
+# data --------------------------------------------------------------------
+
+# read in mcmc summary output
 mcmc_summary_up_full <- readRDS(here::here("output/mcmc_summary_up_full.rds"))
 
 # common data -------------------------------------------------------------

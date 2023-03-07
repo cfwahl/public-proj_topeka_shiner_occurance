@@ -114,7 +114,7 @@ colnames(df_all) <- str_to_lower(colnames(df_all)) # make all column names lower
 
 # format FWS and ISU oxbow data ------------------------------------------------------------------
 
-df_oxbow <- df_fwsall %>% 
+df_oxbow <- df_all %>% 
   filter(habitat == "oxbow") %>%  # select only oxbows
   group_by(site, year) %>%  # grouping by site and year 
   summarize(occurrence = sum(topeka_shiner), # take sum of topeka shiner for each group
@@ -132,16 +132,21 @@ df_oxbow <- df_fwsall %>%
 
 # export oxbow data------------------------------------------------------------------
 
+# set coordinates for oxbows
+df_oxbow <- df_oxbow %>% 
+  st_as_sf(coords = c("long", "lat"),
+           crs = 4326)
+
 # this will recall code in R script
 saveRDS(df_oxbow, file = "data_fmt/data_minnesota_fmt_oxbows.rds")
 
 # shape file export
-df_oxbow %>% 
-  st_as_sf(coords = c("long", "lat"),
-           crs = 4326) %>% 
-  st_write(dsn = "data_fmt/vector/epsg4326_minnesota_oxbow_sites.shp",
-           drivers = "ESRI Shapefile",
-           append = FALSE)
+# df_oxbow %>% 
+#   st_as_sf(coords = c("long", "lat"),
+#            crs = 4326) %>% 
+#   st_write(dsn = "data_fmt/vector/epsg4326_minnesota_oxbow_sites.shp",
+#            drivers = "ESRI Shapefile",
+#            append = FALSE)
 
 # IOWA  -------------------------------------------------------------
 # read FWS and ISU oxbow and stream data ---------------------------------------------------------------
@@ -164,13 +169,18 @@ df_ia <- df_ia %>%
 
 # export ------------------------------------------------------------------
 
+# set coordinates
+df_ia <- df_ia %>% 
+  st_as_sf(coords = c("longitudewq", "latutudewq"),
+           crs = 4326) 
+
 # this will recall code in R script
 saveRDS(df_ia, file = "data_fmt/data_iowa_fmt_owbows.rds")
 
 # export geopackage, shapefile changes the column names
-df_ia %>% 
-  st_as_sf(coords = c("longitudewq", "latutudewq"),
-           crs = 4326) %>% 
-  st_write(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_sites.shp",
-           drivers = "ESRI Shapefile",
-           append = FALSE)
+# df_ia %>% 
+#   st_as_sf(coords = c("longitudewq", "latutudewq"),
+#            crs = 4326) %>% 
+#   st_write(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_sites.shp",
+#            drivers = "ESRI Shapefile",
+#            append = FALSE)

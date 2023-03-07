@@ -4,11 +4,11 @@
 
 # setup -------------------------------------------------------------------
 
-# load libraries
-source(here::here("code/library.R")) 
-
 # clean objects
 rm(list = ls())
+
+# load libraries
+source(here::here("code/library.R")) 
 
 # this line will allow st_make_valid to fix geometries for polygons
 sf::sf_use_s2(FALSE)
@@ -59,7 +59,8 @@ st_is_valid(wgs84_sf_ws_polygon)
 sfline <- st_read(dsn = "data_fmt/vector/epsg4326_mn_str_slope_5km2.shp") %>%
   st_set_crs(4326) %>%
   filter(!(FID %in% c("1882", "1640", "1509", "1022",
-                       "800", "797", "769"))) # %in% is select these values within site column, these sites fall outside connectivity stream network
+                       "800", "797", "769"))) # %in% is select these values within 
+               # site column, these sites fall outside stream networks
 
 # join --------------------------------------------------------------------
 
@@ -75,6 +76,8 @@ join <- st_join(sfline, wgs84_sf_ws_polygon) %>%
 st_write(join,
          dsn = "data_fmt/vector/epsg4326_minnesota_stream_network_5km2.shp",
          append = FALSE)
+
+saveRDS(join, file = "data_fmt/data_minnesota_stream_network_5km2.rds")
 
 # IOWA --------------------------------------------------------------------
 # gis ---------------------------------------------------------------------
@@ -126,9 +129,10 @@ sfline <- st_read(dsn = "data_fmt/vector/epsg4326_ia_str_network_5km2.shp") %>%
 
 join <- st_join(sfline, wgs84_sf_ws_polygon) %>% 
   drop_na(siteid) %>% 
-  rename(line_id = STRM_VAL,
+  rename(line_id = FID,
          watershed = siteid) %>%
-  dplyr::select(-c(FID))
+  dplyr::select(-c(STRM_VAL)) %>%
+  st_set_crs(4326)
 
 # export stream network  ------------------------------------------------------------------
 
@@ -136,3 +140,5 @@ join <- st_join(sfline, wgs84_sf_ws_polygon) %>%
 st_write(join,
          dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp",
          append = FALSE)
+
+saveRDS(join, file = "data_fmt/data_iowa_stream_network_5km2.rds")

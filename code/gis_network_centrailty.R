@@ -13,15 +13,16 @@ source(here::here("code/library.R"))
 # MINNESOTA ---------------------------------------------------------------
 # data --------------------------------------------------------------------
 
-## stream polyline
-sf_line2 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
-  dplyr::select(-c(STRM_VA)) %>% # remove slope variable
-  rename(connectivity = connectivi)
+# stream polyline
+sf_line2 <- readRDS(file = "data_fmt/data_minnesota_stream_connectivity.rds") %>%
+  dplyr::select(-c(STRM_VAL)) # remove slope variable
 
+# read oxbows with connectivity value  
 sf_ox_point <- readRDS(file = "data_fmt/data_minnesota_oxbow_occur_connect.RDS") %>%
   rename(oxbow_occurrence = occurrence) %>%
   dplyr::select(-c(distance, site, year, STRM_VA))
 
+# read stream sites with connectivity value
 sf_stream_point <- readRDS(file = "data_fmt/data_minnesota_stream_occur_connect.RDS") %>%
   rename(stream_occurrence = occurrence)
 
@@ -51,16 +52,21 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
 # add betweenness scores column to oxbow data
 df_mn_ox_cent <-  merge(x = sf_ox_point, y = df_b[ , c("line_id", "between")], 
         by = "line_id", all.x=TRUE) %>%
-  dplyr::select(-c(X1, Y1))
+  dplyr::select(-c(X1, Y1)) %>%
+  rename(watershed = watrshd)
 
 # add betweenness scores column to stream data
 df_mn_strm_cent <-  merge(x = sf_stream_point, y = df_b[ , c("line_id", "between")], 
-                        by = "line_id", all.x=TRUE)
+                        by = "line_id", all.x=TRUE) %>%
+  rename(watershed = watrshd)
 
 # export data ------------------------------------------------------------------
 
 # export stream network centrality scores
 saveRDS(df_mn_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
+
+# export stream network with betweenness scores
+saveRDS(df_b, file = "data_fmt/data_minnesota_stream_betweenness.rds")
 
 # export oxbow network centrality scores
 saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
@@ -68,9 +74,10 @@ saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.
 # IOWA --------------------------------------------------------------------
 # data --------------------------------------------------------------------
 
-## stream polyline
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp") 
+# stream polyline
+sf_line <- readRDS(file = "data_fmt/data_iowa_stream_network_5km2.rds")
 
+# read oxbow sites with line_id
 site_info <- readRDS("data_fmt/data_iowa_oxbow_lineid.rds") %>%
   dplyr::select(-c(sampled, siteid, date, year, state, stremnm, habitat, STRM_VAL,
                    occrrnc)) %>%

@@ -1,5 +1,5 @@
 
-#this script crates a map of betweenness in Iowa
+# this script crates a map of centrality betweenness in Iowa
 
 # setup --------------------------------------------------------------------
 
@@ -9,11 +9,10 @@ rm(list = ls())
 # load libraries
 source(here::here("code/library.R")) 
 
-# IOWA --------------------------------------------------------------------
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp") 
+sf_line <- readRDS(file = "data_fmt/data_iowa_stream_network_5km2.rds") 
 
 # network centrality ---------------------------------------------------------
 

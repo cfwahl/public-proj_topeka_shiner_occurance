@@ -13,20 +13,13 @@ source(here::here("code/library.R"))
 # data --------------------------------------------------------------------
 
 # read stream netwrok with connectivity scores
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
-  rename(connectivity = connectivi)
-
-# data --------------------------------------------------------------------
+sf_line <- readRDS(file = "data_fmt/data_minnesota_stream_connectivity.rds")
 
 # import stream rds
 df_stream_occ_snap <- readRDS(file = "data_fmt/data_minnesota_stream_network_centrality.rds")
 
 # import oxbow rds
 df_oxbow <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
-
-# read stream netwrok with connectivity scores
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
-  rename(connectivity = connectivi)
 
 # data prep for stream sites ---------------------------------------------------------------
 

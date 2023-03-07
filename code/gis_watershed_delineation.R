@@ -37,39 +37,27 @@ wgs84_sf_ws_polygon <- lapply(wgs84_list_raster,
   filter(area > units::set_units(5, "km^2")) %>% 
   st_transform(crs = 4326)
 
-# export watersheds ------------------------------------------------------------------
+# import stream and occurrence data ------------------------------------------------------------------
 
-# create shapefile, need this saved for code below
-st_write(wgs84_sf_ws_polygon,
-         dsn = "data_fmt/vector/epsg4326_minnesota_stream_watersheds_dummy_real.shp",
-         append = FALSE)
+# read stream occurrence data
+stream_occurrence <- readRDS(file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds")
 
-# join site and watersehd attributes --------------------------------------------------------------------
+# read in steam network
+stream_network <- readRDS(file = "data_fmt/data_minnesota_stream_network_5km2.rds")
 
-# add line_id from site point file to watershed polygon attribute table
-wbt_join_tables(input1 = "data_fmt/vector/epsg4326_minnesota_stream_watersheds_dummy_real.shp",
-                pkey = "siteid",
-                input2 = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp",
-                fkey = "siteid",
-                import_field = "line_id")
+# join attributes --------------------------------------------------------------------
 
-# add slope from site point file to watershed polygon attribute table
-wbt_join_tables(input1 = "data_fmt/vector/epsg4326_minnesota_stream_watersheds_dummy_real.shp",
-                pkey = "siteid",
-                input2 = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp",
-                fkey = "siteid",
-                import_field = "slope")
+# join occurrence and stream attributes to the watershed polygons
+join <- wgs84_sf_ws_polygon %>%
+  left_join(as_tibble(stream_occurrence),
+            by = c("siteid" = "siteid")) %>%
+  dplyr::select(-c(geometry.y)) %>%
+  left_join(as_tibble(stream_network),
+            by = c("line_id" = "line_id")) %>%
+  dplyr::select(-c(STRM_VAL, geometry)) %>%
+  mutate(area = as.numeric(area)) %>%
+  rename(geometry = geometry.x)
 
-# add occurrence from site point file to watershed polygon attribute table
-wbt_join_tables(input1 = "data_fmt/vector/epsg4326_minnesota_stream_watersheds_dummy_real.shp",
-                pkey = "siteid",
-                input2 = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp",
-                fkey = "siteid",
-                import_field = "occurrence")
+# export data -------------------------------------------------------------
 
-# add watershed ID from stream line file to watershed polygon attribute table
-wbt_join_tables(input1 = "data_fmt/vector/epsg4326_minnesota_stream_watersheds_dummy_real.shp",
-                pkey = "line_id",
-                input2 = "data_fmt/vector/epsg3722_minnesota_stream_network_5km2.shp",
-                fkey = "line_id",
-                import_field = "watershed")
+saveRDS(join, file = "data_fmt/data_minnesota_stream_watersheds_dummy_real.rds")
