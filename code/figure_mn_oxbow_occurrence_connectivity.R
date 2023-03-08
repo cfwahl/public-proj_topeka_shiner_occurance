@@ -50,4 +50,5 @@ df_fit %>%
   geom_line(data = df_pred,
             aes(x = x,
                 y = y)) +
-  theme_minimal()
+  theme_minimal() +
+  xlab("Connectivity") + ylab("Oxbow Occurrence")

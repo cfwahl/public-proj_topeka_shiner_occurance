@@ -58,4 +58,5 @@ df_fit %>%
         legend.justification = c(-0.25, 1.30),
         legend.position = c(0, 1),
         legend.title=element_blank()) + 
-  scale_color_manual(values=c("chocolate", "grey39")) 
+  scale_color_manual(values=c("chocolate", "grey39")) +
+  xlab("Betwenness") + ylab("Oxbow Occurrence")

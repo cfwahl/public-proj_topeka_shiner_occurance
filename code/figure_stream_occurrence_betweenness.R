@@ -31,7 +31,7 @@ sf_covar <- df_mn_strm_cent %>%
 # glmm --------------------------------------------------------------------
 
 fit <- glmer(stream_occurrence ~ between + scale(area) + + scale(precip_wet) +
-               #scale(frac_agri) + scale(seg_length) + scale(temp_season)  +
+               scale(frac_agri) + scale(seg_length) + scale(temp_season)  +
                scale(slope) +  (1|watershed), data = sf_covar, family = "binomial")
 
 summary(fit)
@@ -50,4 +50,5 @@ sf_covar %>%
   geom_line(data = df_pred,
             aes(x = x,
                 y = y)) +
-  theme_minimal()
+  theme_minimal() +
+  xlab("Betwenness") + ylab("Stream Occurrence")
