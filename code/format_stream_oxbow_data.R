@@ -1,8 +1,9 @@
+
 # this code use the raw data and creates unique stream and oxbow identifier 
-# based on segment, most recent sampling year, lat/long. Count data converted 
-# to occurrence. Uses stream data from Minnesota Department of Natural Resources
-# (MNDNR) and US Fish and Wildlife Service (FWS), and oxbow data from FWS
-# and Iowa State University (ISU).
+# based on segment, most recent sampling year, lat/long. Count data summed in 
+# groups then converted to occurrence. Uses stream data from Minnesota Department 
+# of Natural Resources (MNDNR) and US Fish and Wildlife Service (FWS), and 
+# oxbow data from FWS and Iowa State University (ISU).
 
 # setup -------------------------------------------------------------------
 
@@ -13,6 +14,8 @@ rm(list = ls())
 source(here::here("code/library.R")) 
 
 # MINNESOTA ---------------------------------------------------------------
+# STREAMS -----------------------------------------------------------------
+
 # read MNDNR stream data ---------------------------------------------------------------
 
 df_dnr <- read_csv("data_raw/mn_topeka_shiner_occurrence.csv") %>% 
@@ -102,7 +105,8 @@ df_mn_dnr_fws %>%
            drivers = "ESRI Shapefile",
            append = FALSE)
 
-# read FWS and ISU stream/oxbow data ---------------------------------------------------------------
+# OXBOWS ------------------------------------------------------------------
+# read FWS and ISU data ---------------------------------------------------------------
 
 # fws and isu occurrence and environmental data
 df_all <- read_csv("data_fmt/tksn_env_fws_isu.csv") %>% 
@@ -112,24 +116,24 @@ df_all <- read_csv("data_fmt/tksn_env_fws_isu.csv") %>%
 
 colnames(df_all) <- str_to_lower(colnames(df_all)) # make all column names lowercase
 
-# format FWS and ISU oxbow data ------------------------------------------------------------------
+# format Minnesota FWS and ISU oxbow data ------------------------------------------------------------------
 
 df_oxbow <- df_all %>% 
   filter(habitat == "oxbow") %>%  # select only oxbows
+  filter(!habitattype=="Unrestored_oxbow") %>%
   group_by(site, year) %>%  # grouping by site and year 
   summarize(occurrence = sum(topeka_shiner), # take sum of topeka shiner for each group
             temp = mean(watertemp_c, na.rm = TRUE), # get mean values for these variables and remove NAs
             dopercent = mean(dopercent, na.rm = TRUE),
+            cond = mean(conductivity_scm, na.rm = TRUE),
             do_mgl = mean(do_mgl, na.rm = TRUE),
             turb = mean(turbidity_ntu, na.rm = TRUE),
             ph = mean(ph, na.rm = TRUE), 
             lat = round(lat[1], 4), # take the first element of lat for each group
             long = round(long[1], 4)) %>% # take the first element of long for each group) 
   ungroup() %>% 
-  mutate(occurrence = replace(occurrence, occurrence > 0, 1)) %>%  # if occurrence is >0 then make 1
-  filter(!(site %in% c("62317-1", "62317-2", "62317-3", 
-                       "62417-1", "72016-1", "72016-2"))) # %in% is select these values within site column, these sites fall outside connectivity stream network
-
+  mutate(occurrence = replace(occurrence, occurrence > 0, 1)) # if occurrence is >0 then make 1
+  
 # export oxbow data------------------------------------------------------------------
 
 # set coordinates for oxbows
@@ -153,19 +157,33 @@ saveRDS(df_oxbow, file = "data_fmt/data_minnesota_fmt_oxbows.rds")
 
 # sites without topeka shiner data were removed, aka culled
 df0 <- read_csv("data_fmt/mn_ia_site_env_data_culled.csv") %>% 
-  dplyr::select(SampleID:Topeka_Shiner) # select columns from Site_num to Topeka_Shiner
+  dplyr::select(SampleID:Topeka_Shiner) %>% # select columns from SampleID to Topeka_Shiner
+  mutate_at(c('WaterTemp_C', 'DOPercent', 'DO_mgL', 'Turbidity_NTU',
+              'Conductivity_Scm', 'pH'), as.numeric) 
 
 # make all column names lowercase
 colnames(df0) <- str_to_lower(colnames(df0)) 
 
 # only want Iowa sampling locations
 df_ia <- df0 %>% 
-  filter(state=="IA")
+  filter(state=="IA",
+         habitattype=="Restored_Oxbow")
 
 # only want oxbow sampling locations
 df_ia <- df_ia %>% 
   filter(habitat=="oxbow") %>%
-  mutate(occurrence = replace(topeka_shiner, topeka_shiner > 0, 1))  # if occurrence is >0 then make 1
+  group_by(siteid, year) %>%
+  summarize(occurrence = sum(topeka_shiner), # take sum of topeka shiner for each group
+            temp = mean(watertemp_c, na.rm = TRUE), # get mean values for these variables and remove NAs
+            dopercent = mean(dopercent, na.rm = TRUE),
+            do_mgl = mean(do_mgl, na.rm = TRUE),
+            turb = mean(turbidity_ntu, na.rm = TRUE),
+            ph = mean(ph, na.rm = TRUE),
+            cond = mean(conductivity_scm, na.rm = TRUE),
+            lat = round(latutudewq[1], 4), # take the first element of lat for each group
+            long = round(longitudewq[1], 4),
+            year = max(year)) %>%
+  mutate(occurrence = replace(occurrence, occurrence > 0, 1))  # if occurrence is >0 then make 1
 
 # export ------------------------------------------------------------------
 
@@ -178,9 +196,9 @@ df_ia <- df_ia %>%
 saveRDS(df_ia, file = "data_fmt/data_iowa_fmt_owbows.rds")
 
 # export geopackage, shapefile changes the column names
-# df_ia %>% 
-#   st_as_sf(coords = c("longitudewq", "latutudewq"),
-#            crs = 4326) %>% 
+# df_ia %>%
+#   st_as_sf(coords = c("long", "lat"),
+#            crs = 4326) %>%
 #   st_write(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_sites.shp",
 #            drivers = "ESRI Shapefile",
 #            append = FALSE)

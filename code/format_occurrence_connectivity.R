@@ -19,7 +19,7 @@ sf_all <- readRDS(file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.r
 
 # read oxbow data
 sf_oxbow <- readRDS(file = "data_fmt/data_minnesota_fmt_oxbows.rds") %>%
-  mutate(oxbow_id = row_number())%>% # add unique identifier for oxbows
+  mutate(oxbow_id = row_number()) %>% # add unique identifier for oxbows
   st_transform(oxbow, crs = 3722) # transform to utm
 
 # read stream netwrok with connectivity scores
@@ -91,7 +91,7 @@ df_oxbow_snap <- st_join(x = sf_point_snapped,
                          y = sf_line,
                          join = st_is_within_distance,
                          dist = 10) %>% # join two features, then make as tibble data frame
-  st_transform(crs = 3722)
+  st_transform(crs = 4326)
 
 # export data -------------------------------------------------------------
 

@@ -17,6 +17,9 @@ mcmc_summary_up_full <- readRDS(here::here("output/mcmc_summary_up_full.rds"))
 
 # common data -------------------------------------------------------------
 
+mcmc_summary_up_full <- tibble::rownames_to_column(mcmc_summary_up_full, "param") 
+
+
 ## extract estimated connectivity values
 df_s <- mcmc_summary_up_full %>% 
   as_tibble() %>% 
@@ -26,7 +29,7 @@ df_s <- mcmc_summary_up_full %>%
                 s = `50%`) # select only siteid and connectivity value, or s
 
 ## data used for analysis
-df_actual_occurrence <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg") %>% 
+df_actual_occurrence <- readRDS(file = "data_fmt/data_minnesota_stream_landuse_dummy_real.rds") %>% 
   as_tibble() %>%
   filter(!is.na(occurrence)) %>%  # filter out NA data for occurrence 
   left_join(df_s,

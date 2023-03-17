@@ -86,14 +86,12 @@ point <- st_read(dsn = "data_fmt/vector",
 # join attribute tables for the point and line files
 site_info <- point %>% 
   mutate(line_id = st_nearest_feature(., line)) %>% 
-  mutate(oxbowid = row_number()) %>%
+  mutate(oxbow_id = row_number()) %>%
   left_join(as_tibble(line),
             by = c("line_id" = "FID")) %>%
-  dplyr::select(sampled:geometry.x) %>% # remove line geometry.y 
-  rename(occurrence = tpk_shn,
-         geometry = geometry.x) %>%
-  mutate(occurrence = replace(occurrence, occurrence > 0, 1)) %>%
-  arrange(oxbowid)
+  dplyr::select(siteid:geometry.x) %>% # remove line geometry.y 
+  rename(geometry = geometry.x) %>%
+  arrange(oxbow_id)
 
 # export ------------------------------------------------------------------
 

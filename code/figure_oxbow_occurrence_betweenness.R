@@ -25,17 +25,16 @@ colSums(is.na(df_mn_ia_oxbow))
 
 df_fit <- df_mn_ia_oxbow %>% 
   drop_na(oxbow_occurrence,
+          cond,
           turbidity,
-          #temperature,
-          do_mgl,
+          temperature,
           ph)
 
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(oxbow_occurrence ~ between + scale(do_mgl) + 
-                                  scale(turbidity) +  scale(ph) +
-                                    (1|watershed),
-                                data = df_fit, family = "binomial")
+fit <- glmer(oxbow_occurrence ~ between + scale(temperature) + scale(cond) +
+               scale(turbidity) +scale(ph) + (1|watershed), data = df_fit, 
+               family = "binomial")
 
 summary(fit)
 
@@ -59,4 +58,7 @@ df_fit %>%
         legend.position = c(0, 1),
         legend.title=element_blank()) + 
   scale_color_manual(values=c("chocolate", "grey39")) +
-  xlab("Betwenness") + ylab("Oxbow Occurrence")
+  xlab("Betwenness") + ylab("Prob. of Oxbow Occurrence") +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12),
+        legend.text=element_text(size=11))

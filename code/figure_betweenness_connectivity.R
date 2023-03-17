@@ -42,7 +42,8 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
 sf_line_test <- sf_line2 %>%
   left_join(df_b,
             by = 'line_id') %>%
-  rename(connectivity = connectivity.x)
+  rename(connectivity = connectivity.x,
+         watershed = watershed.x)
 
 # plot --------------------------------------------------------------------
 
@@ -55,4 +56,8 @@ ggplot(sf_line_test,
               color = "black",
               fill = "grey70")+
   geom_point() + 
-  theme_minimal()
+  theme_minimal() +
+  xlab("Betweenness") + ylab("Connectivity") +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
+

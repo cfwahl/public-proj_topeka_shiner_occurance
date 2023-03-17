@@ -54,7 +54,7 @@ sf_oxbow_snapped_0 <- df_oxbow %>%
 # create heat map of connectivity (s)
 ggplot(sf_line) + # base map of stream lines
   geom_sf(aes(color = connectivity),
-          size = 1) + # heat map for connectivity 
+          size = 1.2) + # heat map for connectivity 
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
   labs(color = "Dispersal potential") + # label legend 
   theme_minimal() +

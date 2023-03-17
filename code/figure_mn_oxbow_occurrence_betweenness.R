@@ -22,14 +22,13 @@ colSums(is.na(df_mn_ox_cent))
 df_fit <- df_mn_ox_cent %>% 
   drop_na(oxbow_occurrence,
           turb,
-          #temp,
-          #do_mgl,
-          dopercent,
+          temp,
+          cond,
           ph)
 
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(oxbow_occurrence ~  between  + scale(dopercent) + 
+fit <- glmer(oxbow_occurrence ~  between  + scale(temp) + scale(cond) + 
                 scale(turb) + scale(ph) + (1|watershed), data = df_fit, 
                 family = "binomial")
 

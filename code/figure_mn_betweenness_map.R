@@ -40,7 +40,7 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
 # map of betweenness scores 
 ggplot(df_b) + # base map of stream lines
   geom_sf(aes(color = between),
-          size = 1)+ # heat map for connectivity 
+          size = 1.2)+ # heat map for connectivity 
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
   labs(color = "Betweenness") + # label legend 
   theme_minimal() +

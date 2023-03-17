@@ -79,7 +79,7 @@ names(list_d_hat) <- c("U", "D", "TD")
 d_jags <- list(# actual data
   Y = df_data$occurrence,
   Agr = df_data$frac_agri,
-  Temp = df_data$temp_season,
+  Temp = df_data$temp_mean,
   Area = df_data$area,
   Precp_wet = df_data$precip_wet,
   Watshed = df_data$watershed,
@@ -95,7 +95,7 @@ d_jags <- list(# actual data
   
   # dummy data
   Agr_hat = df_dummy$frac_agri,
-  Temp_hat = df_dummy$temp_season,
+  Temp_hat = df_dummy$temp_mean,
   Area_hat = df_dummy$area,
   Precp_wet_hat = df_dummy$precip_wet,
   Watshed_hat = df_dummy$watershed,
@@ -151,8 +151,8 @@ post <- run.jags(m$model,
                  module = "glm")
 
 # summarize outputs
-mcmc_summary_up_full_test <- MCMCsummary(post$mcmc)
-mcmc_summary_up_full_test   # Bayesian analysis
+mcmc_summary_up_full <- MCMCsummary(post$mcmc)
+mcmc_summary_up_full   # Bayesian analysis
 
 # # export ------------------------------------------------------------------
 
@@ -162,7 +162,7 @@ MCMCtrace(post$mcmc,
           filename = "mcmc_trace_up_full")
 
 # save mcmc output
-saveRDS(mcmc_summary_up_full_test, file = "output/mcmc_summary_up_full.rds")
+saveRDS(mcmc_summary_up_full, file = "output/mcmc_summary_up_full.rds")
 
 # save jags output
 saveRDS(post, file = "output/post_summary_up_full.rds")

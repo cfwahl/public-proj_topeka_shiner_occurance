@@ -12,8 +12,7 @@ source(here::here("code/library.R"))
 # data -----------------------------------------------------------------
 
 # import oxbow data
-df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds") %>%
-  filter(habitat=='Restored_Oxbow')
+df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")
 
 # remove NAs --------------------------------------------------------------------
 
@@ -23,15 +22,15 @@ colSums(is.na(df_iowa_oxbow))
 df_fit <- df_iowa_oxbow %>% 
   drop_na(oxbow_occurrence,
           temp,
-          do_mgl,
-          ph)
+          ph, 
+          turb,
+          cond)
 
 # glmm --------------------------------------------------------------------
 
 fit <- glmer(oxbow_occurrence ~ between + scale(ph) + scale(cond) +
-                                (1|line_id) + scale(do_mgl) + scale(temp) +
-                                scale(cond) + scale(turb),
-                              data = df_iowa_oxbow, family = "binomial")
+               scale(temp) + scale(turb) + (1|watershed), data = df_iowa_oxbow, 
+               family = "binomial")
 
 summary(fit)
 
@@ -50,4 +49,6 @@ df_fit %>%
             aes(x = x,
                 y = y)) +
   theme_minimal() +
-  xlab("Betwenness") + ylab("Oxbow Occurrence")
+  xlab("Betwenness") + ylab("Prob. of Oxbow Occurrence") +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12))
