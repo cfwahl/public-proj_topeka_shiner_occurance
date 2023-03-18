@@ -3,11 +3,11 @@
 
 # setup -------------------------------------------------------------------
 
-# load libraries
-source(here::here("code/library.R")) 
-
 # clean objects
 rm(list = ls())
+
+# load libraries
+source(here::here("code/library.R")) 
 
 # unnested watershed delineation --------------------------------------------------------
 

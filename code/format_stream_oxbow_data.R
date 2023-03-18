@@ -145,12 +145,12 @@ df_oxbow <- df_oxbow %>%
 saveRDS(df_oxbow, file = "data_fmt/data_minnesota_fmt_oxbows.rds")
 
 # shape file export
-# df_oxbow %>% 
-#   st_as_sf(coords = c("long", "lat"),
-#            crs = 4326) %>% 
-#   st_write(dsn = "data_fmt/vector/epsg4326_minnesota_oxbow_sites.shp",
-#            drivers = "ESRI Shapefile",
-#            append = FALSE)
+df_oxbow %>%
+  st_as_sf(coords = c("long", "lat"),
+           crs = 4326) %>%
+  st_write(dsn = "data_fmt/vector/epsg4326_minnesota_oxbow_sites.shp",
+           drivers = "ESRI Shapefile",
+           append = FALSE)
 
 # IOWA  -------------------------------------------------------------
 # read FWS and ISU oxbow and stream data ---------------------------------------------------------------
@@ -189,16 +189,16 @@ df_ia <- df_ia %>%
 
 # set coordinates
 df_ia <- df_ia %>% 
-  st_as_sf(coords = c("longitudewq", "latutudewq"),
+  st_as_sf(coords = c("long", "lat"),
            crs = 4326) 
 
 # this will recall code in R script
 saveRDS(df_ia, file = "data_fmt/data_iowa_fmt_owbows.rds")
 
 # export geopackage, shapefile changes the column names
-# df_ia %>%
-#   st_as_sf(coords = c("long", "lat"),
-#            crs = 4326) %>%
-#   st_write(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_sites.shp",
-#            drivers = "ESRI Shapefile",
-#            append = FALSE)
+df_ia %>%
+  st_as_sf(coords = c("long", "lat"),
+           crs = 4326) %>%
+  st_write(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_sites.shp",
+           drivers = "ESRI Shapefile",
+           append = FALSE)

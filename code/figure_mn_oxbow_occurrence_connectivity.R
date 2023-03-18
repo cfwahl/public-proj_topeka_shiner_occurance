@@ -34,7 +34,6 @@ fit <- glmer(oxbow_occurrence ~  connectivity + scale(turb) + scale(temp) +
 
 summary(fit)
 
-
 # figure ------------------------------------------------------------------
 
 df_pred <-  tibble(x = seq(min(df_fit$connectivity),

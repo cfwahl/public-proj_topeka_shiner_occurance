@@ -9,11 +9,11 @@
 
 # setup -------------------------------------------------------------------
 
-# load libraries
-source(here::here("code/library.R")) 
-
 # clean objects
 rm(list = ls())
+
+# load libraries
+source(here::here("code/library.R")) 
 
 # turn this back on if coming from previous step
 sf::sf_use_s2(TRUE)
@@ -51,8 +51,9 @@ stream <- readRDS(file = "data_fmt/data_minnesota_stream_network_5km2.rds")
 dummy <- sf::st_point_on_surface(stream) %>%
   rename (slope = STRM_VAL) %>%
   mutate(occurrence = NA,
-         siteid = row_number()+373) # create occurrence column with NAs 
-
+         siteid = row_number()+373) %>% # create occurrence column with NAs 
+  st_transform(4326)
+  
 dummy$watershed = NULL # remove watershed so columns will match for rbind
 
 #site_info$siteid = NULL # remove site_id so columns will match

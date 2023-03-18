@@ -1,4 +1,7 @@
 
+# prep and run bayesian model examining occurrence with % agriculture, mean
+# temp, precipitation during wettest month, drainage area, and connectivity
+
 # setup --------------------------------------------------------------------
 
 # clean objects

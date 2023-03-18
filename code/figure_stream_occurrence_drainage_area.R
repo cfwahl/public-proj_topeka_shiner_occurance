@@ -17,8 +17,8 @@ mcmc_summary_up_full <- readRDS(here::here("output/mcmc_summary_up_full.rds"))
 
 # common data -------------------------------------------------------------
 
+# create parma column
 mcmc_summary_up_full <- tibble::rownames_to_column(mcmc_summary_up_full, "param") 
-
 
 ## extract estimated connectivity values
 df_s <- mcmc_summary_up_full %>% 
@@ -48,12 +48,12 @@ df_beta <- mcmc_summary_up_full %>%
 
 # predictor 
 df_prediction <- df_actual_occurrence %>% 
-  summarize(across(.cols = c(frac_agri, temp_season, area, precip_wet, s),
+  summarize(across(.cols = c(frac_agri, temp_mean, area, precip_wet, s),
                    .fns = function(x) seq(from = min(x, na.rm = T),
                                           to = max(x, na.rm = T),
                                           length = 100))) %>% # dplyr::select these variables
   mutate(mean_agri = mean(df_actual_occurrence$frac_agri), # add columns with mean values for these variables 
-         mean_temp = mean(df_actual_occurrence$temp_season),
+         mean_temp = mean(df_actual_occurrence$temp_mean),
          mean_area = mean(df_actual_occurrence$area),
          mean_precip = mean(df_actual_occurrence$precip_wet),
          mean_s = mean(df_actual_occurrence$s))

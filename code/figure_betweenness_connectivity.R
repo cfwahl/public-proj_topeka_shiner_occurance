@@ -39,16 +39,23 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
 
 # join --------------------------------------------------------------------
 
-sf_line_test <- sf_line2 %>%
+sf_line <- sf_line2 %>%
   left_join(df_b,
             by = 'line_id') %>%
   rename(connectivity = connectivity.x,
          watershed = watershed.x)
 
+# glmm --------------------------------------------------------------------
+
+fit <- glm(connectivity ~  between + (1|watershed), data = sf_line, 
+             family = Gamma(link = log))
+
+summary(fit)
+
 # plot --------------------------------------------------------------------
 
 # plot of betweenness and connectivity
-ggplot(sf_line_test,
+ggplot(sf_line,
        aes(x = between,
            y = connectivity)) +
   geom_smooth(method = 'glm', se = TRUE,
@@ -60,4 +67,3 @@ ggplot(sf_line_test,
   xlab("Betweenness") + ylab("Connectivity") +
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12))
-

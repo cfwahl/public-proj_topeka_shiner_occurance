@@ -4,11 +4,11 @@
 
 # setup -------------------------------------------------------------------
 
-# load libraries
-source(here::here("code/library.R")) 
-
 # clean objects
 rm(list = ls())
+
+# load libraries
+source(here::here("code/library.R")) 
 
 # MINNESOTA ---------------------------------------------------------------
 # DEM setup ---------------------------------------------------------------
@@ -106,5 +106,3 @@ wbt_stream_link_identifier(d8_pntr = "data_fmt/raster/epsg4326_iowa_flow_dir_cli
 wbt_raster_streams_to_vector(streams = "data_fmt/raster/epsg4326_iowa_stream_id_5km2.tif", 
                              d8_pntr = "data_fmt/raster/epsg4326_iowa_flow_dir_clip_reclass_5km2.tif",
                              output = "data_fmt/vector/epsg4326_ia_str_network_5km2.shp")
-
-

@@ -1,5 +1,5 @@
 
-# prediction regression between Iowa oxbow occurrence (Iowa) and betweenness 
+# prediction regression between Iowa oxbow occurrence and betweenness 
 
 # setup --------------------------------------------------------------------
 

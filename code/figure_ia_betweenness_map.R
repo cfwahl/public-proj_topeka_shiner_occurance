@@ -15,8 +15,7 @@ source(here::here("code/library.R"))
 sf_line <- readRDS(file = "data_fmt/data_iowa_stream_network_5km2.rds") 
 
 # import oxbow data
-df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds") %>%
-  filter(habitat=='Restored_Oxbow')
+df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")
 
 # data prep for oxbow sites ---------------------------------------------------------------
 

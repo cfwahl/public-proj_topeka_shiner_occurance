@@ -19,7 +19,7 @@ sf::sf_use_s2(FALSE)
 ##  Snap pour point
 # the function wbt_jenson_snap_pour_points rather than wbt_snap_pour_points
 # This function snap the point to stream network and it worked better than snapping into catchment area
-wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/old/epsg4326_minnesota_watershed_pour_points.shp", # GPKG file is not accepted. Used SHP file.
+wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_minnesota_watershed_pour_points.shp", # GPKG file is not accepted. Used SHP file.
                             streams = "data_fmt/raster/epsg4326_mn_fmt_stream_5km2.tif",
                             output = "data_fmt/vector/epsg4326_minnesota_watershed_points_snap.shp",
                             snap_dist = 1)
@@ -67,15 +67,15 @@ sfline <- st_read(dsn = "data_fmt/vector/epsg4326_mn_str_slope_5km2.shp") %>%
 join <- st_join(sfline, wgs84_sf_ws_polygon) %>% 
   drop_na(siteid) %>% 
   rename(line_id = FID,
-         watershed = siteid) #%>%
-  #st_transform(crs = 3722)
+         watershed = siteid) %>%
+  st_transform(crs = 3722)
   
 # export stream network  ------------------------------------------------------------------
 
 # watersheds
-st_write(join,
-         dsn = "data_fmt/vector/epsg4326_minnesota_stream_network_5km2.shp",
-         append = FALSE)
+# st_write(join,
+#          dsn = "data_fmt/vector/epsg4326_minnesota_stream_network_5km2.shp",
+#          append = FALSE)
 
 saveRDS(join, file = "data_fmt/data_minnesota_stream_network_5km2.rds")
 
@@ -137,8 +137,8 @@ join <- st_join(sfline, wgs84_sf_ws_polygon) %>%
 # export stream network  ------------------------------------------------------------------
 
 # watersheds
-st_write(join,
-         dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp",
-         append = FALSE)
+# st_write(join,
+#          dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp",
+#          append = FALSE)
 
 saveRDS(join, file = "data_fmt/data_iowa_stream_network_5km2.rds")
