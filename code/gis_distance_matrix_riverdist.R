@@ -13,9 +13,10 @@ source(here::here("code/library.R"))
 
 # read site and stream data --------------------------------------------------------------------
 
-wgs_sf_outlet <- st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp") 
-  #filter(siteid %in% utm_sf_wsd$siteid) # select sites with watershed delineation
+# read occurrence data
+wgs_sf_outlet <- readRDS(file = "data_fmt/data_minnesota_stream_dummy_real_occurrence.rds")
 
+# transform to utm
 utm_sf_outlet <- st_transform(wgs_sf_outlet, crs = 3722)
 
 # data frame for sampling site coordinates

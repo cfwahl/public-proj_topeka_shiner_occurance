@@ -1,4 +1,7 @@
 
+# prep and run bayesian model examining occurrence with % agriculture, mean
+# temp, precipitation during wettest month, drainage area, and connectivity
+
 # setup --------------------------------------------------------------------
 
 # clean objects
@@ -17,12 +20,11 @@ f2v <- function(x) {
 
 # Read in the data
 # upstream distance matrix 
-#load("data_fmt/distance_matrix_dummy.Rdata")
-datalist <- readRDS(file = "data_fmt/data_minnesota_distance_matrix_dummy_real.rds")
+datalist <- readRDS(file = "data_fmt/data_minnesota_distance_matrix_dummy_real.rds") 
 m_u <- datalist$m_u
 m_d <- datalist$m_d
 
-df_landuse <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg") %>% 
+df_landuse <- readRDS(file ="data_fmt/data_minnesota_stream_landuse_dummy_real.rds") %>%
   as_tibble() %>%
   arrange(siteid) %>% 
   mutate(dummy = ifelse(is.na(occurrence), 1, 0)) %>% 
@@ -74,14 +76,13 @@ M_hat <- foreach(i = seq_len(nrow(TD_hat)),
 list_d_hat <- lapply(list(U_hat, D_hat, TD_hat), FUN = f2v)
 names(list_d_hat) <- c("U", "D", "TD")
 
-
 # jags --------------------------------------------------------------------
 
 ## data ####
 d_jags <- list(# actual data
   Y = df_data$occurrence,
   Agr = df_data$frac_agri,
-  Temp = df_data$temp_season,
+  Temp = df_data$temp_mean,
   Area = df_data$area,
   Precp_wet = df_data$precip_wet,
   Watshed = df_data$watershed,
@@ -97,7 +98,7 @@ d_jags <- list(# actual data
   
   # dummy data
   Agr_hat = df_dummy$frac_agri,
-  Temp_hat = df_dummy$temp_season,
+  Temp_hat = df_dummy$temp_mean,
   Area_hat = df_dummy$area,
   Precp_wet_hat = df_dummy$precip_wet,
   Watshed_hat = df_dummy$watershed,
@@ -163,16 +164,10 @@ MCMCtrace(post$mcmc,
           wd = "output/",
           filename = "mcmc_trace_up_full")
 
-# ## save mcmc_summary
-#save(mcmc_summary_up_full,
-#     file = "output/mcmc_summary_up_full.RData")
-
+# save mcmc output
 saveRDS(mcmc_summary_up_full, file = "output/mcmc_summary_up_full.rds")
 
-# ## save post$mcmc for plots
-#save(post,
-#     file = "output/post_summary_up_full.RData")
-
+# save jags output
 saveRDS(post, file = "output/post_summary_up_full.rds")
 
 # # waic --------------------------------------------------------------------

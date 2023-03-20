@@ -4,11 +4,11 @@
 
 # setup -------------------------------------------------------------------
 
-# load libraries
-source(here::here("code/library.R")) 
-
 # clean objects
 rm(list = ls())
+
+# load libraries
+source(here::here("code/library.R")) 
 
 # MINNESOTA ---------------------------------------------------------------
 # DEM setup ---------------------------------------------------------------
@@ -40,10 +40,10 @@ wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_
                             output = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap.shp",
                             snap_dist = 1)
 
-# manually moved locations not properly snaped and re-did snapping to stream network
-wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap.shp", # GPKG file is not accepted. Used SHP file.
+# manually moved locations not properly snapped and re-did snapping to stream network
+wbt_jenson_snap_pour_points(pour_pts = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap2.shp", # GPKG file is not accepted. Used SHP file.
                             streams = "data_fmt/raster/epsg4326_mn_fmt_stream_5km2.tif",
-                            output = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap2.shp",
+                            output = "data_fmt/vector/epsg4326_mn_dnr_fws_fmt_sites_snap3.shp",
                             snap_dist = 1)
 
 # Assigns a unique identifier to each link in a stream network
@@ -106,5 +106,3 @@ wbt_stream_link_identifier(d8_pntr = "data_fmt/raster/epsg4326_iowa_flow_dir_cli
 wbt_raster_streams_to_vector(streams = "data_fmt/raster/epsg4326_iowa_stream_id_5km2.tif", 
                              d8_pntr = "data_fmt/raster/epsg4326_iowa_flow_dir_clip_reclass_5km2.tif",
                              output = "data_fmt/vector/epsg4326_ia_str_network_5km2.shp")
-
-

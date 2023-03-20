@@ -13,15 +13,16 @@ source(here::here("code/library.R"))
 # MINNESOTA ---------------------------------------------------------------
 # data --------------------------------------------------------------------
 
-## stream polyline
-sf_line2 <- sf::st_read(dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp") %>%
-  dplyr::select(-c(STRM_VA)) %>% # remove slope variable
-  rename(connectivity = connectivi)
+# stream polyline
+sf_line2 <- readRDS(file = "data_fmt/data_minnesota_stream_connectivity.rds") %>%
+  dplyr::select(-c(STRM_VAL)) # remove slope variable
 
+# read oxbows with connectivity value  
 sf_ox_point <- readRDS(file = "data_fmt/data_minnesota_oxbow_occur_connect.RDS") %>%
   rename(oxbow_occurrence = occurrence) %>%
-  dplyr::select(-c(distance, site, year, STRM_VA))
+  dplyr::select(-c(distance, site, year, STRM_VAL))
 
+# read stream sites with connectivity value
 sf_stream_point <- readRDS(file = "data_fmt/data_minnesota_stream_occur_connect.RDS") %>%
   rename(stream_occurrence = occurrence)
 
@@ -51,16 +52,19 @@ df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
 # add betweenness scores column to oxbow data
 df_mn_ox_cent <-  merge(x = sf_ox_point, y = df_b[ , c("line_id", "between")], 
         by = "line_id", all.x=TRUE) %>%
-  dplyr::select(-c(X1, Y1))
+  dplyr::select(-c(X1, Y1)) 
 
 # add betweenness scores column to stream data
 df_mn_strm_cent <-  merge(x = sf_stream_point, y = df_b[ , c("line_id", "between")], 
-                        by = "line_id", all.x=TRUE)
+                        by = "line_id", all.x=TRUE) 
 
 # export data ------------------------------------------------------------------
 
 # export stream network centrality scores
 saveRDS(df_mn_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
+
+# export stream network with betweenness scores
+saveRDS(df_b, file = "data_fmt/data_minnesota_stream_betweenness.rds")
 
 # export oxbow network centrality scores
 saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.rds")
@@ -68,25 +72,14 @@ saveRDS(df_mn_ox_cent, file = "data_fmt/data_minnesota_oxbow_network_centrality.
 # IOWA --------------------------------------------------------------------
 # data --------------------------------------------------------------------
 
-## stream polyline
-sf_line <- sf::st_read(dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp") 
+# stream polyline
+sf_line <- readRDS(file = "data_fmt/data_iowa_stream_network_5km2.rds")
 
+# read oxbow sites with line_id
 site_info <- readRDS("data_fmt/data_iowa_oxbow_lineid.rds") %>%
-  dplyr::select(-c(sampled, siteid, date, year, state, stremnm, habitat, STRM_VAL,
-                   occrrnc)) %>%
-  rename(temp = wtrtmp_,
-         dopercent = doprcnt,
-         turb = trbdty_,
-         cond = cndctv_,
-         habitat = hbtttyp) %>%
-  mutate(temp = as.numeric(temp),
-         dopercent = as.numeric(dopercent),
-         turb = as.numeric(turb),
-         cond = as.numeric(cond),
-         do_mgl = as.numeric(do_mgl),
-         ph = as.numeric(ph)) 
+  dplyr::select(-c(siteid,  year, STRM_VAL)) 
 
-# network centrality test ---------------------------------------------------------
+# network centrality ---------------------------------------------------------
 
 # betweenness
 df_b <- lapply(X = 1:n_distinct(sf_line$watershed),
@@ -108,16 +101,20 @@ df_b <- lapply(X = 1:n_distinct(sf_line$watershed),
   bind_rows() %>%
   as_tibble()
 
-#  join occurrence with eigen ---------------------------------------------
+#  join occurrence with betweenness ---------------------------------------------
 
 df_i <- site_info %>% 
   as_tibble %>%
   left_join(df_b,
             by = "line_id") %>%
   dplyr::select(-c(geometry.y)) %>%
-  rename(geometry = geometry.x)
+  rename(geometry = geometry.x,
+         oxbow_occurrence = occurrence)
 
 # export  -----------------------------------------------------------------
 
 # export stream network centrality scores
 saveRDS(df_i, file = "data_fmt/data_iowa_network_centrality.rds")
+
+# export stream network centrality
+saveRDS(df_b, file = "data_fmt/data_iowa_stream_betweenness.rds")

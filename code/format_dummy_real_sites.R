@@ -9,18 +9,21 @@
 
 # setup -------------------------------------------------------------------
 
+# clean objects
+rm(list = ls())
+
 # load libraries
 source(here::here("code/library.R")) 
 
-# clean objects
-rm(list = ls())
+# turn this back on if coming from previous step
+sf::sf_use_s2(TRUE)
 
 # MINNESOTA ---------------------------------------------------------------
 # join stream sampling sites and stream network attributes -------------------------------------------------------
 
 # read in snapped point file
 point <- st_read(dsn = "data_fmt/vector",
-                 layer = "epsg4326_mn_dnr_fws_fmt_sites_snap2")
+                 layer = "epsg4326_mn_dnr_fws_fmt_sites_snap3")
 
 # read stream network with mean slope and segment identifier 
 line <- st_read(dsn = "data_fmt/vector",
@@ -36,31 +39,31 @@ site_info <- point %>%
   rename(slope = STRM_VAL,
          geometry = geometry.x) %>%
   arrange(siteid) %>%
-  st_transform(3722) %>%
+  st_transform(4326) %>%
   dplyr::select(-c("year"))
 
 # create dummy sites ------------------------------------
 
 # read in stream network
-stream <- st_read(dsn = "data_fmt/vector/old",
-                  layer = "epsg3722_minnesota_stream_network_5km2")
+stream <- readRDS(file = "data_fmt/data_minnesota_stream_network_5km2.rds")
 
 # create point for each stream segment
 dummy <- sf::st_point_on_surface(stream) %>%
   rename (slope = STRM_VAL) %>%
   mutate(occurrence = NA,
-         siteid = row_number()+373) # create occurrence column with NAs 
-
+         siteid = row_number()+373) %>% # create occurrence column with NAs 
+  st_transform(4326)
+  
 dummy$watershed = NULL # remove watershed so columns will match for rbind
 
-site_info$siteid = NULL # remove site_id so columns will match
-site_info$year = NULL # remove year so columns will match
+#site_info$siteid = NULL # remove site_id so columns will match
+#site_info$year = NULL # remove year so columns will match
 join <- rbind(site_info, dummy) %>%
   mutate(siteid = row_number()) # create new site_id
 
 # export dummy and real sites ------------------------------------------------------------------
 
-# create shapefile
+# create shapefile, need this file for next step
 st_write(join,
          dsn = "data_fmt/vector/epsg4326_minnesota_stream_dummy_real_occurrence.shp",
          append = FALSE)
@@ -84,24 +87,14 @@ point <- st_read(dsn = "data_fmt/vector",
 # join attribute tables for the point and line files
 site_info <- point %>% 
   mutate(line_id = st_nearest_feature(., line)) %>% 
-  mutate(oxbowid = row_number()) %>%
+  mutate(oxbow_id = row_number()) %>%
   left_join(as_tibble(line),
             by = c("line_id" = "FID")) %>%
-  dplyr::select(sampled:geometry.x) %>% # remove line geometry.y 
-  rename(occurrence = tpk_shn,
-         geometry = geometry.x) %>%
-  mutate(occurrence = replace(occurrence, occurrence > 0, 1)) %>%
-  arrange(oxbowid)
+  dplyr::select(siteid:geometry.x) %>% # remove line geometry.y 
+  rename(geometry = geometry.x) %>%
+  arrange(oxbow_id)
 
 # export ------------------------------------------------------------------
-
-# export geopackage, shapefile changes the column names
-#site_info %>% 
-#  st_as_sf(coords = c("longitudewq", "latutudewq"),
-#           crs = 4326) %>% 
-#  st_write(dsn = "data_fmt/vector/epsg4326_iowa_oxbow_lineid.shp",
-#           drivers = "ESRI Shapefile",
-#           append = FALSE)
 
 # create RDS file
 saveRDS(site_info, file = "data_fmt/data_iowa_oxbow_lineid.rds")

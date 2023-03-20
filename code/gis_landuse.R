@@ -13,7 +13,7 @@ source(here::here("code/library.R"))
 # read watershed and landuse data ---------------------------------------------------------------
 
 # watershed polygon
-wgs84_sf_wsd <- st_read(dsn = "data_fmt/vector/epsg4326_minnesota_stream_watersheds_dummy_real.shp")
+wgs84_sf_wsd <- readRDS(file = "data_fmt/data_minnesota_stream_watersheds_dummy_real.rds")
 utm_sf_wsd <- wgs84_sf_wsd %>% 
   st_transform(crs = 3722)
 
@@ -85,6 +85,15 @@ utm_rs_temp_seasonality <- projectRaster(from = wgs84_rs_temp_seasonality,
                                          method = 'bilinear',
                                          res = 1000)
 
+# temp mean
+wgs84_rs_temp_mean <- raster("data_fmt/raster/chelsa_clip_mean_temp.tif") %>% 
+  crop(extent(wgs84_sf_wsd)) # crop by extent of watershed layer
+
+utm_rs_temp_mean <- projectRaster(from = wgs84_rs_temp_mean,
+                                         crs = st_crs(3722)$proj4string,
+                                         method = 'bilinear',
+                                         res = 1000)
+
 # extraction by polygon ---------------------------------------------------
 
 ## land use extraction 
@@ -102,9 +111,10 @@ df_lu <- exact_extract(utm_rs_fua, # raster layer for extraction
 # combine climate layers
 utm_rs_clim <- raster::stack(utm_rs_precip_season,
                             utm_rs_precip_wettest,
-                            utm_rs_temp_seasonality) # combine 3 layers into one "stack"
+                            utm_rs_temp_seasonality,
+                            utm_rs_temp_mean) # combine 4 layers into one "stack"
 
-names(utm_rs_clim) <- c("precip_season", "precip_wet", "temp_season")
+names(utm_rs_clim) <- c("precip_season", "precip_wet", "temp_season", "temp_mean")
 
 ## climate extraction
 df_clim <- exact_extract(utm_rs_clim, # raster layer for extraction
@@ -114,7 +124,8 @@ df_clim <- exact_extract(utm_rs_clim, # raster layer for extraction
   as_tibble() %>% 
   rename(precip_season = mean.precip_season,
          precip_wet = mean.precip_wet,
-         temp_season = mean.temp_season)
+         temp_season = mean.temp_season,
+         temp_mean = mean.temp_mean)
 
 # join land use and climate data --------------------------------------------------------------
 
@@ -123,9 +134,7 @@ utm_sf_wsd <- utm_sf_wsd %>%
   left_join(df_lu, by = "siteid") %>% 
   left_join(df_clim, by = "siteid") %>% 
   mutate(area = units::set_units(st_area(.), "km^2")) %>% # add watershed area
-  arrange(siteid)
+  arrange(siteid) %>%
+  mutate(area = as.numeric(area))
 
-# save shapefile as geopackage, saving as shapefile will change column names
-st_write(utm_sf_wsd,
-         dsn = "data_fmt/vector/epsg3722_minnesota_stream_landuse_dummy_real.gpkg",
-         append = FALSE)
+saveRDS(utm_sf_wsd, file ="data_fmt/data_minnesota_stream_landuse_dummy_real.rds")
