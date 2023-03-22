@@ -53,7 +53,7 @@ df_fit %>%
             aes(x = x,
                 y = y)) +
   theme_minimal() +
-  theme(legend.background = element_rect(fill = FALSE, size = 4, colour = FALSE),
+  theme(legend.background = element_rect(fill = FALSE, colour = FALSE),
         legend.justification = c(-0.25, 1.30),
         legend.position = c(0, 1),
         legend.title=element_blank()) + 
