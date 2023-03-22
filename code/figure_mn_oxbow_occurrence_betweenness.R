@@ -19,18 +19,16 @@ df_mn_ox_cent <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centralit
 # number of NAs
 colSums(is.na(df_mn_ox_cent))
 
+# drop NAs
 df_fit <- df_mn_ox_cent %>% 
   drop_na(oxbow_occurrence,
-          turb,
-          temp,
           cond,
           ph)
 
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(oxbow_occurrence ~  between  + scale(temp) + scale(cond) + 
-                scale(turb) + scale(ph) + (1|watershed), data = df_fit, 
-                family = "binomial")
+fit <- glmer(oxbow_occurrence ~  between + scale(cond) + scale(ph) + 
+               (1|watershed), data = df_fit, family = "binomial")
 
 summary(fit)
 

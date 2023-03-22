@@ -21,16 +21,13 @@ colSums(is.na(df_oxbow_snap))
 
 df_fit <- df_oxbow_snap %>% 
   drop_na(oxbow_occurrence,
-          turb,
-          temp,
           cond,
           ph)
 
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(oxbow_occurrence ~  connectivity + scale(turb) + scale(temp) +
-                           scale(cond) + scale(ph) + (1|watershed),
-                           data = df_fit, family = "binomial")
+fit <- glmer(oxbow_occurrence ~  connectivity + scale(cond) + scale(ph) + (1|watershed),
+             data = df_fit, family = "binomial")
 
 summary(fit)
 

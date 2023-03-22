@@ -28,11 +28,19 @@ sf_covar <- df_mn_strm_cent %>%
          geometry = geometry.x,
          watershed = watershed.x)
 
+# remove NAs --------------------------------------------------------------
+
+# drop NAs
+df_fit <- sf_covar %>% 
+  drop_na(stream_occurrence,
+          between,
+          frac_agri,
+          temp_mean)
+
 # glmm --------------------------------------------------------------------
 
-fit <- glmer(stream_occurrence ~ between + scale(area) + scale(precip_wet) +
-               scale(frac_agri) + scale(temp_mean) +  (1|watershed), 
-               data = sf_covar, family = "binomial")
+fit <- glmer(stream_occurrence ~ between + scale(frac_agri) + scale(temp_mean) +
+               (1|watershed), data = df_fit, family = "binomial")
 
 summary(fit)
 

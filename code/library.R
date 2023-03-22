@@ -17,5 +17,6 @@ pacman::p_load(## gg
   runjags,
   MCMCvis,
   mcmcOutput,
+  MuMIn,
   ## misc
   foreach)
