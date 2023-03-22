@@ -29,7 +29,6 @@ fit <- glmer(oxbow_occurrence ~  connectivity + scale(cond) + scale(ph) + (1|wat
 
 summary(fit)
 
-
 # model selection ---------------------------------------------------------
 
 # might need this for selection to work 
