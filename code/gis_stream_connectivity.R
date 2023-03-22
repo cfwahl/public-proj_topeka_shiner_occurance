@@ -67,9 +67,4 @@ sf_line2 <- sf_line %>%
 
 # export connectivity stream network--------------------------------------------------------
 
-# write stream connectivity shapefile
-# st_write(sf_line2,
-#          dsn = "data_fmt/vector/epsg3722_minnesota_stream_connectivity.shp",
-#          append = FALSE)
-
 saveRDS(sf_line2, file = "data_fmt/data_minnesota_stream_connectivity.rds")

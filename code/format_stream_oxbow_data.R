@@ -187,11 +187,6 @@ df_ia <- df_ia %>%
 
 # export ------------------------------------------------------------------
 
-# set coordinates
-df_ia <- df_ia %>% 
-  st_as_sf(coords = c("long", "lat"),
-           crs = 4326) 
-
 # this will recall code in R script
 saveRDS(df_ia, file = "data_fmt/data_iowa_fmt_owbows.rds")
 

@@ -13,41 +13,11 @@ source(here::here("code/library.R"))
 # data --------------------------------------------------------------------
 
 # stream network
-sf_line2 <- readRDS(file = "data_fmt/data_minnesota_stream_connectivity.rds") %>%
-  dplyr::select(-c(STRM_VAL)) # remove slope variable
-
-# network centrality betweenness ---------------------------------------------------------
-
-df_b <- lapply(X = 1:n_distinct(sf_line2$watershed),
-               FUN = function(x) {
-                 df_subset <- sf_line2 %>% 
-                   filter(watershed == x)
-                 
-                 b <- df_subset %>% 
-                   st_touches() %>% 
-                   graph.adjlist() %>% 
-                   betweenness(normalized = TRUE)
-                 
-                 out <- df_subset %>% 
-                   mutate(between = b) %>% 
-                   relocate(between)
-                 
-                 return(out)
-               }) %>% 
-  bind_rows() %>%
-  as_tibble()
-
-# join --------------------------------------------------------------------
-
-sf_line <- sf_line2 %>%
-  left_join(df_b,
-            by = 'line_id') %>%
-  rename(connectivity = connectivity.x,
-         watershed = watershed.x)
+df_b <- readRDS(file = "data_fmt/data_minnesota_stream_betweenness.rds") 
 
 # glmm --------------------------------------------------------------------
 
-fit <- glm(connectivity ~  between + (1|watershed), data = sf_line, 
+fit <- glm(connectivity ~  between + (1|watershed), data = df_b, 
              family = Gamma(link = log))
 
 summary(fit)
@@ -55,7 +25,7 @@ summary(fit)
 # plot --------------------------------------------------------------------
 
 # plot of betweenness and connectivity
-ggplot(sf_line,
+ggplot(df_b,
        aes(x = between,
            y = connectivity)) +
   geom_smooth(method = 'glm', se = TRUE,

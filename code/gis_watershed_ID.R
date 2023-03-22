@@ -72,11 +72,6 @@ join <- st_join(sfline, wgs84_sf_ws_polygon) %>%
   
 # export stream network  ------------------------------------------------------------------
 
-# watersheds
-# st_write(join,
-#          dsn = "data_fmt/vector/epsg4326_minnesota_stream_network_5km2.shp",
-#          append = FALSE)
-
 saveRDS(join, file = "data_fmt/data_minnesota_stream_network_5km2.rds")
 
 # IOWA --------------------------------------------------------------------
@@ -135,10 +130,5 @@ join <- st_join(sfline, wgs84_sf_ws_polygon) %>%
   st_set_crs(4326)
 
 # export stream network  ------------------------------------------------------------------
-
-# watersheds
-# st_write(join,
-#          dsn = "data_fmt/vector/epsg4326_iowa_stream_network_5km2.shp",
-#          append = FALSE)
 
 saveRDS(join, file = "data_fmt/data_iowa_stream_network_5km2.rds")

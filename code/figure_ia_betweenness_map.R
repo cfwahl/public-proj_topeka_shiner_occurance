@@ -12,7 +12,8 @@ source(here::here("code/library.R"))
 # data --------------------------------------------------------------------
 
 ## stream polyline
-sf_line <- readRDS(file = "data_fmt/data_iowa_stream_network_5km2.rds") 
+df_b <- readRDS(file = "data_fmt/data_iowa_stream_betweenness.rds") %>%
+  st_as_sf()
 
 # import oxbow data
 df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")
@@ -31,33 +32,12 @@ sf_oxbow_snapped_0 <- df_iowa_oxbow %>%
   st_as_sf() %>% # use snapped coordinates
   st_transform(3722) # ensure define CRS again
 
-# network centrality ---------------------------------------------------------
-
-# betweenness
-df_b <- lapply(X = 1:n_distinct(sf_line$watershed),
-               FUN = function(x) {
-                 df_subset <- sf_line %>% 
-                   filter(watershed == x)
-                 
-                 y <- df_subset %>% 
-                   st_touches() %>% 
-                   graph.adjlist() %>% 
-                   betweenness(normalized = TRUE)
-                 
-                 out <- df_subset %>% 
-                   mutate(between = y) %>% 
-                   relocate(between)
-                 
-                 return(out)
-               }) %>% 
-  bind_rows() 
-
 # maps --------------------------------------------------------------------
 
 # map of betweenness scores 
 ggplot(df_b) + # base map of stream lines
   geom_sf(aes(color = between),
-          size = 1.2)+ # heat map for connectivity 
+          linewidth = 1.2)+ # heat map for connectivity 
   MetBrewer::scale_color_met_c("Hiroshige", direction = -1) +
   labs(color = "Betweenness") + # label legend 
   theme_minimal() + 

@@ -1,6 +1,7 @@
 
-# this script determines stream length for connectivity and betwenness in 
-# Minnesota and Iowa
+# this script determines stream length for connectivity and betweenness measures 
+# in Minnesota and Iowa. Includes total distance, distance within equally divided
+# subgroups, and proportion within each subgroup.
 
 # setup --------------------------------------------------------------------
 
@@ -13,130 +14,121 @@ source(here::here("code/library.R"))
 # MINNESOTA ---------------------------------------------------------------
 # data -----------------------------------------------------------------
 
-# import RDS files for scores
-df_mn_strm_cent <- readRDS(file = "data_fmt/data_minnesota_stream_network_centrality.rds")
+# import stream network
+df_b <- readRDS(file = "data_fmt/data_minnesota_stream_betweenness.rds") %>%
+  st_as_sf()
 
-## stream polyline
-sf_line2 <- readRDS(file = "data_fmt/data_minnesota_stream_connectivity.rds") %>%
-  dplyr::select(-c(STRM_VAL))  # remove slope variable
-
+# Connectivity ------------------------------------------------------------
 # segment length ----------------------------------------------------------
 
 # determine length of stream segments
-l <- st_length(sf_line2)
+l <- st_length(df_b)
 
 # add column
-sf_line2 <- sf_line2 %>% 
+df_b <- df_b %>% 
   add_column(l = l)
 
 # new cloumn with "[m]" removed  
-sf_line2$seg_length <- stringr::str_remove(sf_line2$l, '\\[m]')
+df_b$seg_length <- stringr::str_remove(df_b$l, '\\[m]')
 
 # remove original l column 
-sf_line2 <- sf_line2 %>%
+df_b <- df_b %>%
   dplyr::select(-c(l))
-
-# join segment length with the rest of stream point df
-df_mn_strm_cent <- merge(x = df_mn_strm_cent, y = sf_line2[ , c("line_id", "seg_length")], 
-                         by = "line_id", all.x=TRUE) %>%
-  dplyr::select(-c(geometry.y)) %>%
-  mutate(seg_length = as.numeric(seg_length)) %>%
-  rename(geometry = geometry.x)
 
 # connectivity classes ----------------------------------------------------
 
 # make segment length numeric
-sf_line2 <- sf_line2 %>%
+df_b <- df_b %>%
   mutate(seg_length = as.numeric(seg_length))
-sum(sf_line2$seg_length) # total length
+sum(df_b$seg_length) # total length
 
-# subset connectivity <=2
-low <- sf_line2 %>%
-  filter(connectivity <= 2)
+# subset connectivity <=2.48
+low <- df_b %>%
+  filter(connectivity <= 2.48)
 sum(low$seg_length) # length 
+sum(low$seg_length)/sum(df_b$seg_length) # proportion
 
-# subset connectivity between 2-3.9
-med <- sf_line2 %>%
-  filter(connectivity >= 2 & connectivity <= 3.9)
+# subset connectivity between 2.49-4.96
+med <- df_b %>%
+  filter(connectivity >= 2.49 & connectivity <= 4.96)
 sum(med$seg_length) # length
+sum(med$seg_length)/sum(df_b$seg_length) # proportion
 
-# subset connectivity >=4
-high <- sf_line2 %>%
-  filter(connectivity >= 4)
-sum(high$seg_length)
+# subset connectivity >=4.97
+high <- df_b %>%
+  filter(connectivity >= 4.97)
+sum(high$seg_length) # length
+sum(high$seg_length)/sum(df_b$seg_length) # proportion
 
 # betweenness classes ----------------------------------------------------
 
 # make segment length numeric
-sf_line2 <- sf_line2 %>%
+df_b <- df_b %>%
   mutate(seg_length = as.numeric(seg_length))
-sum(sf_line2$seg_length) # total length
+sum(df_b$seg_length) # total length
 
-# subset connectivity <=2
-low <- sf_line2 %>%
-  filter(between <= 2.2)
+# subset betweenness <=0.22
+low <- df_b %>%
+  filter(between <= 0.22)
 sum(low$seg_length) # length 
+sum(low$seg_length)/sum(df_b$seg_length) # proportion
 
-# subset connectivity between 2-3.9
-med <- sf_line2 %>%
-  filter(between >= 2.3 & between <= 4.4)
+# subset betweenness between 0.23-0.44
+med <- df_b %>%
+  filter(between >= 0.23 & between <= 0.44)
 sum(med$seg_length) # length
+sum(med$seg_length)/sum(df_b$seg_length) # proportion
 
-# subset connectivity >=4
-high <- sf_line2 %>%
-  filter(between >= 4.5)
-sum(high$seg_length)
-
-# export data ------------------------------------------------------------------
-
-# export stream network centrality scores
-#saveRDS(df_mn_strm_cent, file = "data_fmt/data_minnesota_stream_network_centrality.rds")
+# subset betweenness >=0.45
+high <- df_b %>%
+  filter(between >= 0.45)
+sum(high$seg_length) # length
+sum(high$seg_length)/sum(df_b$seg_length) # proportion
 
 # IOWA --------------------------------------------------------------------
 # data -----------------------------------------------------------------
 
-# import RDS files for scores
-df_ia_strm_cent <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds")
-
-## stream polyline
 # stream polyline
-sf_line2 <- readRDS(file = "data_fmt/data_iowa_stream_betweenness.rds") %>%
+df_b <- readRDS(file = "data_fmt/data_iowa_stream_betweenness.rds") %>%
   st_as_sf()
 
 # segment length ----------------------------------------------------------
 
 # determine length of stream segments
-l <- st_length(sf_line2)
+l <- st_length(df_b)
 
 # add column
-sf_line2 <- sf_line2 %>% 
+df_b <- df_b %>% 
   add_column(l = l)
 
 # new cloumn with "[m]" removed  
-sf_line2$seg_length <- stringr::str_remove(sf_line2$l, '\\[m]')
+df_b$seg_length <- stringr::str_remove(df_b$l, '\\[m]')
 
 # remove original l column 
-sf_line2 <- sf_line2 %>%
+df_b <- df_b %>%
   dplyr::select(-c(l))
 
 # betweenness classes ----------------------------------------------------
 
 # make segment length numeric
-sf_line2 <- sf_line2 %>%
+df_b <- df_b %>%
   mutate(seg_length = as.numeric(seg_length))
-sum(sf_line2$seg_length) # total length
+sum(df_b$seg_length) # total length
 
-# subset connectivity <=2
-low <- sf_line2 %>%
+# subset connectivity <=0.16
+low <- df_b %>%
   filter(between <= 0.16)
 sum(low$seg_length) # length 
+sum(low$seg_length)/sum(df_b$seg_length) # proportion
 
-# subset connectivity between 2-3.9
-med <- sf_line2 %>%
+# subset connectivity between 0.17-0.32
+med <- df_b %>%
   filter(between >= 0.17 & between <= 0.32)
 sum(med$seg_length) # length
+sum(med$seg_length)/sum(df_b$seg_length) # proportion
 
-# subset connectivity >=4
-high <- sf_line2 %>%
+# subset connectivity >=0.33
+high <- df_b %>%
   filter(between >= 0.33)
 sum(high$seg_length)
+sum(high$seg_length)/sum(df_b$seg_length) # proportion

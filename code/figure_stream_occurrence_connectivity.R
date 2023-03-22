@@ -48,7 +48,7 @@ df_beta <- mcmc_summary_up_full %>%
 
 # predictor 
 df_prediction <- df_actual_occurrence %>% 
-  summarize(across(.cols = c(frac_agri, temp_mean, area, precip_wet, s),
+  reframe(across(.cols = c(frac_agri, temp_mean, area, precip_wet, s),
                    .fns = function(x) seq(from = min(x, na.rm = T),
                                           to = max(x, na.rm = T),
                                           length = 100))) %>% # dplyr::select these variables

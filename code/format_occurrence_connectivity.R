@@ -1,5 +1,4 @@
 
-
 # this script produces figures of stream connectivity with stream and oxbow
 # sites added if desired. 
 
@@ -96,7 +95,7 @@ df_oxbow_snap <- st_join(x = sf_point_snapped,
 # export data -------------------------------------------------------------
 
 # save stream occurrence and connectivity RDS
-saveRDS(df_stream_conn, file = "data_fmt/data_minnesota_stream_occur_connect.RDS")
+saveRDS(df_stream_conn, file = "data_fmt/data_minnesota_stream_occur_connect.rds")
 
 # save oxbow occurrence and connectivity RDS
-saveRDS(df_oxbow_snap, file = "data_fmt/data_minnesota_oxbow_occur_connect.RDS")
+saveRDS(df_oxbow_snap, file = "data_fmt/data_minnesota_oxbow_occur_connect.rds")
