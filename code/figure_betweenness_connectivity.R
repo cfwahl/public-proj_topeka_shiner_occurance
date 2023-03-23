@@ -37,3 +37,9 @@ ggplot(df_b,
   xlab("Betweenness") + ylab("Connectivity") +
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12))
+
+# save figure ----------------------------------------------------------------
+
+ggsave(file = "figure/figure_connectivity_X_betweenness.pdf",
+       width = 7,
+       height = 5)

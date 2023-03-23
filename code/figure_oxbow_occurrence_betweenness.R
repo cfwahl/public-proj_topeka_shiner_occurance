@@ -60,3 +60,9 @@ df_fit %>%
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12),
         legend.text=element_text(size=11))
+
+# save figure ----------------------------------------------------------------
+
+ggsave(file = "figure/figure_oxbow_occurrence_X_betweenness.pdf",
+       width = 7,
+       height = 5)

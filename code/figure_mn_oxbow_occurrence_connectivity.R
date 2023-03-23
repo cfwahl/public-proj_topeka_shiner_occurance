@@ -47,3 +47,9 @@ df_fit %>%
                 y = y)) +
   theme_minimal() +
   xlab("Connectivity") + ylab("Oxbow Occurrence")
+
+# save figure ----------------------------------------------------------------
+
+ggsave(file = "figure/figure_mn_oxbow_occurrence_X_connectivity.pdf",
+       width = 7,
+       height = 5)

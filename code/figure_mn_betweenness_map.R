@@ -26,3 +26,9 @@ ggplot(df_b) + # base map of stream lines
   theme_minimal() +
   theme(axis.text.x = element_blank(), # remove lat/long from map
         axis.text.y = element_blank()) 
+
+# save map ----------------------------------------------------------------
+
+ggsave(file = "figure/figure_map_minnesota_betweenness.pdf",
+       width = 7,
+       height = 9)

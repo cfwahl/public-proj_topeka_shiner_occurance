@@ -41,13 +41,13 @@ sf_stream_snapped_0 <- df_stream_occ_snap %>%
 sf_oxbow_snapped_1 <- df_oxbow %>% 
   filter(oxbow_occurrence == "1") %>%
   st_as_sf() %>% # use snapped coordinates
-  st_set_crs(st_crs(3722)) # ensure define CRS again
+  st_transform(3722) # ensure define CRS again
 
 # occurrence absent (0) only
 sf_oxbow_snapped_0 <- df_oxbow %>% 
   filter(oxbow_occurrence == "0") %>%
   st_as_sf() %>% # use snapped coordinates
-  st_set_crs(st_crs(3722)) # ensure define CRS again
+  st_transform(3722) # ensure define CRS again
 
 # map connectivity with stream, oxbow locations ---------------------------------------------------------------------
 
@@ -61,13 +61,13 @@ ggplot(sf_line) + # base map of stream lines
   theme(axis.text.x = element_blank(), # remove lat/long from map
         axis.text.y = element_blank()) #+ 
 # geom_sf(data = sf_stream_snapped_1, 
-#          shape = 16, size = 1, color = 'green') 
+#          shape = 16, size = 1.5, color = 'green') 
 # geom_sf(data = sf_stream_snapped_0, 
-#          shape = 16, size = 1, color = 'red') + 
-# geom_sf(data = sf_oxbow_snapped_1
-#          shape = 16, size = 1, color = 'purple') + 
-# geom_sf(data = sf_oxbow_snapped_0, 
-#          shape = 16, size = 1, color = 'black') 
+#          shape = 16, size = 1.5, color = 'red') + 
+# geom_sf(data = sf_oxbow_snapped_1,
+#          shape = 16, size = 1.5, color = 'green') +
+# geom_sf(data = sf_oxbow_snapped_0,
+#          shape = 16, size = 1.5, color = 'red')
 
 # save map ----------------------------------------------------------------
 

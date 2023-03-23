@@ -117,3 +117,9 @@ df_y0 %>%
         axis.title=element_text(size=12),
         axis.text=element_text(size=12),
         strip.text.x = element_text(size = 12)) 
+
+# save figure ----------------------------------------------------------------
+
+ggsave(file = "figure/figure_stream_occurrence_X_connectivity.pdf",
+       width = 7,
+       height = 5)

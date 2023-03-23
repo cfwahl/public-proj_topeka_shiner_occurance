@@ -47,3 +47,9 @@ ggplot(df_b) + # base map of stream lines
   #         shape = 16, size = 1.5, color = 'red') + 
   # geom_sf(data = sf_oxbow_snapped_1,
   #          shape = 16, size = 1.5, color = 'green') 
+
+# save map ----------------------------------------------------------------
+
+ggsave(file = "figure/figure_map_iowa_betweenness.pdf",
+       width = 7,
+       height = 5)

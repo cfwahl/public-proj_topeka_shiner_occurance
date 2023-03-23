@@ -62,3 +62,9 @@ sf_covar %>%
   xlab("Betwenness") + ylab("Prob. of Stream Occurrence") +
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12))
+
+# save figure ----------------------------------------------------------------
+
+ggsave(file = "figure/figure_stream_occurrence_X_betweenness.pdf",
+       width = 7,
+       height = 5)

@@ -14,6 +14,13 @@ source(here::here("code/library.R"))
 ## read in jags output
 post <- readRDS("output/post_summary_up_full.rds")
 
+
+# set up pdf --------------------------------------------------------------
+
+pdf(file = "figure/figure_bayes_caterpillar_plot.pdf",
+    width = 7,
+    height = 5)
+
 # caterpillar bar plot -----------------------------------------------------
 
 # alpha and b 
@@ -25,3 +32,5 @@ MCMCplot(post$mcmc,
          labels = c('% agriculture', 
                     'temp', 'drainage area', 'precip', 
                     'tot. connectivity'))
+# print pdf
+dev.off()
