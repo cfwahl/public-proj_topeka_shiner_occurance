@@ -23,7 +23,7 @@ wgs84_rs_lu <- raster("data_fmt/raster/epsg4326_nlcd_2019_study_area.tif") %>%
 
 # raster extraction -------------------------------------------------------
 
-# "discrete" raster must be reprojected with "ngb" (nearest neigbor)
+# "discrete" raster must be reprojected with "ngb" (nearest neighbor)
 utm_rs_lu <- projectRaster(from = wgs84_rs_lu,
                            crs = st_crs(3722)$proj4string,
                            method = 'ngb',

@@ -14,7 +14,6 @@ source(here::here("code/library.R"))
 ## read in jags output
 post <- readRDS("output/post_summary_up_full.rds")
 
-
 # set up pdf --------------------------------------------------------------
 
 pdf(file = "figure/figure_bayes_caterpillar_plot.pdf",
