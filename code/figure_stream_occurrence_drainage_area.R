@@ -110,7 +110,7 @@ df_y %>% filter(focus=="area") %>%
              scales = "free_x",
              strip.position = "bottom",
              labeller = labeller(focus = c(`area` = "Drainage Area"))) +
-  labs(y = "Prob. Stream Occurrence") +
+  labs(y = "Prob. of Stream Occurrence") +
   theme_minimal() +
   theme(strip.placement = "outside",
         axis.title.x = element_blank(),
