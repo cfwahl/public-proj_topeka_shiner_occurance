@@ -60,7 +60,6 @@ high <- df_b %>%
 sum(high$seg_length) # length
 sum(high$seg_length)/sum(df_b$seg_length) # proportion
 
-(low$line_id)
 # betweenness classes ----------------------------------------------------
 
 # make segment length numeric
@@ -82,7 +81,7 @@ sum(med$seg_length)/sum(df_b$seg_length) # proportion
 
 # subset betweenness >=0.45
 high <- df_b %>%
-  filter(between >= 0.45)
+  filter(between >= 0.44)
 sum(high$seg_length) # length
 sum(high$seg_length)/sum(df_b$seg_length) # proportion
 
@@ -124,12 +123,12 @@ sum(low$seg_length)/sum(df_b$seg_length) # proportion
 
 # subset connectivity between 0.17-0.32
 med <- df_b %>%
-  filter(between >= 0.17 & between <= 0.32)
+  filter(between >= 0.16 & between <= 0.32)
 sum(med$seg_length) # length
 sum(med$seg_length)/sum(df_b$seg_length) # proportion
 
 # subset connectivity >=0.33
 high <- df_b %>%
-  filter(between >= 0.33)
+  filter(between >= 0.32)
 sum(high$seg_length)
 sum(high$seg_length)/sum(df_b$seg_length) # proportion

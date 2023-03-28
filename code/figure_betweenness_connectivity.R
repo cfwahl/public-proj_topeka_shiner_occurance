@@ -38,6 +38,11 @@ ggplot(df_b,
   theme(axis.text=element_text(size=12),
         axis.title=element_text(size=12))
 
+# rank correlation --------------------------------------------------------
+
+corr <- cor.test(x=df_b$between, y=df_b$connectivity, method = 'spearman')
+corr
+
 # save figure ----------------------------------------------------------------
 
 ggsave(file = "figure/figure_connectivity_X_betweenness.pdf",

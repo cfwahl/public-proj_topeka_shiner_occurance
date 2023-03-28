@@ -1,5 +1,5 @@
 
-# prediction regression of Minnesota oxbow occurrence and betweeness
+# prediction regression of Minnesota oxbow occurrence and betweenness
 
 # setup --------------------------------------------------------------------
 
