@@ -17,7 +17,7 @@ df_b <- readRDS(file = "data_fmt/data_minnesota_stream_betweenness.rds")
 
 # glmm --------------------------------------------------------------------
 
-fit <- glm(connectivity ~  between + (1|watershed), data = df_b, 
+fit <- glm(connectivity ~ between, data = df_b, 
              family = Gamma(link = log))
 
 summary(fit)
