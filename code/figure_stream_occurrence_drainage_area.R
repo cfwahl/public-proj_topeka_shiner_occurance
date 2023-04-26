@@ -65,7 +65,7 @@ x_name <- df_prediction %>%
 # prediction --------------------------------------------------------------
 
 ## extract mean values for each predictor
-df_y <- foreach(i = 1:length(x_name),
+df_w <- foreach(i = 1:length(x_name),
                 .combine = bind_rows) %do% {
                   
                   X <- df_prediction %>% 
@@ -90,7 +90,7 @@ df_y <- foreach(i = 1:length(x_name),
                 }
 
 ## reformat to long-form
-df_data_l <- df_actual_occurrence %>% 
+df_data_w <- df_actual_occurrence %>% 
   pivot_longer(cols = x_name,
                values_to = "x",
                names_to = "focus") %>%
@@ -98,25 +98,27 @@ df_data_l <- df_actual_occurrence %>%
 
 # regression plot ---------------------------------------------------------
 
-df_y %>% filter(focus=="area") %>% 
+plot2 <- df_w %>% filter(focus=="area") %>% 
   ggplot(aes(x = x,
              y = y)) +
   geom_line(aes(x = x,
                 y = y)) +
-  geom_point(data = df_data_l,
+  geom_point(data = df_data_w,
              aes(y = occurrence),
              alpha = 0.2) +
   facet_wrap(facets = ~ focus,
              scales = "free_x",
              strip.position = "bottom",
              labeller = labeller(focus = c(`area` = "Drainage Area"))) +
-  labs(y = "Prob. of Stream Occurrence") +
+  labs(y = "") +
   theme_minimal() +
   theme(strip.placement = "outside",
         axis.title.x = element_blank(),
         axis.title=element_text(size=12),
         axis.text=element_text(size=12),
-        strip.text.x = element_text(size = 12)) 
+        strip.text.x = element_text(size = 12),
+        axis.text.y=element_blank()) +
+  labs(tag = "B")
 
 # save figure ----------------------------------------------------------------
 

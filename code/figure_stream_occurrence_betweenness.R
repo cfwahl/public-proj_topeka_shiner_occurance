@@ -51,7 +51,7 @@ df_pred <-  tibble(x = seq(min(sf_covar$between),
                            length = 100)) %>% 
   mutate(y = boot::inv.logit(fit@beta[1] + fit@beta[2] * x))
 
-sf_covar %>% 
+plot2 <- sf_covar %>% 
   ggplot(aes(x = between,
              y = stream_occurrence)) +
   geom_point() +
@@ -59,9 +59,11 @@ sf_covar %>%
             aes(x = x,
                 y = y)) +
   theme_minimal() +
-  xlab("Betwenness") + ylab("Prob. of Stream Occurrence") +
+  xlab("") + ylab("Prob. of Stream Occurrence") +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12))
+        axis.title=element_text(size=12),
+        axis.title.x = element_blank())  +
+  labs(tag = "B")
 
 # save figure ----------------------------------------------------------------
 

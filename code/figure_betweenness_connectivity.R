@@ -25,7 +25,7 @@ summary(fit)
 # plot --------------------------------------------------------------------
 
 # plot of betweenness and connectivity
-ggplot(df_b,
+plot1 <- ggplot(df_b,
        aes(x = between,
            y = connectivity)) +
   geom_smooth(method = 'glm', se = TRUE,
@@ -34,9 +34,11 @@ ggplot(df_b,
               fill = "grey70")+
   geom_point() + 
   theme_minimal() +
-  xlab("Betweenness") + ylab("Connectivity") +
+  xlab("") + ylab("Connectivity") +
   theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12))
+        axis.title=element_text(size=12),
+        axis.title.x = element_blank())  +
+  labs(tag = "A")
 
 # rank correlation --------------------------------------------------------
 

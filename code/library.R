@@ -1,8 +1,7 @@
-pacman::p_load(## gg
+pacman::p_load(
   tidyverse,
   lme4,
   lmerTest,
-  #gis
   sf,
   raster,
   stars,
@@ -13,10 +12,11 @@ pacman::p_load(## gg
   igraph,
   riverdist,
   exactextractr,
-  ## bayes
   runjags,
   MCMCvis,
   mcmcOutput,
   MuMIn,
-  ## misc
-  foreach)
+  foreach,
+  gridExtra,
+  grid,
+  gridtext)

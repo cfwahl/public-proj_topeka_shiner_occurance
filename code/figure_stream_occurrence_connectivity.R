@@ -98,7 +98,7 @@ df_data_l <- df_actual_occurrence %>%
 
 # regression plot ---------------------------------------------------------
 
-df_y0 %>% 
+plot1 <- df_y0 %>% 
   ggplot(aes(x = x,
              y = y)) +
   geom_line(aes(x = x,
@@ -116,7 +116,8 @@ df_y0 %>%
         axis.title.x = element_blank(),
         axis.title=element_text(size=12),
         axis.text=element_text(size=12),
-        strip.text.x = element_text(size = 12)) 
+        strip.text.x = element_text(size = 12)) +
+  labs(tag = "A")
 
 # save figure ----------------------------------------------------------------
 
