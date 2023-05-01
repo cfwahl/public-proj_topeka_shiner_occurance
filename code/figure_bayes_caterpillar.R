@@ -29,7 +29,7 @@ MCMCplot(post$mcmc,
          HPD = TRUE,
          ref_ovl = TRUE,
          labels = c('% agriculture', 
-                    'temp', 'drainage area', 'precip', 
-                    'tot. connectivity'))
+                    'temperature', 'drainage area', 'precipitation', 
+                    'connectivity'))
 # print pdf
 dev.off()
