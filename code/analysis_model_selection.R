@@ -14,7 +14,7 @@ source(here::here("code/library.R"))
 # insert data file here, varies with glmm
 df_oxbow_snap <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centrality.rds") 
 
-# join for analysisremove NAs ---------------------------------------------
+# join for analysis remove NAs ---------------------------------------------
 
 # drop NAs
 df_fit <- df_oxbow_snap %>% 
