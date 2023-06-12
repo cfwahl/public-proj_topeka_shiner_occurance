@@ -14,7 +14,7 @@ source(here::here("code/library.R"))
 
 df_mn_ia_oxbow <- readRDS(file = "data_fmt/data_ia_mn_oxbow_join.rds") %>%
   as_tibble() %>%
-  mutate(state = (oxbow_id < 143)) %>%
+  mutate(state = (oxbow_id < 141)) %>%
   mutate(state = replace(state, state == 'FALSE', 'Iowa'),
          state = replace(state, state == 'TRUE', 'Minnesota'))
 

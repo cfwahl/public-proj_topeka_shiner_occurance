@@ -20,7 +20,7 @@ df_mn_ox_cent <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centralit
 # read iowa oxbow rds
 df_iowa_oxbow <- readRDS(file = "data_fmt/data_iowa_network_centrality.rds") %>%
   as_tibble() %>%
-  mutate(oxbow_id = row_number()+142,
+  mutate(oxbow_id = row_number()+140,
          watershed = watershed+7) 
 
 # join --------------------------------------------------------------------

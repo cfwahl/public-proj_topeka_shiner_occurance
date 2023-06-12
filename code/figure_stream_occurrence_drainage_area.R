@@ -109,7 +109,7 @@ plot2 <- df_w %>% filter(focus=="area") %>%
   facet_wrap(facets = ~ focus,
              scales = "free_x",
              strip.position = "bottom",
-             labeller = labeller(focus = c(`area` = "Drainage Area"))) +
+             labeller = labeller(focus = c(`area` = "Drainage Area km2"))) +
   labs(y = "") +
   theme_minimal() +
   theme(strip.placement = "outside",
