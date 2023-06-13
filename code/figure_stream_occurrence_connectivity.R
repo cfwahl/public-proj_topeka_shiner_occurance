@@ -106,17 +106,18 @@ plot1 <- df_y0 %>%
   geom_point(data = df_data_l,
              aes(y = occurrence),
              alpha = 0.2) +
-  facet_wrap(facets = ~ focus,
-             scales = "free_x",
-             strip.position = "bottom",
-             labeller = labeller(focus = c(`s` = "Connectivity"))) +
-  labs(y = "Prob. of Stream Occurrence") +
+  # facet_wrap(facets = ~ focus,
+  #            scales = "free_x",
+  #            strip.position = "bottom",
+  #            labeller = labeller(focus = c(`s` = "Connectivity"))) +
+  labs(y = "Prob. of Stream Occurrence", x = "Connectivity") +
   theme_minimal() +
   theme(strip.placement = "outside",
-        axis.title.x = element_blank(),
-        axis.title=element_text(size=12),
-        axis.text=element_text(size=12),
-        strip.text.x = element_text(size = 12)) +
+        axis.title.x = element_text(size=12),
+        axis.title = element_text(size=12),
+        axis.text = element_text(size=12),
+        strip.text.x = element_text(size = 12),
+        plot.margin = margin(0.21,0,0.38,0, "cm")) +
   labs(tag = "A")
 
 # save figure ----------------------------------------------------------------

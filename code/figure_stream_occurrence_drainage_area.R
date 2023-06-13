@@ -106,18 +106,18 @@ plot2 <- df_w %>% filter(focus=="area") %>%
   geom_point(data = df_data_w,
              aes(y = occurrence),
              alpha = 0.2) +
-  facet_wrap(facets = ~ focus,
-             scales = "free_x",
-             strip.position = "bottom",
-             labeller = labeller(focus = c(`area` = "Drainage Area km2"))) +
-  labs(y = "") +
+  # facet_wrap(facets = ~ focus,
+  #            scales = "free_x",
+  #            strip.position = "bottom",
+  #            labeller = labeller(focus = c(`area` = "Drainage Area km2"))) +
+  labs(y = "", x = bquote('Drainage Area km'^2)) +
   theme_minimal() +
   theme(strip.placement = "outside",
-        axis.title.x = element_blank(),
-        axis.title=element_text(size=12),
-        axis.text=element_text(size=12),
+        axis.title.x = element_text(size=12),
+        axis.title = element_text(size=12),
+        axis.text = element_text(size=12),
         strip.text.x = element_text(size = 12),
-        axis.text.y=element_blank()) +
+        axis.text.y = element_blank()) +
   labs(tag = "B")
 
 # save figure ----------------------------------------------------------------
