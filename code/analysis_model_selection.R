@@ -12,19 +12,20 @@ source(here::here("code/library.R"))
 # data --------------------------------------------------------------------
 
 # insert data file here, varies with glmm
-df_oxbow_snap <- readRDS(file = "data_fmt/data_minnesota_oxbow_network_centrality.rds") 
+df_mn_ia_oxbow <- readRDS(file = "data_fmt/data_ia_mn_oxbow_join.rds")
 
 # join for analysis remove NAs ---------------------------------------------
 
 # drop NAs
-df_fit <- df_oxbow_snap %>% 
+df_fit <- df_mn_ia_oxbow %>% 
   drop_na(oxbow_occurrence,
           cond,
-          ph)
+          ph,
+          temperature)
 
 # model selection ---------------------------------------------------------
 
-fit <- glmer(oxbow_occurrence ~  connectivity + scale(cond) + scale(ph) + (1|watershed),
+fit <- glmer(oxbow_occurrence ~  between + scale(cond) + scale(temperature) + scale(ph) + (1|watershed),
              data = df_fit, family = "binomial")
 
 summary(fit)
@@ -35,4 +36,4 @@ summary(fit)
 options(na.action = "na.fail") 
 
 # automated selection
-MuMIn::dredge(global.model = fit)
+MuMIn::dredge(global.model = fit, rank = "AIC")
