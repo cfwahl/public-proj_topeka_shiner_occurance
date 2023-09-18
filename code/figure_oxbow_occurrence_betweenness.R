@@ -33,8 +33,8 @@ df_fit <- df_mn_ia_oxbow %>%
 fit <- glmer(oxbow_occurrence ~ between +  scale(temperature)  +
                +scale(ph) + (1|watershed), data = df_fit, 
              family = "binomial")
-
 summary(fit)
+confint(fit)
 
 # figure ------------------------------------------------------------------
 
