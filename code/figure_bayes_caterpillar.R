@@ -30,6 +30,9 @@ MCMCplot(post$mcmc,
          ref_ovl = TRUE,
          labels = c('% agriculture', 
                     'temperature', 'drainage area', 'precipitation', 
-                    'connectivity'))
+                    'connectivity'),
+         sz_labels = 1.4, 
+         sz_ax_txt = 1.4,
+         sz_tick_txt = 1.4)
 # print pdf
 dev.off()

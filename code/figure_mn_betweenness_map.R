@@ -25,7 +25,10 @@ plot2 <- ggplot(df_b) + # base map of stream lines
   labs(color = "Betweenness") + # label legend 
   theme_minimal() +
   theme(axis.text.x = element_blank(), # remove lat/long from map
-        axis.text.y = element_blank()) +
+        axis.text.y = element_blank(),
+        legend.text = element_text(size = 13),
+        legend.title = element_text(size = 13), 
+        plot.tag = element_text(size = 13)) +
   labs(tag = "B")
 
 # save map ----------------------------------------------------------------

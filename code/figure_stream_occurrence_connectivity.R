@@ -113,12 +113,13 @@ plot1 <- df_y0 %>%
   labs(y = "Prob. of Stream Occurrence", x = "Connectivity") +
   theme_minimal() +
   theme(strip.placement = "outside",
-        axis.title.x = element_text(size=12),
-        axis.title = element_text(size=12),
-        axis.text = element_text(size=12),
-        strip.text.x = element_text(size = 12),
-        plot.margin = margin(0.21,0,0.38,0, "cm")) +
-  labs(tag = "A")
+        axis.title.x = element_text(size=14),
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=14),
+        strip.text.x = element_text(size = 14),
+        plot.margin = margin(0.21,0,0.38,0, "cm"),
+        plot.tag = element_text(size = 14)) +
+  labs(tag = " A")
 
 # save figure ----------------------------------------------------------------
 

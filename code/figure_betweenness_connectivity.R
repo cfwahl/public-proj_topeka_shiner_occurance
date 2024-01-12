@@ -34,11 +34,10 @@ plot1 <- ggplot(df_b,
               fill = "grey70")+
   geom_point() + 
   theme_minimal() +
-  xlab("") + ylab("Connectivity") +
-  theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12),
-        axis.title.x = element_blank())  +
-  labs(tag = "A")
+  xlab("Betweenness") + ylab("Connectivity") +
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=14),
+        axis.title.x=element_text(size=14))
 
 # rank correlation --------------------------------------------------------
 

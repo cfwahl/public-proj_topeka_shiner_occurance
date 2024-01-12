@@ -57,9 +57,9 @@ df_fit %>%
         legend.title=element_blank()) + 
   scale_color_manual(values=c("chocolate", "grey39")) +
   xlab("Betwenness") + ylab("Prob. of Oxbow Occurrence") +
-  theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=12),
-        legend.text=element_text(size=11))
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=14),
+        legend.text=element_text(size=14))
 
 # save figure ----------------------------------------------------------------
 

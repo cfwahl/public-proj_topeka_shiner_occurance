@@ -113,12 +113,13 @@ plot2 <- df_w %>% filter(focus=="area") %>%
   labs(y = "", x = bquote('Drainage Area km'^2)) +
   theme_minimal() +
   theme(strip.placement = "outside",
-        axis.title.x = element_text(size=12),
-        axis.title = element_text(size=12),
-        axis.text = element_text(size=12),
-        strip.text.x = element_text(size = 12),
-        axis.text.y = element_blank()) +
-  labs(tag = "B")
+        axis.title.x = element_text(size=14),
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=14),
+        strip.text.x = element_text(size = 14),
+        axis.text.y = element_blank(),
+        plot.tag = element_text(size = 14)) +
+  labs(tag = " B")
 
 # save figure ----------------------------------------------------------------
 

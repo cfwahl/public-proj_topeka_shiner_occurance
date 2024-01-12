@@ -42,11 +42,9 @@ ggplot(df_b) + # base map of stream lines
   labs(color = "Betweenness") + # label legend 
   theme_minimal() + 
   theme(axis.text.x = element_blank(), # remove lat/long from map
-        axis.text.y = element_blank()) #+
-  # geom_sf(data = sf_oxbow_snapped_0,
-  #         shape = 16, size = 1.5, color = 'red') + 
-  # geom_sf(data = sf_oxbow_snapped_1,
-  #          shape = 16, size = 1.5, color = 'green') 
+        axis.text.y = element_blank(),
+        legend.text = element_text(size = 14),
+        legend.title = element_text(size = 14))
 
 # save map ----------------------------------------------------------------
 

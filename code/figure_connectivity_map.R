@@ -59,16 +59,11 @@ plot1 <- ggplot(sf_line) + # base map of stream lines
   labs(color = "Connectivity") + # label legend 
   theme_minimal() +
   theme(axis.text.x = element_blank(), # remove lat/long from map
-        axis.text.y = element_blank()) +
-  labs(tag = "A") #+ 
-# geom_sf(data = sf_stream_snapped_1, 
-#          shape = 16, size = 1.5, color = 'green') 
-# geom_sf(data = sf_stream_snapped_0, 
-#          shape = 16, size = 1.5, color = 'red') + 
-# geom_sf(data = sf_oxbow_snapped_1,
-#          shape = 16, size = 1.5, color = 'green') +
-# geom_sf(data = sf_oxbow_snapped_0,
-#          shape = 16, size = 1.5, color = 'red')
+        axis.text.y = element_blank(),
+        legend.text = element_text(size = 13),
+        legend.title = element_text(size = 13), 
+        plot.tag = element_text(size = 13)) +
+  labs(tag = "A")
 
 # save map ----------------------------------------------------------------
 
